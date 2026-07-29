@@ -11,13 +11,13 @@ Arrive from **11:00 a.m.–12:00 p.m.** if you have issues with installing R or 
 ::: {.schedule-table}
 | Time       | Session                           |
 |:-----------|:----------------------------------|
-| 12:00–1:30 | Introduction to R and IDEs        |
+| 12:00–1:30 | Basic setup, ergonomics, and types |
 | 1:30–2:00  | Guided exercise                   |
 | 2:00–2:15  | Break                             |
-| 2:15–3:45  | R types, vectors, and data frames |
+| 2:15–3:45  | Base data frames and common operations |
 | 3:45–5:00  | Applied exercise                  |
 :::
 
-## Introduction to R and IDEs {#intro}
+## Basic setup, ergonomics, and types {#setup}
 
-## Types, vectors, and data frames {#objects}
+## Base data frames and common operations {#data-frames}

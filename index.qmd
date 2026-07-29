@@ -16,6 +16,18 @@ title-block-banner: false
 :::
 
 ::: {.content-wrap}
+::: {.prerequisites-callout}
+::: {.prerequisites-copy}
+<span class="day-label">Before Day 1</span>
+
+### Install R and an IDE
+
+Install R and either RStudio or Positron before the bootcamp. Setup help is available from 11:00 a.m.–12:00 p.m. on Day 1.
+:::
+
+<a class="callout-link" href="prerequisites.qmd">View prerequisites →</a>
+:::
+
 ## Schedule {#schedule}
 
 ::: {.week-grid}
@@ -24,8 +36,8 @@ title-block-banner: false
 
 ### [R foundations](day-1.qmd)
 
-- Introduction to R and IDEs
-- R types and data frames
+- Setup, ergonomics, and types
+- Base data frames and common operations
 
 <a class="card-link" href="day-1.qmd">Day 1 →</a>
 :::
@@ -35,8 +47,8 @@ title-block-banner: false
 
 ### [Tidyverse](day-2.qmd)
 
-- Tidyverse and pipes
-- `ggplot2`
+- Tidyverse 1
+- More tidyverse, including `ggplot2`
 
 <a class="card-link" href="day-2.qmd">Day 2 →</a>
 :::
@@ -46,9 +58,8 @@ title-block-banner: false
 
 ### [Programming](day-3.qmd)
 
-- Programming
-- R workflows
-- Statistical simulation
+- Loops, `lapply()`, and programming styles
+- Simulations and R workflows
 
 <a class="card-link" href="day-3.qmd">Day 3 →</a>
 :::
@@ -56,12 +67,13 @@ title-block-banner: false
 ::: {.day-card}
 <span class="day-label">Day 4</span>
 
-### [Reproducible workflows](day-4.qmd)
+### [Grab bag](day-4.qmd)
 
 - Git and Quarto
 - Terminal and CLI
-- Web data
-- Where to go next
+- Web data and APIs
+- Geospatial and efficient data
+- Arrow, databases, and future workshops
 
 <a class="card-link" href="day-4.qmd">Day 4 →</a>
 :::
@@ -71,4 +83,3 @@ title-block-banner: false
 **Each day:** 90-minute lecture · 30-minute exercise · 15-minute break · 90–120-minute lecture · remainder for an exercise
 :::
 :::
-

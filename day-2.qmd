@@ -5,14 +5,13 @@ title: "Day 2: Tidyverse"
 ::: {.schedule-table}
 | Time       | Session                           |
 |:-----------|:----------------------------------|
-| 12:00–1:30 | Tidyverse and pipes               |
+| 12:00–1:30 | Tidyverse 1                       |
 | 1:30–2:00  | Guided exercise                   |
 | 2:00–2:15  | Break                             |
-| 2:15–3:45  | Tidyverse, focused on `ggplot2`   |
+| 2:15–3:45  | More tidyverse, including `ggplot2` |
 | 3:45–5:00  | Applied exercise                  |
 :::
 
-## Tidyverse and pipes {#tidyverse}
+## Tidyverse 1 {#tidyverse-1}
 
-## Tidyverse, focused on ggplot2 {#ggplot2}
-
+## More tidyverse, including ggplot2 {#tidyverse-2}

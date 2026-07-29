@@ -126,6 +126,29 @@ code, pre { font-family: "Fira Code", monospace; }
 .page-layout-full #title-block-header { display: none; }
 .content-wrap > h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); letter-spacing: -.035em; }
 
+.prerequisites-callout {
+  align-items: center;
+  background: var(--ddss-mint-soft);
+  border: 1px solid var(--ddss-border);
+  border-left: 4px solid var(--ddss-blue);
+  border-radius: .6rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+  padding: 1.25rem 1.4rem;
+}
+.prerequisites-callout h3 { font-size: 1.2rem; margin: .25rem 0; }
+.prerequisites-callout p { margin: 0; }
+.callout-link {
+  color: var(--ddss-blue);
+  flex: 0 0 auto;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+}
+.callout-link:hover { color: var(--ddss-blue-light); text-decoration: underline; }
+
 .week-grid { display: grid; gap: 1rem; grid-template-columns: repeat(4, 1fr); margin: 2rem 0; }
 .day-card {
   background: #fff;
@@ -161,10 +184,12 @@ h2 { border-bottom: 1px solid var(--ddss-border); padding-bottom: .4rem; }
 h2::before { color: var(--ddss-blue); content: "// "; font-family: "Fira Code", monospace; font-size: .72em; }
 .callout-note { border-left-color: var(--ddss-blue) !important; }
 .page-footer { border-top: 1px solid var(--ddss-border); color: var(--ddss-muted); }
+.footer-logo { display: block; height: auto; max-width: min(22rem, 70vw); width: 13rem; }
 
 @media (max-width: 900px) { .week-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) {
   .week-grid { grid-template-columns: 1fr; }
   .day-card { min-height: 0; }
   .hero { padding-block: 3.5rem; }
+  .prerequisites-callout { align-items: flex-start; flex-direction: column; gap: .75rem; }
 }

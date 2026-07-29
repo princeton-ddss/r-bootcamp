@@ -8,8 +8,6 @@ website:
   navbar:
     title: "R Bootcamp"
     left:
-      - href: index.qmd
-        text: Schedule
       - href: day-1.qmd
         text: Day 1
       - href: day-2.qmd
@@ -19,13 +17,15 @@ website:
       - href: day-4.qmd
         text: Day 4
     right:
+      - href: prerequisites.qmd
+        text: Prerequisites
       - href: data.qmd
         text: Data
       - href: about.qmd
         text: About
   page-footer:
-    left: "R Bootcamp · Data-Driven Social Science"
-    right: "Princeton University"
+    left: '<img class="footer-logo" src="assets/DDSS-stacked_PU_shield_black.webp" alt="Data-Driven Social Science at Princeton University">'
+    right: "R Bootcamp"
 
 format:
   html:
@@ -34,4 +34,3 @@ format:
     toc: true
     smooth-scroll: true
     link-external-newwindow: true
-

@@ -1,0 +1,16 @@
+---
+title: "Prerequisites"
+toc: false
+---
+
+Before Day 1, install:
+
+- R
+- Either RStudio or Positron
+
+::: {.callout-note}
+## Setup office hours
+
+Arrive from **11:00 a.m.–12:00 p.m. on Day 1** if you have issues installing R or RStudio/Positron.
+:::
+

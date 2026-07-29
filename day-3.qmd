@@ -8,7 +8,7 @@ title: "Day 3: Programming, workflows, and simulation"
 | 12:00–1:30 | Programming                            |
 | 1:30–2:00  | Guided exercise                        |
 | 2:00–2:15  | Break                                  |
-| 2:15–3:45  | R workflows and statistical simulation |
+| 2:15–3:45  | Simulations and R workflows             |
 | 3:45–5:00  | Applied exercise                       |
 :::
 
@@ -18,9 +18,8 @@ title: "Day 3: Programming, workflows, and simulation"
 - Object-oriented versus functional styles
 - Why R differs from Python, Java, and other languages
 
+## Simulations {#simulations}
+
 ## R workflows {#workflows}
 
 - Scripts and sourcing
-
-## Statistical simulation {#simulation}
-

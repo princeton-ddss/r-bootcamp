@@ -1,14 +1,14 @@
 ---
-title: "Day 4: Git, Quarto, and web data"
+title: "Day 4: Grab bag"
 ---
 
 ::: {.schedule-table}
 | Time       | Session                            |
 |:-----------|:-----------------------------------|
-| 12:00–1:30 | Git and Quarto                     |
+| 12:00–1:30 | Git, Quarto, and non-R CLI tools   |
 | 1:30–2:00  | Guided exercise                    |
 | 2:00–2:15  | Break                              |
-| 2:15–3:45  | Terminal, web data, and the future |
+| 2:15–3:45  | Web data and other tools           |
 | 3:45–5:00  | Applied exercise                   |
 :::
 
@@ -20,6 +20,10 @@ title: "Day 4: Git, Quarto, and web data"
 
 - `rvest`
 - APIs with `httr2`
+
+## Geospatial work {#geospatial}
+
+## Efficient data {#efficient-data}
 
 ## The future {#future}
 
