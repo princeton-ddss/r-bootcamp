@@ -1,0 +1,37 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "R Bootcamp"
+  page-navigation: true
+  navbar:
+    title: "R Bootcamp"
+    left:
+      - href: index.qmd
+        text: Schedule
+      - href: day-1.qmd
+        text: Day 1
+      - href: day-2.qmd
+        text: Day 2
+      - href: day-3.qmd
+        text: Day 3
+      - href: day-4.qmd
+        text: Day 4
+    right:
+      - href: data.qmd
+        text: Data
+      - href: about.qmd
+        text: About
+  page-footer:
+    left: "R Bootcamp · Data-Driven Social Science"
+    right: "Princeton University"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    smooth-scroll: true
+    link-external-newwindow: true
+

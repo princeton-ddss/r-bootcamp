@@ -1,0 +1,29 @@
+---
+title: "Day 4: Git, Quarto, and web data"
+---
+
+::: {.schedule-table}
+| Time       | Session                            |
+|:-----------|:-----------------------------------|
+| 12:00–1:30 | Git and Quarto                     |
+| 1:30–2:00  | Guided exercise                    |
+| 2:00–2:15  | Break                              |
+| 2:15–3:45  | Terminal, web data, and the future |
+| 3:45–5:00  | Applied exercise                   |
+:::
+
+## Git and Quarto {#git-quarto}
+
+## Using the terminal and CLI {#terminal}
+
+## Web data {#web-data}
+
+- `rvest`
+- APIs with `httr2`
+
+## The future {#future}
+
+- Arrow
+- Databases
+- Other workshops, including SQL bootcamp
+

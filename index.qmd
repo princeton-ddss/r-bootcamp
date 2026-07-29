@@ -1,0 +1,74 @@
+---
+title: "R Bootcamp"
+toc: false
+page-layout: full
+title-block-banner: false
+---
+
+::: {.hero}
+::: {.hero-inner}
+<p class="eyebrow">Data-Driven Social Science</p>
+
+# R Bootcamp
+
+<span class="schedule-pill">4 days</span> <span class="schedule-pill">12:00–5:00 p.m.</span>
+:::
+:::
+
+::: {.content-wrap}
+## Schedule {#schedule}
+
+::: {.week-grid}
+::: {.day-card}
+<span class="day-label">Day 1</span>
+
+### [R foundations](day-1.qmd)
+
+- Introduction to R and IDEs
+- R types and data frames
+
+<a class="card-link" href="day-1.qmd">Day 1 →</a>
+:::
+
+::: {.day-card}
+<span class="day-label">Day 2</span>
+
+### [Tidyverse](day-2.qmd)
+
+- Tidyverse and pipes
+- `ggplot2`
+
+<a class="card-link" href="day-2.qmd">Day 2 →</a>
+:::
+
+::: {.day-card}
+<span class="day-label">Day 3</span>
+
+### [Programming](day-3.qmd)
+
+- Programming
+- R workflows
+- Statistical simulation
+
+<a class="card-link" href="day-3.qmd">Day 3 →</a>
+:::
+
+::: {.day-card}
+<span class="day-label">Day 4</span>
+
+### [Reproducible workflows](day-4.qmd)
+
+- Git and Quarto
+- Terminal and CLI
+- Web data
+- Where to go next
+
+<a class="card-link" href="day-4.qmd">Day 4 →</a>
+:::
+:::
+
+::: {.note-strip}
+**Each day:** 90-minute lecture · 30-minute exercise · 15-minute break · 90–120-minute lecture · remainder for an exercise
+:::
+:::
+
