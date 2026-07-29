@@ -7,7 +7,7 @@ title-block-banner: false
 
 ::: {.hero}
 ::: {.hero-inner}
-# R Bootcamp
+# <span class="hero-highlight">R Bootcamp</span>
 
 <p class="hero-meta">Data-Driven Social Science · Four days · 12:00–5:00 p.m.</p>
 :::

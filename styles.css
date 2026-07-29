@@ -1,5 +1,5 @@
 /* A small Quarto companion to the DDSS site. */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap');
 
 :root {
   --ddss-bg: #ffffff;
@@ -25,7 +25,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
 
 code, pre { font-family: "Fira Code", monospace; }
@@ -62,7 +62,8 @@ code, pre { font-family: "Fira Code", monospace; }
 .navbar-nav .nav-link {
   color: var(--ddss-ink) !important;
   font-family: "Inter", system-ui, sans-serif;
-  font-weight: 600;
+  font-size: 1.125rem;
+  font-weight: 700;
 }
 
 .navbar-nav .nav-link:hover,
@@ -82,31 +83,39 @@ code, pre { font-family: "Fira Code", monospace; }
 }
 
 .hero h1 {
-  display: inline-block;
-  font-size: clamp(2.6rem, 6vw, 4.5rem);
-  letter-spacing: -.055em;
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -1.2px;
   line-height: 1;
   margin: 0;
+}
+
+.hero-highlight {
+  display: inline-block;
+  font-family: "Fira Code", "JetBrains Mono", monospace;
+  letter-spacing: normal;
   position: relative;
+  white-space: nowrap;
   z-index: 0;
 }
 
-.hero h1::before {
+.hero-highlight::before {
   background: var(--ddss-mint);
-  bottom: .02em;
+  bottom: -.02em;
   content: "";
-  height: .22em;
-  left: -.08em;
+  left: -.1em;
   position: absolute;
-  right: -.08em;
+  right: -.1em;
+  top: .08em;
   transform: rotate(-.5deg) skewX(-3deg);
   z-index: -1;
 }
 
 .hero-meta {
   color: var(--ddss-secondary);
-  font-family: "Fira Code", monospace;
-  font-size: .84rem;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   margin: 1.25rem 0 0;
 }
 
@@ -117,7 +126,8 @@ main.content h2 {
   align-items: center;
   border: 0;
   display: flex;
-  font-size: 1.45rem;
+  font-size: 1.25rem;
+  font-weight: 600;
   gap: .7rem;
   margin-top: 2.5rem;
   padding: 0;
@@ -170,7 +180,7 @@ main.content h2::before {
   text-transform: uppercase;
 }
 
-.day-card h3 { font-size: 1.15rem; margin: .35rem 0 .8rem; }
+.day-card h3 { font-size: 1rem; font-weight: 600; line-height: 1.6; margin: .35rem 0 .8rem; }
 .day-card h3 a { color: var(--ddss-ink); text-decoration: none; }
 .day-card h3 a:hover { color: var(--ddss-blue); }
 .day-card ul { color: var(--ddss-secondary); margin: 0; padding-left: 1.2rem; }
@@ -185,7 +195,7 @@ main.content h2::before {
 
 /* Interior pages */
 #quarto-content:not(.page-layout-full) main.content { max-width: 900px; }
-.quarto-title h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -.045em; }
+.quarto-title h1 { font-size: clamp(2.25rem, 5vw, 3rem); font-weight: 700; letter-spacing: -1.2px; line-height: 1; }
 .schedule-table { border-top: 2px solid var(--ddss-ink); margin-top: 2rem; }
 .schedule-table table { margin-bottom: 0; }
 .schedule-table thead { background: #fff; color: var(--ddss-ink); }
