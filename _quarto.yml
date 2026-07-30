@@ -15,8 +15,6 @@ website:
         text: Day 2
       - href: day-3.qmd
         text: Day 3
-      - href: day-4.qmd
-        text: Day 4
     right:
       - href: prerequisites.qmd
         text: Prerequisites

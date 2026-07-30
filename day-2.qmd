@@ -1,17 +1,69 @@
 ---
-title: "Day 2: Tidyverse"
+title: "Day 2: Programming and tidyverse"
 ---
 
 ::: {.schedule-table}
-| Time       | Session                           |
-|:-----------|:----------------------------------|
-| 12:00–1:30 | Tidyverse 1                       |
-| 1:30–2:00  | Guided exercise                   |
-| 2:00–2:15  | Break                             |
-| 2:15–3:45  | More tidyverse, including `ggplot2` |
-| 3:45–5:00  | Applied exercise                  |
+| Time        | Session                                   |
+|:------------|:------------------------------------------|
+| 9:00–10:30  | Functions                                 |
+| 10:30–10:45 | Break                                     |
+| 10:45–11:45 | Loops, iteration, and `lapply()`          |
+| 11:45–12:30 | Guided exercise                           |
+| 12:30–1:30  | Lunch                                     |
+| 1:30–2:45   | Quarto and typesetting                    |
+| 2:45–3:00   | Break                                     |
+| 3:00–4:15   | Tidyverse: tibbles and `dplyr`            |
+| 4:15–5:00   | `purrr` and applied exercise              |
 :::
 
-## Tidyverse 1 {#tidyverse-1}
+## Functions {#functions}
 
-## More tidyverse, including ggplot2 {#tidyverse-2}
+- Writing and calling functions
+- Arguments, defaults, and return values
+
+::: {.refs}
+[References]{.refs-label}
+
+- [r4ds, Ch. 25: Functions](https://r4ds.hadley.nz/functions.html)
+- [Prefresher, Ch. 9: Objects, functions, loops](https://iqss.github.io/prefresher/13_functions_obj_loops.html)
+:::
+
+## Loops, iteration, and `lapply()` {#iteration}
+
+- `for` and `while` loops
+- `lapply()` and friends
+- Guided exercise
+
+::: {.refs}
+[References]{.refs-label}
+
+- [Prefresher, Ch. 9.3: Loops](https://iqss.github.io/prefresher/13_functions_obj_loops.html)
+- [r4ds, Ch. 26: Iteration](https://r4ds.hadley.nz/iteration.html)
+:::
+
+## Quarto and typesetting {#quarto}
+
+- Making work replicable and research-ready
+- Migrating the morning exercise into Quarto
+- How R Markdown fits in
+
+::: {.refs}
+[References]{.refs-label}
+
+- [r4ds, Ch. 28: Quarto](https://r4ds.hadley.nz/quarto.html)
+- [Prefresher, Ch. 13: LaTeX and markdown](https://iqss.github.io/prefresher/17_non-wysiwyg.html)
+:::
+
+## Tidyverse {#tidyverse}
+
+- `tibble`
+- `dplyr`, from `mutate()` through merges
+- `purrr`
+- Gesturing at `stringr`, `lubridate`, and `tidyr`
+
+::: {.refs}
+[References]{.refs-label}
+
+- [r4ds, Ch. 3: Data transformation](https://r4ds.hadley.nz/data-transform.html)
+- [r4ds, Ch. 19: Joins](https://r4ds.hadley.nz/joins.html)
+:::

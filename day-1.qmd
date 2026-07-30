@@ -1,23 +1,69 @@
 ---
-title: "Day 1: R foundations"
+title: "Day 1: Getting started"
 ---
 
 ::: {.callout-note}
 ## Setup office hours
 
-Arrive from **11:00 a.m.–12:00 p.m.** if you have issues with installing R or RStudio/Positron.
+Arrive from **1:00–2:00 p.m.** if you have issues with installing R or RStudio/Positron.
 :::
 
 ::: {.schedule-table}
-| Time       | Session                           |
-|:-----------|:----------------------------------|
-| 12:00–1:30 | Basic setup, ergonomics, and types |
-| 1:30–2:00  | Guided exercise                   |
-| 2:00–2:15  | Break                             |
-| 2:15–3:45  | Base data frames and common operations |
-| 3:45–5:00  | Applied exercise                  |
+| Time       | Session                                  |
+|:-----------|:-----------------------------------------|
+| 2:00–2:30  | Setup and ergonomics                     |
+| 2:30–3:30  | Packages, libraries, and variables       |
+| 3:30–3:45  | Break                                    |
+| 3:45–4:45  | Types, vectors, and objects              |
+| 4:45–5:30  | Data frames, reading data, and R as a calculator |
 :::
 
-## Basic setup, ergonomics, and types {#setup}
+## Setup and ergonomics {#setup}
 
-## Base data frames and common operations {#data-frames}
+- Scripts and what the buttons do
+- Running code and using the console
+- The environment, and why not to save it
+
+::: {.refs}
+[References]{.refs-label}
+
+- [Prefresher, Ch. 7: Orientation and reading in data](https://iqss.github.io/prefresher/11_data-handling_counting.html)
+- [r4ds, Ch. 6: Workflow — scripts and projects](https://r4ds.hadley.nz/workflow-scripts.html)
+:::
+
+## Packages, libraries, and variables {#packages}
+
+- Installing packages versus loading libraries
+- Assigning and inspecting variables
+
+::: {.refs}
+[References]{.refs-label}
+
+- [r4ds, Ch. 2: Workflow — basics](https://r4ds.hadley.nz/workflow-basics.html)
+:::
+
+## Types, vectors, and objects {#types}
+
+- Types and vectors (there are no scalars)
+- Characters and strings
+
+::: {.refs}
+[References]{.refs-label}
+
+- [Prefresher, Ch. 8: Manipulating vectors and matrices](https://iqss.github.io/prefresher/12_matricies-manipulation.html)
+- [r4ds, Ch. 27: A field guide to base R](https://r4ds.hadley.nz/base-R.html)
+:::
+
+## Data frames and reading data {#data-frames}
+
+- Basic data frames
+- Reading and saving data: csv, `.rda`, `.rds`
+- Working directories and paths
+- R as a calculator: `mean()`, `median()`, `summary()`, and custom summaries
+
+::: {.refs}
+[References]{.refs-label}
+
+- [r4ds, Ch. 7: Data import](https://r4ds.hadley.nz/data-import.html)
+- [Prefresher, Ch. 7.5: Reading in and inspecting data](https://iqss.github.io/prefresher/11_data-handling_counting.html)
+:::

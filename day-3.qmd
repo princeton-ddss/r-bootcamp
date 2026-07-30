@@ -1,25 +1,75 @@
 ---
-title: "Day 3: Programming, workflows, and simulation"
+title: "Day 3: Visualization and simulation"
 ---
 
 ::: {.schedule-table}
-| Time       | Session                                |
-|:-----------|:---------------------------------------|
-| 12:00–1:30 | Programming                            |
-| 1:30–2:00  | Guided exercise                        |
-| 2:00–2:15  | Break                                  |
-| 2:15–3:45  | Simulations and R workflows             |
-| 3:45–5:00  | Applied exercise                       |
+| Time        | Session                                   |
+|:------------|:------------------------------------------|
+| 9:00–10:30  | Base R plots                              |
+| 10:30–10:45 | Break                                     |
+| 10:45–11:45 | `ggplot2`                                 |
+| 11:45–12:30 | Plotting exercise                         |
+| 12:30–1:30  | Lunch                                     |
+| 1:30–2:30   | Version control with git and GitHub       |
+| 2:30–3:15   | Distributions and random draws            |
+| 3:15–3:30   | Break                                     |
+| 3:30–5:00   | Big exercise: simulation                  |
 :::
 
-## Programming {#programming}
+## Base R plots {#base-plots}
 
-- Loops, iteration, and `lapply()`
-- Object-oriented versus functional styles
-- Why R differs from Python, Java, and other languages
+::: {.refs}
+[References]{.refs-label}
 
-## Simulations {#simulations}
+- [Prefresher, Ch. 10: Visualization](https://iqss.github.io/prefresher/14_visualization.html)
+:::
 
-## R workflows {#workflows}
+## `ggplot2` {#ggplot2}
 
-- Scripts and sourcing
+- Tidyverse plotting
+- Small exercise
+
+::: {.refs}
+[References]{.refs-label}
+
+- [r4ds, Ch. 1: Data visualization](https://r4ds.hadley.nz/data-visualize.html)
+- [r4ds, Ch. 9: Layers](https://r4ds.hadley.nz/layers.html)
+:::
+
+## Version control {#version-control}
+
+- git and GitHub
+
+::: {.refs}
+[References]{.refs-label}
+
+- [Happy Git and GitHub for the useR, Ch. 1: Why Git? Why GitHub?](https://happygitwithr.com/big-picture)
+- [Happy Git and GitHub for the useR, Ch. 9: Personal access token for HTTPS](https://happygitwithr.com/https-pat)
+- [Prefresher, Ch. 15: Command-line, git](https://iqss.github.io/prefresher/19_command-line_git.html)
+:::
+
+## Distributions and random draws {#stats}
+
+- `sample()` and `set.seed()`
+- Drawing from distributions: `rnorm()`, `runif()`, `rbinom()`
+- The `r`, `p`, `d`, and `q` family: `pnorm()`, `dnorm()`, `qnorm()`
+
+::: {.refs}
+[References]{.refs-label}
+
+- [Prefresher, Ch. 12.2–12.5: `sample()`, random draws, `r`/`p`/`d`, and `set.seed()`](https://iqss.github.io/prefresher/16_simulation.html)
+- [R manual: Distributions in the `stats` package](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html)
+:::
+
+## Big exercise: simulation {#simulation}
+
+Now that you have seen R, how are you going to use it? Build a
+version-controlled Quarto project that carries a basic analysis through to
+plots — a difference-in-means analysis drawn from a published paper.
+
+::: {.refs}
+[References]{.refs-label}
+
+- [Prefresher, Ch. 12: Simulation](https://iqss.github.io/prefresher/16_simulation.html)
+- [Prefresher, Ch. 11: A worked project, start to finish](https://iqss.github.io/prefresher/15_project-dempeace.html)
+:::

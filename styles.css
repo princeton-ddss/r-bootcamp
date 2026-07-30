@@ -210,6 +210,24 @@ main.content h2::before {
 .schedule-table td { border-color: var(--ddss-border); }
 .callout-note { border-left-color: var(--ddss-blue) !important; }
 
+.refs {
+  border-left: 2px solid var(--ddss-border);
+  color: var(--ddss-muted);
+  font-size: .85rem;
+  margin: 1.25rem 0 2rem;
+  padding: .1rem 0 .1rem 1rem;
+}
+.refs p { margin: 0 0 .3rem; }
+.refs .refs-label {
+  color: var(--ddss-secondary);
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  font-size: .7rem;
+}
+.refs ul { margin: 0; padding-left: 1.1rem; }
+.refs li + li { margin-top: .15rem; }
+
 .page-footer { border-top: 1px solid var(--ddss-border); color: var(--ddss-muted); }
 .footer-logo { display: block; height: auto; max-width: min(22rem, 70vw); width: 13rem; }
 

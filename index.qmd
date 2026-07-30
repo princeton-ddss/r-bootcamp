@@ -9,7 +9,7 @@ title-block-banner: false
 ::: {.hero-inner}
 # <span class="hero-highlight">R Bootcamp</span>
 
-<p class="hero-meta">Data-Driven Social Science · Four days · 12:00–5:00 p.m.</p>
+<p class="hero-meta">Data-Driven Social Science · Two and a half days</p>
 :::
 :::
 
@@ -18,7 +18,7 @@ title-block-banner: false
 ::: {.prerequisites-copy}
 ### Install R and an IDE
 
-Install R and either RStudio or Positron before the bootcamp. Setup help is available from 11:00 a.m.–12:00 p.m. on Day 1.
+Install R and either RStudio or Positron before the bootcamp. Setup help is available from 1:00–2:00 p.m. on Day 1.
 :::
 
 <a class="callout-link" href="prerequisites.qmd">Prerequisites →</a>
@@ -28,50 +28,40 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 
 ::: {.week-grid}
 ::: {.day-card}
-<span class="day-label">Day 1</span>
+<span class="day-label">Day 1 · Friday, 2:00–5:30</span>
 
-### [R foundations](day-1.qmd)
+### [Getting started](day-1.qmd)
 
-- Setup, ergonomics, and types
-- Base data frames and common operations
-
-:::
-
-::: {.day-card}
-<span class="day-label">Day 2</span>
-
-### [Tidyverse](day-2.qmd)
-
-- Tidyverse 1
-- More tidyverse, including `ggplot2`
+- Setup, ergonomics, and packages
+- Types, vectors, and data frames
+- Reading data and R as a calculator
 
 :::
 
 ::: {.day-card}
-<span class="day-label">Day 3</span>
+<span class="day-label">Day 2 · Monday, 9:00–5:00</span>
 
-### [Programming](day-3.qmd)
+### [Programming and tidyverse](day-2.qmd)
 
-- Loops, `lapply()`, and programming styles
-- Simulations and R workflows
+- Functions, loops, and `lapply()`
+- Quarto and typesetting
+- Tidyverse, excluding plotting
 
 :::
 
 ::: {.day-card}
-<span class="day-label">Day 4</span>
+<span class="day-label">Day 3 · Tuesday, 9:00–5:00</span>
 
-### [Grab bag](day-4.qmd)
+### [Visualization and simulation](day-3.qmd)
 
-- Git and Quarto
-- Terminal and CLI
-- Web data and APIs
-- Geospatial and efficient data
-- Arrow, databases, and future workshops
+- Base R plots and `ggplot2`
+- Version control and stats functions
+- Big exercise: simulation
 
 :::
 :::
 
 ::: {.note-strip}
-**Each day:** 90-minute lecture · 30-minute exercise · 15-minute break · 90–120-minute lecture · remainder for an exercise
+**Days 2 and 3:** an hour for lunch, plus short breaks morning and afternoon
 :::
 :::
