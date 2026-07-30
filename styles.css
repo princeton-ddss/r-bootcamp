@@ -1,0 +1,238 @@
+/* A small Quarto companion to the DDSS site. */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap');
+
+:root {
+  --ddss-bg: #ffffff;
+  --ddss-elevated: #f4f5f7;
+  --ddss-ink: #1a1f36;
+  --ddss-secondary: #3d4466;
+  --ddss-muted: #5e6385;
+  --ddss-blue: #0f2dbc;
+  --ddss-blue-light: #163bf5;
+  --ddss-mint: #75fbc7;
+  --ddss-border: #d4d7de;
+  --ddss-border-subtle: #e8eaee;
+  --bs-body-color: var(--ddss-ink);
+  --bs-link-color: var(--ddss-blue);
+  --bs-link-hover-color: var(--ddss-blue-light);
+}
+
+body {
+  background: var(--ddss-bg);
+  color: var(--ddss-ink);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+code, pre { font-family: "Fira Code", monospace; }
+
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid var(--ddss-border);
+  padding-block: 1rem;
+}
+
+.navbar-brand {
+  color: var(--ddss-ink) !important;
+  font-family: "Outfit", "Inter", system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  position: relative;
+  z-index: 0;
+}
+
+.navbar-brand::before {
+  background: var(--ddss-mint);
+  bottom: .08rem;
+  content: "";
+  height: .45rem;
+  left: -.2rem;
+  opacity: .8;
+  position: absolute;
+  right: -.2rem;
+  transform: skewX(-10deg);
+  z-index: -1;
+}
+
+.navbar-nav .nav-link {
+  color: var(--ddss-ink) !important;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active { color: var(--ddss-blue) !important; }
+
+.page-layout-full #title-block-header { display: none; }
+
+.hero {
+  border-bottom: 1px solid var(--ddss-border-subtle);
+  padding: 4.5rem 1.5rem 4rem;
+}
+
+.hero-inner,
+.content-wrap {
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+.hero h1 {
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  line-height: 1;
+  margin: 0;
+}
+
+.hero-highlight {
+  display: inline-block;
+  font-family: "Fira Code", "JetBrains Mono", monospace;
+  letter-spacing: normal;
+  position: relative;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+.hero-highlight::before {
+  background: var(--ddss-mint);
+  bottom: -.02em;
+  content: "";
+  left: -.1em;
+  position: absolute;
+  right: -.1em;
+  top: .08em;
+  transform: rotate(-.5deg) skewX(-3deg);
+  z-index: -1;
+}
+
+.hero-meta {
+  color: var(--ddss-secondary);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin: 1.25rem 0 0;
+}
+
+.content-wrap { padding: 3.5rem 1.5rem 5rem; }
+
+.content-wrap > h2,
+main.content h2 {
+  align-items: center;
+  border: 0;
+  display: flex;
+  font-size: 1.25rem;
+  font-weight: 600;
+  gap: .7rem;
+  margin-top: 2.5rem;
+  padding: 0;
+}
+
+.content-wrap > h2::before,
+main.content h2::before {
+  background: var(--ddss-blue);
+  content: "";
+  flex: 0 0 auto;
+  height: 1.5rem;
+  width: .35rem;
+}
+
+.prerequisites-callout {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--ddss-border);
+  border-left: .35rem solid var(--ddss-blue);
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.prerequisites-callout h3 { font-size: 1.05rem; margin: 0 0 .25rem; }
+.prerequisites-callout p { color: var(--ddss-secondary); margin: 0; }
+.callout-link { flex: 0 0 auto; font-size: .9rem; font-weight: 600; text-decoration: none; }
+
+.week-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 1.5rem 0 2rem;
+}
+
+.day-card {
+  background: #fff;
+  border: 1px solid var(--ddss-border);
+  padding: 1.5rem;
+}
+
+.day-label {
+  color: var(--ddss-blue);
+  font-family: "Fira Code", monospace;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.day-card h3 { font-size: 1rem; font-weight: 600; line-height: 1.6; margin: .35rem 0 .8rem; }
+.day-card h3 a { color: var(--ddss-ink); text-decoration: none; }
+.day-card h3 a:hover { color: var(--ddss-blue); }
+.day-card ul { color: var(--ddss-secondary); margin: 0; padding-left: 1.2rem; }
+.day-card li + li { margin-top: .25rem; }
+
+.note-strip {
+  border-top: 1px solid var(--ddss-border);
+  color: var(--ddss-secondary);
+  font-size: .9rem;
+  padding-top: 1rem;
+}
+
+/* Interior pages */
+#quarto-content:not(.page-layout-full) main.content { max-width: 900px; }
+.quarto-title h1 { font-size: clamp(2.25rem, 5vw, 3rem); font-weight: 700; letter-spacing: -1.2px; line-height: 1; }
+.schedule-table { border-top: 2px solid var(--ddss-ink); margin-top: 2rem; }
+.schedule-table table { margin-bottom: 0; }
+.schedule-table thead { background: #fff; color: var(--ddss-ink); }
+.schedule-table td:first-child {
+  color: var(--ddss-blue);
+  font-family: "Fira Code", monospace;
+  font-size: .82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.schedule-table th,
+.schedule-table td { border-color: var(--ddss-border); }
+.callout-note { border-left-color: var(--ddss-blue) !important; }
+
+.refs {
+  border-left: 2px solid var(--ddss-border);
+  color: var(--ddss-muted);
+  font-size: .85rem;
+  margin: 1.25rem 0 2rem;
+  padding: .1rem 0 .1rem 1rem;
+}
+.refs p { margin: 0 0 .3rem; }
+.refs .refs-label {
+  color: var(--ddss-secondary);
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  font-size: .7rem;
+}
+.refs ul { margin: 0; padding-left: 1.1rem; }
+.refs li + li { margin-top: .15rem; }
+
+.page-footer { border-top: 1px solid var(--ddss-border); color: var(--ddss-muted); }
+.footer-logo { display: block; height: auto; max-width: min(22rem, 70vw); width: 13rem; }
+
+@media (max-width: 700px) {
+  .week-grid { grid-template-columns: 1fr; }
+  .hero { padding-block: 3rem; }
+  .prerequisites-callout { align-items: flex-start; flex-direction: column; gap: .75rem; }
+}
