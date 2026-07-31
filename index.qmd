@@ -9,7 +9,7 @@ title-block-banner: false
 ::: {.hero-inner}
 # <span class="hero-highlight">R Bootcamp</span>
 
-<p class="hero-meta">Data-Driven Social Science · Two and a half days</p>
+<p class="hero-meta">Data-Driven Social Science · Two and a half days · August 28–September 1, 2026</p>
 :::
 :::
 
@@ -28,7 +28,7 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 
 ::: {.week-grid}
 ::: {.day-card}
-<span class="day-label">Day 1 · Friday, 2:00–5:30</span>
+<span class="day-label">Day 1 · Friday, August 28, 2:00–5:30</span>
 
 ### [Getting started](day-1.qmd)
 
@@ -39,7 +39,7 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 :::
 
 ::: {.day-card}
-<span class="day-label">Day 2 · Monday, 9:00–5:00</span>
+<span class="day-label">Day 2 · Monday, August 31, 9:00–5:00</span>
 
 ### [Programming and tidyverse](day-2.qmd)
 
@@ -50,7 +50,7 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 :::
 
 ::: {.day-card}
-<span class="day-label">Day 3 · Tuesday, 9:00–5:00</span>
+<span class="day-label">Day 3 · Tuesday, September 1, 9:00–5:00</span>
 
 ### [Visualization and simulation](day-3.qmd)
 

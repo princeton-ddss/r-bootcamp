@@ -1,3 +1,11 @@
 ---
 title: "About"
 ---
+
+Incoming social science PhD students are encouraged to attend all or part of Data-Driven Social Science's R Bootcamp, a two-and-a-half day introductory crash course in R. No grades are assigned, participation is voluntary, and partial attendance is welcome.
+
+We will cover R basics, data wrangling, visualization, and simulation. Along the way, we will also introduce students to version control (Git) and typesetting tools (Quarto). Hands-on exercises and assistance will be provided throughout.
+
+Beyond the technical material, this is also a chance to meet your fellow first-year students from other social science departments.
+
+Our bootcamp is based, in part, on [Harvard Government's Math Prefresher](https://prefresher.hsites.harvard.edu/).
