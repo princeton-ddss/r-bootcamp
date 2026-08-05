@@ -4,7 +4,7 @@
     "href": "prerequisites.html",
     "title": "Prerequisites",
     "section": "",
-    "text": "Before Day 1, install:\n\nR\nEither RStudio or Positron\n\n\n\n\n\n\n\nNoteSetup office hours\n\n\n\nArrive from 1:00–2:00 p.m. on Day 1 if you have issues installing R or RStudio/Positron."
+    "text": "Before Day 1, install:\n\nR\n\nWindows\nMac. If you have a new Mac, you may also need Fortran\n\nEither RStudio or Positron\n\nPositron is a data-science oriented fork of VS Code. RStudio is R focused.\n\n\n\n\n\n\n\n\nNoteSetup office hours\n\n\n\nArrive from 1:00–2:00 p.m. on Day 1 if you have issues installing R or RStudio/Positron."
   },
   {
     "objectID": "day-2.html",
