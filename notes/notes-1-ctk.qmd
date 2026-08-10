@@ -1,0 +1,138 @@
+---
+title: Intro to R
+subtitle: Day 1
+header-left: R Bootcamp
+header-right: Princeton DDSS
+author:
+  - name: Christopher T. Kenny
+    email: ctkenny@princeton.edu
+    affiliations:
+      - name: Princeton University
+        department: Data-Driven Social Science
+date: 2026-08-29
+format:
+  ctk-lecture-typst:
+    keep-typ: false
+    hide-solutions: true
+---
+
+# Scripts, buttons, running code, and the console
+
+## RStudio and Positron
+
+- R vs the IDE
+  - R: language and interpreter
+  - IDE: interface for writing, running, and inspecting code
+- Panes
+  - Source editor: write and save scripts
+  - Console: send code to R and see results
+  - Environment: view session objects
+  - Files, plots, packages, help: supporting views
+- Main controls
+  - New, open, save script
+  - Runing current line or a selection
+  - Source entire script
+  - Stopping running code
+  - Restarting R
+
+## Script versus console
+
+- Script
+  - Saved source of the analysis
+  - Can be run in full or in part
+  - Comments and section breaks
+- Console
+  - Immediate experiments
+  - Included in history
+- Dangers of the consule
+  - Edit the environment but aren't documented
+    - Can break reproducibility
+
+## Running code
+
+- Things that can be run
+  - Line
+  - Selection
+  - Whole script
+- Top-to-bottom execution
+- Feedback from the code
+  - Printed output
+  - Messages and warnings
+  - Errors
+
+# Environment and why not to save it
+
+## The environment as session state
+
+- Named objects in memory
+- Environment pane
+  - Object inventory
+  - Current values
+- Session lifetime
+  - Objects created when running old code
+  - Objects removed when R restarts
+
+## The hidden-state problem
+
+- Stale objects from earlier work
+- Objects created out of order
+- Different results across machines or sessions
+
+## Saved workspace versus reproducible analysis
+
+- Saved workspace
+  - Creates an `.RData`
+- Objects reappear without rerunning code
+- Costs
+  - Hidden inputs
+  - Unclear history of the object
+- Preferred workflow
+  - Write and edit code in a script
+  - Save any necessary outputs explicitly
+  - Once ready, run the script in a fresh environment
+
+# Packages, libraries, and variables
+
+## Packages: reusable code
+
+- How we share code
+  - All R code that you see in Base R is from packages
+- What a package contains
+  - Functions
+  - Documentation (vignettes, examples)
+  - Example data
+- Installation
+  - Once per R install-package version pair
+  - e.g. `install.packages("readr")`
+- "Base R" vs. "contributed packages"
+
+## Libraries: packages in the current session
+
+- Loading a package
+  - Once per session
+  - Example: `library(readr)`
+- Explicit namespace
+  - Example: `readr::read_csv()`
+- Flag for the future
+  - May see devtools::load_all(); this loads a local library
+
+## Variables: named objects
+
+- Object as a named value
+- Assignment
+  - Name gets value (`x <- 1`)
+  - Inspecting the value by printing (`x`)
+  - Reassignment by assigning after (`x <- 2`)
+- Naming conventions
+  - Descriptive names (don't use `x`)
+  - `snake_case`
+  - Case sensitivity
+  - No spaces
+
+## Working with variables
+
+- Variables as a superset: anything can be variable
+- Preview: types
+  - `str(x)`
+  - `class(x)`
+- `length(x)` and `lengths(x)`
