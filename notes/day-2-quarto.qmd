@@ -1,0 +1,209 @@
+---
+title: "R Bootcamp Day 2"
+subtitle: "Quarto"
+author:
+  - name: Christopher T. Kenny
+    affiliations:
+      - name: Data-Driven Social Science
+format:
+  projector-typst:
+    keep-typ: false
+    backend: touying
+    touying-theme: simple
+bullet-incremental: true
+toc: true
+handout: false
+fontsize: "14pt"
+theme: ddss.typ
+---
+
+# What is Quarto?
+
+## Quarto
+
+- Publishing system based on Pandoc
+    - Input a markdown document, render to anything supported by Pandoc
+        - HTML, PDF, Word, Beamer, GFM, MediaWiki, etc.
+- Built by Posit, PBC (formerly RStudio)
+- Syntax builds on RMarkdown, but language agnostic
+    - Existing `.Rmd` files and most Jupyter notebooks can be run by Quarto
+- Reproducible system to combine code and text together
+
+## The `.qmd` file
+
+Two main components:
+
+. . .
+
+1. YAML header
+    1. Specify title, authors, and frontmatter
+    2. Identify output type (e.g., PDF, PowerPoint, HTML)
+    3. Style the document (e.g., pick fonts `mainfont: Libre Franklin`)
+
+. . .
+
+2. Body
+    1. Contains text
+    2. Include LaTeX equations `$x^2$` becomes $x^2$
+    3. Write code chunks in R, Python, Julia, Observable, etc.
+    4. Include raw chunks with format-specific code (e.g., HTML or Typst blocks)
+
+## Why Quarto?
+
+- Common input format for many output types
+- Many journal templates for general and social sciences
+  - Lowers the barrier on resubmitting elsewhere
+- Reproducible writing
+  - Avoid copying data or hard-coding statistics
+  - Place code + text together
+- Write in Markdown instead of LaTeX (or Typst or HTML ...)
+- Markdown formats work well with version control
+
+## Output formats
+
+```{=typst}
+#set align(horizon)
+```
+
+- Articles: PDF (LaTeX, Typst), Word
+- Slides: Beamer, RevealJS, PowerPoint
+- Websites: Dashboards, Static HTML, or Shiny
+- Books: PDF and HTML
+- All other formats supported by Pandoc (e.g., Wiki, Markdown, JATS, InDesign, ePub)
+
+## Selected academic journal templates
+
+```{=typst}
+#set align(horizon)
+```
+
+- General science: Science, Nature, PNAS, PLOS
+- Major publishers: Taylor and Francis, Cambridge University Press, Springer, Elsevier
+- Social sciences: Annual Reviews, APSR, BJPS, PA, PSRM, Perspectives, APA, and more
+
+# Including Text, Tables, and Figures
+
+## Writing 101 in Quarto
+
+Quarto builds on Pandoc's flavor of Markdown
+
+- Code blocks are fenced with backticks \` code \` becomes `code`
+- Italics with `*italics*`
+- Bold with `**bold**`
+- Headers with `# Header Level 1`, `## Header Level 2`, etc.
+- Lists with `- item` or `1. item`
+- Links with `[text](url)` or `<url>`
+- LaTeX math with `$math$` for inline or `$$math$$` for display
+- Reference figures, tables, and sections with `@fig-label`, `@tbl-label`, and `@sec-label`
+- Reference citations with `[@citation]` for parenthetical or `@citation` for prose
+
+## Including figures
+
+Basic figures can be included with `![]()` syntax:
+
+```{=typst}
+#set align(horizon + center)
+```
+
+:::: {.columns align=center totalwidth=100%}
+
+::: {.column width="65%"}
+```
+![Caption](DDSS-stacked_PU_shield_black.png)
+```
+:::
+
+::: {.column width="35%"}
+![Caption](DDSS-stacked_PU_shield_black.png)
+:::
+
+::::
+
+## Making a table
+
+Tables use "pipe" syntax:
+
+```{=typst}
+#set align(horizon + center)
+
+
+```
+:::: {.columns align=center totalwidth=100%}
+
+::: {.column width="65%"}
+```
+| University |  Color  |
+|:-----------|--------:|
+| Princeton  | #E98338 |
+| Harvard    | #A51C30 |
+| Cornell    | #B31B1B |
+| Brown      | #ED1C24 |
+
+: Red and orange university colors {#tbl-colors}
+```
+:::
+
+::: {.column width="35%"}
+| University |  Color   |
+|:-----------|---------:|
+| Princeton  | #E98338 |
+| Harvard    | #A51C30 |
+| Cornell    | #B31B1B |
+| Brown      | #ED1C24 |
+
+: Red and orange university colors {#tbl-colors}
+:::
+
+::::
+
+# Including Code
+
+## Formatting
+
+Control code chunk behavior with options:
+
+- `#| echo: false` - Hide code, show output only
+- `#| eval: false` - Show code but don't run it
+- `#| warning: false` / `message: false` - Suppress warnings or messages
+- `#| fig-width: 8` / `#| fig-height: 6` - Control figure dimensions
+- `#| label: fig-myplot` - Add cross-reference labels
+- `#| cache: true` - Cache expensive computations
+
+# Quarto Extensions
+
+## Journal Articles
+
+Workflow for academic writing:
+
+1. Start with a preprint template: `quarto use template christopherkenny/ctk-article`
+2. Write the paper in Markdown with embedded code
+3. Switch to a journal template: `quarto use template quarto-journals/jss`
+4. Add any journal-specific things to the header
+5. Render to PDF: `quarto render manuscript.qmd`
+6. Submit generated PDF (+ source files)
+7. Get desk rejected
+8. Reformat by importing next template `quarto add template christopherkenny/nature`
+
+# Academic Websites
+
+## Demo
+
+```{=typst}
+#set align(center + horizon)
+```
+
+```
+quarto create project
+```
+
+# Resources
+
+## These Slides
+
+Written in Quarto
+
+. . .
+
+Source available:
+
+<https://github.com/christopherkenny/quarto-workshop-fall2025/blob/main/quarto-workshop-fall2025.qmd>
