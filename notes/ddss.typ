@@ -1,3 +1,22 @@
+#let projector-theme(api, doc) = {
+  set page(
+    foreground: context place(
+      bottom + right,
+      dx: -1.8em,
+      dy: -0.85em,
+      block(
+        width: 4em,
+        height: 1em,
+        fill: white,
+        align(right + horizon)[
+          #text(size: 0.6em, fill: gray)[#(api.slide-number)()]
+        ],
+      ),
+    ),
+  )
+  doc
+}
+
 #let title-slide(api, title, subtitle, authors, date) = {
   (api.slide)[
     #place(
