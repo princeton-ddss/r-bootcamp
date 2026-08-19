@@ -29,6 +29,18 @@ theme: ddss.typ
     - Existing `.Rmd` files and most Jupyter notebooks can be run by Quarto
 - Reproducible system to combine code and text together
 
+## Rendering Behind-the-Scenes
+
+```{=typst}
+#set align(horizon + center)
+```
+
+
+![](figs/rstudio-qmd-how-it-works.png){fig-align="center" width="100%"}
+
+
+Figure from <https://quarto.org/docs/faq/rmarkdown.html>
+
 ## The `.qmd` file
 
 Two main components:
@@ -56,8 +68,9 @@ Two main components:
 - Reproducible writing
   - Avoid copying data or hard-coding statistics
   - Place code + text together
-- Write in Markdown instead of LaTeX (or Typst or HTML ...)
+- Write in Markdown instead of pure LaTeX (or Typst or HTML ...)
 - Markdown formats work well with version control
+- Makes it ideal for problem sets and general academic work
 
 ## Output formats
 
@@ -71,17 +84,7 @@ Two main components:
 - Books: PDF and HTML
 - All other formats supported by Pandoc (e.g., Wiki, Markdown, JATS, InDesign, ePub)
 
-## Selected academic journal templates
-
-```{=typst}
-#set align(horizon)
-```
-
-- General science: Science, Nature, PNAS, PLOS
-- Major publishers: Taylor and Francis, Cambridge University Press, Springer, Elsevier
-- Social sciences: Annual Reviews, APSR, BJPS, PA, PSRM, Perspectives, APA, and more
-
-# Including Text, Tables, and Figures
+# Including Text, Tables, Figures, and Code
 
 ## Writing 101 in Quarto
 
@@ -156,9 +159,7 @@ Tables use "pipe" syntax:
 
 ::::
 
-# Including Code
-
-## Formatting
+## Including code
 
 Control code chunk behavior with options:
 
@@ -169,7 +170,30 @@ Control code chunk behavior with options:
 - `#| label: fig-myplot` - Add cross-reference labels
 - `#| cache: true` - Cache expensive computations
 
+# Demo
+
+## Writing a Problem Set
+
+```{=typst}
+#set align(center + horizon)
+```
+
+```
+quarto create project
+```
+
+
 # Quarto Extensions
+
+## Selected academic journal templates
+
+```{=typst}
+#set align(horizon)
+```
+
+- General science: Science, Nature, PNAS, PLOS
+- Major publishers: Taylor and Francis, Cambridge University Press, Springer, Elsevier
+- Social sciences: Annual Reviews, APSR, BJPS, PA, PSRM, Perspectives, APA, and more
 
 ## Journal Articles
 
@@ -184,26 +208,30 @@ Workflow for academic writing:
 7. Get desk rejected
 8. Reformat by importing next template `quarto add template christopherkenny/nature`
 
-# Academic Websites
-
-## Demo
-
-```{=typst}
-#set align(center + horizon)
-```
-
-```
-quarto create project
-```
-
 # Resources
 
-## These Slides
+## Quarto Documentation
 
-Written in Quarto
+```{=typst}
+#set align(horizon)
+```
 
-. . .
+![](figs/quarto-documentation.png){fig-align="center" height=80%}
 
-Source available:
+## Extension Listings
 
-<https://github.com/christopherkenny/quarto-workshop-fall2025/blob/main/quarto-workshop-fall2025.qmd>
+```{=typst}
+#set align(horizon)
+```
+
+:::: {.columns align=center totalwidth=100%}
+
+::: {.column width="60%"}
+![](figs/quarto-org-listing.png)
+:::
+
+::: {.column width="40%"}
+![](figs/awesome-quarto.png)
+:::
+
+::::
