@@ -1,26 +1,5 @@
 [
   {
-    "objectID": "prerequisites.html",
-    "href": "prerequisites.html",
-    "title": "Prerequisites",
-    "section": "",
-    "text": "Before Day 1, install:\n\nR\n\nWindows\nMac. If you have a new Mac, you may also need Fortran\n\nEither RStudio or Positron\n\nPositron is a data-science oriented fork of VS Code. RStudio is R focused.\n\n\n\n\n\n\n\n\nNoteSetup office hours\n\n\n\nArrive from 1:00–2:00 p.m. on Day 1 if you have issues installing R or RStudio/Positron."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "R Bootcamp",
-    "section": "",
-    "text": "Data-Driven Social Science · Two and a half days · August 28–September 1, 2026"
-  },
-  {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "R Bootcamp",
-    "section": "Schedule",
-    "text": "Schedule\n\n\nDay 1 · Friday, August 28, 2:00–5:30\n\nGetting started\n\nSetup, ergonomics, and packages\nTypes, vectors, and data frames\nReading data and R as a calculator\n\n\n\n\nDay 2 · Monday, August 31, 9:00–5:00\n\nProgramming and tidyverse\n\nFunctions, loops, and lapply()\nQuarto and typesetting\nTidyverse, excluding plotting\n\n\n\n\nDay 3 · Tuesday, September 1, 9:00–5:00\n\nVisualization and simulation\n\nBase R plots and ggplot2\nVersion control and stats functions\nBig exercise: simulation\n\n\n\n\n\nDays 2 and 3: an hour for lunch, plus short breaks morning and afternoon"
-  },
-  {
     "objectID": "day-3.html",
     "href": "day-3.html",
     "title": "Day 3: Visualization and simulation",
@@ -61,6 +40,41 @@
     "title": "Day 3: Visualization and simulation",
     "section": "Big exercise: simulation",
     "text": "Big exercise: simulation\nNow that you have seen R, how are you going to use it? Build a version-controlled Quarto project that carries a basic analysis through to plots — a difference-in-means analysis drawn from a published paper.\n\nReferences\n\nPrefresher, Ch. 12: Simulation\nPrefresher, Ch. 11: A worked project, start to finish"
+  },
+  {
+    "objectID": "day-2.html",
+    "href": "day-2.html",
+    "title": "Day 2: Programming and tidyverse",
+    "section": "",
+    "text": "Time\nSession\n\n\n\n\n9:00–10:30\nFunctions\n\n\n10:30–10:45\nBreak\n\n\n10:45–11:45\nLoops, iteration, and lapply()\n\n\n11:45–12:30\nGuided exercise\n\n\n12:30–1:30\nLunch\n\n\n1:30–2:45\nQuarto and typesetting\n\n\n2:45–3:00\nBreak\n\n\n3:00–4:15\nTidyverse: tibbles and dplyr\n\n\n4:15–5:00\npurrr and applied exercise"
+  },
+  {
+    "objectID": "day-2.html#functions",
+    "href": "day-2.html#functions",
+    "title": "Day 2: Programming and tidyverse",
+    "section": "Functions",
+    "text": "Functions\n\nWriting and calling functions\nArguments, defaults, and return values\n\n\nReferences\n\nr4ds, Ch. 25: Functions\nPrefresher, Ch. 9: Objects, functions, loops"
+  },
+  {
+    "objectID": "day-2.html#iteration",
+    "href": "day-2.html#iteration",
+    "title": "Day 2: Programming and tidyverse",
+    "section": "Loops, iteration, and lapply()",
+    "text": "Loops, iteration, and lapply()\n\nfor and while loops\nlapply() and friends\nGuided exercise\n\n\nReferences\n\nPrefresher, Ch. 9.3: Loops\nr4ds, Ch. 26: Iteration"
+  },
+  {
+    "objectID": "day-2.html#quarto",
+    "href": "day-2.html#quarto",
+    "title": "Day 2: Programming and tidyverse",
+    "section": "Quarto and typesetting",
+    "text": "Quarto and typesetting\n\nMaking work replicable and research-ready\nMigrating the morning exercise into Quarto\nHow R Markdown fits in\n\n\nReferences\n\nr4ds, Ch. 28: Quarto\nPrefresher, Ch. 13: LaTeX and markdown"
+  },
+  {
+    "objectID": "day-2.html#tidyverse",
+    "href": "day-2.html#tidyverse",
+    "title": "Day 2: Programming and tidyverse",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\ntibble\ndplyr, from mutate() through merges\npurrr\nGesturing at stringr, lubridate, and tidyr\n\n\nReferences\n\nr4ds, Ch. 3: Data transformation\nr4ds, Ch. 19: Joins"
   },
   {
     "objectID": "about.html",
@@ -105,38 +119,24 @@
     "text": "Data frames and reading data\n\nBasic data frames\nReading and saving data: csv, .rda, .rds\nWorking directories and paths\nR as a calculator: mean(), median(), summary(), and custom summaries\n\n\nReferences\n\nr4ds, Ch. 7: Data import\nPrefresher, Ch. 7.5: Reading in and inspecting data"
   },
   {
-    "objectID": "day-2.html",
-    "href": "day-2.html",
-    "title": "Day 2: Programming and tidyverse",
+    "objectID": "prerequisites.html",
+    "href": "prerequisites.html",
+    "title": "Prerequisites",
     "section": "",
-    "text": "Time\nSession\n\n\n\n\n9:00–10:30\nFunctions\n\n\n10:30–10:45\nBreak\n\n\n10:45–11:45\nLoops, iteration, and lapply()\n\n\n11:45–12:30\nGuided exercise\n\n\n12:30–1:30\nLunch\n\n\n1:30–2:45\nQuarto and typesetting\n\n\n2:45–3:00\nBreak\n\n\n3:00–4:15\nTidyverse: tibbles and dplyr\n\n\n4:15–5:00\npurrr and applied exercise"
+    "text": "Before Day 1, install:\n\nR\n\nWindows\nMac. If you have a new Mac, you may also need Fortran\n\nEither RStudio or Positron\n\nPositron is a data-science oriented fork of VS Code. RStudio is R focused.\n\n\n\n\n\n\n\n\nNoteSetup office hours\n\n\n\nArrive from 1:00–2:00 p.m. on Day 1 if you have issues installing R or RStudio/Positron."
   },
   {
-    "objectID": "day-2.html#functions",
-    "href": "day-2.html#functions",
-    "title": "Day 2: Programming and tidyverse",
-    "section": "Functions",
-    "text": "Functions\n\nWriting and calling functions\nArguments, defaults, and return values\n\n\nReferences\n\nr4ds, Ch. 25: Functions\nPrefresher, Ch. 9: Objects, functions, loops"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R Bootcamp",
+    "section": "",
+    "text": "Data-Driven Social Science · Two and a half days · August 28–September 1, 2026"
   },
   {
-    "objectID": "day-2.html#iteration",
-    "href": "day-2.html#iteration",
-    "title": "Day 2: Programming and tidyverse",
-    "section": "Loops, iteration, and lapply()",
-    "text": "Loops, iteration, and lapply()\n\nfor and while loops\nlapply() and friends\nGuided exercise\n\n\nReferences\n\nPrefresher, Ch. 9.3: Loops\nr4ds, Ch. 26: Iteration"
-  },
-  {
-    "objectID": "day-2.html#quarto",
-    "href": "day-2.html#quarto",
-    "title": "Day 2: Programming and tidyverse",
-    "section": "Quarto and typesetting",
-    "text": "Quarto and typesetting\n\nMaking work replicable and research-ready\nMigrating the morning exercise into Quarto\nHow R Markdown fits in\n\n\nReferences\n\nr4ds, Ch. 28: Quarto\nPrefresher, Ch. 13: LaTeX and markdown"
-  },
-  {
-    "objectID": "day-2.html#tidyverse",
-    "href": "day-2.html#tidyverse",
-    "title": "Day 2: Programming and tidyverse",
-    "section": "Tidyverse",
-    "text": "Tidyverse\n\ntibble\ndplyr, from mutate() through merges\npurrr\nGesturing at stringr, lubridate, and tidyr\n\n\nReferences\n\nr4ds, Ch. 3: Data transformation\nr4ds, Ch. 19: Joins"
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "R Bootcamp",
+    "section": "Schedule",
+    "text": "Schedule\n\n\nDay 1 · Friday, August 28, 2:00–5:30\n\nGetting started\n\nSetup, ergonomics, and packages\nTypes, vectors, and data frames\nReading data and R as a calculator\n\n\n\n\nDay 2 · Monday, August 31, 9:00–5:00\n\nProgramming and tidyverse\n\nFunctions, loops, and lapply()\nQuarto and typesetting\nTidyverse, excluding plotting\n\n\n\n\nDay 3 · Tuesday, September 1, 9:00–5:00\n\nVisualization and simulation\n\nBase R plots and ggplot2\nVersion control and stats functions\nBig exercise: simulation\n\n\n\n\n\nDays 2 and 3: an hour for lunch, plus short breaks morning and afternoon"
   }
 ]
