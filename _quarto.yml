@@ -33,3 +33,7 @@ format:
     toc: true
     smooth-scroll: true
     link-external-newwindow: true
+
+exclude:
+  - "notes/day-2-base-r.qmd"
+  - "notes/day-2-tidyverse.qmd"
