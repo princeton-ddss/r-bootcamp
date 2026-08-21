@@ -5,6 +5,8 @@ project:
     - "*.qmd"
     - "!notes/day-2-base-r.qmd"
     - "!notes/day-2-tidyverse.qmd"
+  resources:
+    - "files/"
 
 website:
   title: "R Bootcamp"
