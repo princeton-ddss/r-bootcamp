@@ -1,0 +1,630 @@
+---
+title: "R Bootcamp Day 2"
+subtitle: "Base R"
+author:
+  - name: Christopher T. Kenny
+    affiliations:
+      - name: Data-Driven Social Science
+format:
+  projector-typst:
+    keep-typ: false
+    backend: touying
+    touying-theme: simple
+theme: ddss.typ
+fontsize: "14pt"
+codefont: "Fira Code"
+bullet-incremental: true
+toc: true
+handout: false
+execute:
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    results: hold
+---
+
+# Today
+
+## Goals
+
+:::{.nonincremental}
+
+- Familiarity with major components of "base R"
+- Familiarity with functions, iteration, and vectorization
+- Practice with using R interactively
+- This afternoon: Quarto and tidyverse
+
+:::
+
+## Sources
+
+::: {.nonincremental}
+
+- Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 25: Functions](https://r4ds.hadley.nz/functions.html), especially §25.1-25.2
+- Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 26: Iteration](https://r4ds.hadley.nz/iteration.html), especially §26.1
+- Harvard IQSS. [Math Prefresher for Political Scientists, Ch. 9: Objects, Functions, Loops](https://iqss.github.io/prefresher/13_functions_obj_loops.html), especially §§9.4, 9.6, and 9.7
+- R Core Team. [`lapply()` documentation](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html)
+
+:::
+
+```{r}
+#| echo: false
+states <- data.frame(
+  state = state.name,
+  region = state.region,
+  population = state.x77[, 'Population'],
+  income = state.x77[, 'Income'],
+  hs_grad = state.x77[, 'HS Grad'],
+  murder_rate = state.x77[, 'Murder'],
+  life_expectancy = state.x77[, 'Life Exp']
+)
+```
+
+# Functions
+
+## What is a function?
+
+Functions make code reusable
+
+. . .
+
+Function components:
+
+- Arguments: the inputs to a function
+- Body: the code to be run
+- Output: what gets returned
+
+. . .
+
+Calling a function executes the code on your inputs
+
+```r
+result <- function_name(argument)
+```
+
+## Why write a function?
+
+Writing repetitive code is (1) harder to change and (2) easier to break
+
+. . .
+
+The calculation is duplicated:
+
+```{r}
+income_z <- (states$income - mean(states$income, na.rm = TRUE)) /
+  sd(states$income, na.rm = TRUE)
+
+murder_z <- (states$murder_rate - mean(states$murder_rate, na.rm = TRUE)) /
+  sd(states$murder_rate, na.rm = TRUE)
+```
+
+. . .
+
+If you want to change one thing, you need to find every instance of the code
+
+. . .
+
+Miss a copy and the results disagree due to stale code
+
+## Writing a function
+
+We can define any function we want with `function()`
+
+. . .
+
+```{r}
+z_score <- function(x) {
+  (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
+}
+
+income_z <- z_score(states$income)
+murder_z <- z_score(states$murder_rate)
+head(income_z)
+```
+
+. . .
+
+Edit `z_score()` directly to fix every later call
+
+## Arguments
+
+- Arguments take input values
+- Can include defaults (e.g., `arg = 3`)
+
+. . .
+
+```{r}
+percentage <- function(count, total) {
+  100 * count / total
+}
+
+percentage(48, 100) # matched by position
+percentage(48, total = 100) # can match by name
+```
+
+. . .
+
+- Named arguments make calls easier to read
+- Defaults can always be overwritten when making a function call
+
+## Return values
+
+- Functions return one object which can contain many values
+- R returns the last evaluated expression by default
+
+. . .
+
+```{r}
+quick_summary <- function(x, na.rm = TRUE) {
+  c(
+    min = min(x, na.rm = na.rm),
+    mean = mean(x, na.rm = na.rm),
+    max = max(x, na.rm = na.rm)
+  )
+}
+
+quick_summary(states$income)
+```
+
+## Local objects inside functions
+
+Values defined within a function don't impact those outside
+
+```{r}
+mean_center <- function(x) {
+  x_mean <- mean(x)
+  x - x_mean
+}
+
+x_mean <- 100
+mean_center(c(2, 4, 6))
+x_mean
+```
+
+## Conditionals
+
+Conditionals allow for forking paths based on logical values
+
+. . .
+
+```{r}
+classify_change <- function(x) {
+  if (x > 0) {
+    'positive'
+  } else if (x == 0) {
+    'zero'
+  } else {
+    'negative'
+  }
+}
+
+c(classify_change(5), classify_change(0), classify_change(-2))
+```
+
+## Vectorized conditionals
+
+- `if` expects one `TRUE` or `FALSE`
+
+. . .
+
+```{r}
+#| error: true
+turnout_change <- c(-2, 0, 4)
+
+if (turnout_change > 0) {
+  'positive'
+}
+```
+
+. . .
+
+- Use `ifelse()` for element-by-element vector comparisons
+
+. . .
+
+```{r}
+ifelse(turnout_change > 0, 'increase', 'no increase')
+```
+
+## Exercise
+
+Write `prop_above()` to compute the proportion of values above a cutoff
+
+```r
+prop_above <- function(x, cutoff, na.rm = TRUE) {
+  # your code here
+}
+```
+
+. . .
+
+It should handle this input:
+
+```r
+turnout <- c(0.71, 0.88, NA, 0.93, 0.65)
+prop_above(turnout, cutoff = 0.80)
+```
+
+## A Solution
+
+```{r}
+prop_above <- function(x, cutoff, na.rm = TRUE) {
+  mean(x > cutoff, na.rm = na.rm)
+}
+
+turnout <- c(0.71, 0.88, NA, 0.93, 0.65)
+prop_above(turnout, cutoff = 0.80)
+```
+
+. . .
+
+Why does this work?
+
+. . .
+
+```{r}
+turnout > 0.80
+```
+
+R treats `TRUE` as 1 and `FALSE` as 0 when computing the mean
+
+# Loops and iteration
+
+## Vectorization
+
+- R is vectorized: you can apply one operation to the full vector
+- No iteration needed
+
+. . .
+
+```{r}
+turnout <- c(0.52, 0.61, 0.68)
+
+100 * turnout
+```
+
+. . .
+
+Math is vectorized, as are most functions in R
+
+. . .
+
+What if I need to work on elements one-by-one?
+
+## `for` loops
+
+- Process one value at a time
+- Repeat the body of the loop for each value
+
+. . .
+
+```{r}
+states_of_interest <- c('California', 'Massachusetts', 'New Hampshire')
+
+for (state in states_of_interest) {
+  print(paste('Selected state:', state))
+}
+```
+
+. . .
+
+```{r}
+state
+```
+
+## Saving results
+
+
+:::{.nonincremental}
+
+- Create a vector to store the outputs
+- Use the index to fill one position on each iteration
+
+:::
+
+```{r}
+columns <- states[c('income', 'hs_grad', 'murder_rate')]
+column_means <- numeric(length(columns))
+```
+
+. . .
+
+```{r}
+for (i in seq_along(columns)) {
+  column_means[i] <- mean(columns[[i]])
+}
+```
+
+. . .
+
+Give it names:
+
+```{r}
+names(column_means) <- names(columns)
+column_means
+```
+
+## `while` loops
+
+- Repeat while *something* remains `TRUE`
+- Useful when the number of iterations is unknown
+- The condition must eventually become `FALSE` or your computer will die
+
+. . .
+
+```{r}
+daily_interviews <- c(18, 27, 24, 35, 28, 31)
+interviews <- 0
+day <- 0
+
+while (interviews < 75) {
+  day <- day + 1
+  interviews <- interviews + daily_interviews[day]
+}
+
+c(days = day, interviews = interviews)
+```
+
+# The apply family
+
+## `lapply()`: your new best friend
+
+- Apply a function to each element of a vector, list, etc.
+- Return one *list* element for each input element
+- Preserve input names
+
+. . .
+
+```{r}
+columns <- states[c('income', 'hs_grad', 'murder_rate')]
+lapply(columns, mean)
+```
+
+. . .
+
+Note: we pass the function as `mean`, not `mean()`
+
+## Additional arguments
+
+Arguments after the function are passed to every call
+
+. . .
+
+```{r}
+trust_by_wave <- list(
+  wave_1 = c(2, 3, NA, 4),
+  wave_2 = c(3, NA, 4, 5)
+)
+
+lapply(trust_by_wave, mean, na.rm = TRUE)
+```
+
+. . .
+
+### Warning! {.warning}
+
+This is *not* advised, but is valid code and works!
+
+## Anonymous functions
+
+- Define a function where it is used once
+
+. . .
+
+```{r}
+lapply(
+  columns,
+  function(x) c(mean = mean(x), sd = sd(x))
+)
+```
+
+## Anonymous functions
+
+::: {.nonincremental}
+
+- A second way to write it
+
+:::
+
+```{r}
+lapply(
+  columns,
+  \(x) c(mean = mean(x), sd = sd(x))
+)
+```
+
+## Output types
+
+- `lapply()` always returns a list
+- `sapply()` simplifies when possible
+
+. . .
+
+```{r}
+lapply(columns, mean)
+sapply(columns, mean)
+```
+
+## Output types: A stricter choice
+
+- `vapply()` requires a declared output type
+
+. . .
+
+```{r}
+vapply(columns, mean, FUN.VALUE = numeric(1))
+```
+
+. . .
+
+```{r}
+#| error: true
+vapply(columns, mean, FUN.VALUE = character(1))
+```
+
+## Split, apply, combine
+
+- Split data into groups
+- Apply one function to every group
+- Combine the results
+
+. . .
+
+```{r}
+states_by_region <- split(states, states$region)
+
+mean_income <- lapply(
+  states_by_region,
+  \(data) mean(data$income)
+)
+
+unlist(mean_income)
+```
+
+## Iteration in base R
+
+- These approaches return the same column means
+- Choose the form that is easiest to explain and modify
+
+. . .
+
+```{r}
+# explicit loop
+out <- numeric(length(columns))
+for (i in seq_along(columns)) {
+  out[i] <- mean(columns[[i]])
+}
+names(out) <- names(columns)
+
+out
+sapply(columns, mean)
+```
+
+## Common mistakes
+
+- Calling the function too early: `lapply(x, mean())`
+- Not saving the result at each iteration
+- Growing the output on every iteration
+- Using `1:length(x)` when `x` may be empty (`1:0`)
+- Expecting `lapply()` to return a vector
+- Trying to do too much inside one loop
+
+# Guided exercise
+
+## Exercise
+
+Using `states`, compare regions
+
+. . .
+
+Create a function `region_summary()` that returns:
+
+- Number of states
+- Mean income
+- Mean high school graduation rate
+- Mean life expectancy
+
+. . .
+
+Apply it to the four regions
+
+## Write and test the function
+
+```r
+region_summary <- function(data, na.rm = TRUE) {
+  c(
+    n = # ...,
+    mean_income = # ...,
+    mean_hs_grad = # ...,
+    mean_life_expectancy = # ...
+  )
+}
+```
+
+. . .
+
+Test on one group before adding iteration:
+
+. . .
+
+```r
+northeast <- states[states$region == "Northeast", ]
+region_summary(northeast)
+```
+
+## Split and apply
+
+```r
+states_by_region <- split(states, states$region)
+result <- lapply(states_by_region, region_summary)
+
+class(result)
+str(result)
+```
+
+. . .
+
+- What is the type of `result`?
+- What is the type of each element?
+- Which names were preserved?
+
+## Missing values
+
+- Add an `na.rm` argument
+- Pass it to each summary function
+- Test the function after adding an `NA`
+
+. . .
+
+```r
+northeast$income[1] <- NA
+region_summary(northeast)
+```
+
+Does the function still return four values?
+
+## A Solution
+
+```{r}
+region_summary <- function(data, na.rm = TRUE) {
+  c(
+    n = nrow(data),
+    mean_income = mean(data$income, na.rm = na.rm),
+    mean_hs_grad = mean(data$hs_grad, na.rm = na.rm),
+    mean_life_expectancy = mean(data$life_expectancy, na.rm = na.rm)
+  )
+}
+
+states_by_region <- split(states, states$region)
+result <- lapply(states_by_region, region_summary)
+do.call(rbind, result)
+```
+
+
+# Wrap-up
+
+## Summary
+
+- Repeated calculation? Write a function
+- Same calculation on a whole vector? Prefer vectorization to iteration
+- Same function on each list element? Use `lapply()`
+- Need to allow future iterations to depend on past ones? Use `for`
+- Do not know the number of repetitions? Use `while`
+
+. . .
+
+```{=typst}
+#v(2em)
+```
+
+
+### When to use iteration {.tip}
+
+::: {.nonincremental}
+
+- Start with working code
+- Identify repetition
+- Extract the repeated calculation
+
+:::
