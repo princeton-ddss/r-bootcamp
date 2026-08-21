@@ -59,3 +59,18 @@
     ]
   ]
 }
+
+#let toc-slide(api, toc_title) = {
+  (api.slide)[
+    #let title = if toc_title == none { "Outline" } else { toc_title }
+    #heading(outlined: false, title)
+    #set text(size: 1.5em)
+    #align(horizon)[
+      #(api.toolbox.all-sections)((sections, current) => {
+        sections
+          .map(s => if s == current { emph(s) } else { s })
+          .join([ #linebreak() ])
+      })
+    ]
+  ]
+}
