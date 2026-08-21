@@ -227,7 +227,7 @@ if (turnout_change > 0) {
 ifelse(turnout_change > 0, 'increase', 'no increase')
 ```
 
-## Exercise
+## Exercise 1: proportion above a cutoff
 
 Write `prop_above()` to compute the proportion of values above a cutoff
 
@@ -510,9 +510,9 @@ sapply(columns, mean)
 - Expecting `lapply()` to return a vector
 - Trying to do too much inside one loop
 
-# Guided exercise
+# Exercise
 
-## Exercise
+## Exercise 2: compare regions
 
 Using `states`, compare regions
 
