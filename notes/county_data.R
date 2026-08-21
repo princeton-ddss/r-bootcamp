@@ -5,6 +5,8 @@ state_lookup <- censable::stata |>
   mutate(
     state_fips = stringr::str_pad(as.character(fips), width = 2L, pad = '0'),
     state = name,
+    region,
+    division,
     .keep = 'none'
   )
 
@@ -41,6 +43,22 @@ county_data <- get_acs(
   select(GEOID, state, county, income, income_moe, rent, rent_moe)
 
 write_csv(county_data, here::here('files/county_data.csv'))
+
+county_population <- get_decennial(
+  geography = 'county',
+  variables = c(populations = 'P1_001N'),
+  year = 2020L,
+  sumfile = 'pl'
+) |>
+  mutate(
+    fips = stringr::str_pad(as.character(GEOID), width = 5L, pad = '0'),
+    state_fips = stringr::str_sub(fips, 1L, 2L)
+  ) |>
+  inner_join(state_lookup, by = 'state_fips') |>
+  filter(!is.na(region), !is.na(division)) |>
+  select(fips, region, division, pop = value)
+
+write_csv(county_population, here::here('files/county_population.csv'))
 
 
 shp <- tigris::counties(cb = TRUE, resolution = '20m') |>

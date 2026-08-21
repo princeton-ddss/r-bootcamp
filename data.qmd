@@ -6,3 +6,4 @@ title: "Data"
 
 - [County data](files/county_data.csv): ACS 2019–2023 five-year estimates for renter-household income and median gross rent, with margins of error.
 - [County boundaries](files/county_shapes.geojson): simplified county geometries with Alaska and Hawaii adjusted for mapping.
+- [County population](files/county_population.csv): 2020 decennial Census total population with Census region and division.
