@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "*.qmd"
+    - "!notes/day-2-base-r.qmd"
+    - "!notes/day-2-tidyverse.qmd"
 
 website:
   title: "R Bootcamp"
@@ -33,7 +37,3 @@ format:
     toc: true
     smooth-scroll: true
     link-external-newwindow: true
-
-exclude:
-  - "notes/day-2-base-r.qmd"
-  - "notes/day-2-tidyverse.qmd"
