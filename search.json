@@ -91,6 +91,20 @@
     "text": "Incoming social science PhD students are encouraged to attend all or part of Data-Driven Social Science’s R Bootcamp, a two-and-a-half day introductory crash course in R. No grades are assigned, participation is voluntary, and partial attendance is welcome.\nWe will cover R basics, data wrangling, visualization, and simulation. Along the way, we will also introduce students to version control (Git) and typesetting tools (Quarto). Hands-on exercises and assistance will be provided throughout.\nBeyond the technical material, this is also a chance to meet your fellow first-year students from other social science departments.\nOur bootcamp is based, in part, on Harvard Government’s Math Prefresher."
   },
   {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data",
+    "section": "",
+    "text": "County data: ACS 2019–2023 five-year estimates for renter-household income and median gross rent, with margins of error.\nCounty boundaries: simplified county geometries with Alaska and Hawaii adjusted for mapping."
+  },
+  {
+    "objectID": "data.html#county-level-data",
+    "href": "data.html#county-level-data",
+    "title": "Data",
+    "section": "",
+    "text": "County data: ACS 2019–2023 five-year estimates for renter-household income and median gross rent, with margins of error.\nCounty boundaries: simplified county geometries with Alaska and Hawaii adjusted for mapping."
+  },
+  {
     "objectID": "day-2.html",
     "href": "day-2.html",
     "title": "Day 2: Programming and tidyverse",
