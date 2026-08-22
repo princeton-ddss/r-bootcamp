@@ -1,0 +1,552 @@
+---
+title: "R Bootcamp Day 2"
+subtitle: "The tidyverse"
+author:
+  - name: Christopher T. Kenny
+    affiliations:
+      - name: Data-Driven Social Science
+format:
+  projector-typst:
+    keep-typ: false
+    backend: touying
+    touying-theme: simple
+theme: ddss.typ
+fontsize: "14pt"
+codefont: "Fira Code"
+bullet-incremental: true
+toc: true
+handout: false
+execute:
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    results: hold
+---
+
+```{r}
+#| include: false
+
+options(pillar.print_min = 3L, pillar.print_max = 3L)
+
+library(tidyverse)
+
+counties <- read_csv(
+  'https://princeton-ddss.github.io/r-bootcamp/files/county_data.csv'
+)
+
+county_pop <- read_csv(
+  'https://princeton-ddss.github.io/r-bootcamp/files/county_population.csv'
+)
+```
+
+# Today
+
+## Goals
+
+::: {.nonincremental}
+
+- Familiarity with the core of the tidyverse for data manipulation
+- Ability to use `tibble`, `dplyr`, and `purrr` over base R equivalents
+- Practice with actual datasets in R
+- Tomorrow: `ggplot2`
+
+:::
+
+## Sources
+
+::: {.nonincremental}
+
+- Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 3: Data transformation](https://r4ds.hadley.nz/data-transform.html), especially §§3.1-3.5
+- Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 19: Joins](https://r4ds.hadley.nz/joins.html), especially §§19.2-19.3
+- Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 26: Iteration](https://r4ds.hadley.nz/iteration.html), especially §§26.2-26.3
+- Harvard IQSS. [Math Prefresher for Political Scientists, Ch. 9: Objects, Functions, Loops](https://iqss.github.io/prefresher/13_functions_obj_loops.html)
+- Harvard IQSS. [Math Prefresher for Political Scientists, Ch. 11: Joins and Merges](https://iqss.github.io/prefresher/15_project-dempeace.html)
+
+:::
+
+# The tidyverse
+
+## The tidyverse
+
+- A collection of R packages for data science
+- Packages designed around tidy data
+  - each observation is a row and each column is a variable
+- Core packages today: `tibble`, `dplyr`, and `purrr`
+
+. . .
+
+```{r}
+#| message: true
+library(tidyverse)
+```
+
+```r
+── Attaching core tidyverse packages ────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.3     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.2
+── Conflicts ──────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package to force all conflicts to become errors
+```
+
+## Tibble
+
+- A tibble is a data frame with more predictable behavior
+- Printing shows the first rows and the columns that fit
+- Column types appear below the column names
+
+. . .
+
+```{r}
+counties
+```
+
+## Tibble
+
+![Tibble the cat](tibble.jpg){height=80%}
+
+## Printing a tibble
+
+```{r}
+counties
+```
+
+## Tibble printing
+
+![Tibble's `print()`](tibble_printing.jpeg){height=80%}
+
+## Creating a tibble
+
+- `tibble()` builds a data frame from named columns
+- Columns have equal length or length one
+
+. . .
+
+```{r}
+sample_respondents <- tibble(
+  id = c(101L, 102L, 103L),
+  party = c('Democrat', 'Independent', 'Republican'),
+  trust_government = c(3L, 5L, 2L)
+)
+```
+
+```{r}
+tibble(id = seq_len(3L), enrolled = TRUE)
+```
+
+## Inspecting a tibble
+
+Inspect before transforming data
+
+- `glimpse()` displays each column and its type
+- `names()` returns column names
+- `dim()` returns rows and columns
+
+. . .
+
+```{r}
+counties |>
+  select(state, county, income, rent) |>
+  glimpse()
+```
+
+## Extracting a column
+
+`$` and `[[` return a column as a vector
+
+. . .
+
+```{r}
+class(counties$income)
+class(counties[['income']])
+```
+
+. . .
+
+Both approaches return a vector
+
+. . .
+
+`[` return returns a one-column tibble
+
+```{r}
+class(counties['income'])
+```
+
+
+# Data transformation
+
+## `dplyr` verbs
+
+- Rows
+  - `filter()`/`slice()`: subset to specific rows
+  - `arrange()`: reorder by a variable
+- Columns
+  - `select()`: subset to specific columns
+  - `mutate()`: create or update columns
+  - `rename()`: rename specific columns
+- Groups
+  - `group_by()`: identify groupings in data
+  - `summarize()`: reduce groups to summaries
+
+## `filter()`
+
+`filter()` keeps rows that satisfy a logical condition
+
+. . .
+
+```{r}
+counties |>
+  filter(income >= 75000)
+```
+
+## Multiple conditions: Equivalent to AND
+
+Commas require every condition to be `TRUE`
+
+. . .
+
+```{r}
+counties |>
+  filter(state == 'New York', income >= 75000)
+```
+
+. . .
+
+which is the same as:
+
+```r
+counties |>
+  filter(state == 'New York') |>
+  filter(income >= 75000)
+```
+
+## Missing values
+
+```{r}
+scores <- tibble(
+  id = seq_len(4L),
+  score = c(88L, NA, 91L, 76L)
+)
+```
+
+What happens with NAs?
+
+```r
+scores |> filter(score > 90)
+```
+. . .
+
+```{r}
+#| echo: false
+scores |> filter(score > 90)
+```
+
+## `arrange()`
+
+- `arrange()` orders rows by one or more columns
+- Use `desc()` for descending order
+
+. . .
+
+```{r}
+counties |>
+  arrange(desc(income))
+```
+
+## `distinct()`
+
+`distinct()` keeps unique values
+
+. . .
+
+```{r}
+counties |> distinct(state)
+```
+
+. . .
+
+Use multiple columns for unique combinations
+
+```{r}
+counties |> distinct(state, county) |> nrow()
+```
+
+## `select()`
+
+`select()` keeps, drops, or reorders columns:
+
+. . .
+
+```{r}
+counties |>
+  select(state, county, income, rent)
+```
+
+## `select()`: ranges and exclusions
+
+We can also select with ranges ...
+
+```{r}
+counties |> select(state:income) |> names()
+```
+
+. . .
+
+... and with exclusions:
+
+```{r}
+counties |> select(-c(income_moe, rent_moe)) |> names()
+```
+
+## Selection helpers
+
+We can select based on names using `starts_with()`, `ends_with()`, and `contains()`
+
+```{r}
+counties |> select(starts_with('rent')) |> names()
+```
+
+. . .
+
+Or with a helper function inside `where()`:
+
+```{r}
+counties |> select(where(is.numeric)) |> names()
+```
+
+## `rename()`
+
+```{r}
+counties |>
+  rename(
+    median_renter_income = income,
+    median_gross_rent = rent
+  )
+```
+
+## `relocate()`
+
+Move columns to the front:
+
+```{r}
+counties |> relocate(income, rent) |> names()
+```
+
+. . .
+
+Or to a specific location:
+
+```{r}
+counties |> relocate(county, .after = state) |> names()
+```
+
+## `mutate()`
+
+`mutate()` creates new columns or replaces old ones
+
+. . .
+
+```{r}
+counties |>
+  mutate(
+    income_thousands = income / 1000,
+    rent_hundreds = rent / 100
+  ) |>
+  select(state, county, income_thousands, rent_hundreds)
+```
+
+## Keeping only specific columns
+
+`.keep = 'none'` keeps only the updated columns
+
+```{r}
+counties |>
+  mutate(
+    income_thousands = income / 1000,
+    rent_hundreds = rent / 100,
+    .keep = 'none'
+  )
+```
+
+. . .
+
+Before 2025, this was `transmute()`
+
+## Conditional variables: `if_else()`
+
+```{r}
+
+counties |>
+  mutate(
+    rent_level = if_else(
+      rent >= median(rent, na.rm = TRUE),
+      'at or above median',
+      'below median'
+    )
+  ) |>
+  select(state, county, rent, rent_level)
+```
+
+## Complex conditional variables: `case_when()`
+
+```{r}
+counties |>
+  mutate(
+    income_group = case_when(
+      is.na(income) ~ 'missing',
+      income >= 100000 ~ 'high',
+      income >= 75000 ~ 'middle',
+      .default = 'low'
+    )
+  ) |>
+  select(state, county, income, income_group)
+```
+
+## Exercise
+
+::: {.noncincremental}
+
+- Keep counties in New York or Texas
+- Create `income_thousands` from `income`
+- Keep `state`, `county`, `income`, and `income_thousands`
+- Order from highest to lowest income
+
+:::
+
+Write this as one pipeline
+
+## A solution
+
+```{r}
+counties |>
+  filter(state %in% c('New York', 'Texas')) |>
+  mutate(income_thousands = income / 1000) |>
+  select(state, county, income, income_thousands) |>
+  arrange(desc(income))
+```
+
+# Groups and summaries
+
+## `summarize()`
+
+`summarize()` reduces rows to summary values
+
+. . .
+
+```{r}
+
+counties |>
+  summarize(
+    n = n(),
+    mean_income = mean(income, na.rm = TRUE),
+    median_rent = median(rent, na.rm = TRUE),
+    .groups = 'drop'
+  )
+```
+
+. . .
+
+If there are no groups, `summarize()` treats all rows as one group
+
+## `group_by()`
+
+`group_by()` marks a `tibble` as having groups
+
+. . .
+
+```{r}
+
+counties |>
+  group_by(state) |>
+  summarize(
+    n = n(),
+    mean_income = mean(income, na.rm = TRUE),
+    median_rent = median(rent, na.rm = TRUE)
+  )
+```
+
+## Grouped mutation
+
+`mutate()` will respect groups for vectorized operations
+
+. . .
+
+```{r}
+counties |>
+  group_by(state) |>
+  mutate(
+    income_difference = income - mean(income, na.rm = TRUE)
+  ) |>
+  select(state, county, income, income_difference) |>
+  ungroup()
+```
+
+## `count()`
+
+```{r}
+counties |> count(state)
+```
+
+. . .
+
+`count(state)` groups by `state` and counts rows
+
+Equivalent to:
+
+```r
+counties |> group_by(state) |> summarize(n = n())
+```
+
+## Multiple summaries: `across()`
+
+```{r}
+counties |>
+  summarize(
+    across(
+      c(income, rent),
+      list(
+        mean = \(x) mean(x, na.rm = TRUE),
+        sd = \(x) sd(x, na.rm = TRUE)
+      )
+    )
+  )
+```
+
+. . .
+
+`across()` applies the same functions to several columns
+
+
+## Multiple summaries: `across()`
+
+`across()` simplifies making summaries:
+
+. . .
+
+```{r}
+counties |>
+  summarize(across(where(is.numeric), \(x) mean(x, na.rm = TRUE)))
+```
+
+
+## Exercise
+
+::: {.noncincremental}
+
+TODO
+
+:::
+
+Write this as one pipeline
+
+## A solution
+
+TODO
+
+# Joins
