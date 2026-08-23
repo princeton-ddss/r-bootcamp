@@ -11,7 +11,7 @@ Before Day 1, install:
 - Either [RStudio](https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads) or [Positron](https://positron.posit.co/download.html)
   - Positron is a data-science oriented fork of VS Code. RStudio is R focused.
 
-::: {.callout-note}
+::: callout-note
 ## Setup office hours
 
 Arrive from **1:00–2:00 p.m. on Day 1** if you have issues installing R or RStudio/Positron.

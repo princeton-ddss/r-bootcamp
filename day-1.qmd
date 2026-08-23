@@ -2,20 +2,20 @@
 title: "Day 1: Getting started"
 ---
 
-::: {.callout-note}
+::: callout-note
 ## Setup office hours
 
 Arrive from **1:00–2:00 p.m.** if you have issues with installing R or RStudio/Positron.
 :::
 
-::: {.schedule-table}
-| Time       | Session                                  |
-|:-----------|:-----------------------------------------|
-| 2:00–2:30  | Setup and ergonomics                     |
-| 2:30–3:30  | Packages, libraries, and variables       |
-| 3:30–3:45  | Break                                    |
-| 3:45–4:45  | Types, vectors, and objects              |
-| 4:45–5:30  | Data frames, reading data, and R as a calculator |
+::: schedule-table
+| Time      | Session                                          |
+|:----------|:-------------------------------------------------|
+| 2:00–2:30 | Setup and ergonomics                             |
+| 2:30–3:30 | Packages, libraries, and variables               |
+| 3:30–3:45 | Break                                            |
+| 3:45–4:45 | Types, vectors, and objects                      |
+| 4:45–5:30 | Data frames, reading data, and R as a calculator |
 :::
 
 ## Setup and ergonomics {#setup}
@@ -24,7 +24,7 @@ Arrive from **1:00–2:00 p.m.** if you have issues with installing R or RStudio
 - Running code and using the console
 - The environment, and why not to save it
 
-::: {.refs}
+::: refs
 [References]{.refs-label}
 
 - [Prefresher, Ch. 7: Orientation and reading in data](https://iqss.github.io/prefresher/11_data-handling_counting.html)
@@ -36,7 +36,7 @@ Arrive from **1:00–2:00 p.m.** if you have issues with installing R or RStudio
 - Installing packages versus loading libraries
 - Assigning and inspecting variables
 
-::: {.refs}
+::: refs
 [References]{.refs-label}
 
 - [r4ds, Ch. 2: Workflow — basics](https://r4ds.hadley.nz/workflow-basics.html)
@@ -47,7 +47,7 @@ Arrive from **1:00–2:00 p.m.** if you have issues with installing R or RStudio
 - Types and vectors (there are no scalars)
 - Characters and strings
 
-::: {.refs}
+::: refs
 [References]{.refs-label}
 
 - [Prefresher, Ch. 8: Manipulating vectors and matrices](https://iqss.github.io/prefresher/12_matricies-manipulation.html)
@@ -61,7 +61,7 @@ Arrive from **1:00–2:00 p.m.** if you have issues with installing R or RStudio
 - Working directories and paths
 - R as a calculator: `mean()`, `median()`, `summary()`, and custom summaries
 
-::: {.refs}
+::: refs
 [References]{.refs-label}
 
 - [r4ds, Ch. 7: Data import](https://r4ds.hadley.nz/data-import.html)

@@ -44,25 +44,21 @@ county_pop <- read_csv(
 
 ## Goals
 
-::: {.nonincremental}
-
+::: nonincremental
 - Familiarity with the core of the tidyverse for data manipulation
 - Ability to use `tibble`, `dplyr`, and `purrr` over base R equivalents
 - Practice with actual datasets in R
 - Tomorrow: `ggplot2`
-
 :::
 
 ## Sources
 
-::: {.nonincremental}
-
+::: nonincremental
 - Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 3: Data transformation](https://r4ds.hadley.nz/data-transform.html), especially §§3.1-3.5
 - Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 19: Joins](https://r4ds.hadley.nz/joins.html), especially §§19.2-19.3
 - Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 26: Iteration](https://r4ds.hadley.nz/iteration.html), especially §§26.2-26.3
 - Harvard IQSS. [Math Prefresher for Political Scientists, Ch. 9: Objects, Functions, Loops](https://iqss.github.io/prefresher/13_functions_obj_loops.html)
 - Harvard IQSS. [Math Prefresher for Political Scientists, Ch. 11: Joins and Merges](https://iqss.github.io/prefresher/15_project-dempeace.html)
-
 :::
 
 # The tidyverse
@@ -81,7 +77,7 @@ county_pop <- read_csv(
 library(tidyverse)
 ```
 
-```r
+``` r
 ── Attaching core tidyverse packages ────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.2.1     ✔ readr     2.2.0
 ✔ forcats   1.0.1     ✔ stringr   1.6.0
@@ -108,7 +104,7 @@ counties
 
 ## Tibble
 
-![Tibble the cat](tibble.jpg){height=80%}
+![Tibble the cat](tibble.jpg){height="80%"}
 
 ## Printing a tibble
 
@@ -118,7 +114,7 @@ counties
 
 ## Tibble printing
 
-![Tibble's `print()`](tibble_printing.jpeg){height=80%}
+![Tibble's `print()`](tibble_printing.jpeg){height="80%"}
 
 ## Creating a tibble
 
@@ -178,7 +174,6 @@ Both approaches return a vector
 class(counties['income'])
 ```
 
-
 # Data transformation
 
 ## `dplyr` verbs
@@ -220,7 +215,7 @@ counties |>
 
 which is the same as:
 
-```r
+``` r
 counties |>
   filter(state == 'New York') |>
   filter(income >= 75000)
@@ -237,9 +232,10 @@ scores <- tibble(
 
 What happens with NAs?
 
-```r
+``` r
 scores |> filter(score > 90)
 ```
+
 . . .
 
 ```{r}
@@ -410,13 +406,11 @@ counties |>
 
 ## Exercise
 
-::: {.noncincremental}
-
+::: noncincremental
 - Keep counties in New York or Texas
 - Create `income_thousands` from `income`
 - Keep `state`, `county`, `income`, and `income_thousands`
 - Order from highest to lowest income
-
 :::
 
 Write this as one pipeline
@@ -499,7 +493,7 @@ counties |> count(state)
 
 Equivalent to:
 
-```r
+``` r
 counties |> group_by(state) |> summarize(n = n())
 ```
 
@@ -522,7 +516,6 @@ counties |>
 
 `across()` applies the same functions to several columns
 
-
 ## Multiple summaries: `across()`
 
 `across()` simplifies making summaries:
@@ -534,13 +527,10 @@ counties |>
   summarize(across(where(is.numeric), \(x) mean(x, na.rm = TRUE)))
 ```
 
-
 ## Exercise
 
-::: {.noncincremental}
-
+::: noncincremental
 TODO
-
 :::
 
 Write this as one pipeline

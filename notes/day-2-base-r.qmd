@@ -28,24 +28,20 @@ knitr:
 
 ## Goals
 
-:::{.nonincremental}
-
+::: nonincremental
 - Familiarity with major components of "base R"
 - Familiarity with functions, iteration, and vectorization
 - Practice with using R interactively
 - This afternoon: Quarto and tidyverse
-
 :::
 
 ## Sources
 
-::: {.nonincremental}
-
+::: nonincremental
 - Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 25: Functions](https://r4ds.hadley.nz/functions.html), especially §25.1-25.2
 - Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 26: Iteration](https://r4ds.hadley.nz/iteration.html), especially §26.1
 - Harvard IQSS. [Math Prefresher for Political Scientists, Ch. 9: Objects, Functions, Loops](https://iqss.github.io/prefresher/13_functions_obj_loops.html), especially §§9.4, 9.6, and 9.7
 - R Core Team. [`lapply()` documentation](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html)
-
 :::
 
 ```{r}
@@ -79,7 +75,7 @@ Function components:
 
 Calling a function executes the code on your inputs
 
-```r
+``` r
 result <- function_name(argument)
 ```
 
@@ -231,7 +227,7 @@ ifelse(turnout_change > 0, 'increase', 'no increase')
 
 Write `prop_above()` to compute the proportion of values above a cutoff
 
-```r
+``` r
 prop_above <- function(x, cutoff, na.rm = TRUE) {
   # your code here
 }
@@ -241,7 +237,7 @@ prop_above <- function(x, cutoff, na.rm = TRUE) {
 
 It should handle this input:
 
-```r
+``` r
 turnout <- c(0.71, 0.88, NA, 0.93, 0.65)
 prop_above(turnout, cutoff = 0.80)
 ```
@@ -315,12 +311,9 @@ state
 
 ## Saving results
 
-
-:::{.nonincremental}
-
+::: nonincremental
 - Create a vector to store the outputs
 - Use the index to fill one position on each iteration
-
 :::
 
 ```{r}
@@ -421,10 +414,8 @@ lapply(
 
 ## Anonymous functions
 
-::: {.nonincremental}
-
+::: nonincremental
 - A second way to write it
-
 :::
 
 ```{r}
@@ -531,7 +522,7 @@ Apply it to the four regions
 
 ## Write and test the function
 
-```r
+``` r
 region_summary <- function(data, na.rm = TRUE) {
   c(
     n = # ...,
@@ -548,14 +539,14 @@ Test on one group before adding iteration:
 
 . . .
 
-```r
+``` r
 northeast <- states[states$region == "Northeast", ]
 region_summary(northeast)
 ```
 
 ## Split and apply
 
-```r
+``` r
 states_by_region <- split(states, states$region)
 result <- lapply(states_by_region, region_summary)
 
@@ -577,7 +568,7 @@ str(result)
 
 . . .
 
-```r
+``` r
 northeast$income[1] <- NA
 region_summary(northeast)
 ```
@@ -601,7 +592,6 @@ result <- lapply(states_by_region, region_summary)
 do.call(rbind, result)
 ```
 
-
 # Wrap-up
 
 ## Summary
@@ -617,14 +607,10 @@ do.call(rbind, result)
 ```{=typst}
 #v(2em)
 ```
-
-
 ### When to use iteration {.tip}
 
-::: {.nonincremental}
-
+::: nonincremental
 - Start with working code
 - Identify repetition
 - Extract the repeated calculation
-
 :::

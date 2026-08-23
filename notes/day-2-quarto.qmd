@@ -22,11 +22,11 @@ theme: ddss.typ
 ## Quarto
 
 - Publishing system based on Pandoc
-    - Input a markdown document, render to anything supported by Pandoc
-        - HTML, PDF, Word, Beamer, GFM, MediaWiki, etc.
+  - Input a markdown document, render to anything supported by Pandoc
+    - HTML, PDF, Word, Beamer, GFM, MediaWiki, etc.
 - Built by Posit, PBC (formerly RStudio)
 - Syntax builds on RMarkdown, but language agnostic
-    - Existing `.Rmd` files and most Jupyter notebooks can be run by Quarto
+  - Existing `.Rmd` files and most Jupyter notebooks can be run by Quarto
 - Reproducible system to combine code and text together
 
 ## Rendering Behind-the-Scenes
@@ -34,10 +34,7 @@ theme: ddss.typ
 ```{=typst}
 #set align(horizon + center)
 ```
-
-
 ![](figs/rstudio-qmd-how-it-works.png){fig-align="center" width="100%"}
-
 
 Figure from <https://quarto.org/docs/faq/rmarkdown.html>
 
@@ -47,18 +44,18 @@ Two main components:
 
 . . .
 
-1. YAML header
-    1. Specify title, authors, and frontmatter
-    2. Identify output type (e.g., PDF, PowerPoint, HTML)
-    3. Style the document (e.g., pick fonts `mainfont: Libre Franklin`)
+1.  YAML header
+    1.  Specify title, authors, and frontmatter
+    2.  Identify output type (e.g., PDF, PowerPoint, HTML)
+    3.  Style the document (e.g., pick fonts `mainfont: Libre Franklin`)
 
 . . .
 
-2. Body
-    1. Contains text
-    2. Include LaTeX equations `$x^2$` becomes $x^2$
-    3. Write code chunks in R, Python, Julia, Observable, etc.
-    4. Include raw chunks with format-specific code (e.g., HTML or Typst blocks)
+2.  Body
+    1.  Contains text
+    2.  Include LaTeX equations `$x^2$` becomes $x^2$
+    3.  Write code chunks in R, Python, Julia, Observable, etc.
+    4.  Include raw chunks with format-specific code (e.g., HTML or Typst blocks)
 
 ## Why Quarto?
 
@@ -77,7 +74,6 @@ Two main components:
 ```{=typst}
 #set align(horizon)
 ```
-
 - Articles: PDF (LaTeX, Typst), Word
 - Slides: Beamer, RevealJS, PowerPoint
 - Websites: Dashboards, Static HTML, or Shiny
@@ -107,11 +103,9 @@ Basic figures can be included with `![]()` syntax:
 ```{=typst}
 #set align(horizon + center)
 ```
-
-:::: {.columns align=center totalwidth=100%}
-
+::::: {.columns align="center" totalwidth="100%"}
 ::: {.column width="65%"}
-```
+```         
 ![Caption](DDSS-stacked_PU_shield_black.png)
 ```
 :::
@@ -119,8 +113,7 @@ Basic figures can be included with `![]()` syntax:
 ::: {.column width="35%"}
 ![Caption](DDSS-stacked_PU_shield_black.png)
 :::
-
-::::
+:::::
 
 ## Making a table
 
@@ -129,12 +122,10 @@ Tables use "pipe" syntax:
 ```{=typst}
 #set align(horizon + center)
 
-
 ```
-:::: {.columns align=center totalwidth=100%}
-
+::::: {.columns align="center" totalwidth="100%"}
 ::: {.column width="65%"}
-```
+```         
 | University |  Color  |
 |:-----------|--------:|
 | Princeton  | #E98338 |
@@ -147,17 +138,16 @@ Tables use "pipe" syntax:
 :::
 
 ::: {.column width="35%"}
-| University |  Color   |
-|:-----------|---------:|
+| University |   Color |
+|:-----------|--------:|
 | Princeton  | #E98338 |
 | Harvard    | #A51C30 |
 | Cornell    | #B31B1B |
 | Brown      | #ED1C24 |
 
-: Red and orange university colors {#tbl-colors}
+: Red and orange university colors
 :::
-
-::::
+:::::
 
 ## Including code
 
@@ -177,11 +167,9 @@ Control code chunk behavior with options:
 ```{=typst}
 #set align(center + horizon)
 ```
-
-```
+```         
 quarto create project
 ```
-
 
 # Quarto Extensions
 
@@ -190,7 +178,6 @@ quarto create project
 ```{=typst}
 #set align(horizon)
 ```
-
 - General science: Science, Nature, PNAS, PLOS
 - Major publishers: Taylor and Francis, Cambridge University Press, Springer, Elsevier
 - Social sciences: Annual Reviews, APSR, BJPS, PA, PSRM, Perspectives, APA, and more
@@ -199,14 +186,14 @@ quarto create project
 
 Workflow for academic writing:
 
-1. Start with a preprint template: `quarto use template christopherkenny/ctk-article`
-2. Write the paper in Markdown with embedded code
-3. Switch to a journal template: `quarto use template quarto-journals/jss`
-4. Add any journal-specific things to the header
-5. Render to PDF: `quarto render manuscript.qmd`
-6. Submit generated PDF (+ source files)
-7. Get desk rejected
-8. Reformat by importing next template `quarto add template christopherkenny/nature`
+1.  Start with a preprint template: `quarto use template christopherkenny/ctk-article`
+2.  Write the paper in Markdown with embedded code
+3.  Switch to a journal template: `quarto use template quarto-journals/jss`
+4.  Add any journal-specific things to the header
+5.  Render to PDF: `quarto render manuscript.qmd`
+6.  Submit generated PDF (+ source files)
+7.  Get desk rejected
+8.  Reformat by importing next template `quarto add template christopherkenny/nature`
 
 # Resources
 
@@ -215,17 +202,14 @@ Workflow for academic writing:
 ```{=typst}
 #set align(horizon)
 ```
-
-![](figs/quarto-documentation.png){fig-align="center" height=80%}
+![](figs/quarto-documentation.png){fig-align="center" height="80%"}
 
 ## Extension Listings
 
 ```{=typst}
 #set align(horizon)
 ```
-
-:::: {.columns align=center totalwidth=100%}
-
+::::: {.columns align="center" totalwidth="100%"}
 ::: {.column width="60%"}
 ![](figs/quarto-org-listing.png)
 :::
@@ -233,5 +217,4 @@ Workflow for academic writing:
 ::: {.column width="40%"}
 ![](figs/awesome-quarto.png)
 :::
-
-::::
+:::::

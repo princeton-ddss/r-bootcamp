@@ -5,63 +5,64 @@ page-layout: full
 title-block-banner: false
 ---
 
-::: {.hero}
-::: {.hero-inner}
-# <span class="hero-highlight">R Bootcamp</span>
+:::: hero
+::: hero-inner
+# [R Bootcamp]{.hero-highlight}
 
-<p class="hero-meta">Data-Driven Social Science · Two and a half days · August 28–September 1, 2026</p>
-:::
-:::
+<p class="hero-meta">
 
-::: {.content-wrap}
-::: {.prerequisites-callout}
-::: {.prerequisites-copy}
+Data-Driven Social Science · Two and a half days · August 28–September 1, 2026
+
+</p>
+:::
+::::
+
+:::::::::: content-wrap
+:::: prerequisites-callout
+::: prerequisites-copy
 ### Install R and an IDE
 
 Install R and either RStudio or Positron before the bootcamp. Setup help is available from 1:00–2:00 p.m. on Day 1.
 :::
 
 <a class="callout-link" href="prerequisites.qmd">Prerequisites →</a>
-:::
+::::
 
 ## Schedule {#schedule}
 
-::: {.week-grid}
-::: {.day-card}
-<span class="day-label">Day 1 · Friday, August 28, 2:00–5:30</span>
+:::::: week-grid
+::: day-card
+[Day 1 · Friday, August 28, 2:00–5:30]{.day-label}
 
 ### [Getting started](day-1.qmd)
 
 - Setup, ergonomics, and packages
 - Types, vectors, and data frames
 - Reading data and R as a calculator
-
 :::
 
-::: {.day-card}
-<span class="day-label">Day 2 · Monday, August 31, 9:00–5:00</span>
+::: day-card
+[Day 2 · Monday, August 31, 9:00–5:00]{.day-label}
 
 ### [Programming and tidyverse](day-2.qmd)
 
 - Functions, loops, and `lapply()`
 - Quarto and typesetting
 - Tidyverse, excluding plotting
-
 :::
 
-::: {.day-card}
-<span class="day-label">Day 3 · Tuesday, September 1, 9:00–5:00</span>
+::: day-card
+[Day 3 · Tuesday, September 1, 9:00–5:00]{.day-label}
 
 ### [Visualization and simulation](day-3.qmd)
 
 - Base R plots and `ggplot2`
 - Version control and stats functions
 - Big exercise: simulation
-
 :::
-:::
+::::::
 
-::: {.note-strip}
+::: note-strip
 **Days 2 and 3:** an hour for lunch, plus short breaks morning and afternoon
 :::
-:::
+::::::::::
