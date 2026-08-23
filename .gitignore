@@ -1,3 +1,9 @@
+# Quarto build artifacts
 /.quarto/
+.quarto/
 /_site/
+/.luarc.json
 **/*.quarto_ipynb
+
+# Guard: decks belong in _site/, not beside their source
+notes/*.pdf

@@ -3,8 +3,6 @@ project:
   output-dir: _site
   render:
     - "*.qmd"
-    - "!notes/day-2-base-r.qmd"
-    - "!notes/day-2-tidyverse.qmd"
   resources:
     - "files/"
 
@@ -31,6 +29,15 @@ website:
   page-footer:
     left: '<img class="footer-logo" src="assets/DDSS-stacked_PU_shield_black.webp" alt="Data-Driven Social Science at Princeton University">'
     right: "R Bootcamp"
+
+# Frozen execution: R chunks run locally, CI reuses the stored output.
+# Re-render locally after editing any .qmd with R code, and commit _freeze/.
+execute:
+  freeze: auto
+
+# Vendored fonts so Typst renders identically everywhere (CI has no system fonts).
+font-paths:
+  - assets/fonts
 
 format:
   html:
