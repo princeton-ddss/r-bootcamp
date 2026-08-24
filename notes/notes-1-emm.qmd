@@ -1,0 +1,1640 @@
+---
+format:
+  revealjs:
+    theme: default
+    slide-number: c
+    highlight-style: github
+    code-copy: true
+    embed-resources: true
+    code-line-numbers: false
+    css: ddss.css
+    height: 700
+    width: 1400
+    output-location: fragment
+
+execute:
+  echo: true
+  message: false
+  warning: false
+  fig-align: center
+
+knitr:
+  opts_chunk:
+    results: hold
+---
+
+```{=html}
+<style>
+  .reveal .backgrounds > .slide-background:first-child {
+    background-image: url('figs/title-bg.svg');
+    background-size: cover;
+    background-position: center;
+  }
+</style>
+
+<br>
+<br>
+<br>
+<h1>R Bootcamp: Day 1</h1>
+<br>
+<h2>Types, vectors, and data frames; reading data</h2>
+<hr><br>
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
+  <div>
+    <p style="font-size: 1.3em; font-weight: 600; margin: 0 0 0.2em 0;">Eric Manning, PhD</p>
+    <p style="font-size: 1.0em; margin: 0;">August 29, 2026</p>
+  </div>
+  <img src="figs/ddss-logo.png" style="width: 400px">
+</div>
+<br><br>
+```
+
+<center>[princeton-ddss.github.io/r-bootcamp](https://princeton-ddss.github.io/r-bootcamp)</center>
+
+```{r}
+#| label: setup
+#| include: false
+
+options(scipen = 999, width = 78, str = strOptions(vec.len = 2))
+```
+
+## This session
+
+<hr><br>
+
+### 1) Types, vectors, and objects
+
+::: {.fragment fragment-index="1"}
+* Everything is a type
+    - But we can get [extremely pedantic](https://adv-r.hadley.nz/base-types.html)
+* Vectors, matrices, lists, and more
+* Subsetting syntax; common functions
+:::
+
+<br>
+
+### 2) Data frames, reading data, and R as a calculator
+
+::: {.fragment fragment-index="2"}
+* Data frames: what and how
+* Getting data in and out of R
+* Summary statistics and some real data
+:::
+
+
+
+## Some sources
+
+<hr><br>
+
+* Wickham, Çetinkaya-Rundel, and Grolemund, *R for Data Science*, 2e
+  * [Ch. 27: A field guide to base R](https://r4ds.hadley.nz/base-R.html)
+  * [Ch. 12: Logical vectors](https://r4ds.hadley.nz/logicals.html)
+  * [Ch. 7: Data import](https://r4ds.hadley.nz/data-import.html)
+* Harvard IQSS, *Math Prefresher for Political Scientists*
+  * [Ch. 7.5: Reading in and inspecting data](https://iqss.github.io/prefresher/11_data-handling_counting.html)
+  * [Ch. 8: Manipulating vectors and matrices](https://iqss.github.io/prefresher/12_matricies-manipulation.html)
+
+# Types
+
+## Every object has a type
+
+<hr><br>
+
+```{r}
+x <- 1
+class(x)
+```
+
+<br>
+
+::: {.fragment}
+```{r}
+school <- "Princeton"
+class(school)
+```
+:::
+
+<br>
+
+::: {.fragment}
+The type is R's label for what kind of thing a value is — every object carries one
+:::
+
+::: {.fragment}
+Types decide what's possible: numbers can be averaged, text can be capitalized, etc.
+:::
+
+:::{.fragment}
+Most confusing errors are type errors in disguise.
+:::
+
+## Some basic types
+
+<hr><br>
+
+| Type | Examples | |
+|:---|:---|:---|
+| `numeric` | `1`, `3.14`, `-2.5` | numbers (a.k.a. "double") |
+| `integer` | `1L`, `42L` | whole numbers; the `L` makes it explicit |
+| `character` | `"Princeton"` | text, in quotes — `'single'` work too |
+| `logical` | `TRUE`, `FALSE` | yes/no answers (`T`/`F` also acceptable) |
+| `Date` | `Sys.Date()` | calendar dates |
+
+: {tbl-colwidths="[14,24,62]"}
+
+<br>
+
+::: {.fragment}
+Coming soon: `list`, `data.frame`
+:::
+
+::: {.fragment}
+Mostly you'll just say "numeric" — R treats `1` as a double by default
+:::
+
+::: {.fragment}
+Why keep both? Storage: `double` is 8 bytes (for the decimals); `integer` is 4 bytes.
+:::
+
+::: {.fragment}
+Mostly you'll just notice it as `int` vs `num` in output
+:::
+
+## Reassignment
+
+<hr><br>
+
+An object name holds a value. Assigning again replaces it.
+
+```{r}
+x <- x + 2
+x
+```
+
+<br>
+
+::: {.fragment}
+Types decide what's allowed:
+
+```{r}
+#| error: true
+school + "University"
+```
+:::
+
+::: {.fragment}
+R will not guess what you meant.
+:::
+
+## Casting: convert types deliberately
+
+<hr><br>
+
+The `as.*()` family converts between types
+
+```{r}
+as.numeric("3")
+as.character(3.9)
+```
+
+::: {.fragment}
+Careful casting *to* integer — decimals get chopped, not rounded:
+
+```{r}
+as.integer(3.9)
+```
+:::
+
+<br>
+
+::: {.fragment}
+```{r}
+#| warning: true
+as.numeric("Princeton")
+```
+:::
+
+::: {.fragment}
+::: {.blocktext}
+When R *can't* convert, you get `NA` and a warning (not an error!)
+:::
+:::
+
+## Booleans: questions with yes/no answers
+
+<hr><br>
+
+```{r}
+3 == 3
+3 == 4
+school == "Princeton"
+```
+
+::: {.fragment}
+And the answers are a type of their own:
+
+```{r}
+class(TRUE)
+```
+:::
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+`==` asks "are these equal?" 
+`=` is an assignment operator, like `<-`
+:::
+:::
+
+## Combining booleans:   `&`,   `|`,   `!`
+
+<hr><br>
+
+And, or, not:
+
+```{r}
+TRUE & FALSE
+TRUE | FALSE
+!TRUE
+```
+
+<br>
+
+::: {.fragment}
+Comparisons produce booleans, so you can combine questions:
+
+```{r}
+(3 > 1) & (school == "Princeton")
+```
+:::
+
+## Missing values: `NA`
+
+<hr><br>
+
+`NA` marks a missing value *inside* your data
+
+```{r}
+survey <- c(4, NA, 5)
+is.na(survey)
+```
+
+<br>
+
+::: {.fragment}
+Why not just ask `survey == NA`?
+
+```{r}
+survey == NA
+```
+:::
+
+::: {.fragment}
+"Is this value equal to *unknown*?" — the answer is unknown. Use `is.na()`.
+:::
+
+## Even `NA` has a type
+
+<hr><br>
+
+```{r}
+class(NA)
+```
+
+<br>
+
+::: {.fragment}
+`NA` takes the type of the vector it sits in:
+
+```{r}
+class(c(1.5, NA))
+class(c("a", NA))
+```
+:::
+
+::: {.fragment}
+There's an `NA` for every type (`NA_real_`, `NA_character_`, ...)
+:::
+
+::: {.fragment}
+Usually you don't need to be explicit.
+:::
+
+## `NA` is contagious
+
+<hr><br>
+
+One `NA` poisons every calculation it touches
+
+```{r}
+mean(survey)
+```
+
+<br>
+
+::: {.fragment}
+Tell summary functions to drop missings first:
+
+```{r}
+mean(survey, na.rm = TRUE)
+```
+:::
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+You will type `na.rm = TRUE` a thousand times and one day you will be grateful.
+:::
+:::
+
+## Nothing at all: `NULL`
+
+<hr><br>
+
+`NULL` is the absence of an object — not a missing value
+
+```{r}
+is.null(NULL)
+```
+
+::: {.fragment}
+`NA` is *something*; `NULL` is nothing at all:
+
+```{r}
+length(NA)
+length(NULL)
+```
+:::
+
+<br>
+
+::: {.fragment}
+`NA` holds a place; `NULL` disappears:
+
+```{r}
+c(1, NA, 2)
+c(1, NULL, 2)
+```
+:::
+
+## Dates are a type too
+
+<hr><br>
+
+```{r}
+day1 <- as.Date("2026-08-29")
+class(day1)
+
+## use YYYY-MM-DD where possible 
+## but see `format = ` arg of as.Date
+## Documentation: ?as.Date
+```
+
+<br>
+
+::: {.fragment}
+Date math:
+
+```{r}
+day1 + 7 ## also a date!
+```
+:::
+
+<br>
+
+::: {.fragment}
+While *subtracting* two dates is something else:
+
+```{r}
+as.Date("2026-12-25") - day1 ## difftime class
+```
+:::
+
+# Vectors
+
+## There are (almost) no scalars for data values
+
+<hr><br>
+
+`c()` combines values into a vector
+
+```{r}
+x <- c(5, 10, 15)
+x
+length(x)
+```
+
+<br>
+
+::: {.fragment}
+Surprise: you've been using vectors all along
+
+```{r}
+length(school)
+```
+:::
+
+::: {.fragment}
+`school` is a character vector of length 1.
+:::
+
+## One type per vector
+
+<hr><br>
+
+A vector holds exactly one type. Mix them and R will silently "downcast" where possible.
+
+```{r}
+c(1, "two", TRUE)
+```
+
+<br>
+
+::: {.fragment}
+To convert on purpose, cast the whole vector at once:
+
+```{r}
+as.character(c(1, 2))
+```
+:::
+
+<br>
+
+::: {.fragment}
+Most functions are *vectorized*: they work element-by-element without being told explicitly
+:::
+
+## Combining text: `paste()`
+
+<hr><br>
+
+The *right* way to do `school + "University"`:
+
+```{r}
+paste("R", "Bootcamp")
+paste0(school, " University")
+```
+
+::: {.fragment}
+`paste()` glues with a space; `paste0()` glues with nothing
+:::
+
+<br>
+
+::: {.fragment}
+It casts numbers to text and vectorizes, all at once:
+
+```{r}
+paste("Day", c(1, 2, 3))
+```
+:::
+
+::: {.fragment}
+And `collapse` glues the *results* into one single string:
+
+```{r}
+paste("Day", c(1, 2, 3), collapse = ", ")
+```
+:::
+
+## Math is vectorized too
+
+<hr><br>
+
+```{r}
+x * 2
+x + x
+x^2
+```
+
+::: {.fragment}
+(`**` also works for powers, but write `^`)
+:::
+
+<br>
+
+::: {.fragment}
+Comparisons are vectorized — one question, one answer *per element*:
+
+```{r}
+x > 8
+```
+:::
+
+## Making sequences
+
+<hr><br>
+
+```{r}
+1:5
+5:1
+```
+
+<br>
+
+::: {.fragment}
+For more control, `seq()`:
+
+```{r}
+seq(1, 9, by = 2)
+```
+:::
+
+## Summarizing booleans: `any()` and `all()`
+
+<hr><br>
+
+Collapse a vector of yes/no answers into one answer
+
+```{r}
+x > 8
+```
+
+::: {.fragment}
+```{r}
+any(x > 8)
+all(x > 8)
+```
+:::
+
+<br>
+
+::: {.fragment}
+"Did *anyone* answer yes?" / "Did *everyone* answer yes?"
+:::
+
+::: {.fragment}
+`TRUE` counts as 1 and `FALSE` as 0 — so you can *count* and *share*:
+
+```{r}
+sum(x > 8)
+mean(x > 8)
+```
+:::
+
+## Useful vector questions
+
+<hr><br>
+
+```{r}
+regions <- c("South", "West", "South", "Northeast")
+length(regions)
+unique(regions)
+```
+
+<br>
+
+::: {.fragment}
+Is a value in the vector?
+
+```{r}
+"West" %in% regions
+"Midwest" %in% regions
+```
+:::
+
+<br>
+
+::: {.fragment}
+```{r}
+!("Midwest" %in% regions) == ("Midwest" %notin% regions)
+```
+:::
+
+## Elements in vectors can have names
+
+<hr><br>
+
+```{r}
+grades <- c(math = 90, r_bootcamp = 95)
+grades
+```
+
+::: {.fragment}
+```{r}
+names(grades)
+```
+:::
+
+<br>
+
+::: {.fragment}
+Names are also a way to pull values out:
+
+```{r}
+grades["r_bootcamp"]
+```
+:::
+
+## Subsetting by position
+
+<hr><br>
+
+`[` pulls out pieces of a vector
+
+```{r}
+x <- c(5, 10, 15, 20)
+x[2]
+x[c(1, 3)]
+```
+
+<br>
+
+::: {.fragment}
+Negative positions *drop* instead:
+
+```{r}
+x[-1]
+```
+:::
+
+## Subsetting by condition
+
+<hr><br>
+
+A boolean vector inside `[` keeps the `TRUE` positions
+
+```{r}
+x[x > 8]
+```
+
+<br>
+
+::: {.fragment}
+`which()` turns a condition into positions:
+
+```{r}
+which(x > 8)
+x[which(x > 8)]
+```
+:::
+
+<br>
+
+::: {.fragment}
+Read `x[x > 8]` aloud: "`x`, where `x` is greater than 8"
+:::
+
+## Sorting and peeking
+
+<hr><br>
+
+```{r}
+x <- c(15, 5, 20, 10)
+sort(x)
+```
+
+<br>
+
+::: {.fragment}
+`head()` and `tail()` peek at the ends. Combine for smallest and biggest:
+
+```{r}
+head(sort(x), 2)
+tail(sort(x), 2)
+```
+:::
+
+<br>
+
+::: {.fragment}
+`order()` yields the _order_ of a (hypothetical) sort:
+
+```{r}
+order(x)
+x[order(x)]
+```
+:::
+
+
+# Matrices
+
+## A matrix is a vector with dimensions
+
+<hr><br>
+
+```{r}
+m <- matrix(1:8, nrow = 4)
+m
+```
+
+<br>
+
+::: {.fragment}
+```{r}
+dim(m)
+```
+:::
+
+<br>
+
+::: {.fragment}
+`t()` flips rows and columns:
+
+```{r}
+t(m)
+```
+:::
+
+
+## Filling by row: `byrow`
+
+<hr><br>
+
+`matrix()` fills down the columns unless you say otherwise:
+
+```{r}
+matrix(1:8, nrow = 4, byrow = FALSE) ## (the default)
+```
+
+```{r}
+matrix(1:8, nrow = 4, byrow = TRUE)
+```
+
+## Growing a matrix: `cbind()`
+
+<hr><br>
+
+Bind on a new column:
+
+```{r}
+cbind(m, 9:12)
+```
+
+<br>
+
+::: {.fragment}
+A single value gets recycled:
+
+```{r}
+cbind(m, 0)
+```
+:::
+
+## When the lengths don't match
+
+<hr><br>
+
+```{r}
+#| warning: true
+cbind(m, 1:3)
+```
+
+::: {.fragment}
+Why the warning?
+:::
+
+::: {.fragment}
+::: {.blocktext}
+Recycling is convenient for single values and dangerous for everything else.
+:::
+:::
+
+## Matrix math
+
+<hr><br>
+
+Arithmetic is element-by-element, like vectors
+
+```{r}
+m * 2
+```
+
+<br>
+
+::: {.fragment}
+Sums along each dimension:
+
+```{r}
+rowSums(m)
+colSums(m)
+```
+:::
+
+## Matrix multiplication: `%*%`
+
+<hr><br>
+
+Build an N × 1 *column* — now shapes matter:
+
+```{r}
+v <- matrix(c(10, 20), ncol = 1)
+v
+```
+
+::: {.fragment}
+`%*%` matches *inner* dimensions and returns a new shape — (4 × 2) `%*%` (2 × 1) → (4 × 1):
+
+```{r}
+m %*% v
+```
+:::
+
+## `*` is not `%*%`
+
+<hr><br>
+
+Element-wise `*` is different. It wants *identical* shapes, just like `+` or `-` or `/`:
+
+```{r}
+#| error: true
+m * v
+```
+
+<br>
+
+::: {.fragment}
+(`m * 2` worked because a lone number recycles; a mis-shaped matrix does not)
+:::
+
+::: {.fragment}
+If you mean linear algebra, write `%*%`.
+:::
+
+## Subsetting a matrix: `[row, column]`
+
+<hr><br>
+
+```{r}
+m[1, ]
+m[, 2]
+m[3, 2]
+```
+
+<br>
+
+::: {.fragment}
+Conditions work here too — and count *down the columns*:
+
+```{r}
+m[m > 5]
+which(m > 5)
+```
+:::
+
+# Lists
+
+## Lists hold anything
+
+<hr><br>
+
+Different types, different lengths, even other lists
+
+```{r}
+x <- list()
+x[[1]] <- 1:5
+x[[2]] <- seq(1, 9, by = 2)
+x[[3]] <- "lists are flexible"
+x[[4]] <- list(a = "hello", b = "world")
+```
+
+<br>
+
+::: {.fragment}
+```{r}
+str(x)
+```
+:::
+
+## `[[` versus `[`
+
+<hr><br>
+
+```{r}
+x[[3]]
+```
+
+::: {.fragment}
+```{r}
+x[3]
+```
+:::
+
+<br>
+
+::: {.fragment}
+`[[` returns the element itself; `[` returns a smaller *list*
+
+```{r}
+class(x[[3]])
+class(x[3])
+```
+:::
+
+::: {.fragment}
+Why care about lists?
+:::
+
+# Data frames
+
+## A data frame is a fancy list
+
+<hr><br>
+
+`mtcars` is a data frame built into R — let's borrow it
+
+```{r}
+df <- mtcars
+class(df)
+```
+
+<br>
+
+::: {.fragment}
+Under the hood: a list of columns, all the same length
+
+```{r}
+is.list(df)
+dim(df)      # c(nrow(df), ncol(df))
+length(df)
+```
+:::
+
+## Looking at a data frame
+
+<hr><br>
+
+Typing `df` prints all rows. Use `head()` instead:
+
+```{r}
+head(df, 3) ## head(df) default is 6 rows
+```
+
+<br>
+
+::: {.fragment}
+`head()` shows just the first rows (six, unless you say otherwise) — the fastest sanity check there is
+:::
+
+## The whole structure: `str()`
+
+<hr><br>
+
+One line per column: type first, values after
+
+```{r}
+str(df)
+```
+
+<br>
+
+::: {.fragment}
+This is usually the first thing to run on any new data (alternatively, `View(df)` in RStudio)
+:::
+
+## row and column names in a data.frame
+
+<hr><br>
+
+::: {.fragment}
+```{r}
+names(df)
+```
+:::
+
+<br>
+
+::: {.fragment}
+```{r}
+rownames(df)[1:4]
+```
+:::
+
+<br>
+
+::: {.fragment}
+The car names aren't a column. They live in the *row names*
+:::
+
+::: {.fragment}
+Don't do this.
+:::
+
+## Names are yours to change
+
+<hr><br>
+
+Assign *into* the attribute:
+
+```{r}
+df2 <- df
+
+colnames(df2)[1] <- "miles_per_gallon"
+
+names(df2)
+```
+
+<br>
+
+::: {.fragment}
+Same trick works for `rownames()` — these are just character vectors you can overwrite
+:::
+
+## Grabbing a column: `$`
+
+<hr><br>
+
+```{r}
+df$cyl
+```
+
+<br>
+
+::: {.fragment}
+`table()` counts values — the fastest first look at a column:
+
+```{r}
+table(df$cyl) # add a useNA = 'ifany' if you suspect NAs!
+```
+:::
+
+<br>
+
+::: {.fragment}
+Two columns give a cross-tab:
+
+```{r}
+table(df$cyl, df$gear)
+```
+:::
+
+## `as.matrix()`: what do we lose?
+
+<hr><br>
+
+```{r}
+cars_matrix <- as.matrix(df)
+cars_matrix[1:3, 1:4]
+```
+
+<br>
+
+::: {.fragment}
+The row names survive the trip because matricies allow row (and column) names.
+
+```{r}
+class(cars_matrix)
+```
+:::
+
+<br>
+
+::: {.fragment}
+Matricies require type for *everything*: a single character column would have turned the whole matrix into text
+:::
+
+## Subsetting rows
+
+<hr><br>
+
+Data frames take `[row, column]` just like matrices
+
+```{r}
+df[1:2, c("mpg", "cyl")]
+```
+
+<br>
+
+::: {.fragment}
+Conditions filter rows:
+
+```{r}
+df[df$hp > 200, c("mpg", "cyl", "hp")]
+```
+:::
+
+## Extracting columns, four ways
+
+<hr><br>
+
+```{r}
+head(df["cyl"], 3)
+```
+
+::: {.fragment}
+`df["cyl"]` is still a data frame — list subsetting with `[`
+:::
+
+<br>
+
+::: {.fragment}
+`[[` or `$` or `[, "cyl"]` or `[, 2]`) gives the vector itself:
+
+```{r}
+df[["cyl"]]
+```
+:::
+
+<br>
+
+::: {.fragment}
+And single elements by position: `df[1, 1]` is `` `r mtcars[1, 1]` ``
+:::
+
+## Build one from scratch
+
+<hr><br>
+
+`data.frame()` works like `list()`: name the columns, give equal-length vectors
+
+```{r}
+schools <- data.frame(
+  school = c("Princeton", "Rutgers"),
+  students = c(5590, 36000)
+)
+schools
+```
+
+<br>
+
+::: {.fragment}
+Add rows or columns with `rbind()` / `cbind()`:
+
+```{r}
+yale <- data.frame(school = "Yale", students = 6645)
+rbind(schools, yale)
+```
+:::
+
+# Reading and writing data
+
+## Your computer is a tree of folders
+
+<hr><br>
+
+Every file lives in a folder, and every folder lives inside another — one big tree (folder = "directory").
+
+```text
+/Users/you/
+├── Desktop/
+├── Downloads/
+└── Documents/
+    └── bootcamp/
+        ├── day-1.R
+        └── data/
+            └── county_population.csv
+```
+
+::: {.fragment}
+A file's *path* is its full address — the folders you pass through, joined by `/`:
+
+`/Users/you/Documents/bootcamp/data/county_population.csv`
+:::
+
+::: {.fragment}
+(Windows spells it `C:\Users\you\...` but in R, always write `/`; it works on every system)
+:::
+
+## Growing up is hard
+
+<hr><br>
+
+::: {.fragment}
+::: {.blocktext}
+If you have everything in `~/Downloads`....
+:::
+:::
+
+::: {.fragment}
+![](../assets/its_time.png){fig-align="center" height="420"}
+:::
+
+
+
+## Where is R standing? The working directory
+
+<hr><br>
+
+R always works *from* one folder in that tree — its working directory:
+
+```{r}
+getwd()
+```
+
+::: {.fragment}
+A *relative* path gives directions from there. No absolute file path required.
+
+```r
+county <- read.csv("data/county_population.csv")
+```
+
+("go into `data/`, grab the file" — and `..` means "up one folder")
+:::
+
+<br>
+
+::: {.fragment}
+Can't find your file? Ask what R can actually see from where it stands:
+
+```{r}
+#| eval: false
+list.files()
+list.files("data")
+```
+:::
+
+## Making paths painless
+
+<hr><br>
+
+::: {.fragment}
+::: {.blocktext}
+`setwd()` exists — but hard-coded paths break on every other computer. Always assume you're in the project root and make all paths relative.
+:::
+:::
+
+<br>
+
+::: {.fragment}
+* If you have a bunch of scripts, but them in `scripts/`
+* Then paths to data will be `../data/county_population.csv`
+* Need a file's full path? *Drag the file* from Finder / File Explorer into the console and the path types itself.
+:::
+
+## Our data: county populations
+
+<hr><br>
+
+2020 Census population for every US county. Download it [here](https://princeton-ddss.github.io/r-bootcamp/data.html) and save it in `data/`
+
+```{r}
+#| eval: false
+readLines("data/county_population.csv", n = 3)
+```
+
+::: {.fragment}
+```{r}
+#| echo: false
+readLines("../files/county_population.csv", n = 3)
+```
+:::
+
+<br>
+
+::: {.fragment}
+A `.csv` is just text: one row per line, commas between values, names in the first line
+:::
+
+## Reading it in: `read.csv()`
+
+<hr><br>
+
+```{r}
+#| eval: false
+county <- read.csv("county_population.csv")
+head(county, 3)
+```
+
+::: {.fragment}
+```{r}
+#| echo: false
+county <- read.csv("../files/county_population.csv")
+head(county, 3)
+```
+:::
+
+<br>
+
+::: {.fragment}
+Compare with the raw file: `"01001"` became the *number* `1001` — the leading zeros are gone!
+:::
+
+## Reading it in, *with arguments*
+
+<hr><br>
+
+Tell `read.csv()` what the column really is:
+
+```{r}
+#| eval: false
+county <- read.csv(
+  "county_population.csv",
+  colClasses = c(fips = "character")
+)
+str(county)
+```
+
+::: {.fragment}
+```{r}
+#| echo: false
+county <- read.csv(
+  "../files/county_population.csv",
+  colClasses = c(fips = "character")
+)
+str(county)
+```
+:::
+
+<br>
+
+::: {.fragment}
+This distinction is often important if you are joining data, if '0xx' is different from 'xx' etc.
+:::
+
+## Watch for coded missingness
+
+<hr><br>
+
+Surveys love codes like `-9` or `-999` for "no answer"
+
+```{r}
+ages <- c(34, -9, 27)
+mean(ages)
+```
+
+::: {.fragment}
+`NA` is always better. (Why?)
+:::
+
+<br>
+
+::: {.fragment}
+`na.strings` translates the codes to `NA` when reading:
+
+```{r}
+#| eval: false
+survey <- read.csv("survey.csv", na.strings = c("-9", "-999"))
+```
+:::
+
+## Other `read.csv()` arguments to know
+
+<hr><br>
+
+| Argument | When you need it |
+|:---|:---|
+| `header = FALSE` | the file has no column-name row |
+| `skip = 3` | junk lines (titles, notes) sit above the data |
+| `nrows = 100` | peek at the first chunk of a huge file |
+| `fill = TRUE` | ragged files — some rows end early |
+| `na.strings` | which codes mean "missing" |
+
+<br>
+
+::: {.fragment}
+Every one of these is a question about *your file*. You can use `readLines(path, n = a_small_number)` to inspect the file.
+:::
+
+## First look at new data: `summary()`
+
+<hr><br>
+
+```{r}
+summary(county)
+```
+
+<br>
+
+::: {.fragment}
+Every column at once: quartiles for numbers, profiles for text. Both `str()` and `summary()` are useful.
+:::
+
+## Beyond csv
+
+<hr><br>
+
+::: {.small}
+| Format | Functions | Trade-off |
+|:---|:---|:---|
+| `.csv` | `read.csv()` / `write.csv()` | opens anywhere; loses types (ask fips!) |
+| `.rds` | `readRDS()` / `saveRDS()` | one R object, restored *exactly*; R-only |
+| `.rda` | `load()` / `save()` | many objects at once; R-only |
+| `.dta`, `.xlsx` | `haven`, `readxl` packages | Stata and Excel files |
+:::
+
+<br>
+
+::: {.fragment}
+Careful with `.rda`: `load()` will overwrite existing objects if they have the same name.
+:::
+
+<br>
+
+::: {.fragment}
+Rule of thumb: share `.csv` with humans, save `.rds` and `.rda` for yourself (and collaborators).
+:::
+
+<br>
+
+::: {.fragment}
+Sometimes.
+:::
+
+## Writing files
+
+<hr><br>
+
+```{r}
+#| eval: false
+write.csv(county, "county_population.csv", row.names = FALSE)
+```
+
+::: {.fragment}
+`row.names = FALSE` or you'll get a useless, unnamed column
+:::
+
+<br>
+
+::: {.fragment}
+```{r}
+#| eval: false
+saveRDS(county, "county_population.rds")   ## holds one object (compressed)
+county <- readRDS("county_population.rds")
+```
+:::
+
+<br>
+
+::: {.fragment}
+```{r}
+#| eval: false
+save(county, ..., file = "stuff.rda")   ## holds one object (compressed)
+load('stuff.rda') 
+```
+:::
+
+<br>
+
+::: {.fragment}
+Reasons to prefer one or the other?
+:::
+
+# R as a calculator
+
+## Summarizing a column
+
+<hr><br>
+
+```{r}
+mean(county$pop)
+```
+
+::: {.fragment}
+```{r}
+median(county$pop)
+```
+:::
+
+<br>
+
+::: {.fragment}
+Functions compose, evaluated inside-out:
+
+```{r}
+round(mean(county$pop))
+
+## alternatively, mean(county$pop) |> round() ... 
+```
+:::
+
+<br>
+
+::: {.fragment}
+And a second argument picks the digits:
+
+```{r}
+round(3.14159, 2) ## see also: ceiling, floor, trunc
+```
+:::
+
+## Making new columns
+
+<hr><br>
+
+Assign into a column that doesn't exist yet — and now it does:
+
+```{r}
+county$pop_millions <- round(county$pop / 1e6, 2)
+head(county, 3)
+```
+
+## The rest of the toolbox
+
+<hr><br>
+
+```{r}
+sd(county$pop) ## see also: var()
+```
+
+::: {.fragment}
+`log()` and `exp()`:
+
+```{r}
+log(county$pop[1])
+exp(1)
+```
+:::
+
+<br>
+
+::: {.fragment}
+Careful: `log()` is the *natural* log — base 10 is `log10()`
+:::
+
+<br>
+
+::: {.fragment}
+Every function documents itself:
+
+```{r}
+#| eval: false
+?median
+```
+:::
+
+## Asking real questions
+
+<hr><br>
+
+What share of counties hold a million-plus people?
+
+```{r}
+mean(county$pop > 1e6)
+```
+
+::: {.fragment}
+`mean()` on booleans again — about 1.6% (`sum()` would count them)
+:::
+
+<br>
+
+::: {.fragment}
+Which county is the biggest? `which.max()` finds the position:
+
+```{r}
+county[which.max(county$pop), ]
+```
+:::
+
+## Sorting the whole data frame
+
+<hr><br>
+
+Give me all the information about the three largest counties:
+
+::: {.fragment}
+```{r}
+head(county[order(-county$pop), ], 3)
+
+## for readability:
+# ord = order(-county$pop)
+# county[ord,] |> head(3)
+```
+:::
+
+## `summary()` and beyond
+
+<hr><br>
+
+```{r}
+summary(county$pop)
+```
+
+<br>
+
+::: {.fragment}
+Build your own with a named vector:
+
+```{r}
+c(
+  n = length(county$pop),
+  mean = mean(county$pop),
+  sd = sd(county$pop)
+)
+```
+:::
+
+::: {.fragment}
+This gets repetitive if we write the same code for each column -- or for a bunch of different data frames...
+:::
+
+# Wrap-up
+
+## Monday
+
+<hr><br>
+
+Morning:
+
+* writing your own functions
+* loops
+* `lapply()` and friends
+* Exercise: putting it all together in base R
+
+<br>
+
+::: {.fragment}
+Afternoon:
+
+* Writing professional documents (typesetting with Quarto)
+* `tidyverse` for working more effectively with data
+* Exercise: applications of `tidyverse`
+:::
+
+
+<br>
+
+<center>[princeton-ddss.github.io/r-bootcamp](https://princeton-ddss.github.io/r-bootcamp)</center>

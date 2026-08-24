@@ -7,3 +7,15 @@
 
 # Guard: decks belong in _site/, not beside their source
 notes/*.pdf
+
+# macOS
+**/.DS_Store
+
+# R session artifacts
+.Rhistory
+.RData
+.Rproj.user/
+
+# Quarto/knitr local artifacts (frozen results in _freeze/ ARE committed)
+*_cache/
+notes/*_files/
