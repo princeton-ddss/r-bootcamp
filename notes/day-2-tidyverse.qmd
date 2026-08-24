@@ -44,21 +44,25 @@ county_pop <- read_csv(
 
 ## Goals
 
-::: nonincremental
+:::{.nonincremental}
+
 - Familiarity with the core of the tidyverse for data manipulation
 - Ability to use `tibble`, `dplyr`, and `purrr` over base R equivalents
 - Practice with actual datasets in R
 - Tomorrow: `ggplot2`
+
 :::
 
 ## Sources
 
-::: nonincremental
+:::{.nonincremental}
+
 - Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 3: Data transformation](https://r4ds.hadley.nz/data-transform.html), especially §§3.1-3.5
 - Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 19: Joins](https://r4ds.hadley.nz/joins.html), especially §§19.2-19.3
 - Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 26: Iteration](https://r4ds.hadley.nz/iteration.html), especially §§26.2-26.3
 - Harvard IQSS. [Math Prefresher for Political Scientists, Ch. 9: Objects, Functions, Loops](https://iqss.github.io/prefresher/13_functions_obj_loops.html)
 - Harvard IQSS. [Math Prefresher for Political Scientists, Ch. 11: Joins and Merges](https://iqss.github.io/prefresher/15_project-dempeace.html)
+
 :::
 
 # The tidyverse
@@ -77,7 +81,7 @@ county_pop <- read_csv(
 library(tidyverse)
 ```
 
-``` r
+```r
 ── Attaching core tidyverse packages ────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.2.1     ✔ readr     2.2.0
 ✔ forcats   1.0.1     ✔ stringr   1.6.0
@@ -215,7 +219,7 @@ counties |>
 
 which is the same as:
 
-``` r
+```r
 counties |>
   filter(state == 'New York') |>
   filter(income >= 75000)
@@ -232,7 +236,7 @@ scores <- tibble(
 
 What happens with NAs?
 
-``` r
+```r
 scores |> filter(score > 90)
 ```
 
@@ -377,7 +381,6 @@ Before 2025, this was `transmute()`
 ## Conditional variables: `if_else()`
 
 ```{r}
-
 counties |>
   mutate(
     rent_level = if_else(
@@ -406,11 +409,13 @@ counties |>
 
 ## Exercise
 
-::: noncincremental
+:::{.nonincremental}
+
 - Keep counties in New York or Texas
 - Create `income_thousands` from `income`
 - Keep `state`, `county`, `income`, and `income_thousands`
 - Order from highest to lowest income
+
 :::
 
 Write this as one pipeline
@@ -493,7 +498,7 @@ counties |> count(state)
 
 Equivalent to:
 
-``` r
+```r
 counties |> group_by(state) |> summarize(n = n())
 ```
 
@@ -529,15 +534,45 @@ counties |>
 
 ## Exercise
 
-::: noncincremental
-TODO
+Compare counties above and below the median income.
+
+:::{.nonincremental}
+
+- Exclude counties with missing `income`
+- Label counties as `at or above median` or `below median`
+- For each group, report `n` and the mean `income` and `rent` using `across()`
+
 :::
 
 Write this as one pipeline
 
 ## A solution
 
-TODO
+```{r}
+sol <- counties |>
+  filter(!is.na(income)) |>
+  mutate(
+    income_level = if_else(
+      income >= median(income),
+      'at or above median',
+      'below median'
+    )
+  ) |>
+  group_by(income_level) |>
+  summarize(
+    n = n(),
+    across(c(income, rent), \(x) mean(x, na.rm = TRUE)),
+    .groups = 'drop'
+  ) |>
+  arrange(desc(income))
+```
+
+## A solution
+
+```{r}
+sol
+```
+
 
 # Joins
 
@@ -741,3 +776,224 @@ attitudes_duplicate <- tibble(
 party |>
   left_join(attitudes_duplicate, join_by(id))
 ```
+
+# `purrr`
+
+## `map()`
+
+`map(x, f)` is a new way to do yesterday's `lapply(x, f)`
+
+. . .
+
+Why `map()` then? Large family of *type-stable* `map_*()` functions!
+
+. . .
+
+And bits of friendlier syntax:
+
+```r
+lapply(x, `[[`, "a")
+map(x, "a")
+```
+
+## Typed maps
+
+Typed maps return a vector of a *known* type:
+
+- `map_dbl()`: double vector
+- `map_int()`: integer vector
+- `map_chr()`: character vector
+- `map_lgl()`: logical vector
+
+. . .
+
+```{r}
+counties |>
+  select(income, rent) |>
+  map_dbl(
+    \(x) mean(x, na.rm = TRUE)
+  )
+```
+
+## Mapping over data frames
+
+Create a list of `tibble`s with `group_split()`:
+
+```{r}
+counties_by_region <- counties_joined |>
+  filter(!is.na(region)) |>
+  group_by(region) |>
+  group_split()
+```
+
+. . .
+
+`map_dbl()` then returns one value per `tibble`:
+
+```{r}
+map_dbl(
+  counties_by_region,
+  \(x) mean(x$income, na.rm = TRUE)
+)
+```
+
+## Combining results
+
+First return one tibble for each region
+
+. . .
+
+```{r}
+summaries <- map(
+  counties_by_region,
+  function(data) {
+    summarize(
+      data,
+      n = n(),
+      mean_income = mean(income, na.rm = TRUE)
+    )
+  }
+)
+```
+
+. . .
+
+```{r}
+all(map_lgl(summaries, is_tibble))
+length(summaries)
+```
+
+## Stack compatible results
+
+`list_rbind()` combines the tibbles by row
+
+```{r}
+list_rbind(summaries)
+```
+
+
+## Several inputs
+
+`map2()` iterates over two (equal length) inputs in parallel
+
+. . .
+
+```{r}
+district_turnout <- list(c(0.62, 0.58, 0.64), c(0.71, 0.69, 0.74))
+benchmarks <- c(0.60, 0.70)
+
+map2_lgl(
+  district_turnout,
+  benchmarks,
+  \(turnout, benchmark) mean(turnout) > benchmark
+)
+```
+
+# Applied exercise
+
+## Exercise
+
+Using `counties_joined`, compare income by region and population level
+
+- Label counties as above or below the median population
+- Compute the number of counties and mean income by `region` and population level
+- Order the summary from highest to lowest mean income
+
+. . .
+
+Write one pipeline
+
+## Step 1: label population
+
+```r
+counties_labeled <- counties_joined |>
+  mutate(
+    pop_level = # ...
+  )
+```
+
+. . .
+
+Use `if_else()` or `case_when()`
+
+## Step 2: summarize groups
+
+```r
+result <- counties_labeled |>
+  # group by region and population level
+  # summarize n and mean_income
+  # arrange by descending mean_income
+```
+
+. . .
+
+How many rows should the result contain?
+
+## One possible solution
+
+```{r}
+result <- counties_joined |>
+  filter(!is.na(pop), !is.na(region)) |>
+  mutate(
+    pop_level = if_else(
+      pop >= median(pop),
+      'at or above median',
+      'below median'
+    )
+  ) |>
+  group_by(region, pop_level) |>
+  summarize(
+    n = n(),
+    mean_income = mean(income, na.rm = TRUE),
+    .groups = 'drop'
+  ) |>
+  arrange(desc(mean_income))
+```
+
+## Apply a function to each group
+
+```{r}
+region_summary <- function(data) {
+  data |>
+    summarize(
+      n = n(),
+      mean_income = mean(income, na.rm = TRUE),
+      median_rent = median(rent, na.rm = TRUE)
+    )
+}
+```
+
+. . .
+
+Apply `region_summary()` to each region with `map()`
+
+## One possible solution
+
+```{r}
+by_region <- counties_joined |>
+  filter(!is.na(region)) |>
+  group_by(region) |>
+  group_split()
+
+by_region |>
+  map(region_summary) |>
+  list_rbind()
+```
+
+
+## Other tidyverse packages
+
+- `tidyr` changes the shape of data
+- `stringr` works with character strings
+- `lubridate` parses and transforms dates and times
+- `forcats` works with categorical variables ("factors")
+- `readr` imports rectangular data files
+
+## Summary
+
+- Start with a tibble and inspect its rows, columns, and types
+- Use one `dplyr` verb for each transformation
+- Use pipes to connect transformations
+- Group before computing group-level summaries
+- Check keys before and after joins
+- Use `map()` to apply a function to every list element
