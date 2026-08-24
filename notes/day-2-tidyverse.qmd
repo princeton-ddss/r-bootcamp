@@ -499,6 +499,20 @@ wide |>
   )
 ```
 
+## Other weird data shapes
+
+- Most can be *tidied* with `tidyr`
+- Nested data? Some variables are lists
+  - `unnest()`, `unnest_wider()`, `unnest_longer()`
+- Data should be nested?
+  - Are you sure?
+    - `nest()`
+- Handle `NA` values
+  - `drop_na()` or `replace_na()`
+  - Missing within groups: `fill()`
+- Missing combinations (e.g., all weeks should have 7 days)
+  - `expand()` for new data or `complete()` to supplement
+
 # Groups and summaries
 
 ## `summarize()`
@@ -1052,7 +1066,6 @@ by_region |>
 
 ## Other tidyverse packages
 
-- `tidyr` changes the shape of data
 - `stringr` works with character strings
 - `lubridate` parses and transforms dates and times
 - `forcats` works with categorical variables ("factors")
