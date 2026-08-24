@@ -540,3 +540,204 @@ Write this as one pipeline
 TODO
 
 # Joins
+
+## Join tables by a fixed key
+
+::: {.nonincremental}
+
+- A join combines columns from related tables
+- A key identifies which rows should match
+
+:::
+
+. . .
+
+```{r}
+party <- tibble(
+  id = c(101L, 102L, 103L),
+  party = c('Democrat', 'Independent', 'Republican')
+)
+
+attitudes <- tibble(
+  id = c(101L, 102L, 104L),
+  trust_government = c(3L, 5L, 2L)
+)
+```
+
+. . .
+
+A key is (often) just a numeric ID
+
+## Check the key
+
+A key should identify the intended unit of observation
+
+```{r}
+attitudes |>
+  count(id) |>
+  filter(n > 1L)
+```
+
+. . .
+
+An empty result means no duplicate keys were found
+
+## Left and right tables
+
+```{=typst}
+#let grey-hatch = tiling(
+  size: (12pt, 12pt),
+  {
+    place(line(
+      start: (0%, 0%),
+      end: (100%, 100%),
+      stroke: 0.5pt + gray
+    ))
+    place(line(
+      start: (0%, 100%),
+      end: (100%, 0%),
+      stroke: 0.5pt + gray
+    ))
+  }
+)
+
+#grid(
+  columns: (1fr, 1fr),
+  align: (center, center),
+  gutter: 1em,
+  [*left*], [*right*],
+  table(
+    columns: (auto, 1fr),
+    rows: 2em,
+    align: center,
+    stroke: 0.5pt + luma(40%),
+    inset: 0.5em,
+    fill: (_, y) => if y == 0 {
+      rgb("#d9e2f3")
+    } else if y == 5 {
+      grey-hatch
+    } else {
+      none
+    },
+
+    [*id*], [*party*],
+    [101], [Democrat],
+    [102], [Independent],
+    [103], [Republican],
+    [104], [Democrat],
+    [], [],
+    [106], [Republican],
+  ),
+  table(
+    columns: (auto, 1fr),
+    align: center,
+    stroke: 0.5pt + luma(40%),
+    inset: 0.5em,
+      rows: 2em,
+    fill: (_, y) => if y == 0 {
+      rgb("#d9e2f3")
+    } else if y == 1 {
+      grey-hatch
+    } else {
+      none
+    },
+    [*id*], [*trust*],
+    [], [],
+    [102], [5],
+    [103], [3],
+    [104], [2],
+    [105], [4],
+    [106], [7]
+  ),
+)
+```
+
+## Types of joins
+
+```{=typst}
+#set align(horizon)
+```
+
+- `left_join()`: keep all rows in left and add columns from right
+- `right_join()`: keep all rows in right and add columns from left
+- `inner_join()` keeps rows matched in both tables
+- `full_join()` keeps rows from either table
+- `semi_join()` keeps left rows with a match
+- `anti_join()` keeps left rows without a match
+
+. . .
+
+Which rows are saved for each join?
+
+```r
+left |>
+  *_join(by = 'id')
+```
+
+## Joining real data
+
+`counties` and `county_pop` use different names for the same key
+
+```{r}
+counties_joined <- counties |>
+  left_join(county_pop, join_by(GEOID == fips))
+
+counties_joined |>
+  select(GEOID, state, county, pop, region, division)
+```
+
+## Joining real data: multiple syntaxes
+
+Current, recommended syntax:
+
+```r
+counties_joined <- counties |>
+  left_join(county_pop, join_by(GEOID == fips))
+```
+
+. . .
+
+Older, but also valid syntax:
+
+```r
+counties_joined <- counties |>
+  left_join(county_pop, by = c('GEOID' = 'fips'))
+```
+
+. . .
+
+Most replication data (and many of your colleagues) will use the older syntax!
+
+. . .
+
+New syntax allows for *fancier* joins, like `join_by(x > x)`...
+
+
+## Find unmatched keys
+
+Check the rows that do not match:
+
+```{r}
+counties |>
+  select(GEOID, state, county) |>
+  anti_join(county_pop, join_by(GEOID == fips)) |>
+  select(GEOID, state, county)
+```
+
+. . .
+
+What's wrong with Connecticut?
+
+## Duplicate keys change row counts
+
+A join can duplicate left rows when the right key is not unique
+
+```{r}
+attitudes_duplicate <- tibble(
+  id = c(101L, 101L, 102L),
+  trust_government = c(3L, 4L, 5L)
+)
+
+party |>
+  left_join(attitudes_duplicate, join_by(id))
+```
