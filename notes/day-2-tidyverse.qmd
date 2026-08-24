@@ -72,7 +72,7 @@ county_pop <- read_csv(
 - A collection of R packages for data science
 - Packages designed around tidy data
   - each observation is a row and each column is a variable
-- Core packages today: `tibble`, `dplyr`, and `purrr`
+- Core packages today: `tibble`, `dplyr`, `tidyr`, and `purrr`
 
 . . .
 
@@ -428,6 +428,75 @@ counties |>
   mutate(income_thousands = income / 1000) |>
   select(state, county, income, income_thousands) |>
   arrange(desc(income))
+```
+
+# Pivots in tidyr
+
+## Long and wide data
+
+:::: {.columns align=top .onlytextwidth}
+
+::: {.column width="50%"}
+
+**Wide data**
+
+Each observation is a row
+
+```{r}
+wide <- tribble(
+  ~id, ~v1, ~v2, ~v3,
+  'A', 100L, 120L, 105L,
+  'B', 80L, 90L, 90L
+)
+```
+
+:::
+
+::: {.column width="50%"}
+
+**Long data**
+
+Observations are split across rows
+
+```{r}
+long <- tribble(
+  ~id, ~statistic, ~value,
+  'A', 'v1', 100L,
+  'A', 'v2', 120L,
+  'A', 'v3', 105L,
+  'B', 'v1', 80L,
+  'B', 'v2', 90L,
+  'B', 'v3', 90L,
+)
+```
+
+:::
+
+::::
+
+## `pivot_wider()`
+
+`pivot_wider()` shortens the data by adding columns
+
+```{r}
+long |>
+  pivot_wider(
+    names_from = statistic,
+    values_from = value
+  )
+```
+
+## `pivot_longer()`
+
+`pivot_longer()` lengthens the data by turning columns into rows
+
+```{r}
+wide |>
+  pivot_longer(
+    cols = v1:v3,
+    names_to = 'statistic',
+    values_to = 'value'
+  )
 ```
 
 # Groups and summaries
