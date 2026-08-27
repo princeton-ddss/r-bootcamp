@@ -11,7 +11,7 @@ title-block-banner: false
 
 <p class="hero-meta">
 
-Data-Driven Social Science · Two and a half days · August 28–September 1, 2026
+Data-Driven Social Science · Two and a half days · August 28 – September 1, 2026
 
 </p>
 :::
@@ -32,33 +32,34 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 
 :::::: week-grid
 ::: day-card
-[Day 1 · Friday, August 28, 2:00–5:30]{.day-label}
+[Friday, August 28, 2p–5:30p, JRR A17]{.day-label}
 
-### [Getting started](day-1.qmd)
+### [Day 1 · Getting started with R](day-1.qmd)
 
 - Setup, ergonomics, and packages
-- Types, vectors, and data frames
-- Reading data and R as a calculator
+- Types, vectorization, and basic ops
+- Reading, writing, and summarizing data
 :::
 
 ::: day-card
-[Day 2 · Monday, August 31, 9:00–5:00]{.day-label}
+[Monday, August 31, 9a–5p, JRR 399]{.day-label}
 
-### [Programming and tidyverse](day-2.qmd)
+### [Day 2 · Programming, typesetting, and tidyverse](day-2.qmd)
 
 - Functions, loops, and `lapply()`
-- Quarto and typesetting
-- Tidyverse, excluding plotting
+- Quarto and typesetting for professional outputs
+- Tidyverse for better data work, excl. plotting
 :::
 
 ::: day-card
-[Day 3 · Tuesday, September 1, 9:00–5:00]{.day-label}
+[Tuesday, September 1, 9a–5p, JRR 399]{.day-label}
 
-### [Visualization and simulation](day-3.qmd)
+### [Day 3 · Visualization, version control, and simulation](day-3.qmd)
 
-- Base R plots and `ggplot2`
-- Version control and stats functions
-- Big exercise: simulation
+- Base R plots (briefly) and `ggplot2`
+- Version control offline and online
+- Statistics with R
+- Big exercise: simulations
 :::
 ::::::
 

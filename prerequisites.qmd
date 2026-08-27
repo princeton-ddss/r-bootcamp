@@ -9,7 +9,7 @@ Before Day 1, install:
   - [Windows](https://cran.r-project.org/bin/windows/base/)
   - [Mac](https://cran.r-project.org/bin/macosx/). If you have a new Mac, you may also need [Fortran](https://mac.r-project.org/tools/)
 - Either [RStudio](https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads) or [Positron](https://positron.posit.co/download.html)
-  - Positron is a data-science oriented fork of VS Code. RStudio is R focused.
+  - Positron is a data-science oriented fork of VS Code. It is useful if you plan on working frequently in both Python and R. RStudio is R focused.
 
 ::: callout-note
 ## Setup office hours

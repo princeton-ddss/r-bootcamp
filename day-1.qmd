@@ -1,6 +1,8 @@
 ---
-title: "Day 1: Getting started"
+title: "Day 1: Getting started with R"
 ---
+
+This session will be held in JRR A17.
 
 ::: callout-note
 ## Setup office hours
@@ -8,15 +10,19 @@ title: "Day 1: Getting started"
 Arrive from **1:00–2:00 p.m.** if you have issues with installing R or RStudio/Positron.
 :::
 
+**(Approximate) Schedule:**
+
 ::: schedule-table
 | Time      | Session                                          |
 |:----------|:-------------------------------------------------|
 | 2:00–2:30 | Setup and ergonomics                             |
 | 2:30–3:30 | Packages, libraries, and variables               |
 | 3:30–3:45 | Break                                            |
-| 3:45–4:45 | Types, vectors, and objects                      |
-| 4:45–5:30 | Data frames, reading data, and R as a calculator |
+| 3:45–4:45 | Types, vectorization, and basic ops                      |
+| 4:45–5:30 | Reading, writing, and summarizing data |
 :::
+
+<br>
 
 ## Setup and ergonomics {#setup}
 

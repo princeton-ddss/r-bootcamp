@@ -5,6 +5,7 @@ project:
     - "*.qmd"
   resources:
     - "files/"
+    - "assets/*.webp"
 
 website:
   title: "R Bootcamp"

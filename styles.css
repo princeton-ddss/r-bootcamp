@@ -73,7 +73,7 @@ code, pre { font-family: "Fira Code", monospace; }
 
 .hero {
   border-bottom: 1px solid var(--ddss-border-subtle);
-  padding: 4.5rem 1.5rem 4rem;
+  padding: 2.5rem 1.5rem 2.25rem;
 }
 
 .hero-inner,
@@ -119,7 +119,7 @@ code, pre { font-family: "Fira Code", monospace; }
   margin: 1.25rem 0 0;
 }
 
-.content-wrap { padding: 3.5rem 1.5rem 5rem; }
+.content-wrap { padding: 2.5rem 1.5rem 5rem; }
 
 .content-wrap > h2,
 main.content h2 {
@@ -174,7 +174,7 @@ main.content h2::before {
 .day-label {
   color: var(--ddss-blue);
   font-family: "Fira Code", monospace;
-  font-size: .75rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -233,6 +233,6 @@ main.content h2::before {
 
 @media (max-width: 700px) {
   .week-grid { grid-template-columns: 1fr; }
-  .hero { padding-block: 3rem; }
+  .hero { padding-block: 1.75rem; }
   .prerequisites-callout { align-items: flex-start; flex-direction: column; gap: .75rem; }
 }
