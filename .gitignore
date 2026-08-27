@@ -1,25 +1,3 @@
-# Quarto build artifacts
 /.quarto/
-.quarto/
 /_site/
-/.luarc.json
 **/*.quarto_ipynb
-
-# Guard: decks belong in _site/, not beside their source
-notes/*.pdf
-
-# macOS
-**/.DS_Store
-
-# R session artifacts
-.Rhistory
-.RData
-.Rproj.user/
-
-# Quarto/knitr local artifacts (frozen results in _freeze/ ARE committed)
-*_cache/
-notes/*_files/
-
-# MEDSL election returns: students fetch it themselves from the Dataverse
-# (doi:10.7910/DVN/VOQCHQ); keep a local copy here for rendering solutions
-files/countypres*
