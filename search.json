@@ -4,7 +4,7 @@
     "href": "prerequisites.html",
     "title": "Prerequisites",
     "section": "",
-    "text": "Before Day 1, install:\n\nR\n\nWindows\nMac. If you have a new Mac, you may also need Fortran\n\nEither RStudio or Positron\n\nPositron is a data-science oriented fork of VS Code. RStudio is R focused.\n\n\n\n\n\n\n\n\nNoteSetup office hours\n\n\n\nArrive from 1:00–2:00 p.m. on Day 1 if you have issues installing R or RStudio/Positron."
+    "text": "Before Day 1, install:\n\nR\n\nWindows\nMac. If you have a new Mac, you may also need Fortran\n\nEither RStudio or Positron\n\nPositron is a data-science oriented fork of VS Code. It is useful if you plan on working frequently in both Python and R. RStudio is R focused.\n\n\n\n\n\n\n\n\nNoteSetup office hours\n\n\n\nArrive from 1:00–2:00 p.m. on Day 1 if you have issues installing R or RStudio/Positron."
   },
   {
     "objectID": "notes/notes-1-emm.html#this-session",
@@ -457,77 +457,77 @@
   {
     "objectID": "day-3.html",
     "href": "day-3.html",
-    "title": "Day 3: Visualization and simulation",
+    "title": "Day 3: Visualization, version control, and simulation",
     "section": "",
-    "text": "Time\nSession\n\n\n\n\n9:00–10:30\nBase R plots\n\n\n10:30–10:45\nBreak\n\n\n10:45–11:45\nggplot2\n\n\n11:45–12:30\nPlotting exercise\n\n\n12:30–1:30\nLunch\n\n\n1:30–2:30\nVersion control with git and GitHub\n\n\n2:30–3:15\nDistributions and random draws\n\n\n3:15–3:30\nBreak\n\n\n3:30–5:00\nBig exercise: simulation"
+    "text": "This session will be held in JRR 399.\n(Approximate) Schedule:"
   },
   {
     "objectID": "day-3.html#base-plots",
     "href": "day-3.html#base-plots",
-    "title": "Day 3: Visualization and simulation",
+    "title": "Day 3: Visualization, version control, and simulation",
     "section": "Base R plots",
     "text": "Base R plots\n\nReferences\n\nPrefresher, Ch. 10: Visualization"
   },
   {
     "objectID": "day-3.html#ggplot2",
     "href": "day-3.html#ggplot2",
-    "title": "Day 3: Visualization and simulation",
+    "title": "Day 3: Visualization, version control, and simulation",
     "section": "ggplot2",
     "text": "ggplot2\n\nTidyverse plotting\nSmall exercise\n\n\nReferences\n\nr4ds, Ch. 1: Data visualization\nr4ds, Ch. 9: Layers"
   },
   {
     "objectID": "day-3.html#version-control",
     "href": "day-3.html#version-control",
-    "title": "Day 3: Visualization and simulation",
+    "title": "Day 3: Visualization, version control, and simulation",
     "section": "Version control",
     "text": "Version control\n\ngit and GitHub\n\n\nReferences\n\nHappy Git and GitHub for the useR, Ch. 1: Why Git? Why GitHub?\nHappy Git and GitHub for the useR, Ch. 9: Personal access token for HTTPS\nPrefresher, Ch. 15: Command-line, git"
   },
   {
     "objectID": "day-3.html#stats",
     "href": "day-3.html#stats",
-    "title": "Day 3: Visualization and simulation",
+    "title": "Day 3: Visualization, version control, and simulation",
     "section": "Distributions and random draws",
     "text": "Distributions and random draws\n\nsample() and set.seed()\nDrawing from distributions: rnorm(), runif(), rbinom()\nThe r, p, d, and q family: pnorm(), dnorm(), qnorm()\n\n\nReferences\n\nPrefresher, Ch. 12.2–12.5: sample(), random draws, r/p/d, and set.seed()\nR manual: Distributions in the stats package"
   },
   {
     "objectID": "day-3.html#simulation",
     "href": "day-3.html#simulation",
-    "title": "Day 3: Visualization and simulation",
+    "title": "Day 3: Visualization, version control, and simulation",
     "section": "Big exercise: simulation",
     "text": "Big exercise: simulation\nNow that you have seen R, how are you going to use it? Build a version-controlled Quarto project that carries a basic analysis through to plots — a difference-in-means analysis drawn from a published paper.\n\nReferences\n\nPrefresher, Ch. 12: Simulation\nPrefresher, Ch. 11: A worked project, start to finish"
   },
   {
     "objectID": "day-1.html",
     "href": "day-1.html",
-    "title": "Day 1: Getting started",
+    "title": "Day 1: Getting started with R",
     "section": "",
-    "text": "NoteSetup office hours\n\n\n\nArrive from 1:00–2:00 p.m. if you have issues with installing R or RStudio/Positron."
+    "text": "This session will be held in JRR A17.\n(Approximate) Schedule:"
   },
   {
     "objectID": "day-1.html#setup",
     "href": "day-1.html#setup",
-    "title": "Day 1: Getting started",
+    "title": "Day 1: Getting started with R",
     "section": "Setup and ergonomics",
     "text": "Setup and ergonomics\n\nScripts and what the buttons do\nRunning code and using the console\nThe environment, and why not to save it\n\n\nReferences\n\nPrefresher, Ch. 7: Orientation and reading in data\nr4ds, Ch. 6: Workflow — scripts and projects"
   },
   {
     "objectID": "day-1.html#packages",
     "href": "day-1.html#packages",
-    "title": "Day 1: Getting started",
+    "title": "Day 1: Getting started with R",
     "section": "Packages, libraries, and variables",
     "text": "Packages, libraries, and variables\n\nInstalling packages versus loading libraries\nAssigning and inspecting variables\n\n\nReferences\n\nr4ds, Ch. 2: Workflow — basics"
   },
   {
     "objectID": "day-1.html#types",
     "href": "day-1.html#types",
-    "title": "Day 1: Getting started",
+    "title": "Day 1: Getting started with R",
     "section": "Types, vectors, and objects",
     "text": "Types, vectors, and objects\n\nTypes and vectors (there are no scalars)\nCharacters and strings\n\n\nReferences\n\nPrefresher, Ch. 8: Manipulating vectors and matrices\nr4ds, Ch. 27: A field guide to base R"
   },
   {
     "objectID": "day-1.html#data-frames",
     "href": "day-1.html#data-frames",
-    "title": "Day 1: Getting started",
+    "title": "Day 1: Getting started with R",
     "section": "Data frames and reading data",
     "text": "Data frames and reading data\n\nBasic data frames\nReading and saving data: csv, .rda, .rds\nWorking directories and paths\nR as a calculator: mean(), median(), summary(), and custom summaries\n\n\nReferences\n\nr4ds, Ch. 7: Data import\nPrefresher, Ch. 7.5: Reading in and inspecting data"
   },
@@ -555,35 +555,35 @@
   {
     "objectID": "day-2.html",
     "href": "day-2.html",
-    "title": "Day 2: Programming and tidyverse",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
     "section": "",
-    "text": "Time\nSession\n\n\n\n\n9:00–10:30\nFunctions\n\n\n10:30–10:45\nBreak\n\n\n10:45–11:45\nLoops, iteration, and lapply()\n\n\n11:45–12:30\nGuided exercise\n\n\n12:30–1:30\nLunch\n\n\n1:30–2:45\nQuarto and typesetting\n\n\n2:45–3:00\nBreak\n\n\n3:00–4:15\nTidyverse: tibbles and dplyr\n\n\n4:15–5:00\npurrr and applied exercise"
+    "text": "This session will be held in JRR 399.\n(Approximate) Schedule:"
   },
   {
     "objectID": "day-2.html#functions",
     "href": "day-2.html#functions",
-    "title": "Day 2: Programming and tidyverse",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
     "section": "Functions",
     "text": "Functions\n\nWriting and calling functions\nArguments, defaults, and return values\n\n\nReferences\n\nr4ds, Ch. 25: Functions\nPrefresher, Ch. 9: Objects, functions, loops"
   },
   {
     "objectID": "day-2.html#iteration",
     "href": "day-2.html#iteration",
-    "title": "Day 2: Programming and tidyverse",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
     "section": "Loops, iteration, and lapply()",
     "text": "Loops, iteration, and lapply()\n\nfor and while loops\nlapply() and friends\nGuided exercise\n\n\nReferences\n\nPrefresher, Ch. 9.3: Loops\nr4ds, Ch. 26: Iteration"
   },
   {
     "objectID": "day-2.html#quarto",
     "href": "day-2.html#quarto",
-    "title": "Day 2: Programming and tidyverse",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
     "section": "Quarto and typesetting",
     "text": "Quarto and typesetting\n\nMaking work replicable and research-ready\nMigrating the morning exercise into Quarto\nHow R Markdown fits in\n\n\nReferences\n\nr4ds, Ch. 28: Quarto\nPrefresher, Ch. 13: LaTeX and markdown"
   },
   {
     "objectID": "day-2.html#tidyverse",
     "href": "day-2.html#tidyverse",
-    "title": "Day 2: Programming and tidyverse",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
     "section": "Tidyverse",
     "text": "Tidyverse\n\ntibble\ndplyr, from mutate() through merges\npurrr\nGesturing at stringr, lubridate, and tidyr\n\n\nReferences\n\nr4ds, Ch. 3: Data transformation\nr4ds, Ch. 19: Joins"
   },
@@ -592,14 +592,14 @@
     "href": "index.html",
     "title": "R Bootcamp",
     "section": "",
-    "text": "Data-Driven Social Science · Two and a half days · August 28–September 1, 2026"
+    "text": "Data-Driven Social Science · Two and a half days · August 28 – September 1, 2026"
   },
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
     "title": "R Bootcamp",
     "section": "Schedule",
-    "text": "Schedule\n\n\nDay 1 · Friday, August 28, 2:00–5:30\n\nGetting started\n\nSetup, ergonomics, and packages\nTypes, vectors, and data frames\nReading data and R as a calculator\n\n\n\n\nDay 2 · Monday, August 31, 9:00–5:00\n\nProgramming and tidyverse\n\nFunctions, loops, and lapply()\nQuarto and typesetting\nTidyverse, excluding plotting\n\n\n\n\nDay 3 · Tuesday, September 1, 9:00–5:00\n\nVisualization and simulation\n\nBase R plots and ggplot2\nVersion control and stats functions\nBig exercise: simulation\n\n\n\n\n\nDays 2 and 3: an hour for lunch, plus short breaks morning and afternoon"
+    "text": "Schedule\n\n\nFriday, August 28, 2p–5:30p, JRR A17\n\nDay 1 · Getting started with R\n\nSetup, ergonomics, and packages\nTypes, vectorization, and basic ops\nReading, writing, and summarizing data\n\n\n\n\nMonday, August 31, 9a–5p, JRR 399\n\nDay 2 · Programming, typesetting, and tidyverse\n\nFunctions, loops, and lapply()\nQuarto and typesetting for professional outputs\nTidyverse for better data work, excl. plotting\n\n\n\n\nTuesday, September 1, 9a–5p, JRR 399\n\nDay 3 · Visualization, version control, and simulation\n\nBase R plots (briefly) and ggplot2\nVersion control offline and online\nStatistics with R\nBig exercise: simulations\n\n\n\n\n\nDays 2 and 3: an hour for lunch, plus short breaks morning and afternoon"
   },
   {
     "objectID": "notes/exercise-3-plots-solutions.html",
