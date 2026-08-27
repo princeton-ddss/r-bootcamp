@@ -20,6 +20,8 @@ This session will be held in JRR 399.
 | 4:15–5:00   | `purrr` and applied exercise     |
 :::
 
+<br>
+
 ## Functions {#functions}
 
 - Writing and calling functions
