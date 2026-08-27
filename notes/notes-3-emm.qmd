@@ -1,0 +1,1157 @@
+---
+format:
+  revealjs:
+    theme: default
+    slide-number: c
+    highlight-style: github
+    code-copy: true
+    embed-resources: true
+    code-line-numbers: false
+    css: ddss.css
+    height: 700
+    width: 1400
+    output-location: fragment
+    fig-width: 8
+    fig-height: 3.5
+
+execute:
+  echo: true
+  message: false
+  warning: false
+
+knitr:
+  opts_chunk:
+    results: hold
+    fig.align: center
+---
+
+```{=html}
+<style>
+  .reveal .backgrounds > .slide-background:first-child {
+    background-image: url('figs/title-bg.svg');
+    background-size: cover;
+    background-position: center;
+  }
+</style>
+
+<br>
+<br>
+<br>
+<h1>R Bootcamp: Day 3 AM</h1>
+<br>
+<h2>Data visualization: base R and ggplot2</h2>
+<hr><br>
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
+  <div>
+    <p style="font-size: 1.3em; font-weight: 600; margin: 0 0 0.2em 0;">Yufei Qin</p>
+    <p style="font-size: 1.3em; font-weight: 600; margin: 0 0 0.2em 0;">Eric Manning</p>
+    <p style="font-size: 1.0em; margin: 0;">September 1, 2026</p>
+  </div>
+  <img src="figs/ddss-logo.png" style="width: 400px">
+</div>
+<br><br>
+```
+
+<center>[princeton-ddss.github.io/r-bootcamp](https://princeton-ddss.github.io/r-bootcamp)</center>
+
+```{r}
+#| label: setup
+#| include: false
+
+options(scipen = 999, width = 78)
+
+# trim base R figure margins (default mar reserves ~4 blank lines up top);
+# chunks that draw a main= title override via {r, small_mar=c(4.1,4.1,2.8,0.9)}
+knitr::knit_hooks$set(small_mar = function(before, options, envir) {
+  if (before && is.numeric(options$small_mar)) par(mar = options$small_mar)
+})
+knitr::opts_chunk$set(small_mar = c(4.1, 4.1, 1.2, 0.9))
+
+library(dplyr); library(readr)
+
+counties <- left_join(
+  read_csv("../files/county_data.csv"),
+  read_csv("../files/county_population.csv"),
+  join_by(GEOID == fips)
+  )
+```
+
+## This session
+
+<hr> <br>
+
+### 1) Base R plots
+
+::: {.fragment fragment-index="1"}
+- Your first plots: scatter, line, histogram, bar, density
+- The canvas model: layering with `lines()`, `points()`, `abline()`
+- Many plots at once; maps
+:::
+
+<br>
+
+### 2) `ggplot2`
+
+::: {.fragment fragment-index="2"}
+- Plots as objects, built from layers
+- Geoms, facets, scales, and labels
+- Making and saving publication-ready figures
+:::
+
+::: {.fragment fragment-index="3"}
+<br> Conclude with Quarto report exercise
+:::
+
+## Some sources
+
+<hr> <br>
+
+- Wickham, Çetinkaya-Rundel, and Grolemund, *R for Data Science*, 2e
+  - [Ch. 1: Data visualization](https://r4ds.hadley.nz/data-visualize.html)
+  - [Ch. 9: Layers](https://r4ds.hadley.nz/layers.html)
+- Harvard IQSS, *Math Prefresher for Political Scientists*
+  - [Ch. 10: Visualization](https://iqss.github.io/prefresher/14_visualization.html)
+- `ggplot2` documentation
+  - [Function reference](https://ggplot2.tidyverse.org/reference/) — every geom, scale, and theme
+  - [Aesthetic specifications](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html) — every point shape, line type, and color name
+
+# Base R plots
+
+## Our data, again
+
+<hr> <br>
+
+The county data from yesterday — income and rent, plus population and region:
+
+```{r}
+#| eval: false
+counties <- left_join(
+  read_csv("data/county_data.csv"),
+  read_csv("data/county_population.csv"),
+  join_by(GEOID == fips)
+  )
+```
+
+## Our data, again
+
+<hr> <br>
+
+```{r}
+glimpse(counties)
+```
+
+## Your first plot
+
+<hr> <br>
+
+```{r}
+#| fig-height: 4.2
+plot(counties$income, counties$rent)
+```
+
+## A bunch of hidden defaults we can fill ourselves
+
+<hr> <br>
+
+```{r, small_mar=c(4.1, 4.1, 2.8, 0.9)}
+#| fig-width: 7
+#| fig-height: 3.5
+plot(
+  counties$income / 1000, counties$rent,
+  main = "Rent vs. income",
+  xlab = "Median household income (in thousands USD)",
+  ylab = "Median gross rent",
+  pch = 19, cex = 0.5, col = "steelblue"
+  )
+```
+
+## Useful plot arguments
+
+<hr> <br>
+
+| Argument       | What it controls       | Example                    |
+|:---------------|:-----------------------|:---------------------------|
+| `main`         | title                  | `main = "Rent vs. income"` |
+| `xlab`, `ylab` | axis labels            | `xlab = "Income"`          |
+| `col`          | color                  | `col = "steelblue"`        |
+| `pch`          | point shape            | `pch = 19` (filled circle) |
+| `cex`          | point size             | `cex = 0.5` (half size)    |
+| `type`         | points vs. lines       | `type = "l"`               |
+| `lwd`, `lty`   | line width, line style | `lwd = 2, lty = "dashed"`  |
+
+<br>
+
+::: fragment
+The same arguments work across `plot()`, `lines()`, `points()`, `hist()`, and friends
+:::
+
+::: fragment
+Menus: [`?points`](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/points.html) draws every `pch`, [`?par`](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/par.html) covers the rest, `colors()` lists all 657 names
+:::
+
+# ggplot2
+
+## From canvas to objects
+
+<hr> <br>
+
+Base R: call functions, ink appears on a device. The plot is a **side effect.**
+
+::: fragment
+`ggplot2`: builds an object that describes a plot with layers. Gets drawn when you print it.
+:::
+
+<br>
+
+::: fragment
+That means you can assign, modify, combine, save, etc. _without printing anything_.
+
+```{r}
+#| eval: false
+p <- ggplot(...)   # nothing drawn yet
+p                  # drawn now
+```
+:::
+
+<br>
+
+::: fragment
+`ggplot2` is part of the tidyverse you met yesterday:
+
+```{r}
+library(tidyverse)
+```
+:::
+
+## The gist: (data w/ mapping) + geom + ...
+
+<hr> <br>
+
+```{r, small_mar=c(0.2, 0.2, 0.2, 0.2)}
+#| fig-height: 5
+ggplot(counties, aes(x = income, y = rent)) +
+  geom_point()
+```
+
+::: fragment
+(Yuck.)
+:::
+
+## Aesthetics
+
+<hr> <br>
+
+Map a third column to color. It's a variable, so it goes in `aes()` (constants go in `geom_*`)
+
+```{r}
+#| fig-height: 5
+ggplot(counties, aes(x = income, y = rent, color = region)) +
+  geom_point(size = 0.7)
+```
+
+::: fragment
+Compare: in base R, *you* subset the data, chose the colors, and drew the legend.
+:::
+
+## Classic mistake
+
+<hr> <br>
+
+```{r}
+#| fig-height: 5
+ggplot(counties, aes(x = income, y = rent, color = "steelblue")) +
+  geom_point(size = 0.7)
+```
+
+::: fragment
+Inside `aes()`, `"steelblue"` isn't a color. It gets vectorized as data.
+:::
+
+## Same mapping, different geom
+
+<hr> <br>
+
+Distributions by group:
+
+```{r}
+#| fig-height: 5
+ggplot(counties, aes(x = region, y = income)) +
+  geom_boxplot()
+```
+
+## Composition: stacked bars
+
+<hr> <br>
+
+Split each region's counties into high- and low-population halves:
+
+```{r}
+#| fig-height: 5
+counties = counties |>
+  mutate(pop_level = if_else(
+      pop >= median(counties$pop, na.rm = T),
+      'high pop', 'low_pop'
+  ))
+
+counties |>
+  filter(!is.na(pop_level)) |>
+  ## piping in this data; now different operator!
+  ggplot(aes(x = region, fill = pop_level)) +
+  geom_bar()
+```
+
+## Counts vs. shares: `position`
+
+<hr> <br>
+
+`position = "fill"` rescales every bar to 1
+
+```{r}
+#| fig-height: 5
+counties |>
+  filter(!is.na(pop_level)) |>
+  ggplot(aes(x = region, fill = pop_level)) +
+  geom_bar(position = "fill")
+```
+
+## Side by side: `position = "dodge"`
+
+<hr> <br>
+
+```{r}
+#| fig-height: 5
+counties |>
+  filter(!is.na(pop_level)) |>
+  ggplot(aes(x = region, fill = pop_level)) +
+  geom_bar(position = "dodge")
+```
+
+::: fragment
+*Three versions of the same bars — stacked, filled, dodged. Which question does each answer best?*
+:::
+
+## Line graphs
+
+<hr> <br>
+
+`ggplot2` ships with practice data: `economics` is monthly US macro data:
+
+```{r}
+#| fig-height: 5
+ggplot(economics, aes(x = date, y = unemploy)) +
+  geom_line()
+```
+
+## Common mistake
+
+<hr> <br>
+
+::: fragment
+```{r}
+head(economics_long, 3)
+```
+:::
+
+::: fragment
+```{r}
+#| fig-height: 5
+ggplot(economics_long, aes(x = date, y = value01)) +
+  geom_line()
+```
+:::
+
+## Tell ggplot what belongs together
+
+<hr> <br>
+
+Map the series id to `color` (or `group`) and each variable gets its own line:
+
+```{r}
+#| fig-height: 6
+ggplot(economics_long, aes(x = date, y = value01, color = variable)) +
+  geom_line()
+```
+
+## Reference lines are geoms too
+
+<hr> <br>
+
+::: fragment
+`geom_hline()`, `geom_vline()`, and `geom_abline()` are just more layers:
+
+```{r}
+#| fig-height: 5
+ggplot(counties, aes(x = income, y = rent)) +
+  geom_point(size = 0.5, color = "gray") +
+  geom_hline(
+    yintercept = median(counties$rent, na.rm = T),
+    color = "steelblue", linewidth = 1
+    )
+```
+:::
+
+## Facets
+
+<hr> <br>
+
+One line splits the plot by a categorical column:
+
+```{r}
+#| fig-height: 6
+ggplot(counties, aes(x = income, y = rent)) +
+  geom_point(size = 0.4) +
+  facet_wrap(~ region) ## more than one: ~ region + ... 
+```
+
+## Facets in two directions
+
+<hr> <br>
+
+`facet_grid(rows ~ cols)`:
+
+```{r}
+#| fig-height: 5
+counties |>
+  filter(!is.na(pop_level)) |>
+  ggplot(aes(x = income, y = rent)) +
+  geom_point(size = 0.4) +
+  facet_grid(pop_level ~ region)
+```
+
+## Labels with `labs()`
+
+<hr> <br>
+
+```{r}
+#| fig-height: 5
+ggplot(counties, aes(x = income, y = rent, color = region)) +
+  geom_point(size = 0.7) +
+  labs(
+    title = "Rent rises with income",
+    subtitle = "US counties, 2023 five-year ACS",
+    x = "Median household income ($)",
+    y = "Median gross rent ($)",
+    color = "Region"
+  )
+```
+
+## Scales: _how_ mappings become positions and colors
+
+<hr> <br>
+
+Every aesthetic has a scale named `scale_<aesthetic>_<flavor>()` with its own arguments:
+
+```{r}
+#| fig-height: 6
+ggplot(counties, aes(x = income, y = rent)) +
+  geom_point(size = 0.5) +
+  scale_x_continuous(name = "Median household income",
+                     breaks = c(50000, 100000, 150000),
+                     labels = c("$50k", "$100k", "$150k"),
+                     limits = c(0, 200000))
+```
+
+
+## Zooming vs. dropping
+
+<hr> <br>
+
+`xlim()`/`ylim()`/`lims()` **throw away data** outside the limits:
+
+```{r}
+#| warning: true
+#| fig-height: 5
+ggplot(counties, aes(x = income, y = rent)) +
+  geom_point(size = 0.5) +
+  lims(x = c(0, 100000))
+```
+
+## Zooming vs. dropping
+
+<hr> <br>
+
+`coord_cartesian()` **zooms** without dropping:
+
+```{r}
+#| fig-height: 5
+ggplot(counties, aes(x = income, y = rent)) +
+  geom_point(size = 0.5) +
+  coord_cartesian(xlim = c(0, 100000))
+```
+
+:::: fragment
+::: blocktext
+Looks the same here, but anything *computed* from the data (boxplot stats, smoothers, densities) changes when points are dropped.
+:::
+::::
+
+## Other `geom_*` functions
+
+<hr> <br>
+
+- [Function reference](https://ggplot2.tidyverse.org/reference/) — every geom with pictures
+- [Aesthetic specifications](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html) — every `shape` number, `linetype` name, and color
+
+<br>
+
+::: fragment
+You'll google `ggplot geom` + what you want to draw (or ask Claude).
+:::
+
+<br>
+
+::: fragment
+There is also a `stat_*()` family for layers that include on-the-fly statistical transformations. See [here](https://ggplot2.tidyverse.org/reference/layer_stats.html).
+:::
+
+## Setup for next bit
+
+<hr> <br>
+
+```{r}
+#| fig-height: 5
+p = ggplot(counties, aes(x = income, y = rent, color = region)) +
+  geom_point(size = 0.6) +
+  labs(
+    x = "Median household income ($)",
+    y = "Median gross rent ($ logged)",
+    color = NULL
+  ) +
+  scale_x_log10()
+
+p
+```
+
+## Themes
+
+<hr> <br>
+
+Complete themes restyle everything at once:
+
+```{r}
+#| fig-height: 5
+p + theme_bw()
+```
+
+::: fragment
+Try `theme_minimal()`, `theme_bw()`, `theme_classic()`, `theme_void()`, etc. and packages like `ggthemes` for more.
+:::
+
+## Scale your fonts to the medium
+
+<hr> <br>
+
+Every complete theme takes `base_size` to scale *all* the text
+together.
+
+Paper figures ≈ 11, but slides need much more:
+
+```{r}
+#| fig-height: 5
+p + theme_minimal(base_size = 20)
+```
+
+::: fragment
+Foreshadowing: What matters is font size _relative to the figure_. Save the same plot smaller and every label looks bigger.
+:::
+
+## Or size each piece separately
+
+<hr>
+
+`theme()` targets one element at a time. Elements take an `element_*()`:
+
+```{r}
+#| fig-height: 5
+p + theme_minimal(base_size = 15) +
+  theme(
+    axis.title.x = element_text(size = 20, face = "bold"),
+    axis.text    = element_text(size = 10),
+    legend.text  = element_text(size = 12, family = "Palatino")
+  )
+```
+
+## The `element_*()` family
+
+<hr>
+
+- `element_text()`, `element_line()`
+- `element_rect()` — backgrounds and borders
+- `element_blank()` — removes the element
+
+::: fragment
+```{r}
+#| fig-height: 5
+p + theme_bw(base_size = 15) + theme(panel.grid = element_blank())
+```
+:::
+
+::: fragment
+::: blocktext
+A complete theme *resets everything before it*.
+:::
+:::
+
+## Color palettes
+
+<hr> <br>
+
+Pick non-default colors or it looks like you didn't try.
+
+```{r}
+#| fig-height: 5
+p + theme_minimal(base_size = 15) + scale_color_viridis_d()
+```
+
+::: fragment
+`viridis` is colorblind-safe and printer-safe. `scale_*_brewer()` uses [ColorBrewer](https://colorbrewer2.org). There are many packages (`paletteer`, `MetBrewer`, etc)
+:::
+
+## Or make your own
+
+<hr> <br>
+
+```{r}
+#| fig-height: 5
+pal = c("Midwest" = "#E87722", "Northeast" = "steelblue",
+        "South" = "firebrick", "West" = "#83876F")
+
+p + theme_minimal(base_size = 15) + scale_color_manual(values = pal)
+```
+
+## Composing figures: `patchwork`
+
+<hr> <br>
+
+A package can define `+`, `|`, and `/` on `ggplot` objects:
+
+```{r}
+#| fig-height: 4
+#| fig-width: 8
+library(patchwork)
+
+p = p + theme_minimal(base_size = 15)
+
+box = ggplot(counties, aes(x = region, y = income)) +
+  geom_boxplot() +
+  theme_minimal(base_size = 15)
+
+p + box
+```
+
+## `patchwork` layouts
+
+<hr> <br>
+
+`|` puts plots beside each other; `/` stacks them:
+
+```{r}
+#| fig-height: 5
+#| fig-width: 10
+hist_inc <- ggplot(counties, aes(x = income)) +
+  theme_minimal(base_size = 15) +
+  geom_histogram(bins = 40)
+
+(p | box) / hist_inc
+```
+
+::: fragment
+What's wrong here?
+:::
+
+# Publication-ready figures
+
+## Figures are programmatic outputs
+
+<hr> <br>
+
+Your figures are *products of your code*, same as your tables and estimates
+
+::: fragment
+- Rerun the script, get the figure without clicking through export UI boxes
+- Change the data and every figure updates
+:::
+
+<br>
+
+:::: fragment
+::: blocktext
+Never screenshot a plot. If a figure matters enough to share, save it properly at full resolution using code you can rerun.
+:::
+::::
+
+## Saving plots properly with `ggsave()`
+
+<hr> <br>
+
+```{r}
+#| eval: false
+ggsave("rent_income.pdf", p, width = 6, height = 4)
+```
+
+::: fragment
+`ggsave()` infers the format from the extension; `width`/`height` are in inches (change with `units` arg).
+:::
+
+<br>
+
+::: fragment
+Tip: Set `width`/`height` to the actual size in your document and the figures will be proportioned correctly.
+:::
+
+<br>
+
+::: fragment
+For base R plots the equivalent is: `pdf("fig.pdf", width = 6, height = 4)`, plot, then `dev.off()`
+:::
+
+## Vector > raster
+
+<hr> <br>
+
+|            | Formats             | What's stored    | Zoom in and...        |
+|:-----------|:--------------------|:-----------------|:----------------------|
+| **Vector** | `pdf`, `svg`, `eps` | shapes and text  | stays perfectly crisp |
+| **Raster** | `png`, `jpg`        | a grid of pixels | gets blurry           |
+
+<br>
+
+::: fragment
+Use vector formats whenever you can: LaTeX and Word take `pdf`; the web takes `svg`
+:::
+
+::: fragment
+When you're *forced* to raster (some journals, slides software), set `dpi = 300` or more in `ggsave()`
+:::
+
+# Maps
+
+## Maps are just plots
+
+<hr> <br>
+
+The `sf` package reads geographic files and gives each row a `geometry` column:
+
+```{r}
+#| eval: false
+library(sf)
+shapes <- st_read("county_shapes.geojson")
+```
+
+```{r}
+#| include: false
+library(sf)
+shapes <- st_read("../files/county_shapes.geojson", quiet = TRUE)
+```
+
+<br>
+
+::: fragment
+It looks like a data frame with a special column:
+
+```{r}
+head(shapes, 3)
+```
+:::
+
+## Maps, the ggplot way
+
+<hr> <br>
+
+First attach our county numbers to the shapes:
+
+```{r}
+shapes_data <- shapes |>
+  left_join(
+    counties |> select(GEOID, income, rent),
+    join_by(GEOID)
+  )
+
+head(shapes_data, 3)
+```
+
+## Maps, the ggplot way
+
+<hr><br>
+
+This could not be easier:
+
+```{r}
+#| fig-width: 10
+#| fig-height: 6
+shapes_data |>
+  ggplot() + geom_sf()
+```
+
+## Maps, the ggplot way
+
+<hr> <br>
+
+`geom_sf()` is a geom like any other — aesthetics, scales, and themes all apply:
+
+```{r}
+#| fig-width: 10
+#| fig-height: 6
+ggplot(shapes_data) +
+  geom_sf(aes(fill = income), linewidth = 0.05) +
+  scale_fill_viridis_c(
+    name = "Median income",
+    breaks = c(50000, 100000, 150000),
+    labels = c("$50k", "$100k", "$150k")
+    ) +
+  theme_void(base_size = 15)
+```
+
+## Pivoting for `facet_*()`
+
+<hr><br>
+
+To facet by variable, the variables must live in *one* column — `tidyr`'s
+`pivot_longer()` stacks them:
+
+```{r}
+long <- shapes_data |> pivot_longer(c(income, rent))
+
+long |> select(county, name, value) |> head(4)
+```
+
+## Multiple maps
+
+<hr><br>
+
+Income dollars dwarf rent dollars, so give each variable its own percentiles, then facet:
+
+```{r}
+#| fig-width: 14
+#| fig-height: 6
+long <- long |> group_by(name) |> mutate(percentile = percent_rank(value))
+
+ggplot(long) +
+  geom_sf(aes(fill = percentile), linewidth = 0.02) +
+  scale_fill_viridis_c() +
+  facet_wrap(~ name) +
+  theme_void(base_size = 15)
+```
+
+## For spatial data, resolution matters
+
+<hr> <br>
+
+Boundary files often store more detail than we can see. Use `st_simplify()` for plot files if necessary:
+
+```{r}
+# this renders weirdly sometimes:
+rough <- st_simplify(shapes, dTolerance = 25000, preserveTopology = T)
+```
+
+<br>
+
+::: fragment
+Ours is pre-simplified (1.8 MB); raw Census files run much larger and image files will be too large -- and view rendering will take too long.
+:::
+
+<br>
+
+::: fragment
+The `tigris` package (USA) has `cb` and `resolution` arguments for this.
+:::
+
+## This afternoon
+
+<hr> <br>
+
+- Version control with git and GitHub
+- Distributions and random draws
+- Big exercise: a version-controlled, simulated analysis — start to finish
+
+<br>
+
+<center>[princeton-ddss.github.io/r-bootcamp](https://princeton-ddss.github.io/r-bootcamp)</center>
+
+## Now: plotting exercise
+
+<hr> <br>
+
+Open the exercise: [princeton-ddss.github.io/r-bootcamp/notes/exercise-3-plots.pdf](https://princeton-ddss.github.io/r-bootcamp/notes/exercise-3-plots.pdf)
+
+<br>
+
+- A Quarto report with empty chunks — fill them in and render as you go
+- Everything you need is from this morning
+
+# More fun with base R
+
+## Lines: `type = "l"`
+
+<hr> <br>
+
+All 3,135 counties sorted by income:
+
+```{r}
+#| fig-height: 4.2
+plot(sort(counties$income), type = "l")
+```
+
+::: fragment
+*What does the rightmost tail tell you?*
+:::
+
+## Histograms
+
+<hr> <br>
+
+A better way to visualize the distribution of one variable (binned):
+
+```{r, small_mar=c(4.1, 4.1, 2.8, 0.9)}
+#| fig-height: 4.4
+hist(counties$income, breaks = 50) ## number of bins
+```
+
+## Bar plots: counting categories
+
+<hr> <br>
+
+Use `barplot()` for categorical variables:
+
+```{r}
+#| fig-height: 4.2
+table(counties$region) |> barplot()
+```
+
+::: fragment
+(Categories appear alphabetically by default.)
+:::
+
+## Densities: a smooth histogram
+
+<hr> <br>
+
+`density()` estimates the distribution; `plot()` draws the estimate:
+
+```{r, small_mar=c(4.1, 4.1, 2.8, 0.9)}
+#| fig-height: 4.4
+density(counties$income, na.rm = TRUE) |> plot()
+```
+
+## Densities can smooth *past* data: misleading
+
+<hr> <br>
+
+```{r}
+d <- density(counties$income, na.rm = TRUE)
+
+range(counties$income, na.rm = TRUE)
+range(d$x)
+```
+
+<br>
+
+::: fragment
+The curve starts ~$7,000 below the poorest county. Density estimates commonly leak below zero.
+:::
+
+::: fragment
+The `cut` argument controls this:
+
+```{r}
+d0 <- density(counties$income, na.rm = TRUE, cut = 0)
+range(d0$x)
+```
+:::
+
+## Base R plotting is a canvas
+
+<hr> <br>
+
+`plot()` (or `hist()`, `barplot()`, ...) starts a **fresh canvas**
+
+::: fragment
+Then each of these adds ink **on top** of whatever is there:
+
+- `points()` — more points
+- `lines()`  — more lines
+- `abline()` — straight reference lines
+- `legend()` — add a legend
+:::
+
+<br>
+
+:::: fragment
+::: blocktext
+The canvas is *cumulative*. To change something underneath, start over.
+:::
+::::
+
+## Layer by layer
+
+<hr> <br>
+
+Start the canvas — every county in gray:
+
+```{r}
+#| fig-height: 4.2
+nj <- counties[counties$state == "New Jersey", ]
+
+plot(counties$income, counties$rent, pch = 19, cex = 0.4, col = "gray")
+```
+
+## Layer by layer
+
+<hr> <br>
+
+The canvas is live. Add `points()` on top:
+
+```{r, echo=3}
+#| fig-height: 4.4
+nj <- counties[counties$state == "New Jersey", ]
+plot(counties$income, counties$rent, pch = 19, cex = 0.4, col = "gray")
+points(nj$income, nj$rent, pch = 19, col = "orange")
+```
+
+## Layer by layer
+
+<hr> <br>
+
+...and `abline()` draw a reference line:
+
+```{r, echo=4}
+#| fig-height: 4.2
+nj <- counties[counties$state == "New Jersey", ]
+plot(counties$income, counties$rent, pch = 19, cex = 0.4, col = "gray")
+points(nj$income, nj$rent, pch = 19, col = "orange")
+abline(h = median(counties$rent, na.rm = TRUE), lwd = 2, col = "steelblue")
+```
+
+::: fragment
+*Every* New Jersey county sits above the national median rent
+:::
+
+## Always label your layers
+
+<hr> <br>
+
+The same trick compares distributions — start with the Northeast:
+
+```{r, small_mar=c(4.1, 4.1, 2.8, 0.9)}
+#| fig-height: 4.3
+plot(density(counties$income[counties$region == "Northeast"], na.rm = TRUE),
+     col = "steelblue", lwd = 2, main = "Income by region")
+```
+
+## Always label your layers
+
+<hr> <br>
+
+`lines()` overlays the South:
+
+```{r, echo=2, small_mar=c(4.1, 4.1, 2.8, 0.9)}
+#| fig-height: 4.3
+plot(density(counties$income[counties$region == "Northeast"], na.rm = TRUE),
+     col = "steelblue", lwd = 2, main = "Income by region",
+     ylim = c(0, 0.000032)) ## needed for next layer
+lines(density(counties$income[counties$region == "South"], na.rm = TRUE),
+      col = "firebrick", lwd = 2)
+```
+
+::: fragment
+We had to know ahead of time to set ylim. Otherwise we'd have to start over. A pain that `ggplot2` will solve.
+:::
+
+## Always label your layers
+
+<hr> <br>
+
+`legend()` for a legend:
+
+```{r, echo=3, small_mar=c(4.1, 4.1, 2.8, 0.9)}
+#| fig-height: 4.3
+plot(density(counties$income[counties$region == "Northeast"], na.rm = TRUE),
+     col = "steelblue", lwd = 2, main = "Income by region",
+     ylim = c(0, 0.000032)) ## needed for next layer
+lines(density(counties$income[counties$region == "South"], na.rm = TRUE),
+      col = "firebrick", lwd = 2)
+legend("topright", legend = c("Northeast", "South"),
+       col = c("steelblue", "firebrick"), lwd = 2)
+```
+
+## Many plots at once: `par()`
+
+<hr> <br>
+
+`par()` sets graphics options for the whole device — `mfrow` makes a grid that fills plot by plot:
+
+```{r, small_mar=c(4.1, 4.1, 2.8, 0.9)}
+#| fig-height: 4
+par(mfrow = c(1, 2))
+hist(counties$income, main = "Income")
+hist(counties$rent, main = "Rent")
+```
+
+## `par()` is global
+
+<hr> <br>
+
+Every plot from now on lands in that grid until you put it back:
+
+```{r}
+#| eval: false
+par(mfrow = c(1, 1))
+```
+
+```{r}
+#| include: false
+par(mfrow = c(1, 1))
+```
+
+<br>
+
+::: fragment
+`par()` controls dozens more settings: margins (`mar` and `oma`), text size (`cex`), etc.
+:::
+
+<br>
+
+:::: fragment
+::: blocktext
+Base R plots are *side effects* that depend on the state of the graphics device. The functions return `NULL`.
+:::
+::::
+
+## Maps are just plots
+
+<hr> <br>
+
+`plot()` knows what to do with a geometry column:
+
+```{r, small_mar=c(0.2, 0.2, 0.2, 0.2)}
+#| fig-height: 4
+st_geometry(shapes) |> plot()
+```
+
+::: fragment
+What happens if you just call `plot(shapes)`?
+:::
+
+## State colors
+
+<hr> <br>
+
+::: fragment
+```{r, small_mar=c(0.2, 0.2, 0.2, 0.2)}
+#| fig-height: 4
+plot(shapes["state"], main = NULL)
+```
+:::
+
+## Counties to states
+
+<hr> <br>
+
+::: fragment
+```{r}
+shapes |>
+  group_by(state) |>
+  summarise(geometry = st_union(geometry)) |>
+  plot(main = NULL)
+```
+:::
