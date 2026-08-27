@@ -108,7 +108,7 @@ counties
 
 ## Tibble
 
-![Tibble the cat](tibble.jpg){height="80%"}
+![Tibble the cat](figs/tibble.jpg){height="80%"}
 
 ## Printing a tibble
 
@@ -118,7 +118,7 @@ counties
 
 ## Tibble printing
 
-![Tibble's `print()`](tibble_printing.jpeg){height="80%"}
+![Tibble's `print()`](figs/tibble_printing.jpeg){height="80%"}
 
 ## Creating a tibble
 

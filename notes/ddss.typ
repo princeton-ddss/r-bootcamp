@@ -22,7 +22,7 @@
     #place(
       bottom + left,
       float: true,
-      image("DDSS-stacked_PU_shield_black.png", width: 1.45in),
+      image("figs/DDSS-stacked_PU_shield_black.png", width: 1.45in),
     )
 
     #align(center)[

@@ -106,12 +106,12 @@ Basic figures can be included with `![]()` syntax:
 ::::: {.columns align="center" totalwidth="100%"}
 ::: {.column width="65%"}
 ```         
-![Caption](DDSS-stacked_PU_shield_black.png)
+![Caption](figs/DDSS-stacked_PU_shield_black.png)
 ```
 :::
 
 ::: {.column width="35%"}
-![Caption](DDSS-stacked_PU_shield_black.png)
+![Caption](figs/DDSS-stacked_PU_shield_black.png)
 :::
 :::::
 
