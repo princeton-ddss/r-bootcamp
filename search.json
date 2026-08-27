@@ -7,6 +7,454 @@
     "text": "Before Day 1, install:\n\nR\n\nWindows\nMac. If you have a new Mac, you may also need Fortran\n\nEither RStudio or Positron\n\nPositron is a data-science oriented fork of VS Code. RStudio is R focused.\n\n\n\n\n\n\n\n\nNoteSetup office hours\n\n\n\nArrive from 1:00–2:00 p.m. on Day 1 if you have issues installing R or RStudio/Positron."
   },
   {
+    "objectID": "notes/notes-1-emm.html#this-session",
+    "href": "notes/notes-1-emm.html#this-session",
+    "title": "R Bootcamp",
+    "section": "This session",
+    "text": "This session\n\n\n1) Types, vectors, and objects\n\n\nEverything is a type\n\nBut we can get extremely pedantic\n\nVectors, matrices, lists, and more\nSubsetting syntax; common functions\n\n\n\n2) Data frames, reading data, and R as a calculator\n\n\nData frames: what and how\nGetting data in and out of R\nSummary statistics and some real data"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#some-sources",
+    "href": "notes/notes-1-emm.html#some-sources",
+    "title": "R Bootcamp",
+    "section": "Some sources",
+    "text": "Some sources\n\n\n\nWickham, Çetinkaya-Rundel, and Grolemund, R for Data Science, 2e\n\nCh. 27: A field guide to base R\nCh. 12: Logical vectors\nCh. 7: Data import\n\nHarvard IQSS, Math Prefresher for Political Scientists\n\nCh. 7.5: Reading in and inspecting data\nCh. 8: Manipulating vectors and matrices"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#every-object-has-a-type",
+    "href": "notes/notes-1-emm.html#every-object-has-a-type",
+    "title": "R Bootcamp",
+    "section": "Every object has a type",
+    "text": "Every object has a type\n\n\n\nx &lt;- 1\nclass(x)\n\n\n\n[1] \"numeric\"\n\n\n\n\n\nschool &lt;- \"Princeton\"\nclass(school)\n\n\n\n[1] \"character\"\n\n\n\n\n\n\ny &lt;- c(1, 2)\nclass(y)\n\n\n\n[1] \"numeric\"\n\n\n\n\n\nThe type is R’s label for what kind of thing a value is — every object carries one\n\n\nTypes decide what’s possible: numbers can be averaged, text can be capitalized, etc.\n\n\nMost confusing errors are type errors in disguise."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#some-basic-types",
+    "href": "notes/notes-1-emm.html#some-basic-types",
+    "title": "R Bootcamp",
+    "section": "Some basic types",
+    "text": "Some basic types\n\n\n\n\n\n\n\n\n\n\nType\nExamples\n\n\n\n\n\nnumeric\n1, 3.14, -2.5\nnumbers (a.k.a. “double”)\n\n\ninteger\n1L, 42L\nwhole numbers; the L makes it explicit\n\n\ncharacter\n\"Princeton\"\ntext, in quotes — 'single' work too\n\n\nlogical\nTRUE, FALSE\nyes/no answers (T/F acceptable to some)\n\n\nDate\nSys.Date()\ncalendar dates\n\n\n\n\n\nComing soon: list, data.frame\n\n\nMostly you’ll just say “numeric” — R treats 1 as a double by default\n\n\nWhy keep both? Storage: double is 8 bytes (for the decimals); integer is 4 bytes.\n\n\nMostly you’ll just notice it as int vs num in output"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#reassignment",
+    "href": "notes/notes-1-emm.html#reassignment",
+    "title": "R Bootcamp",
+    "section": "Reassignment",
+    "text": "Reassignment\n\n\nAn object name holds a value. Assigning again replaces it.\n\nx &lt;- x + 2\nx\n\n\n\n[1] 3\n\n\n\n\nTypes decide what’s allowed:\n\nschool + \"University\"\n\n\n\nError in `school + \"University\"`:\n! non-numeric argument to binary operator\n\n\n\n\nR will not guess what you meant."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#casting-convert-types-deliberately",
+    "href": "notes/notes-1-emm.html#casting-convert-types-deliberately",
+    "title": "R Bootcamp",
+    "section": "Casting: convert types deliberately",
+    "text": "Casting: convert types deliberately\n\n\nThe as.*() family converts between types\n\nas.numeric(\"3\")\nas.character(3.9)\n\n\n\n[1] 3\n[1] \"3.9\"\n\n\n\nCareful casting to integer — decimals get chopped, not rounded:\n\nas.integer(3.9)\n\n\n\n[1] 3\n\n\n\n\n\n\nas.numeric(\"Princeton\")\n\n\n\nWarning: NAs introduced by coercion\n\n\n[1] NA\n\n\n\n\n\nWhen R can’t convert, you get NA and a warning (not an error!)"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#booleans-questions-with-yesno-answers",
+    "href": "notes/notes-1-emm.html#booleans-questions-with-yesno-answers",
+    "title": "R Bootcamp",
+    "section": "Booleans: questions with yes/no answers",
+    "text": "Booleans: questions with yes/no answers\n\n\n\n3 == 3\n3 == 4\nschool == \"Princeton\"\n\n\n\n[1] TRUE\n[1] FALSE\n[1] TRUE\n\n\n\nAnd the answers are a type of their own:\n\nclass(TRUE)\n\n\n\n[1] \"logical\"\n\n\n\n\n\n\n== asks “are these equal?” = is an assignment operator, like &lt;-"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#combining-booleans",
+    "href": "notes/notes-1-emm.html#combining-booleans",
+    "title": "R Bootcamp",
+    "section": "Combining booleans: &, |, !",
+    "text": "Combining booleans: &, |, !\n\n\nAnd, or, not:\n\nTRUE & FALSE\nTRUE | FALSE\n!TRUE\n\n\n\n[1] FALSE\n[1] TRUE\n[1] FALSE\n\n\n\n\nComparisons produce booleans, so you can combine questions:\n\n(3 &gt; 1) & (school == \"Princeton\")\n\n\n\n[1] TRUE"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#boolean-operators-and",
+    "href": "notes/notes-1-emm.html#boolean-operators-and",
+    "title": "R Bootcamp",
+    "section": "Boolean operators && and ||",
+    "text": "Boolean operators && and ||\n\n\n\nx = T; y = 'hello'\nx | y\n\n\n\nError in `x | y`:\n! operations are possible only for numeric, logical or complex types\n\n\n\n\n\nx || y\n\n\n\n[1] TRUE\n\n\n\n\n\nIf left side is TRUE, right side is skipped. This is useful in if-else statements, other control flows.\nThese are NOT vectorized."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#missing-values-na",
+    "href": "notes/notes-1-emm.html#missing-values-na",
+    "title": "R Bootcamp",
+    "section": "Missing values: NA",
+    "text": "Missing values: NA\n\n\nNA marks a missing value inside your data\n\nsurvey &lt;- c(4, NA, 5)\nis.na(survey)\n\n\n\n[1] FALSE  TRUE FALSE\n\n\n\n\nWhy not just ask survey == NA?\n\nsurvey == NA\n\n\n\n[1] NA NA NA\n\n\n\n\n“Is this value equal to unknown?” — the answer is unknown. Use is.na()."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#even-na-has-a-type",
+    "href": "notes/notes-1-emm.html#even-na-has-a-type",
+    "title": "R Bootcamp",
+    "section": "Even NA has a type",
+    "text": "Even NA has a type\n\n\n\nclass(NA)\n\n\n\n[1] \"logical\"\n\n\n\n\nNA takes the type of the vector it sits in:\n\nclass(c(1.5, NA))\nclass(c(\"a\", NA))\n\n\n\n[1] \"numeric\"\n[1] \"character\"\n\n\n\n\nThere’s an NA for every type (NA_real_, NA_character_, …)\n\n\nUsually you don’t need to be explicit."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#na-is-contagious",
+    "href": "notes/notes-1-emm.html#na-is-contagious",
+    "title": "R Bootcamp",
+    "section": "NA is contagious",
+    "text": "NA is contagious\n\n\nOne NA poisons every calculation it touches\n\nmean(survey)\n\n\n\n[1] NA\n\n\n\n\nTell summary functions to drop missings first:\n\nmean(survey, na.rm = TRUE)\n\n\n\n[1] 4.5\n\n\n\n\n\n\nYou will type na.rm = TRUE a thousand times and one day you will be grateful."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#nothing-at-all-null",
+    "href": "notes/notes-1-emm.html#nothing-at-all-null",
+    "title": "R Bootcamp",
+    "section": "Nothing at all: NULL",
+    "text": "Nothing at all: NULL\n\n\nNULL is the absence of an object — not a missing value\n\nis.null(NULL)\n\n\n\n[1] TRUE\n\n\n\nNA is something; NULL is nothing at all:\n\nlength(NA)\nlength(NULL)\n\n\n\n[1] 1\n[1] 0\n\n\n\n\n\nNA holds a place; NULL disappears:\n\nc(1, NA, 2)\nc(1, NULL, 2)\n\n\n\n[1]  1 NA  2\n[1] 1 2"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#dates-are-a-type-too",
+    "href": "notes/notes-1-emm.html#dates-are-a-type-too",
+    "title": "R Bootcamp",
+    "section": "Dates are a type too",
+    "text": "Dates are a type too\n\n\n\nday1 &lt;- as.Date(\"2026-08-29\")\nclass(day1)\n\n## use YYYY-MM-DD where possible \n## but see `format = ` arg of as.Date\n## Documentation: ?as.Date\n\n\n\n[1] \"Date\"\n\n\n\n\nDate math:\n\nday1 + 7 ## also a date!\n\n\n\n[1] \"2026-09-05\"\n\n\n\n\n\nWhile subtracting two dates is something else:\n\nas.Date(\"2026-12-25\") - day1 ## difftime class\n\n\n\nTime difference of 118 days"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#there-are-almost-no-scalars-for-data-values",
+    "href": "notes/notes-1-emm.html#there-are-almost-no-scalars-for-data-values",
+    "title": "R Bootcamp",
+    "section": "There are (almost) no scalars for data values",
+    "text": "There are (almost) no scalars for data values\n\n\nc() combines values into a vector\n\nx &lt;- c(5, 10, 15)\nx\nlength(x)\n\n\n\n[1]  5 10 15\n[1] 3\n\n\n\n\nSurprise: you’ve been using vectors all along\n\nlength(school)\n\n\n\n[1] 1\n\n\n\n\nschool is a character vector of length 1."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#one-type-per-vector",
+    "href": "notes/notes-1-emm.html#one-type-per-vector",
+    "title": "R Bootcamp",
+    "section": "One type per vector",
+    "text": "One type per vector\n\n\nA vector holds exactly one type. Mix them and R will silently “downcast” where possible.\n\nc(1, \"two\", TRUE)\n\n\n\n[1] \"1\"    \"two\"  \"TRUE\"\n\n\n\n\nTo convert on purpose, cast the whole vector at once:\n\nas.character(c(1, 2))\n\n\n\n[1] \"1\" \"2\"\n\n\n\n\n\nMost functions are vectorized: they work element-by-element without being told explicitly"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#combining-text-paste",
+    "href": "notes/notes-1-emm.html#combining-text-paste",
+    "title": "R Bootcamp",
+    "section": "Combining text: paste()",
+    "text": "Combining text: paste()\n\n\nThe right way to do school + \"University\":\n\npaste(\"R\", \"Bootcamp\")\npaste0(school, \" University\")\n\n\n\n[1] \"R Bootcamp\"\n[1] \"Princeton University\"\n\n\n\npaste() glues with a space; paste0() glues with nothing\n\n\n\nIt casts numbers to text and vectorizes, all at once:\n\npaste(\"Day\", c(1, 2, 3))\n\n\n\n[1] \"Day 1\" \"Day 2\" \"Day 3\"\n\n\n\n\nAnd collapse glues the results into one single string:\n\npaste(\"Day\", c(1, 2, 3), collapse = \", \")\n\n\n\n[1] \"Day 1, Day 2, Day 3\""
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#math-is-vectorized-too",
+    "href": "notes/notes-1-emm.html#math-is-vectorized-too",
+    "title": "R Bootcamp",
+    "section": "Math is vectorized too",
+    "text": "Math is vectorized too\n\n\n\nx * 2\nx + x\nx^2\n\n\n\n[1] 10 20 30\n[1] 10 20 30\n[1]  25 100 225\n\n\n\n(** also works for powers, but write ^)\n\n\n\nComparisons are vectorized — one question, one answer per element:\n\nx &gt; 8\n\n\n\n[1] FALSE  TRUE  TRUE"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#making-sequences",
+    "href": "notes/notes-1-emm.html#making-sequences",
+    "title": "R Bootcamp",
+    "section": "Making sequences",
+    "text": "Making sequences\n\n\n\n1:5\n5:1\n\n\n\n[1] 1 2 3 4 5\n[1] 5 4 3 2 1\n\n\n\n\nFor more control, seq():\n\nseq(1, 9, by = 2)\n\n\n\n[1] 1 3 5 7 9"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#summarizing-booleans-any-and-all",
+    "href": "notes/notes-1-emm.html#summarizing-booleans-any-and-all",
+    "title": "R Bootcamp",
+    "section": "Summarizing booleans: any() and all()",
+    "text": "Summarizing booleans: any() and all()\n\n\nCollapse a vector of yes/no answers into one answer\n\nx &gt; 8\n\n\n\n[1] FALSE  TRUE  TRUE\n\n\n\n\nany(x &gt; 8)\nall(x &gt; 8)\n\n\n\n[1] TRUE\n[1] FALSE\n\n\n\n\n\n“Did anyone answer yes?” / “Did everyone answer yes?”\n\n\nTRUE counts as 1 and FALSE as 0 — so you can count and share:\n\nsum(x &gt; 8)\nmean(x &gt; 8)\n\n\n\n[1] 2\n[1] 0.6666667"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#useful-vector-questions",
+    "href": "notes/notes-1-emm.html#useful-vector-questions",
+    "title": "R Bootcamp",
+    "section": "Useful vector questions",
+    "text": "Useful vector questions\n\n\n\nregions &lt;- c(\"South\", \"West\", \"South\", \"Northeast\")\nlength(regions)\nunique(regions)\n\n\n\n[1] 4\n[1] \"South\"     \"West\"      \"Northeast\"\n\n\n\n\nIs a value in the vector?\n\n\"West\" %in% regions\n\"Midwest\" %in% regions\n\n\n\n[1] TRUE\n[1] FALSE\n\n\n\n\n\n\n!(\"Midwest\" %in% regions) == (\"Midwest\" %notin% regions)\n\n\n\n[1] TRUE"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#elements-in-vectors-can-have-names",
+    "href": "notes/notes-1-emm.html#elements-in-vectors-can-have-names",
+    "title": "R Bootcamp",
+    "section": "Elements in vectors can have names",
+    "text": "Elements in vectors can have names\n\n\n\ngrades &lt;- c(math = 90, r_bootcamp = 95)\ngrades\n\n\n\n      math r_bootcamp \n        90         95 \n\n\n\n\nnames(grades)\n\n\n\n[1] \"math\"       \"r_bootcamp\"\n\n\n\n\n\nNames are also a way to pull values out:\n\ngrades[\"r_bootcamp\"]\n\n\n\nr_bootcamp \n        95"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#subsetting-by-position",
+    "href": "notes/notes-1-emm.html#subsetting-by-position",
+    "title": "R Bootcamp",
+    "section": "Subsetting by position",
+    "text": "Subsetting by position\n\n\n[ pulls out pieces of a vector\n\nx &lt;- c(5, 10, 15, 20)\nx[2]\nx[c(1, 3)]\n\n\n\n[1] 10\n[1]  5 15\n\n\n\n\nNegative positions drop instead:\n\nx[-1]\n\n\n\n[1] 10 15 20"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#subsetting-by-condition",
+    "href": "notes/notes-1-emm.html#subsetting-by-condition",
+    "title": "R Bootcamp",
+    "section": "Subsetting by condition",
+    "text": "Subsetting by condition\n\n\nA boolean vector inside [ keeps the TRUE positions\n\nx[x &gt; 8]\n\n\n\n[1] 10 15 20\n\n\n\n\nwhich() turns a condition into positions:\n\nwhich(x &gt; 8)\nx[which(x &gt; 8)]\n\n\n\n[1] 2 3 4\n[1] 10 15 20\n\n\n\n\n\nRead x[x &gt; 8] aloud: “x, where x is greater than 8”"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#sorting-and-peeking",
+    "href": "notes/notes-1-emm.html#sorting-and-peeking",
+    "title": "R Bootcamp",
+    "section": "Sorting and peeking",
+    "text": "Sorting and peeking\n\n\n\nx &lt;- c(15, 5, 20, 10)\nsort(x)\n\n\n\n[1]  5 10 15 20\n\n\n\n\nhead() and tail() peek at the ends. Combine for smallest and biggest:\n\nhead(sort(x), 2)\ntail(sort(x), 2)\n\n\n\n[1]  5 10\n[1] 15 20\n\n\n\n\n\norder() yields the order of a (hypothetical) sort:\n\norder(x)\nx[order(x)]\n\n\n\n[1] 2 4 1 3\n[1]  5 10 15 20"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#a-matrix-is-a-vector-with-dimensions",
+    "href": "notes/notes-1-emm.html#a-matrix-is-a-vector-with-dimensions",
+    "title": "R Bootcamp",
+    "section": "A matrix is a vector with dimensions",
+    "text": "A matrix is a vector with dimensions\n\n\n\nm &lt;- matrix(1:8, nrow = 4)\nm\n\n\n\n     [,1] [,2]\n[1,]    1    5\n[2,]    2    6\n[3,]    3    7\n[4,]    4    8\n\n\n\n\n\ndim(m)\n\n\n\n[1] 4 2\n\n\n\n\n\nt() flips rows and columns:\n\nt(m)\n\n\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    2    3    4\n[2,]    5    6    7    8"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#filling-by-row-byrow",
+    "href": "notes/notes-1-emm.html#filling-by-row-byrow",
+    "title": "R Bootcamp",
+    "section": "Filling by row: byrow",
+    "text": "Filling by row: byrow\n\n\nmatrix() fills down the columns unless you say otherwise:\n\nmatrix(1:8, nrow = 4, byrow = FALSE) ## (the default)\n\n\n\n     [,1] [,2]\n[1,]    1    5\n[2,]    2    6\n[3,]    3    7\n[4,]    4    8\n\n\n\nmatrix(1:8, nrow = 4, byrow = TRUE)\n\n\n\n     [,1] [,2]\n[1,]    1    2\n[2,]    3    4\n[3,]    5    6\n[4,]    7    8"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#growing-a-matrix-cbind",
+    "href": "notes/notes-1-emm.html#growing-a-matrix-cbind",
+    "title": "R Bootcamp",
+    "section": "Growing a matrix: cbind()",
+    "text": "Growing a matrix: cbind()\n\n\nBind on a new column:\n\ncbind(m, 9:12)\n\n\n\n     [,1] [,2] [,3]\n[1,]    1    5    9\n[2,]    2    6   10\n[3,]    3    7   11\n[4,]    4    8   12\n\n\n\n\nA single value gets recycled:\n\ncbind(m, 0)\n\n\n\n     [,1] [,2] [,3]\n[1,]    1    5    0\n[2,]    2    6    0\n[3,]    3    7    0\n[4,]    4    8    0"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#when-the-lengths-dont-match",
+    "href": "notes/notes-1-emm.html#when-the-lengths-dont-match",
+    "title": "R Bootcamp",
+    "section": "When the lengths don’t match",
+    "text": "When the lengths don’t match\n\n\n\ncbind(m, 1:3)\n\n\n\nWarning in cbind(m, 1:3): number of rows of result is not a multiple of\nvector length (arg 2)\n\n\n     [,1] [,2] [,3]\n[1,]    1    5    1\n[2,]    2    6    2\n[3,]    3    7    3\n[4,]    4    8    1\n\n\n\nWhy the warning?\n\n\n\nRecycling is convenient for single values and dangerous for everything else."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#matrix-math",
+    "href": "notes/notes-1-emm.html#matrix-math",
+    "title": "R Bootcamp",
+    "section": "Matrix math",
+    "text": "Matrix math\n\n\nArithmetic is element-by-element, like vectors\n\nm * 2\n\n\n\n     [,1] [,2]\n[1,]    2   10\n[2,]    4   12\n[3,]    6   14\n[4,]    8   16\n\n\n\n\nSums along each dimension:\n\nrowSums(m)\ncolSums(m)\n\n\n\n[1]  6  8 10 12\n[1] 10 26"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#matrix-multiplication",
+    "href": "notes/notes-1-emm.html#matrix-multiplication",
+    "title": "R Bootcamp",
+    "section": "Matrix multiplication: %*%",
+    "text": "Matrix multiplication: %*%\n\n\nBuild an N × 1 column — now shapes matter:\n\nv &lt;- matrix(c(10, 20), ncol = 1)\nv\n\n\n\n     [,1]\n[1,]   10\n[2,]   20\n\n\n\n%*% matches inner dimensions and returns a new shape — (4 × 2) %*% (2 × 1) → (4 × 1):\n\nm %*% v\n\n\n\n     [,1]\n[1,]  110\n[2,]  140\n[3,]  170\n[4,]  200"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#is-not",
+    "href": "notes/notes-1-emm.html#is-not",
+    "title": "R Bootcamp",
+    "section": "* is not %*%",
+    "text": "* is not %*%\n\n\nElement-wise * is different. It wants identical shapes, just like + or - or /:\n\nm * v\n\n\n\nError in `m * v`:\n! non-conformable arrays\n\n\n\n\n(m * 2 worked because a lone number recycles; a mis-shaped matrix does not)\n\n\nIf you mean linear algebra, write %*%."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#subsetting-a-matrix-row-column",
+    "href": "notes/notes-1-emm.html#subsetting-a-matrix-row-column",
+    "title": "R Bootcamp",
+    "section": "Subsetting a matrix: [row, column]",
+    "text": "Subsetting a matrix: [row, column]\n\n\n\nm[1, ]\nm[, 2]\nm[3, 2]\n\n\n\n[1] 1 5\n[1] 5 6 7 8\n[1] 7\n\n\n\n\nConditions work here too — and count down the columns:\n\nm[m &gt; 5]\nwhich(m &gt; 5)\n\n\n\n[1] 6 7 8\n[1] 6 7 8"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#lists-hold-anything",
+    "href": "notes/notes-1-emm.html#lists-hold-anything",
+    "title": "R Bootcamp",
+    "section": "Lists hold anything",
+    "text": "Lists hold anything\n\n\nDifferent types, different lengths, even other lists\n\nx &lt;- list()\nx[[1]] &lt;- 1:5\nx[[2]] &lt;- seq(1, 9, by = 2)\nx[[3]] &lt;- \"lists are flexible\"\nx[[4]] &lt;- list(a = \"hello\", b = \"world\")\n\n\n\n\n\n\n\nstr(x)\n\n\n\nList of 4\n $ : int [1:5] 1 2 3 4 5\n $ : num [1:5] 1 3 5 7 9\n $ : chr \"lists are flexible\"\n $ :List of 2\n  ..$ a: chr \"hello\"\n  ..$ b: chr \"world\""
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#versus",
+    "href": "notes/notes-1-emm.html#versus",
+    "title": "R Bootcamp",
+    "section": "[[ versus [",
+    "text": "[[ versus [\n\n\n\nx[[3]]\n\n\n\n[1] \"lists are flexible\"\n\n\n\n\nx[3]\n\n\n\n[[1]]\n[1] \"lists are flexible\"\n\n\n\n\n\n[[ returns the element itself; [ returns a smaller list\n\nclass(x[[3]])\nclass(x[3])\n\n\n\n[1] \"character\"\n[1] \"list\"\n\n\n\n\nWhy care about lists?"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#a-data-frame-is-a-fancy-list",
+    "href": "notes/notes-1-emm.html#a-data-frame-is-a-fancy-list",
+    "title": "R Bootcamp",
+    "section": "A data frame is a fancy list",
+    "text": "A data frame is a fancy list\n\n\nmtcars is a data frame built into R — let’s borrow it\n\ndf &lt;- mtcars\nclass(df)\n\n\n\n[1] \"data.frame\"\n\n\n\n\nUnder the hood: a list of columns, all the same length\n\nis.list(df)\ndim(df)      # c(nrow(df), ncol(df))\nlength(df)\n\n\n\n[1] TRUE\n[1] 32 11\n[1] 11"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#looking-at-a-data-frame",
+    "href": "notes/notes-1-emm.html#looking-at-a-data-frame",
+    "title": "R Bootcamp",
+    "section": "Looking at a data frame",
+    "text": "Looking at a data frame\n\n\nTyping df prints all rows. Use head() instead:\n\nhead(df, 3) ## head(df) default is 6 rows\n\n\n\n               mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n\n\n\n\nhead() shows just the first rows (six, unless you say otherwise) — the fastest sanity check there is"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#the-whole-structure-str",
+    "href": "notes/notes-1-emm.html#the-whole-structure-str",
+    "title": "R Bootcamp",
+    "section": "The whole structure: str()",
+    "text": "The whole structure: str()\n\n\nOne line per column: type first, values after\n\nstr(df)\n\n\n\n'data.frame':   32 obs. of  11 variables:\n $ mpg : num  21 21 22.8 21.4 18.7 ...\n $ cyl : num  6 6 4 6 8 ...\n $ disp: num  160 160 108 258 360 ...\n $ hp  : num  110 110 93 110 175 ...\n $ drat: num  3.9 3.9 3.85 3.08 3.15 ...\n $ wt  : num  2.62 2.88 ...\n $ qsec: num  16.5 17 ...\n $ vs  : num  0 0 1 1 0 ...\n $ am  : num  1 1 1 0 0 ...\n $ gear: num  4 4 4 3 3 ...\n $ carb: num  4 4 1 1 2 ...\n\n\n\n\nThis is usually the first thing to run on any new data (alternatively, View(df) in RStudio)"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#row-and-column-names-in-a-data.frame",
+    "href": "notes/notes-1-emm.html#row-and-column-names-in-a-data.frame",
+    "title": "R Bootcamp",
+    "section": "row and column names in a data.frame",
+    "text": "row and column names in a data.frame\n\n\n\n\nnames(df)\n\n\n\n [1] \"mpg\"  \"cyl\"  \"disp\" \"hp\"   \"drat\" \"wt\"   \"qsec\" \"vs\"   \"am\"   \"gear\"\n[11] \"carb\"\n\n\n\n\n\n\nrownames(df)[1:4]\n\n\n\n[1] \"Mazda RX4\"      \"Mazda RX4 Wag\"  \"Datsun 710\"     \"Hornet 4 Drive\"\n\n\n\n\n\nThe car names aren’t a column. They live in the row names\n\n\nDon’t do this."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#names-are-yours-to-change",
+    "href": "notes/notes-1-emm.html#names-are-yours-to-change",
+    "title": "R Bootcamp",
+    "section": "Names are yours to change",
+    "text": "Names are yours to change\n\n\nAssign into the attribute:\n\ndf2 &lt;- df\n\ncolnames(df2)[1] &lt;- \"miles_per_gallon\"\n\nnames(df2)\n\n\n\n [1] \"miles_per_gallon\" \"cyl\"              \"disp\"            \n [4] \"hp\"               \"drat\"             \"wt\"              \n [7] \"qsec\"             \"vs\"               \"am\"              \n[10] \"gear\"             \"carb\"            \n\n\n\n\nSame trick works for rownames() — these are just character vectors you can overwrite"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#grabbing-a-column",
+    "href": "notes/notes-1-emm.html#grabbing-a-column",
+    "title": "R Bootcamp",
+    "section": "Grabbing a column: $",
+    "text": "Grabbing a column: $\n\n\n\ndf$cyl\n\n\n\n [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4\n\n\n\n\ntable() counts values — the fastest first look at a column:\n\ntable(df$cyl) # add a useNA = 'ifany' if you suspect NAs!\n\n\n\n\n 4  6  8 \n11  7 14 \n\n\n\n\n\nTwo columns give a cross-tab:\n\ntable(df$cyl, df$gear)\n\n\n\n   \n     3  4  5\n  4  1  8  2\n  6  2  4  1\n  8 12  0  2"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#as.matrix-what-do-we-lose",
+    "href": "notes/notes-1-emm.html#as.matrix-what-do-we-lose",
+    "title": "R Bootcamp",
+    "section": "as.matrix(): what do we lose?",
+    "text": "as.matrix(): what do we lose?\n\n\n\ncars_matrix &lt;- as.matrix(df)\ncars_matrix[1:3, 1:4]\n\n\n\n               mpg cyl disp  hp\nMazda RX4     21.0   6  160 110\nMazda RX4 Wag 21.0   6  160 110\nDatsun 710    22.8   4  108  93\n\n\n\n\nThe row names survive the trip because matricies allow row (and column) names.\n\nclass(cars_matrix)\n\n\n\n[1] \"matrix\" \"array\" \n\n\n\n\n\nMatricies require type for everything: a single character column would have turned the whole matrix into text"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#subsetting-rows",
+    "href": "notes/notes-1-emm.html#subsetting-rows",
+    "title": "R Bootcamp",
+    "section": "Subsetting rows",
+    "text": "Subsetting rows\n\n\nData frames take [row, column] just like matrices\n\ndf[1:2, c(\"mpg\", \"cyl\")]\n\n\n\n              mpg cyl\nMazda RX4      21   6\nMazda RX4 Wag  21   6\n\n\n\n\nConditions filter rows:\n\ndf[df$hp &gt; 200, c(\"mpg\", \"cyl\", \"hp\")]\n\n\n\n                     mpg cyl  hp\nDuster 360          14.3   8 245\nCadillac Fleetwood  10.4   8 205\nLincoln Continental 10.4   8 215\nChrysler Imperial   14.7   8 230\nCamaro Z28          13.3   8 245\nFord Pantera L      15.8   8 264\nMaserati Bora       15.0   8 335"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#extracting-columns-four-ways",
+    "href": "notes/notes-1-emm.html#extracting-columns-four-ways",
+    "title": "R Bootcamp",
+    "section": "Extracting columns, four ways",
+    "text": "Extracting columns, four ways\n\n\n\nhead(df[\"cyl\"], 3)\n\n\n\n              cyl\nMazda RX4       6\nMazda RX4 Wag   6\nDatsun 710      4\n\n\n\ndf[\"cyl\"] is still a data frame — list subsetting with [\n\n\n\n[[ or $ or [, \"cyl\"] or [, 2]) gives the vector itself:\n\ndf[[\"cyl\"]]\n\n\n\n [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4\n\n\n\n\n\nAnd single elements by position: df[1, 1] is 21"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#build-one-from-scratch",
+    "href": "notes/notes-1-emm.html#build-one-from-scratch",
+    "title": "R Bootcamp",
+    "section": "Build one from scratch",
+    "text": "Build one from scratch\n\n\ndata.frame() works like list(): name the columns, give equal-length vectors\n\nschools &lt;- data.frame(\n  school = c(\"Princeton\", \"Rutgers\"),\n  students = c(5590, 36000)\n)\nschools\n\n\n\n     school students\n1 Princeton     5590\n2   Rutgers    36000\n\n\n\n\nAdd rows or columns with rbind() / cbind():\n\nyale &lt;- data.frame(school = \"Yale\", students = 6645)\nrbind(schools, yale)\n\n\n\n     school students\n1 Princeton     5590\n2   Rutgers    36000\n3      Yale     6645"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#your-computer-is-a-tree-of-folders",
+    "href": "notes/notes-1-emm.html#your-computer-is-a-tree-of-folders",
+    "title": "R Bootcamp",
+    "section": "Your computer is a tree of folders",
+    "text": "Your computer is a tree of folders\n\n\nEvery file lives in a folder, and every folder lives inside another — one big tree (folder = “directory”).\n/Users/you/\n├── Desktop/\n├── Downloads/\n└── Documents/\n    └── bootcamp/\n        ├── day-1.R\n        └── data/\n            └── county_population.csv\n\nA file’s path is its full address — the folders you pass through, joined by /:\n/Users/you/Documents/bootcamp/data/county_population.csv\n\n\n(Windows spells it C:\\Users\\you\\... but in R, always write /; it works on every system)"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#growing-up-is-hard",
+    "href": "notes/notes-1-emm.html#growing-up-is-hard",
+    "title": "R Bootcamp",
+    "section": "Growing up is hard",
+    "text": "Growing up is hard\n\n\n\n\nIf you have everything in ~/Downloads…."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#where-is-r-standing-the-working-directory",
+    "href": "notes/notes-1-emm.html#where-is-r-standing-the-working-directory",
+    "title": "R Bootcamp",
+    "section": "Where is R standing? The working directory",
+    "text": "Where is R standing? The working directory\n\n\nR always works from one folder in that tree — its working directory:\n\ngetwd()\n\n\n\n[1] \"/Users/ericmm/Documents/GitHub/r-bootcamp/notes\"\n\n\n\nA relative path gives directions from there. No absolute file path required.\ncounty &lt;- read.csv(\"data/county_population.csv\")\n(“go into data/, grab the file” — and .. means “up one folder”)\n\n\n\nCan’t find your file? Ask what R can actually see from where it stands:\n\nlist.files()\nlist.files(\"data\")"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#making-paths-painless",
+    "href": "notes/notes-1-emm.html#making-paths-painless",
+    "title": "R Bootcamp",
+    "section": "Making paths painless",
+    "text": "Making paths painless\n\n\n\n\nsetwd() exists — but hard-coded paths break on every other computer. Always assume you’re in the project root and make all paths relative.\n\n\n\n\n\nIf you have a bunch of scripts, but them in scripts/\nThen paths to data will be ../data/county_population.csv\nNeed a file’s full path? Drag the file from Finder / File Explorer into the console and the path types itself."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#our-data-county-populations",
+    "href": "notes/notes-1-emm.html#our-data-county-populations",
+    "title": "R Bootcamp",
+    "section": "Our data: county populations",
+    "text": "Our data: county populations\n\n\n2020 Census population for every US county. Download it here and save it in data/\n\nreadLines(\"data/county_population.csv\", n = 3)\n\n\n\n\n\n\n\n[1] \"fips,region,division,pop\"             \n[2] \"01001,South,East South Central,58805\" \n[3] \"01003,South,East South Central,231767\"\n\n\n\n\n\nA .csv is just text: one row per line, commas between values, names in the first line"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#reading-it-in-read.csv",
+    "href": "notes/notes-1-emm.html#reading-it-in-read.csv",
+    "title": "R Bootcamp",
+    "section": "Reading it in: read.csv()",
+    "text": "Reading it in: read.csv()\n\n\n\ncounty &lt;- read.csv(\"county_population.csv\")\nhead(county, 3)\n\n\n\n\n\n\n\n  fips region           division    pop\n1 1001  South East South Central  58805\n2 1003  South East South Central 231767\n3 1005  South East South Central  25223\n\n\n\n\n\nCompare with the raw file: \"01001\" became the number 1001 — the leading zeros are gone!"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#reading-it-in-with-arguments",
+    "href": "notes/notes-1-emm.html#reading-it-in-with-arguments",
+    "title": "R Bootcamp",
+    "section": "Reading it in, with arguments",
+    "text": "Reading it in, with arguments\n\n\nTell read.csv() what the column really is:\n\ncounty &lt;- read.csv(\n  \"county_population.csv\",\n  colClasses = c(fips = \"character\")\n)\nstr(county)\n\n\n\n\n\n\n\n'data.frame':   3143 obs. of  4 variables:\n $ fips    : chr  \"01001\" \"01003\" ...\n $ region  : chr  \"South\" \"South\" ...\n $ division: chr  \"East South Central\" \"East South Central\" ...\n $ pop     : int  58805 231767 25223 22293 59134 ...\n\n\n\n\n\nThis distinction is often important if you are joining data, if ‘0xx’ is different from ‘xx’ etc."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#watch-for-coded-missingness",
+    "href": "notes/notes-1-emm.html#watch-for-coded-missingness",
+    "title": "R Bootcamp",
+    "section": "Watch for coded missingness",
+    "text": "Watch for coded missingness\n\n\nSurveys love codes like -9 or -999 for “no answer”\n\nages &lt;- c(34, -9, 27)\nmean(ages)\n\n\n\n[1] 17.33333\n\n\n\nNA is always better. (Why?)\n\n\n\nna.strings translates the codes to NA when reading:\n\nsurvey &lt;- read.csv(\"survey.csv\", na.strings = c(\"-9\", \"-999\"))"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#other-read.csv-arguments-to-know",
+    "href": "notes/notes-1-emm.html#other-read.csv-arguments-to-know",
+    "title": "R Bootcamp",
+    "section": "Other read.csv() arguments to know",
+    "text": "Other read.csv() arguments to know\n\n\n\n\n\nArgument\nWhen you need it\n\n\n\n\nheader = FALSE\nthe file has no column-name row\n\n\nskip = 3\njunk lines (titles, notes) sit above the data\n\n\nnrows = 100\npeek at the first chunk of a huge file\n\n\nfill = TRUE\nragged files — some rows end early\n\n\nna.strings\nwhich codes mean “missing”\n\n\n\n\n\nEvery one of these is a question about your file. You can use readLines(path, n = a_small_number) to inspect the file."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#first-look-at-new-data-summary",
+    "href": "notes/notes-1-emm.html#first-look-at-new-data-summary",
+    "title": "R Bootcamp",
+    "section": "First look at new data: summary()",
+    "text": "First look at new data: summary()\n\n\n\nsummary(county)\n\n\n\n        fips            region          division         pop          \n Length   :3143   Length   :3143   Length   :3143   Min.   :      64  \n N.unique :3143   N.unique :   4   N.unique :   9   1st Qu.:   10832  \n N.blank  :   0   N.blank  :   0   N.blank  :   0   Median :   25698  \n Min.nchar:   5   Min.nchar:   4   Min.nchar:   7   Mean   :  105456  \n Max.nchar:   5   Max.nchar:   9   Max.nchar:  18   3rd Qu.:   67946  \n                                                    Max.   :10014009  \n\n\n\n\nEvery column at once: quartiles for numbers, profiles for text. Both str() and summary() are useful."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#beyond-csv",
+    "href": "notes/notes-1-emm.html#beyond-csv",
+    "title": "R Bootcamp",
+    "section": "Beyond csv",
+    "text": "Beyond csv\n\n\n\n\n\n\n\n\n\n\n\nFormat\nFunctions\nTrade-off\n\n\n\n\n.csv\nread.csv() / write.csv()\nopens anywhere; loses types (ask fips!)\n\n\n.rds\nreadRDS() / saveRDS()\none R object, restored exactly; R-only\n\n\n.rda\nload() / save()\nmany objects at once; R-only\n\n\n.dta, .xlsx\nhaven, readxl packages\nStata and Excel files\n\n\n\n\n\n\nCareful with .rda: load() will overwrite existing objects if they have the same name.\n\n\n\nRule of thumb: share .csv with humans, save .rds and .rda for yourself (and collaborators).\n\n\n\nSometimes."
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#writing-files",
+    "href": "notes/notes-1-emm.html#writing-files",
+    "title": "R Bootcamp",
+    "section": "Writing files",
+    "text": "Writing files\n\n\n\nwrite.csv(county, \"county_population.csv\", row.names = FALSE)\n\n\n\n\n\nrow.names = FALSE or you’ll get a useless, unnamed column\n\n\n\n\nsaveRDS(county, \"county_population.rds\")   ## holds one object (compressed)\ncounty &lt;- readRDS(\"county_population.rds\")\n\n\n\n\n\n\n\n\nsave(county, ..., file = \"stuff.rda\")   ## holds one object (compressed)\nload('stuff.rda') \n\n\n\n\n\n\n\nReasons to prefer one or the other?"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#summarizing-a-column",
+    "href": "notes/notes-1-emm.html#summarizing-a-column",
+    "title": "R Bootcamp",
+    "section": "Summarizing a column",
+    "text": "Summarizing a column\n\n\n\nmean(county$pop)\n\n\n\n[1] 105456.3\n\n\n\n\nmedian(county$pop)\n\n\n\n[1] 25698\n\n\n\n\n\nFunctions compose, evaluated inside-out:\n\nround(mean(county$pop))\n\n## alternatively, mean(county$pop) |&gt; round() ... \n\n\n\n[1] 105456\n\n\n\n\n\nAnd a second argument picks the digits:\n\nround(3.14159, 2) ## see also: ceiling, floor, trunc\n\n\n\n[1] 3.14"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#making-new-columns",
+    "href": "notes/notes-1-emm.html#making-new-columns",
+    "title": "R Bootcamp",
+    "section": "Making new columns",
+    "text": "Making new columns\n\n\nAssign into a column that doesn’t exist yet — and now it does:\n\ncounty$pop_millions &lt;- round(county$pop / 1e6, 2)\nhead(county, 3)\n\n\n\n   fips region           division    pop pop_millions\n1 01001  South East South Central  58805         0.06\n2 01003  South East South Central 231767         0.23\n3 01005  South East South Central  25223         0.03"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#the-rest-of-the-toolbox",
+    "href": "notes/notes-1-emm.html#the-rest-of-the-toolbox",
+    "title": "R Bootcamp",
+    "section": "The rest of the toolbox",
+    "text": "The rest of the toolbox\n\n\n\nsd(county$pop) ## see also: var()\n\n\n\n[1] 335760.4\n\n\n\nlog() and exp():\n\nlog(county$pop[1])\nexp(1)\n\n\n\n[1] 10.98198\n[1] 2.718282\n\n\n\n\n\nCareful: log() is the natural log — base 10 is log10()\n\n\n\nEvery function documents itself:\n\n?median"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#asking-real-questions",
+    "href": "notes/notes-1-emm.html#asking-real-questions",
+    "title": "R Bootcamp",
+    "section": "Asking real questions",
+    "text": "Asking real questions\n\n\nWhat share of counties hold a million-plus people?\n\nmean(county$pop &gt; 1e6)\n\n\n\n[1] 0.0155902\n\n\n\nmean() on booleans again — about 1.6% (sum() would count them)\n\n\n\nWhich county is the biggest? which.max() finds the position:\n\ncounty[which.max(county$pop), ]\n\n\n\n      fips region division      pop pop_millions\n1946 06037   West  Pacific 10014009        10.01"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#sorting-the-whole-data-frame",
+    "href": "notes/notes-1-emm.html#sorting-the-whole-data-frame",
+    "title": "R Bootcamp",
+    "section": "Sorting the whole data frame",
+    "text": "Sorting the whole data frame\n\n\nGive me all the information about the three largest counties:\n\n\nhead(county[order(-county$pop), ], 3)\n\n## for readability:\n# ord = order(-county$pop)\n# county[ord,] |&gt; head(3)\n\n\n\n      fips  region           division      pop pop_millions\n1946 06037    West            Pacific 10014009        10.01\n1546 17031 Midwest East North Central  5275541         5.28\n1453 48201   South West South Central  4731145         4.73"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#summary-and-beyond",
+    "href": "notes/notes-1-emm.html#summary-and-beyond",
+    "title": "R Bootcamp",
+    "section": "summary() and beyond",
+    "text": "summary() and beyond\n\n\n\nsummary(county$pop)\n\n\n\n    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. \n      64    10832    25698   105456    67946 10014009 \n\n\n\n\nBuild your own with a named vector:\n\nc(\n  n = length(county$pop),\n  mean = mean(county$pop),\n  sd = sd(county$pop)\n)\n\n\n\n       n     mean       sd \n  3143.0 105456.3 335760.4 \n\n\n\n\nThis gets repetitive if we write the same code for each column – or for a bunch of different data frames…"
+  },
+  {
+    "objectID": "notes/notes-1-emm.html#monday",
+    "href": "notes/notes-1-emm.html#monday",
+    "title": "R Bootcamp",
+    "section": "Monday",
+    "text": "Monday\n\n\nMorning:\n\nwriting your own functions\nloops\nlapply() and friends\nExercise: putting it all together in base R\n\n\n\nAfternoon:\n\nWriting professional documents (typesetting with Quarto)\ntidyverse for working more effectively with data\nExercise: applications of tidyverse\n\n\n\n\nprinceton-ddss.github.io/r-bootcamp"
+  },
+  {
     "objectID": "day-3.html",
     "href": "day-3.html",
     "title": "Day 3: Visualization and simulation",
@@ -152,5 +600,530 @@
     "title": "R Bootcamp",
     "section": "Schedule",
     "text": "Schedule\n\n\nDay 1 · Friday, August 28, 2:00–5:30\n\nGetting started\n\nSetup, ergonomics, and packages\nTypes, vectors, and data frames\nReading data and R as a calculator\n\n\n\n\nDay 2 · Monday, August 31, 9:00–5:00\n\nProgramming and tidyverse\n\nFunctions, loops, and lapply()\nQuarto and typesetting\nTidyverse, excluding plotting\n\n\n\n\nDay 3 · Tuesday, September 1, 9:00–5:00\n\nVisualization and simulation\n\nBase R plots and ggplot2\nVersion control and stats functions\nBig exercise: simulation\n\n\n\n\n\nDays 2 and 3: an hour for lunch, plus short breaks morning and afternoon"
+  },
+  {
+    "objectID": "notes/exercise-3-plots-solutions.html",
+    "href": "notes/exercise-3-plots-solutions.html",
+    "title": "Data visualization exercise: solutions",
+    "section": "",
+    "text": "This document includes only one possible solution. Yours may vary."
+  },
+  {
+    "objectID": "notes/exercise-3-plots-solutions.html#setup-given",
+    "href": "notes/exercise-3-plots-solutions.html#setup-given",
+    "title": "Data visualization exercise: solutions",
+    "section": "Setup (given)",
+    "text": "Setup (given)\n\nlibrary(tidyverse)\n\ncounties = left_join(\n  read_csv(\"https://princeton-ddss.github.io/r-bootcamp/files/county_data.csv\"),\n  read_csv(\"https://princeton-ddss.github.io/r-bootcamp/files/county_population.csv\"),\n  join_by(GEOID == fips)\n)"
+  },
+  {
+    "objectID": "notes/exercise-3-plots-solutions.html#rent-and-income-distributions-by-group",
+    "href": "notes/exercise-3-plots-solutions.html#rent-and-income-distributions-by-group",
+    "title": "Data visualization exercise: solutions",
+    "section": "Rent and income distributions by group",
+    "text": "Rent and income distributions by group\n\nlibrary(scales)\n\n## 12 NA values. Fine.\n\ncounties |&gt;\n  filter(!is.na(region)) |&gt;\n  pivot_longer(c(income, rent)) |&gt;\n  mutate(name = str_to_sentence(name)) |&gt;\n  ggplot(aes(x = value, color = region)) +\n  geom_density(linewidth = 1) +\n  facet_wrap(~ name, scales = \"free\") +\n  labs(x = NULL, y = \"Density\", color = \"Region\") +\n  theme_bw(base_size = 20) +\n  theme(\n    legend.position = 'bottom',\n    axis.text.y = element_blank(),\n    strip.background = element_rect(\n      fill = 'white',\n      color = \"black\",\n      linewidth = 0\n      ),\n    ) +\n  scale_x_continuous(labels = label_dollar(scale_cut = cut_short_scale())) +\n  expand_limits(x = 0)"
+  },
+  {
+    "objectID": "notes/exercise-3-plots-solutions.html#publication-ready",
+    "href": "notes/exercise-3-plots-solutions.html#publication-ready",
+    "title": "Data visualization exercise: solutions",
+    "section": "Publication-ready",
+    "text": "Publication-ready\n\nggsave(\"rent_income_densities.pdf\", width = 8, height = 4)"
+  },
+  {
+    "objectID": "notes/exercise-3-plots-solutions.html#fetching-data",
+    "href": "notes/exercise-3-plots-solutions.html#fetching-data",
+    "title": "Data visualization exercise: solutions",
+    "section": "Fetching data",
+    "text": "Fetching data\n\npres = read_csv(\"data/countypres_2000-2024.csv\")\n\nglimpse(pres)\ncount(pres, year)\n\n\n\nRows: 94,151\nColumns: 12\n$ year           &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2…\n$ state          &lt;chr&gt; \"ALABAMA\", \"ALABAMA\", \"ALABAMA\", \"ALABAMA\", \"ALABAMA\", …\n$ state_po       &lt;chr&gt; \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"…\n$ county_name    &lt;chr&gt; \"AUTAUGA\", \"AUTAUGA\", \"AUTAUGA\", \"AUTAUGA\", \"BALDWIN\", …\n$ county_fips    &lt;dbl&gt; 1001, 1001, 1001, 1001, 1003, 1003, 1003, 1003, 1005, 1…\n$ office         &lt;chr&gt; \"US PRESIDENT\", \"US PRESIDENT\", \"US PRESIDENT\", \"US PRE…\n$ candidate      &lt;chr&gt; \"OTHER\", \"CHASE OLIVER\", \"KAMALA D HARRIS\", \"DONALD J T…\n$ party          &lt;chr&gt; \"OTHER\", \"LIBERTARIAN\", \"DEMOCRAT\", \"REPUBLICAN\", \"OTHE…\n$ candidatevotes &lt;dbl&gt; 293, 65, 7439, 20484, 1276, 95798, 24934, 241, 5606, 41…\n$ totalvotes     &lt;dbl&gt; 28281, 28281, 28281, 28281, 122249, 122249, 122249, 122…\n$ version        &lt;dbl&gt; 20260225, 20260225, 20260225, 20260225, 20260225, 20260…\n$ mode           &lt;chr&gt; \"TOTAL\", \"TOTAL\", \"TOTAL\", \"TOTAL\", \"TOTAL\", \"TOTAL\", \"…\n\n\n# A tibble: 7 × 2\n   year     n\n  &lt;dbl&gt; &lt;int&gt;\n1  2000 12628\n2  2004  9474\n3  2008  9474\n4  2012  9474\n5  2016  9474\n6  2020 22093\n7  2024 21534"
+  },
+  {
+    "objectID": "notes/exercise-3-plots-solutions.html#fixing-problems",
+    "href": "notes/exercise-3-plots-solutions.html#fixing-problems",
+    "title": "Data visualization exercise: solutions",
+    "section": "Fixing problems",
+    "text": "Fixing problems\n\npres = pres |&gt;\n  filter(!is.na(party), !is.na(county_fips)) |&gt;\n  mutate(county_fips = str_pad(county_fips, width = 5, pad = \"0\"))\n\nglimpse(pres)\n\nRows: 93,598\nColumns: 12\n$ year           &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2…\n$ state          &lt;chr&gt; \"ALABAMA\", \"ALABAMA\", \"ALABAMA\", \"ALABAMA\", \"ALABAMA\", …\n$ state_po       &lt;chr&gt; \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"…\n$ county_name    &lt;chr&gt; \"AUTAUGA\", \"AUTAUGA\", \"AUTAUGA\", \"AUTAUGA\", \"BALDWIN\", …\n$ county_fips    &lt;chr&gt; \"01001\", \"01001\", \"01001\", \"01001\", \"01003\", \"01003\", \"…\n$ office         &lt;chr&gt; \"US PRESIDENT\", \"US PRESIDENT\", \"US PRESIDENT\", \"US PRE…\n$ candidate      &lt;chr&gt; \"OTHER\", \"CHASE OLIVER\", \"KAMALA D HARRIS\", \"DONALD J T…\n$ party          &lt;chr&gt; \"OTHER\", \"LIBERTARIAN\", \"DEMOCRAT\", \"REPUBLICAN\", \"OTHE…\n$ candidatevotes &lt;dbl&gt; 293, 65, 7439, 20484, 1276, 95798, 24934, 241, 5606, 41…\n$ totalvotes     &lt;dbl&gt; 28281, 28281, 28281, 28281, 122249, 122249, 122249, 122…\n$ version        &lt;dbl&gt; 20260225, 20260225, 20260225, 20260225, 20260225, 20260…\n$ mode           &lt;chr&gt; \"TOTAL\", \"TOTAL\", \"TOTAL\", \"TOTAL\", \"TOTAL\", \"TOTAL\", \"…\n\n\nFirst, read_csv() guessed county_fips as a number (&lt;dbl&gt;). Second, the 2024 bookkeeping rows (TOTAL VOTES CAST, OVERVOTES, …) have an empty party, which read_csv() reads in as NA. County votes are overcalculated with these rows in place. We also drop the handful of state-level rows with no county_fips at all."
+  },
+  {
+    "objectID": "notes/exercise-3-plots-solutions.html#republican-vote-share-over-time",
+    "href": "notes/exercise-3-plots-solutions.html#republican-vote-share-over-time",
+    "title": "Data visualization exercise: solutions",
+    "section": "Republican vote share over time",
+    "text": "Republican vote share over time\n\nrep_votes = pres |&gt;\n  filter(party %in% c('DEMOCRAT', 'REPUBLICAN')) |&gt;\n  summarize(\n    rep_share = sum(candidatevotes[party == \"REPUBLICAN\"]) /\n      sum(candidatevotes),\n    .by = c(year, county_fips)\n  )\n\nhead(rep_votes, 3)\n\n# A tibble: 3 × 3\n   year county_fips rep_share\n  &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n1  2024 01001           0.734\n2  2024 01003           0.793\n3  2024 01005           0.574\n\nrep_wide = rep_votes |&gt;\n  pivot_wider(\n    names_from = year,\n    values_from = rep_share,\n    names_prefix = \"r\"\n    ) |&gt;\n  mutate(shift = r2024 - r2012)\n\nhead(rep_wide, 3)\n\n# A tibble: 3 × 9\n  county_fips r2024 r2000 r2004 r2008 r2012 r2016 r2020   shift\n  &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n1 01001       0.734 0.708 0.762 0.741 0.732 0.754 0.726 0.00159\n2 01003       0.793 0.745 0.773 0.760 0.782 0.798 0.773 0.0117 \n3 01005       0.574 0.496 0.550 0.507 0.484 0.528 0.539 0.0899"
+  },
+  {
+    "objectID": "notes/exercise-3-plots-solutions.html#visualizing-county-level-shifts",
+    "href": "notes/exercise-3-plots-solutions.html#visualizing-county-level-shifts",
+    "title": "Data visualization exercise: solutions",
+    "section": "Visualizing county-level shifts",
+    "text": "Visualizing county-level shifts\n\nggplot(rep_wide, aes(x = r2012, y = r2024)) +\n  geom_point(size = 0.5) +\n  geom_abline() +\n  labs(x = \"Republican share, 2012\", y = \"Republican share, 2024\",\n       title = \"County vote shares, 2024 vs. 2012\") +\n  theme_bw(base_size = 20)"
+  },
+  {
+    "objectID": "notes/exercise-3-plots-solutions.html#mapping-the-shifts",
+    "href": "notes/exercise-3-plots-solutions.html#mapping-the-shifts",
+    "title": "Data visualization exercise: solutions",
+    "section": "Mapping the shifts",
+    "text": "Mapping the shifts\n\nlibrary(sf)\n\nshapes = st_read(\"https://princeton-ddss.github.io/r-bootcamp/files/county_shapes.geojson\")\n\n\nshift_map = shapes |&gt;\n  left_join(rep_wide, join_by(GEOID == county_fips))\n\nggplot(shift_map) +\n  geom_sf(aes(fill = shift), linewidth = 0.02) +\n  scale_fill_gradient2(\n    low = \"blue\", mid = \"white\", high = \"red\",\n    guide = guide_colorbar(\n      ticks.colour = \"black\",  # Makes ticks stand out against light colors\n      ticks.linewidth = 1      # Makes the tick marks thicker\n      )\n    ) +\n  labs(fill = \"Shift in R share, 2012 to 2024\") +\n  theme_void(base_size = 15) +\n  theme(legend.position = 'top')"
+  },
+  {
+    "objectID": "notes/exercise-3-plots-solutions.html#republican-shifts-and-county-level-income",
+    "href": "notes/exercise-3-plots-solutions.html#republican-shifts-and-county-level-income",
+    "title": "Data visualization exercise: solutions",
+    "section": "Republican shifts and county-level income",
+    "text": "Republican shifts and county-level income\n\nshift_map = shift_map |&gt;\n  left_join(\n    counties |&gt; select(GEOID, income),\n    join_by(GEOID)\n    )\n\nggplot(shift_map, aes(x = income, y = shift)) +\n  geom_point(size = 0.5) +\n  geom_hline(yintercept = 0, linetype = \"dotted\") +\n  labs(\n    x = \"Median household income ($)\",\n    y = \"Shift in Republican share,\\n2012 - 2024\",\n    title = \"Median HH Income vs.\\nShift in tpvs, 2012 - 2024\"\n    ) +\n  theme_minimal(base_size = 15) +\n  scale_x_continuous(labels = label_dollar(scale_cut = cut_short_scale()))"
+  },
+  {
+    "objectID": "notes/exercise-3-plots-solutions.html#thinking-like-a-social-scientist",
+    "href": "notes/exercise-3-plots-solutions.html#thinking-like-a-social-scientist",
+    "title": "Data visualization exercise: solutions",
+    "section": "Thinking like a social scientist",
+    "text": "Thinking like a social scientist\nThis is a county-level (aggregate) relationship. Gelman et al.’s Red State, Blue State shows that aggregate and individual-level correlations can vary in direction. We should not conclude from this plot that “less wealthy voters swung right and wealthier voters swung left.” To examine this relationship properly, we need individual-level data: surveys with income and vote choice (ANES, CES, exit polls).\n\nElection data: MIT Election Data and Science Lab, “County Presidential Election Returns 2000–2024”, doi:10.7910/DVN/VOQCHQ (CC0)."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#this-session",
+    "href": "notes/notes-3-emm.html#this-session",
+    "title": "R Bootcamp",
+    "section": "This session",
+    "text": "This session\n\n\n1) Base R plots\n\n\nYour first plots: scatter, line, histogram, bar, density\nThe canvas model: layering with lines(), points(), abline()\nMany plots at once; maps\n\n\n\n2) ggplot2\n\n\nPlots as objects, built from layers\nGeoms, facets, scales, and labels\nMaking and saving publication-ready figures\n\n\n\n Conclude with Quarto report exercise"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#some-sources",
+    "href": "notes/notes-3-emm.html#some-sources",
+    "title": "R Bootcamp",
+    "section": "Some sources",
+    "text": "Some sources\n\n\n\nWickham, Çetinkaya-Rundel, and Grolemund, R for Data Science, 2e\n\nCh. 1: Data visualization\nCh. 9: Layers\n\nHarvard IQSS, Math Prefresher for Political Scientists\n\nCh. 10: Visualization\n\nggplot2 documentation\n\nFunction reference — every geom, scale, and theme\nAesthetic specifications — every point shape, line type, and color name"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#our-data-again",
+    "href": "notes/notes-3-emm.html#our-data-again",
+    "title": "R Bootcamp",
+    "section": "Our data, again",
+    "text": "Our data, again\n\n\nThe county data from yesterday — income and rent, plus population and region:\n\ncounties &lt;- left_join(\n  read_csv(\"data/county_data.csv\"),\n  read_csv(\"data/county_population.csv\"),\n  join_by(GEOID == fips)\n  )"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#our-data-again-1",
+    "href": "notes/notes-3-emm.html#our-data-again-1",
+    "title": "R Bootcamp",
+    "section": "Our data, again",
+    "text": "Our data, again\n\n\n\nglimpse(counties)\n\n\n\nRows: 3,144\nColumns: 10\n$ GEOID      &lt;chr&gt; \"01001\", \"01003\", \"01005\", \"01007\", \"01009\", \"01011\", \"01…\n$ state      &lt;chr&gt; \"Alabama\", \"Alabama\", \"Alabama\", \"Alabama\", \"Alabama\", \"A…\n$ county     &lt;chr&gt; \"Autauga County\", \"Baldwin County\", \"Barbour County\", \"Bi…\n$ income     &lt;dbl&gt; 69841, 75019, 44290, 51215, 61096, 36723, 44881, 55826, 4…\n$ income_moe &lt;dbl&gt; 5512, 2751, 2762, 6678, 3328, 6836, 4130, 2168, 5005, 489…\n$ rent       &lt;dbl&gt; 1200, 1211, 644, 802, 743, 635, 722, 804, 850, 750, 855, …\n$ rent_moe   &lt;dbl&gt; 75, 42, 41, 129, 27, 93, 17, 28, 61, 74, 65, 135, 104, 13…\n$ region     &lt;chr&gt; \"South\", \"South\", \"South\", \"South\", \"South\", \"South\", \"So…\n$ division   &lt;chr&gt; \"East South Central\", \"East South Central\", \"East South C…\n$ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 116441,…"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#your-first-plot",
+    "href": "notes/notes-3-emm.html#your-first-plot",
+    "title": "R Bootcamp",
+    "section": "Your first plot",
+    "text": "Your first plot\n\n\n\nplot(counties$income, counties$rent)"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#a-bunch-of-hidden-defaults-we-can-fill-ourselves",
+    "href": "notes/notes-3-emm.html#a-bunch-of-hidden-defaults-we-can-fill-ourselves",
+    "title": "R Bootcamp",
+    "section": "A bunch of hidden defaults we can fill ourselves",
+    "text": "A bunch of hidden defaults we can fill ourselves\n\n\n\nplot(\n  counties$income / 1000, counties$rent,\n  main = \"Rent vs. income\",\n  xlab = \"Median household income (in thousands USD)\",\n  ylab = \"Median gross rent\",\n  pch = 19, cex = 0.5, col = \"steelblue\"\n  )"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#useful-plot-arguments",
+    "href": "notes/notes-3-emm.html#useful-plot-arguments",
+    "title": "R Bootcamp",
+    "section": "Useful plot arguments",
+    "text": "Useful plot arguments\n\n\n\n\n\nArgument\nWhat it controls\nExample\n\n\n\n\nmain\ntitle\nmain = \"Rent vs. income\"\n\n\nxlab, ylab\naxis labels\nxlab = \"Income\"\n\n\ncol\ncolor\ncol = \"steelblue\"\n\n\npch\npoint shape\npch = 19 (filled circle)\n\n\ncex\npoint size\ncex = 0.5 (half size)\n\n\ntype\npoints vs. lines\ntype = \"l\"\n\n\nlwd, lty\nline width, line style\nlwd = 2, lty = \"dashed\"\n\n\n\n\n\nThe same arguments work across plot(), lines(), points(), hist(), and friends\n\n\nMenus: ?points draws every pch, ?par covers the rest, colors() lists all 657 names"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#from-canvas-to-objects",
+    "href": "notes/notes-3-emm.html#from-canvas-to-objects",
+    "title": "R Bootcamp",
+    "section": "From canvas to objects",
+    "text": "From canvas to objects\n\n\nBase R: call functions, ink appears on a device. The plot is a side effect.\n\nggplot2: builds an object that describes a plot with layers. Gets drawn when you print it.\n\n\n\nThat means you can assign, modify, combine, save, etc. without printing anything.\n\np &lt;- ggplot(...)   # nothing drawn yet\np                  # drawn now\n\n\n\n\n\n\n\nggplot2 is part of the tidyverse you met yesterday:\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#the-gist-data-w-mapping-geom",
+    "href": "notes/notes-3-emm.html#the-gist-data-w-mapping-geom",
+    "title": "R Bootcamp",
+    "section": "The gist: (data w/ mapping) + geom + …",
+    "text": "The gist: (data w/ mapping) + geom + …\n\n\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n(Yuck.)"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#aesthetics",
+    "href": "notes/notes-3-emm.html#aesthetics",
+    "title": "R Bootcamp",
+    "section": "Aesthetics",
+    "text": "Aesthetics\n\n\nMap a third column to color. It’s a variable, so it goes in aes() (constants go in geom_*)\n\nggplot(counties, aes(x = income, y = rent, color = region)) +\n  geom_point(size = 0.7)\n\n\n\n\n\n\n\n\n\n\n\nCompare: in base R, you subset the data, chose the colors, and drew the legend."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#classic-mistake",
+    "href": "notes/notes-3-emm.html#classic-mistake",
+    "title": "R Bootcamp",
+    "section": "Classic mistake",
+    "text": "Classic mistake\n\n\n\nggplot(counties, aes(x = income, y = rent, color = \"steelblue\")) +\n  geom_point(size = 0.7)\n\n\n\n\n\n\n\n\n\n\n\nInside aes(), \"steelblue\" isn’t a color. It gets vectorized as data."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#same-mapping-different-geom",
+    "href": "notes/notes-3-emm.html#same-mapping-different-geom",
+    "title": "R Bootcamp",
+    "section": "Same mapping, different geom",
+    "text": "Same mapping, different geom\n\n\nDistributions by group:\n\nggplot(counties, aes(x = region, y = income)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#composition-stacked-bars",
+    "href": "notes/notes-3-emm.html#composition-stacked-bars",
+    "title": "R Bootcamp",
+    "section": "Composition: stacked bars",
+    "text": "Composition: stacked bars\n\n\nSplit each region’s counties into high- and low-population halves:\n\ncounties = counties |&gt;\n  mutate(pop_level = if_else(\n      pop &gt;= median(counties$pop, na.rm = T),\n      'high pop', 'low_pop'\n  ))\n\ncounties |&gt;\n  filter(!is.na(pop_level)) |&gt;\n  ## piping in this data; now different operator!\n  ggplot(aes(x = region, fill = pop_level)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#counts-vs.-shares-position",
+    "href": "notes/notes-3-emm.html#counts-vs.-shares-position",
+    "title": "R Bootcamp",
+    "section": "Counts vs. shares: position",
+    "text": "Counts vs. shares: position\n\n\nposition = \"fill\" rescales every bar to 1\n\ncounties |&gt;\n  filter(!is.na(pop_level)) |&gt;\n  ggplot(aes(x = region, fill = pop_level)) +\n  geom_bar(position = \"fill\")"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#side-by-side-position-dodge",
+    "href": "notes/notes-3-emm.html#side-by-side-position-dodge",
+    "title": "R Bootcamp",
+    "section": "Side by side: position = \"dodge\"",
+    "text": "Side by side: position = \"dodge\"\n\n\n\ncounties |&gt;\n  filter(!is.na(pop_level)) |&gt;\n  ggplot(aes(x = region, fill = pop_level)) +\n  geom_bar(position = \"dodge\")\n\n\n\n\n\n\n\n\n\n\n\nThree versions of the same bars — stacked, filled, dodged. Which question does each answer best?"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#line-graphs",
+    "href": "notes/notes-3-emm.html#line-graphs",
+    "title": "R Bootcamp",
+    "section": "Line graphs",
+    "text": "Line graphs\n\n\nggplot2 ships with practice data: economics is monthly US macro data:\n\nggplot(economics, aes(x = date, y = unemploy)) +\n  geom_line()"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#common-mistake",
+    "href": "notes/notes-3-emm.html#common-mistake",
+    "title": "R Bootcamp",
+    "section": "Common mistake",
+    "text": "Common mistake\n\n\n\n\nhead(economics_long, 3)\n\n\n\n# A tibble: 3 × 4\n  date       variable value  value01\n  &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 1967-07-01 pce       507. 0       \n2 1967-08-01 pce       510. 0.000265\n3 1967-09-01 pce       516. 0.000762\n\n\n\n\n\nggplot(economics_long, aes(x = date, y = value01)) +\n  geom_line()"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#tell-ggplot-what-belongs-together",
+    "href": "notes/notes-3-emm.html#tell-ggplot-what-belongs-together",
+    "title": "R Bootcamp",
+    "section": "Tell ggplot what belongs together",
+    "text": "Tell ggplot what belongs together\n\n\nMap the series id to color (or group) and each variable gets its own line:\n\nggplot(economics_long, aes(x = date, y = value01, color = variable)) +\n  geom_line()"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#reference-lines-are-geoms-too",
+    "href": "notes/notes-3-emm.html#reference-lines-are-geoms-too",
+    "title": "R Bootcamp",
+    "section": "Reference lines are geoms too",
+    "text": "Reference lines are geoms too\n\n\n\ngeom_hline(), geom_vline(), and geom_abline() are just more layers:\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point(size = 0.5, color = \"gray\") +\n  geom_hline(\n    yintercept = median(counties$rent, na.rm = T),\n    color = \"steelblue\", linewidth = 1\n    )"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#facets",
+    "href": "notes/notes-3-emm.html#facets",
+    "title": "R Bootcamp",
+    "section": "Facets",
+    "text": "Facets\n\n\nOne line splits the plot by a categorical column:\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point(size = 0.4) +\n  facet_wrap(~ region) ## more than one: ~ region + ..."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#facets-in-two-directions",
+    "href": "notes/notes-3-emm.html#facets-in-two-directions",
+    "title": "R Bootcamp",
+    "section": "Facets in two directions",
+    "text": "Facets in two directions\n\n\nfacet_grid(rows ~ cols):\n\ncounties |&gt;\n  filter(!is.na(pop_level)) |&gt;\n  ggplot(aes(x = income, y = rent)) +\n  geom_point(size = 0.4) +\n  facet_grid(pop_level ~ region)"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#labels-with-labs",
+    "href": "notes/notes-3-emm.html#labels-with-labs",
+    "title": "R Bootcamp",
+    "section": "Labels with labs()",
+    "text": "Labels with labs()\n\n\n\nggplot(counties, aes(x = income, y = rent, color = region)) +\n  geom_point(size = 0.7) +\n  labs(\n    title = \"Rent rises with income\",\n    subtitle = \"US counties, 2023 five-year ACS\",\n    x = \"Median household income ($)\",\n    y = \"Median gross rent ($)\",\n    color = \"Region\"\n  )"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#scales-how-mappings-become-positions-and-colors",
+    "href": "notes/notes-3-emm.html#scales-how-mappings-become-positions-and-colors",
+    "title": "R Bootcamp",
+    "section": "Scales: how mappings become positions and colors",
+    "text": "Scales: how mappings become positions and colors\n\n\nEvery aesthetic has a scale named scale_&lt;aesthetic&gt;_&lt;flavor&gt;() with its own arguments:\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point(size = 0.5) +\n  scale_x_continuous(name = \"Median household income\",\n                     breaks = c(50000, 100000, 150000),\n                     labels = c(\"$50k\", \"$100k\", \"$150k\"),\n                     limits = c(0, 200000))"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#zooming-vs.-dropping",
+    "href": "notes/notes-3-emm.html#zooming-vs.-dropping",
+    "title": "R Bootcamp",
+    "section": "Zooming vs. dropping",
+    "text": "Zooming vs. dropping\n\n\nxlim()/ylim()/lims() throw away data outside the limits:\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point(size = 0.5) +\n  lims(x = c(0, 100000))\n\n\n\nWarning: Removed 158 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#zooming-vs.-dropping-1",
+    "href": "notes/notes-3-emm.html#zooming-vs.-dropping-1",
+    "title": "R Bootcamp",
+    "section": "Zooming vs. dropping",
+    "text": "Zooming vs. dropping\n\n\ncoord_cartesian() zooms without dropping:\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point(size = 0.5) +\n  coord_cartesian(xlim = c(0, 100000))\n\n\n\n\n\n\n\n\n\n\n\n\nLooks the same here, but anything computed from the data (boxplot stats, smoothers, densities) changes when points are dropped."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#other-geom_-functions",
+    "href": "notes/notes-3-emm.html#other-geom_-functions",
+    "title": "R Bootcamp",
+    "section": "Other geom_* functions",
+    "text": "Other geom_* functions\n\n\n\nFunction reference — every geom with pictures\nAesthetic specifications — every shape number, linetype name, and color\n\n\n\nYou’ll google ggplot geom + what you want to draw (or ask Claude).\n\n\n\nThere is also a stat_*() family for layers that include on-the-fly statistical transformations. See here."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#setup-for-next-bit",
+    "href": "notes/notes-3-emm.html#setup-for-next-bit",
+    "title": "R Bootcamp",
+    "section": "Setup for next bit",
+    "text": "Setup for next bit\n\n\n\np = ggplot(counties, aes(x = income, y = rent, color = region)) +\n  geom_point(size = 0.6) +\n  labs(\n    x = \"Median household income ($)\",\n    y = \"Median gross rent ($ logged)\",\n    color = NULL\n  ) +\n  scale_x_log10()\n\np"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#themes",
+    "href": "notes/notes-3-emm.html#themes",
+    "title": "R Bootcamp",
+    "section": "Themes",
+    "text": "Themes\n\n\nComplete themes restyle everything at once:\n\np + theme_bw()\n\n\n\n\n\n\n\n\n\n\n\nTry theme_minimal(), theme_bw(), theme_classic(), theme_void(), etc. and packages like ggthemes for more."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#scale-your-fonts-to-the-medium",
+    "href": "notes/notes-3-emm.html#scale-your-fonts-to-the-medium",
+    "title": "R Bootcamp",
+    "section": "Scale your fonts to the medium",
+    "text": "Scale your fonts to the medium\n\n\nEvery complete theme takes base_size to scale all the text together.\nPaper figures ≈ 11, but slides need much more:\n\np + theme_minimal(base_size = 20)\n\n\n\n\n\n\n\n\n\n\n\nForeshadowing: What matters is font size relative to the figure. Save the same plot smaller and every label looks bigger."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#or-size-each-piece-separately",
+    "href": "notes/notes-3-emm.html#or-size-each-piece-separately",
+    "title": "R Bootcamp",
+    "section": "Or size each piece separately",
+    "text": "Or size each piece separately\n\ntheme() targets one element at a time. Elements take an element_*():\n\np + theme_minimal(base_size = 15) +\n  theme(\n    axis.title.x = element_text(size = 20, face = \"bold\"),\n    axis.text    = element_text(size = 10),\n    legend.text  = element_text(size = 12, family = \"Palatino\")\n  )"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#the-element_-family",
+    "href": "notes/notes-3-emm.html#the-element_-family",
+    "title": "R Bootcamp",
+    "section": "The element_*() family",
+    "text": "The element_*() family\n\n\nelement_text(), element_line()\nelement_rect() — backgrounds and borders\nelement_blank() — removes the element\n\n\n\np + theme_bw(base_size = 15) + theme(panel.grid = element_blank())\n\n\n\n\n\n\n\n\n\n\n\n\n\nA complete theme resets everything before it."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#color-palettes",
+    "href": "notes/notes-3-emm.html#color-palettes",
+    "title": "R Bootcamp",
+    "section": "Color palettes",
+    "text": "Color palettes\n\n\nPick non-default colors or it looks like you didn’t try.\n\np + theme_minimal(base_size = 15) + scale_color_viridis_d()\n\n\n\n\n\n\n\n\n\n\n\nviridis is colorblind-safe and printer-safe. scale_*_brewer() uses ColorBrewer. There are many packages (paletteer, MetBrewer, etc)"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#or-make-your-own",
+    "href": "notes/notes-3-emm.html#or-make-your-own",
+    "title": "R Bootcamp",
+    "section": "Or make your own",
+    "text": "Or make your own\n\n\n\npal = c(\"Midwest\" = \"#E87722\", \"Northeast\" = \"steelblue\",\n        \"South\" = \"firebrick\", \"West\" = \"#83876F\")\n\np + theme_minimal(base_size = 15) + scale_color_manual(values = pal)"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#composing-figures-patchwork",
+    "href": "notes/notes-3-emm.html#composing-figures-patchwork",
+    "title": "R Bootcamp",
+    "section": "Composing figures: patchwork",
+    "text": "Composing figures: patchwork\n\n\nA package can define +, |, and / on ggplot objects:\n\nlibrary(patchwork)\n\np = p + theme_minimal(base_size = 15)\n\nbox = ggplot(counties, aes(x = region, y = income)) +\n  geom_boxplot() +\n  theme_minimal(base_size = 15)\n\np + box"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#patchwork-layouts",
+    "href": "notes/notes-3-emm.html#patchwork-layouts",
+    "title": "R Bootcamp",
+    "section": "patchwork layouts",
+    "text": "patchwork layouts\n\n\n| puts plots beside each other; / stacks them:\n\nhist_inc &lt;- ggplot(counties, aes(x = income)) +\n  theme_minimal(base_size = 15) +\n  geom_histogram(bins = 40)\n\n(p | box) / hist_inc\n\n\n\n\n\n\n\n\n\n\n\nWhat’s wrong here?"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#figures-are-programmatic-outputs",
+    "href": "notes/notes-3-emm.html#figures-are-programmatic-outputs",
+    "title": "R Bootcamp",
+    "section": "Figures are programmatic outputs",
+    "text": "Figures are programmatic outputs\n\n\nYour figures are products of your code, same as your tables and estimates\n\n\nRerun the script, get the figure without clicking through export UI boxes\nChange the data and every figure updates\n\n\n\n\n\nNever screenshot a plot. If a figure matters enough to share, save it properly at full resolution using code you can rerun."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#saving-plots-properly-with-ggsave",
+    "href": "notes/notes-3-emm.html#saving-plots-properly-with-ggsave",
+    "title": "R Bootcamp",
+    "section": "Saving plots properly with ggsave()",
+    "text": "Saving plots properly with ggsave()\n\n\n\nggsave(\"rent_income.pdf\", p, width = 6, height = 4)\n\n\n\n\n\nggsave() infers the format from the extension; width/height are in inches (change with units arg).\n\n\n\nTip: Set width/height to the actual size in your document and the figures will be proportioned correctly.\n\n\n\nFor base R plots the equivalent is: pdf(\"fig.pdf\", width = 6, height = 4), plot, then dev.off()"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#vector-raster",
+    "href": "notes/notes-3-emm.html#vector-raster",
+    "title": "R Bootcamp",
+    "section": "Vector > raster",
+    "text": "Vector &gt; raster\n\n\n\n\n\n\n\n\n\n\n\n\nFormats\nWhat’s stored\nZoom in and…\n\n\n\n\nVector\npdf, svg, eps\nshapes and text\nstays perfectly crisp\n\n\nRaster\npng, jpg\na grid of pixels\ngets blurry\n\n\n\n\n\nUse vector formats whenever you can: LaTeX and Word take pdf; the web takes svg\n\n\nWhen you’re forced to raster (some journals, slides software), set dpi = 300 or more in ggsave()"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#maps-are-just-plots",
+    "href": "notes/notes-3-emm.html#maps-are-just-plots",
+    "title": "R Bootcamp",
+    "section": "Maps are just plots",
+    "text": "Maps are just plots\n\n\nThe sf package reads geographic files and gives each row a geometry column:\n\nlibrary(sf)\nshapes &lt;- st_read(\"county_shapes.geojson\")\n\n\n\n\n\n\nIt looks like a data frame with a special column:\n\nhead(shapes, 3)\n\n\n\nSimple feature collection with 3 features and 3 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 80165.29 ymin: 60653.63 xmax: 1717985 ymax: 527895.3\nProjected CRS: USA_Contiguous_Albers_Equal_Area_Conic\n  GEOID    state          county                       geometry\n1 18087  Indiana LaGrange County MULTIPOLYGON (((851901.1 52...\n2 20107   Kansas     Linn County MULTIPOLYGON (((80824.31 10...\n3 24029 Maryland     Kent County MULTIPOLYGON (((1689187 389..."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#maps-the-ggplot-way",
+    "href": "notes/notes-3-emm.html#maps-the-ggplot-way",
+    "title": "R Bootcamp",
+    "section": "Maps, the ggplot way",
+    "text": "Maps, the ggplot way\n\n\nFirst attach our county numbers to the shapes:\n\nshapes_data &lt;- shapes |&gt;\n  left_join(\n    counties |&gt; select(GEOID, income, rent),\n    join_by(GEOID)\n  )\n\nhead(shapes_data, 3)\n\n\n\nSimple feature collection with 3 features and 5 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 80165.29 ymin: 60653.63 xmax: 1717985 ymax: 527895.3\nProjected CRS: USA_Contiguous_Albers_Equal_Area_Conic\n  GEOID    state          county income rent                       geometry\n1 18087  Indiana LaGrange County  83741  816 MULTIPOLYGON (((851901.1 52...\n2 20107   Kansas     Linn County  59200  682 MULTIPOLYGON (((80824.31 10...\n3 24029 Maryland     Kent County  74402 1144 MULTIPOLYGON (((1689187 389..."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#maps-the-ggplot-way-1",
+    "href": "notes/notes-3-emm.html#maps-the-ggplot-way-1",
+    "title": "R Bootcamp",
+    "section": "Maps, the ggplot way",
+    "text": "Maps, the ggplot way\n\n\nThis could not be easier:\n\nshapes_data |&gt;\n  ggplot() + geom_sf()"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#maps-the-ggplot-way-2",
+    "href": "notes/notes-3-emm.html#maps-the-ggplot-way-2",
+    "title": "R Bootcamp",
+    "section": "Maps, the ggplot way",
+    "text": "Maps, the ggplot way\n\n\ngeom_sf() is a geom like any other — aesthetics, scales, and themes all apply:\n\nggplot(shapes_data) +\n  geom_sf(aes(fill = income), linewidth = 0.05) +\n  scale_fill_viridis_c(\n    name = \"Median income\",\n    breaks = c(50000, 100000, 150000),\n    labels = c(\"$50k\", \"$100k\", \"$150k\")\n    ) +\n  theme_void(base_size = 15)"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#pivoting-for-facet_",
+    "href": "notes/notes-3-emm.html#pivoting-for-facet_",
+    "title": "R Bootcamp",
+    "section": "Pivoting for facet_*()",
+    "text": "Pivoting for facet_*()\n\n\nTo facet by variable, the variables must live in one column — tidyr’s pivot_longer() stacks them:\n\nlong &lt;- shapes_data |&gt; pivot_longer(c(income, rent))\n\nlong |&gt; select(county, name, value) |&gt; head(4)\n\n\n\nSimple feature collection with 4 features and 3 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 80165.29 ymin: 60653.63 xmax: 893059.9 ymax: 527895.3\nProjected CRS: USA_Contiguous_Albers_Equal_Area_Conic\n# A tibble: 4 × 4\n  county          name   value                                        geometry\n  &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt;                              &lt;MULTIPOLYGON [m]&gt;\n1 LaGrange County income 83741 (((851901.1 523582.1, 855179.6 497385.5, 89305…\n2 LaGrange County rent     816 (((851901.1 523582.1, 855179.6 497385.5, 89305…\n3 Linn County     income 59200 (((80824.31 100142.8, 80165.29 60653.63, 12048…\n4 Linn County     rent     682 (((80824.31 100142.8, 80165.29 60653.63, 12048…"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#multiple-maps",
+    "href": "notes/notes-3-emm.html#multiple-maps",
+    "title": "R Bootcamp",
+    "section": "Multiple maps",
+    "text": "Multiple maps\n\n\nIncome dollars dwarf rent dollars, so give each variable its own percentiles, then facet:\n\nlong &lt;- long |&gt; group_by(name) |&gt; mutate(percentile = percent_rank(value))\n\nggplot(long) +\n  geom_sf(aes(fill = percentile), linewidth = 0.02) +\n  scale_fill_viridis_c() +\n  facet_wrap(~ name) +\n  theme_void(base_size = 15)"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#for-spatial-data-resolution-matters",
+    "href": "notes/notes-3-emm.html#for-spatial-data-resolution-matters",
+    "title": "R Bootcamp",
+    "section": "For spatial data, resolution matters",
+    "text": "For spatial data, resolution matters\n\n\nBoundary files often store more detail than we can see. Use st_simplify() for plot files if necessary:\n\n# this renders weirdly sometimes:\nrough &lt;- st_simplify(shapes, dTolerance = 25000, preserveTopology = T)\n\n\n\n\n\n\nOurs is pre-simplified (1.8 MB); raw Census files run much larger and image files will be too large – and view rendering will take too long.\n\n\n\nThe tigris package (USA) has cb and resolution arguments for this."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#this-afternoon",
+    "href": "notes/notes-3-emm.html#this-afternoon",
+    "title": "R Bootcamp",
+    "section": "This afternoon",
+    "text": "This afternoon\n\n\n\nVersion control with git and GitHub\nDistributions and random draws\nBig exercise: a version-controlled, simulated analysis — start to finish\n\n\n\nprinceton-ddss.github.io/r-bootcamp"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#now-plotting-exercise",
+    "href": "notes/notes-3-emm.html#now-plotting-exercise",
+    "title": "R Bootcamp",
+    "section": "Now: plotting exercise",
+    "text": "Now: plotting exercise\n\n\nOpen the exercise: princeton-ddss.github.io/r-bootcamp/notes/exercise-3-plots.pdf\n\n\nA Quarto report with empty chunks — fill them in and render as you go\nEverything you need is from this morning"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#lines-type-l",
+    "href": "notes/notes-3-emm.html#lines-type-l",
+    "title": "R Bootcamp",
+    "section": "Lines: type = \"l\"",
+    "text": "Lines: type = \"l\"\n\n\nAll 3,135 counties sorted by income:\n\nplot(sort(counties$income), type = \"l\")\n\n\n\n\n\n\n\n\n\n\n\nWhat does the rightmost tail tell you?"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#histograms",
+    "href": "notes/notes-3-emm.html#histograms",
+    "title": "R Bootcamp",
+    "section": "Histograms",
+    "text": "Histograms\n\n\nA better way to visualize the distribution of one variable (binned):\n\nhist(counties$income, breaks = 50) ## number of bins"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#bar-plots-counting-categories",
+    "href": "notes/notes-3-emm.html#bar-plots-counting-categories",
+    "title": "R Bootcamp",
+    "section": "Bar plots: counting categories",
+    "text": "Bar plots: counting categories\n\n\nUse barplot() for categorical variables:\n\ntable(counties$region) |&gt; barplot()\n\n\n\n\n\n\n\n\n\n\n\n(Categories appear alphabetically by default.)"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#densities-a-smooth-histogram",
+    "href": "notes/notes-3-emm.html#densities-a-smooth-histogram",
+    "title": "R Bootcamp",
+    "section": "Densities: a smooth histogram",
+    "text": "Densities: a smooth histogram\n\n\ndensity() estimates the distribution; plot() draws the estimate:\n\ndensity(counties$income, na.rm = TRUE) |&gt; plot()"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#densities-can-smooth-past-data-misleading",
+    "href": "notes/notes-3-emm.html#densities-can-smooth-past-data-misleading",
+    "title": "R Bootcamp",
+    "section": "Densities can smooth past data: misleading",
+    "text": "Densities can smooth past data: misleading\n\n\n\nd &lt;- density(counties$income, na.rm = TRUE)\n\nrange(counties$income, na.rm = TRUE)\nrange(d$x)\n\n\n\n[1]  25425 178707\n[1]  17899.87 186232.13\n\n\n\n\nThe curve starts ~$7,000 below the poorest county. Density estimates commonly leak below zero.\n\n\nThe cut argument controls this:\n\nd0 &lt;- density(counties$income, na.rm = TRUE, cut = 0)\nrange(d0$x)\n\n\n\n[1]  25425 178707"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#base-r-plotting-is-a-canvas",
+    "href": "notes/notes-3-emm.html#base-r-plotting-is-a-canvas",
+    "title": "R Bootcamp",
+    "section": "Base R plotting is a canvas",
+    "text": "Base R plotting is a canvas\n\n\nplot() (or hist(), barplot(), …) starts a fresh canvas\n\nThen each of these adds ink on top of whatever is there:\n\npoints() — more points\nlines() — more lines\nabline() — straight reference lines\nlegend() — add a legend\n\n\n\n\n\nThe canvas is cumulative. To change something underneath, start over."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#layer-by-layer",
+    "href": "notes/notes-3-emm.html#layer-by-layer",
+    "title": "R Bootcamp",
+    "section": "Layer by layer",
+    "text": "Layer by layer\n\n\nStart the canvas — every county in gray:\n\nnj &lt;- counties[counties$state == \"New Jersey\", ]\n\nplot(counties$income, counties$rent, pch = 19, cex = 0.4, col = \"gray\")"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#layer-by-layer-1",
+    "href": "notes/notes-3-emm.html#layer-by-layer-1",
+    "title": "R Bootcamp",
+    "section": "Layer by layer",
+    "text": "Layer by layer\n\n\nThe canvas is live. Add points() on top:\n\npoints(nj$income, nj$rent, pch = 19, col = \"orange\")"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#layer-by-layer-2",
+    "href": "notes/notes-3-emm.html#layer-by-layer-2",
+    "title": "R Bootcamp",
+    "section": "Layer by layer",
+    "text": "Layer by layer\n\n\n…and abline() draw a reference line:\n\nabline(h = median(counties$rent, na.rm = TRUE), lwd = 2, col = \"steelblue\")\n\n\n\n\n\n\n\n\n\n\n\nEvery New Jersey county sits above the national median rent"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#always-label-your-layers",
+    "href": "notes/notes-3-emm.html#always-label-your-layers",
+    "title": "R Bootcamp",
+    "section": "Always label your layers",
+    "text": "Always label your layers\n\n\nThe same trick compares distributions — start with the Northeast:\n\nplot(density(counties$income[counties$region == \"Northeast\"], na.rm = TRUE),\n     col = \"steelblue\", lwd = 2, main = \"Income by region\")"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#always-label-your-layers-1",
+    "href": "notes/notes-3-emm.html#always-label-your-layers-1",
+    "title": "R Bootcamp",
+    "section": "Always label your layers",
+    "text": "Always label your layers\n\n\nlines() overlays the South:\n\nlines(density(counties$income[counties$region == \"South\"], na.rm = TRUE),\n      col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\n\n\nWe had to know ahead of time to set ylim. Otherwise we’d have to start over. A pain that ggplot2 will solve."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#always-label-your-layers-2",
+    "href": "notes/notes-3-emm.html#always-label-your-layers-2",
+    "title": "R Bootcamp",
+    "section": "Always label your layers",
+    "text": "Always label your layers\n\n\nlegend() for a legend:\n\nlegend(\"topright\", legend = c(\"Northeast\", \"South\"),\n       col = c(\"steelblue\", \"firebrick\"), lwd = 2)"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#many-plots-at-once-par",
+    "href": "notes/notes-3-emm.html#many-plots-at-once-par",
+    "title": "R Bootcamp",
+    "section": "Many plots at once: par()",
+    "text": "Many plots at once: par()\n\n\npar() sets graphics options for the whole device — mfrow makes a grid that fills plot by plot:\n\npar(mfrow = c(1, 2))\nhist(counties$income, main = \"Income\")\nhist(counties$rent, main = \"Rent\")"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#par-is-global",
+    "href": "notes/notes-3-emm.html#par-is-global",
+    "title": "R Bootcamp",
+    "section": "par() is global",
+    "text": "par() is global\n\n\nEvery plot from now on lands in that grid until you put it back:\n\npar(mfrow = c(1, 1))\n\n\n\n\n\n\npar() controls dozens more settings: margins (mar and oma), text size (cex), etc.\n\n\n\n\nBase R plots are side effects that depend on the state of the graphics device. The functions return NULL."
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#maps-are-just-plots-1",
+    "href": "notes/notes-3-emm.html#maps-are-just-plots-1",
+    "title": "R Bootcamp",
+    "section": "Maps are just plots",
+    "text": "Maps are just plots\n\n\nplot() knows what to do with a geometry column:\n\nst_geometry(shapes) |&gt; plot()\n\n\n\n\n\n\n\n\n\n\n\nWhat happens if you just call plot(shapes)?"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#state-colors",
+    "href": "notes/notes-3-emm.html#state-colors",
+    "title": "R Bootcamp",
+    "section": "State colors",
+    "text": "State colors\n\n\n\n\nplot(shapes[\"state\"], main = NULL)"
+  },
+  {
+    "objectID": "notes/notes-3-emm.html#counties-to-states",
+    "href": "notes/notes-3-emm.html#counties-to-states",
+    "title": "R Bootcamp",
+    "section": "Counties to states",
+    "text": "Counties to states\n\n\n\n\nshapes |&gt;\n  group_by(state) |&gt;\n  summarise(geometry = st_union(geometry)) |&gt;\n  plot(main = NULL)"
   }
 ]
