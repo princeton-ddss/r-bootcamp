@@ -872,7 +872,7 @@ The `tigris` package (USA) has `cb` and `resolution` arguments for this.
 
 <hr> <br>
 
-Open the exercise: [princeton-ddss.github.io/r-bootcamp/notes/exercise-3-plots.pdf](https://princeton-ddss.github.io/r-bootcamp/notes/exercise-3-plots.pdf)
+Open the exercise: [princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf)
 
 <br>
 

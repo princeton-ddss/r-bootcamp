@@ -1233,7 +1233,7 @@ If you have everything in `~/Downloads`....
 :::
 
 ::: {.fragment}
-![](../assets/its_time.png){fig-align="center" height="420"}
+![](figs/its_time.png){fig-align="center" height="420"}
 :::
 
 

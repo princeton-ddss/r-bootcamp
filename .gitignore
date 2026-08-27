@@ -5,9 +5,13 @@
 /.luarc.json
 **/*.quarto_ipynb
 
-# Guard: decks belong in _site/, not beside their source
+# Guard: rendered output belongs in _site/, not beside its source
 notes/*.pdf
 notes/*.html
+/*.html
+/site_libs/
+notes/*.typ
+!notes/ddss.typ
 
 **/.DS_Store
 **/._*
