@@ -19,3 +19,7 @@ notes/*.pdf
 # Quarto/knitr local artifacts (frozen results in _freeze/ ARE committed)
 *_cache/
 notes/*_files/
+
+# MEDSL election returns: students fetch it themselves from the Dataverse
+# (doi:10.7910/DVN/VOQCHQ); keep a local copy here for rendering solutions
+files/countypres*

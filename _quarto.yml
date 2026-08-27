@@ -27,7 +27,7 @@ website:
       - href: about.qmd
         text: About
   page-footer:
-    left: '<img class="footer-logo" src="assets/DDSS-stacked_PU_shield_black.webp" alt="Data-Driven Social Science at Princeton University">'
+    left: '<img class="footer-logo" src="https://princeton-ddss.github.io/r-bootcamp/assets/DDSS-stacked_PU_shield_black.webp" alt="Data-Driven Social Science at Princeton University">'
     right: "R Bootcamp"
 
 # Frozen execution: R chunks run locally, CI reuses the stored output.
