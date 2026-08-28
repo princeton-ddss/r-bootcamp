@@ -55,13 +55,15 @@ county_pop <- read_csv(
 
 ## Sources
 
-:::{.nonincremental}
+::: {.nonincremental}
 
-- Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 3: Data transformation](https://r4ds.hadley.nz/data-transform.html), especially §§3.1-3.5
-- Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 19: Joins](https://r4ds.hadley.nz/joins.html), especially §§19.2-19.3
-- Wickham, Çetinkaya-Rundel, and Grolemund. [R for Data Science, 2e, Ch. 26: Iteration](https://r4ds.hadley.nz/iteration.html), especially §§26.2-26.3
-- Harvard IQSS. [Math Prefresher for Political Scientists, Ch. 9: Objects, Functions, Loops](https://iqss.github.io/prefresher/13_functions_obj_loops.html)
-- Harvard IQSS. [Math Prefresher for Political Scientists, Ch. 11: Joins and Merges](https://iqss.github.io/prefresher/15_project-dempeace.html)
+- Wickham, Çetinkaya-Rundel, and Grolemund, *R for Data Science*, 2e
+  - [Ch. 3: Data transformation](https://r4ds.hadley.nz/data-transform.html) (especially §§3.1-3.5)
+  - [Ch. 19: Joins](https://r4ds.hadley.nz/joins.html) (especially §§19.2-19.3)
+  - [Ch. 26: Iteration](https://r4ds.hadley.nz/iteration.html) (especially §§26.2-26.3)
+- Harvard IQSS, *Math Prefresher for Political Scientists*
+  - [Ch. 9: Objects, Functions, Loops](https://iqss.github.io/prefresher/13_functions_obj_loops.html)
+  - [Ch. 11: Joins and Merges](https://iqss.github.io/prefresher/15_project-dempeace.html)
 
 :::
 
