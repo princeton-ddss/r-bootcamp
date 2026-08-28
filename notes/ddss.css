@@ -48,6 +48,12 @@
 /* ── Text alignment ── */
 .center { text-align: center; }
 
+/* ── Small breathing room at the top of each slide ── */
+.reveal .slides > section,
+.reveal .slides > section > section {
+  padding-top: 0.5em;
+}
+
 /* ── Slide title position ── */
 .reveal .slides section h1 {
   margin-top: -1em;
