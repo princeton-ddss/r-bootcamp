@@ -8,8 +8,8 @@ format:
     embed-resources: true
     code-line-numbers: false
     css: ddss.css
-    height: 700
-    width: 1400
+    height: 900
+    width: 1600
     output-location: fragment
     fig-width: 8
     fig-height: 3.5
@@ -63,17 +63,18 @@ options(scipen = 999, width = 78)
 # trim base R figure margins (default mar reserves ~4 blank lines up top);
 # chunks that draw a main= title override via {r, small_mar=c(4.1,4.1,2.8,0.9)}
 knitr::knit_hooks$set(small_mar = function(before, options, envir) {
-  if (before && is.numeric(options$small_mar)) par(mar = options$small_mar)
+    if (before && is.numeric(options$small_mar)) par(mar = options$small_mar)
 })
 knitr::opts_chunk$set(small_mar = c(4.1, 4.1, 1.2, 0.9))
 
-library(dplyr); library(readr)
+library(dplyr)
+library(readr)
 
 counties <- left_join(
-  read_csv("../files/county_data.csv"),
-  read_csv("../files/county_population.csv"),
-  join_by(GEOID == fips)
-  )
+    read_csv("../files/county_data.csv"),
+    read_csv("../files/county_population.csv"),
+    join_by(GEOID == fips)
+)
 ```
 
 ## This session
@@ -126,10 +127,10 @@ The county data from yesterday — income and rent, plus population and region:
 ```{r}
 #| eval: false
 counties <- left_join(
-  read_csv("data/county_data.csv"),
-  read_csv("data/county_population.csv"),
-  join_by(GEOID == fips)
-  )
+    read_csv("data/county_data.csv"),
+    read_csv("data/county_population.csv"),
+    join_by(GEOID == fips)
+)
 ```
 
 ## Our data, again
@@ -157,12 +158,12 @@ plot(counties$income, counties$rent)
 #| fig-width: 7
 #| fig-height: 3.5
 plot(
-  counties$income / 1000, counties$rent,
-  main = "Rent vs. income",
-  xlab = "Median household income (in thousands USD)",
-  ylab = "Median gross rent",
-  pch = 19, cex = 0.5, col = "steelblue"
-  )
+    counties$income / 1000, counties$rent,
+    main = "Rent vs. income",
+    xlab = "Median household income (in thousands USD)",
+    ylab = "Median gross rent",
+    pch = 19, cex = 0.5, col = "steelblue"
+)
 ```
 
 ## Useful plot arguments
@@ -208,8 +209,8 @@ That means you can assign, modify, combine, save, etc. _without printing anythin
 
 ```{r}
 #| eval: false
-p <- ggplot(...)   # nothing drawn yet
-p                  # drawn now
+p <- ggplot(...) # nothing drawn yet
+p # drawn now
 ```
 :::
 
@@ -230,7 +231,7 @@ library(tidyverse)
 ```{r, small_mar=c(0.2, 0.2, 0.2, 0.2)}
 #| fig-height: 5
 ggplot(counties, aes(x = income, y = rent)) +
-  geom_point()
+    geom_point()
 ```
 
 ::: fragment
@@ -246,7 +247,7 @@ Map a third column to color. It's a variable, so it goes in `aes()` (constants g
 ```{r}
 #| fig-height: 5
 ggplot(counties, aes(x = income, y = rent, color = region)) +
-  geom_point(size = 0.7)
+    geom_point(size = 0.7)
 ```
 
 ::: fragment
@@ -260,7 +261,7 @@ Compare: in base R, *you* subset the data, chose the colors, and drew the legend
 ```{r}
 #| fig-height: 5
 ggplot(counties, aes(x = income, y = rent, color = "steelblue")) +
-  geom_point(size = 0.7)
+    geom_point(size = 0.7)
 ```
 
 ::: fragment
@@ -276,7 +277,7 @@ Distributions by group:
 ```{r}
 #| fig-height: 5
 ggplot(counties, aes(x = region, y = income)) +
-  geom_boxplot()
+    geom_boxplot()
 ```
 
 ## Composition: stacked bars
@@ -287,17 +288,17 @@ Split each region's counties into high- and low-population halves:
 
 ```{r}
 #| fig-height: 5
-counties = counties |>
-  mutate(pop_level = if_else(
-      pop >= median(counties$pop, na.rm = T),
-      'high pop', 'low_pop'
-  ))
+counties <- counties |>
+    mutate(pop_level = if_else(
+        pop >= median(counties$pop, na.rm = T),
+        "high pop", "low_pop"
+    ))
 
 counties |>
-  filter(!is.na(pop_level)) |>
-  ## piping in this data; now different operator!
-  ggplot(aes(x = region, fill = pop_level)) +
-  geom_bar()
+    filter(!is.na(pop_level)) |>
+    ## piping in this data; now different operator!
+    ggplot(aes(x = region, fill = pop_level)) +
+    geom_bar()
 ```
 
 ## Counts vs. shares: `position`
@@ -309,9 +310,9 @@ counties |>
 ```{r}
 #| fig-height: 5
 counties |>
-  filter(!is.na(pop_level)) |>
-  ggplot(aes(x = region, fill = pop_level)) +
-  geom_bar(position = "fill")
+    filter(!is.na(pop_level)) |>
+    ggplot(aes(x = region, fill = pop_level)) +
+    geom_bar(position = "fill")
 ```
 
 ## Side by side: `position = "dodge"`
@@ -321,9 +322,9 @@ counties |>
 ```{r}
 #| fig-height: 5
 counties |>
-  filter(!is.na(pop_level)) |>
-  ggplot(aes(x = region, fill = pop_level)) +
-  geom_bar(position = "dodge")
+    filter(!is.na(pop_level)) |>
+    ggplot(aes(x = region, fill = pop_level)) +
+    geom_bar(position = "dodge")
 ```
 
 ::: fragment
@@ -339,7 +340,7 @@ counties |>
 ```{r}
 #| fig-height: 5
 ggplot(economics, aes(x = date, y = unemploy)) +
-  geom_line()
+    geom_line()
 ```
 
 ## Common mistake
@@ -356,7 +357,7 @@ head(economics_long, 3)
 ```{r}
 #| fig-height: 5
 ggplot(economics_long, aes(x = date, y = value01)) +
-  geom_line()
+    geom_line()
 ```
 :::
 
@@ -369,7 +370,7 @@ Map the series id to `color` (or `group`) and each variable gets its own line:
 ```{r}
 #| fig-height: 6
 ggplot(economics_long, aes(x = date, y = value01, color = variable)) +
-  geom_line()
+    geom_line()
 ```
 
 ## Reference lines are geoms too
@@ -382,10 +383,10 @@ ggplot(economics_long, aes(x = date, y = value01, color = variable)) +
 ```{r}
 #| fig-height: 5
 ggplot(counties, aes(x = income, y = rent)) +
-  geom_point(size = 0.5, color = "gray") +
-  geom_hline(
-    yintercept = median(counties$rent, na.rm = T),
-    color = "steelblue", linewidth = 1
+    geom_point(size = 0.5, color = "gray") +
+    geom_hline(
+        yintercept = median(counties$rent, na.rm = T),
+        color = "steelblue", linewidth = 1
     )
 ```
 :::
@@ -399,8 +400,8 @@ One line splits the plot by a categorical column:
 ```{r}
 #| fig-height: 6
 ggplot(counties, aes(x = income, y = rent)) +
-  geom_point(size = 0.4) +
-  facet_wrap(~ region) ## more than one: ~ region + ... 
+    geom_point(size = 0.4) +
+    facet_wrap(~region) ## more than one: ~ region + ...
 ```
 
 ## Facets in two directions
@@ -412,10 +413,10 @@ ggplot(counties, aes(x = income, y = rent)) +
 ```{r}
 #| fig-height: 5
 counties |>
-  filter(!is.na(pop_level)) |>
-  ggplot(aes(x = income, y = rent)) +
-  geom_point(size = 0.4) +
-  facet_grid(pop_level ~ region)
+    filter(!is.na(pop_level)) |>
+    ggplot(aes(x = income, y = rent)) +
+    geom_point(size = 0.4) +
+    facet_grid(pop_level ~ region)
 ```
 
 ## Labels with `labs()`
@@ -425,14 +426,14 @@ counties |>
 ```{r}
 #| fig-height: 5
 ggplot(counties, aes(x = income, y = rent, color = region)) +
-  geom_point(size = 0.7) +
-  labs(
-    title = "Rent rises with income",
-    subtitle = "US counties, 2023 five-year ACS",
-    x = "Median household income ($)",
-    y = "Median gross rent ($)",
-    color = "Region"
-  )
+    geom_point(size = 0.7) +
+    labs(
+        title = "Rent rises with income",
+        subtitle = "US counties, 2023 five-year ACS",
+        x = "Median household income ($)",
+        y = "Median gross rent ($)",
+        color = "Region"
+    )
 ```
 
 ## Scales: _how_ mappings become positions and colors
@@ -444,11 +445,13 @@ Every aesthetic has a scale named `scale_<aesthetic>_<flavor>()` with its own ar
 ```{r}
 #| fig-height: 6
 ggplot(counties, aes(x = income, y = rent)) +
-  geom_point(size = 0.5) +
-  scale_x_continuous(name = "Median household income",
-                     breaks = c(50000, 100000, 150000),
-                     labels = c("$50k", "$100k", "$150k"),
-                     limits = c(0, 200000))
+    geom_point(size = 0.5) +
+    scale_x_continuous(
+        name = "Median household income",
+        breaks = c(50000, 100000, 150000),
+        labels = c("$50k", "$100k", "$150k"),
+        limits = c(0, 200000)
+    )
 ```
 
 
@@ -462,8 +465,8 @@ ggplot(counties, aes(x = income, y = rent)) +
 #| warning: true
 #| fig-height: 5
 ggplot(counties, aes(x = income, y = rent)) +
-  geom_point(size = 0.5) +
-  lims(x = c(0, 100000))
+    geom_point(size = 0.5) +
+    lims(x = c(0, 100000))
 ```
 
 ## Zooming vs. dropping
@@ -475,8 +478,8 @@ ggplot(counties, aes(x = income, y = rent)) +
 ```{r}
 #| fig-height: 5
 ggplot(counties, aes(x = income, y = rent)) +
-  geom_point(size = 0.5) +
-  coord_cartesian(xlim = c(0, 100000))
+    geom_point(size = 0.5) +
+    coord_cartesian(xlim = c(0, 100000))
 ```
 
 :::: fragment
@@ -510,14 +513,14 @@ There is also a `stat_*()` family for layers that include on-the-fly statistical
 
 ```{r}
 #| fig-height: 5
-p = ggplot(counties, aes(x = income, y = rent, color = region)) +
-  geom_point(size = 0.6) +
-  labs(
-    x = "Median household income ($)",
-    y = "Median gross rent ($ logged)",
-    color = NULL
-  ) +
-  scale_x_log10()
+p <- ggplot(counties, aes(x = income, y = rent, color = region)) +
+    geom_point(size = 0.6) +
+    labs(
+        x = "Median household income ($)",
+        y = "Median gross rent ($ logged)",
+        color = NULL
+    ) +
+    scale_x_log10()
 
 p
 ```
@@ -564,11 +567,11 @@ Foreshadowing: What matters is font size _relative to the figure_. Save the same
 ```{r}
 #| fig-height: 5
 p + theme_minimal(base_size = 15) +
-  theme(
-    axis.title.x = element_text(size = 20, face = "bold"),
-    axis.text    = element_text(size = 10),
-    legend.text  = element_text(size = 12, family = "Palatino")
-  )
+    theme(
+        axis.title.x = element_text(size = 20, face = "bold"),
+        axis.text    = element_text(size = 10),
+        legend.text  = element_text(size = 12, family = "Palatino")
+    )
 ```
 
 ## The `element_*()` family
@@ -613,8 +616,10 @@ p + theme_minimal(base_size = 15) + scale_color_viridis_d()
 
 ```{r}
 #| fig-height: 5
-pal = c("Midwest" = "#E87722", "Northeast" = "steelblue",
-        "South" = "firebrick", "West" = "#83876F")
+pal <- c(
+    "Midwest" = "#E87722", "Northeast" = "steelblue",
+    "South" = "firebrick", "West" = "#83876F"
+)
 
 p + theme_minimal(base_size = 15) + scale_color_manual(values = pal)
 ```
@@ -630,11 +635,11 @@ A package can define `+`, `|`, and `/` on `ggplot` objects:
 #| fig-width: 8
 library(patchwork)
 
-p = p + theme_minimal(base_size = 15)
+p <- p + theme_minimal(base_size = 15)
 
-box = ggplot(counties, aes(x = region, y = income)) +
-  geom_boxplot() +
-  theme_minimal(base_size = 15)
+box <- ggplot(counties, aes(x = region, y = income)) +
+    geom_boxplot() +
+    theme_minimal(base_size = 15)
 
 p + box
 ```
@@ -649,8 +654,8 @@ p + box
 #| fig-height: 5
 #| fig-width: 10
 hist_inc <- ggplot(counties, aes(x = income)) +
-  theme_minimal(base_size = 15) +
-  geom_histogram(bins = 40)
+    theme_minimal(base_size = 15) +
+    geom_histogram(bins = 40)
 
 (p | box) / hist_inc
 ```
@@ -762,10 +767,10 @@ First attach our county numbers to the shapes:
 
 ```{r}
 shapes_data <- shapes |>
-  left_join(
-    counties |> select(GEOID, income, rent),
-    join_by(GEOID)
-  )
+    left_join(
+        counties |> select(GEOID, income, rent),
+        join_by(GEOID)
+    )
 
 head(shapes_data, 3)
 ```
@@ -780,7 +785,8 @@ This could not be easier:
 #| fig-width: 10
 #| fig-height: 6
 shapes_data |>
-  ggplot() + geom_sf()
+    ggplot() +
+    geom_sf()
 ```
 
 ## Maps, the ggplot way
@@ -793,13 +799,13 @@ shapes_data |>
 #| fig-width: 10
 #| fig-height: 6
 ggplot(shapes_data) +
-  geom_sf(aes(fill = income), linewidth = 0.05) +
-  scale_fill_viridis_c(
-    name = "Median income",
-    breaks = c(50000, 100000, 150000),
-    labels = c("$50k", "$100k", "$150k")
+    geom_sf(aes(fill = income), linewidth = 0.05) +
+    scale_fill_viridis_c(
+        name = "Median income",
+        breaks = c(50000, 100000, 150000),
+        labels = c("$50k", "$100k", "$150k")
     ) +
-  theme_void(base_size = 15)
+    theme_void(base_size = 15)
 ```
 
 ## Pivoting for `facet_*()`
@@ -812,7 +818,9 @@ To facet by variable, the variables must live in *one* column — `tidyr`'s
 ```{r}
 long <- shapes_data |> pivot_longer(c(income, rent))
 
-long |> select(county, name, value) |> head(4)
+long |>
+    select(county, name, value) |>
+    head(4)
 ```
 
 ## Multiple maps
@@ -824,13 +832,15 @@ Income dollars dwarf rent dollars, so give each variable its own percentiles, th
 ```{r}
 #| fig-width: 14
 #| fig-height: 6
-long <- long |> group_by(name) |> mutate(percentile = percent_rank(value))
+long <- long |>
+    group_by(name) |>
+    mutate(percentile = percent_rank(value))
 
 ggplot(long) +
-  geom_sf(aes(fill = percentile), linewidth = 0.02) +
-  scale_fill_viridis_c() +
-  facet_wrap(~ name) +
-  theme_void(base_size = 15)
+    geom_sf(aes(fill = percentile), linewidth = 0.02) +
+    scale_fill_viridis_c() +
+    facet_wrap(~name) +
+    theme_void(base_size = 15)
 ```
 
 ## For spatial data, resolution matters
@@ -1035,7 +1045,8 @@ The same trick compares distributions — start with the Northeast:
 ```{r, small_mar=c(4.1, 4.1, 2.8, 0.9)}
 #| fig-height: 4.3
 plot(density(counties$income[counties$region == "Northeast"], na.rm = TRUE),
-     col = "steelblue", lwd = 2, main = "Income by region")
+    col = "steelblue", lwd = 2, main = "Income by region"
+)
 ```
 
 ## Always label your layers
@@ -1047,10 +1058,12 @@ plot(density(counties$income[counties$region == "Northeast"], na.rm = TRUE),
 ```{r, echo=2, small_mar=c(4.1, 4.1, 2.8, 0.9)}
 #| fig-height: 4.3
 plot(density(counties$income[counties$region == "Northeast"], na.rm = TRUE),
-     col = "steelblue", lwd = 2, main = "Income by region",
-     ylim = c(0, 0.000032)) ## needed for next layer
+    col = "steelblue", lwd = 2, main = "Income by region",
+    ylim = c(0, 0.000032)
+) ## needed for next layer
 lines(density(counties$income[counties$region == "South"], na.rm = TRUE),
-      col = "firebrick", lwd = 2)
+    col = "firebrick", lwd = 2
+)
 ```
 
 ::: fragment
@@ -1066,12 +1079,16 @@ We had to know ahead of time to set ylim. Otherwise we'd have to start over. A p
 ```{r, echo=3, small_mar=c(4.1, 4.1, 2.8, 0.9)}
 #| fig-height: 4.3
 plot(density(counties$income[counties$region == "Northeast"], na.rm = TRUE),
-     col = "steelblue", lwd = 2, main = "Income by region",
-     ylim = c(0, 0.000032)) ## needed for next layer
+    col = "steelblue", lwd = 2, main = "Income by region",
+    ylim = c(0, 0.000032)
+) ## needed for next layer
 lines(density(counties$income[counties$region == "South"], na.rm = TRUE),
-      col = "firebrick", lwd = 2)
-legend("topright", legend = c("Northeast", "South"),
-       col = c("steelblue", "firebrick"), lwd = 2)
+    col = "firebrick", lwd = 2
+)
+legend("topright",
+    legend = c("Northeast", "South"),
+    col = c("steelblue", "firebrick"), lwd = 2
+)
 ```
 
 ## Many plots at once: `par()`
@@ -1150,8 +1167,8 @@ plot(shapes["state"], main = NULL)
 ::: fragment
 ```{r}
 shapes |>
-  group_by(state) |>
-  summarise(geometry = st_union(geometry)) |>
-  plot(main = NULL)
+    group_by(state) |>
+    summarise(geometry = st_union(geometry)) |>
+    plot(main = NULL)
 ```
 :::

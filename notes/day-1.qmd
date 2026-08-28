@@ -8,8 +8,8 @@ format:
     embed-resources: true
     code-line-numbers: false
     css: ddss.css
-    height: 700
-    width: 1400
+    height: 900
+    width: 1600
     output-location: fragment
 
 execute:
@@ -41,8 +41,8 @@ knitr:
 <hr><br>
 <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
   <div>
-    <p style="font-size: 1.3em; font-weight: 600; margin: 0 0 0.2em 0;">Eric Manning, PhD</p>
-    <p style="font-size: 1.0em; margin: 0;">August 29, 2026</p>
+    <p style="font-size: 1.3em; font-weight: 600; margin: 0 0 0.2em 0;">Eric Manning</p>
+    <p style="font-size: 1.0em; margin: 0;">August 28, 2026</p>
   </div>
   <img src="figs/ddss-logo.png" style="width: 400px">
 </div>
@@ -192,6 +192,8 @@ school + "University"
 ```
 :::
 
+<br>
+
 ::: {.fragment}
 R will not guess what you meant.
 :::
@@ -285,7 +287,8 @@ Comparisons produce booleans, so you can combine questions:
 
 ```{r}
 #| error: true
-x = T; y = 'hello'
+x <- T
+y <- "hello"
 x | y
 ```
 
@@ -325,6 +328,8 @@ survey == NA
 ```
 :::
 
+<br>
+
 ::: {.fragment}
 "Is this value equal to *unknown*?" — the answer is unknown. Use `is.na()`.
 :::
@@ -347,6 +352,8 @@ class(c(1.5, NA))
 class(c("a", NA))
 ```
 :::
+
+<br>
 
 ::: {.fragment}
 There's an `NA` for every type (`NA_real_`, `NA_character_`, ...)
@@ -394,6 +401,8 @@ You will type `na.rm = TRUE` a thousand times and one day you will be grateful.
 is.null(NULL)
 ```
 
+<br>
+
 ::: {.fragment}
 `NA` is *something*; `NULL` is nothing at all:
 
@@ -422,7 +431,7 @@ c(1, NULL, 2)
 day1 <- as.Date("2026-08-29")
 class(day1)
 
-## use YYYY-MM-DD where possible 
+## use YYYY-MM-DD where possible
 ## but see `format = ` arg of as.Date
 ## Documentation: ?as.Date
 ```
@@ -440,11 +449,13 @@ day1 + 7 ## also a date!
 <br>
 
 ::: {.fragment}
-While *subtracting* two dates is something else:
-
 ```{r}
-as.Date("2026-12-25") - day1 ## difftime class
+as.Date("2026-12-25") - day1
 ```
+:::
+
+::: {.fragment}
+*Subtracting* two dates is something else: `difftime` class
 :::
 
 # Vectors
@@ -509,7 +520,7 @@ The *right* way to do `school + "University"`:
 
 ```{r}
 paste("R", "Bootcamp")
-paste0(school, " University")
+paste0(school, "University")
 ```
 
 ::: {.fragment}
@@ -746,7 +757,7 @@ x[order(x)]
 
 # Matrices
 
-## A matrix is a vector with dimensions
+## A matrix is a vector with more dimensions
 
 <hr><br>
 
@@ -982,7 +993,7 @@ Under the hood: a list of columns, all the same length
 
 ```{r}
 is.list(df)
-dim(df)      # c(nrow(df), ncol(df))
+dim(df) # c(nrow(df), ncol(df))
 length(df)
 ```
 :::
@@ -1000,7 +1011,7 @@ head(df, 3) ## head(df) default is 6 rows
 <br>
 
 ::: {.fragment}
-`head()` shows just the first rows (six, unless you say otherwise) — the fastest sanity check there is
+`head()` shows just the first rows (six, unless you say otherwise)
 :::
 
 ## The whole structure: `str()`
@@ -1019,7 +1030,7 @@ str(df)
 This is usually the first thing to run on any new data (alternatively, `View(df)` in RStudio)
 :::
 
-## row and column names in a data.frame
+## Row and column names in a data.frame
 
 <hr><br>
 
@@ -1047,7 +1058,7 @@ The car names aren't a column. They live in the *row names*
 Don't do this.
 :::
 
-## Names are yours to change
+## You can change the column names
 
 <hr><br>
 
@@ -1078,7 +1089,7 @@ df$cyl
 <br>
 
 ::: {.fragment}
-`table()` counts values — the fastest first look at a column:
+`table()` counts values, but it's slow on large or high-cardinality vectors
 
 ```{r}
 table(df$cyl) # add a useNA = 'ifany' if you suspect NAs!
@@ -1107,7 +1118,7 @@ cars_matrix[1:3, 1:4]
 <br>
 
 ::: {.fragment}
-The row names survive the trip because matricies allow row (and column) names.
+The row names survive because matricies allow row (and column) names.
 
 ```{r}
 class(cars_matrix)
@@ -1117,7 +1128,7 @@ class(cars_matrix)
 <br>
 
 ::: {.fragment}
-Matricies require type for *everything*: a single character column would have turned the whole matrix into text
+Matricies require the same type for *all cells*: one character column would have case the whole matrix into chars
 :::
 
 ## Subsetting rows
@@ -1176,8 +1187,8 @@ And single elements by position: `df[1, 1]` is `` `r mtcars[1, 1]` ``
 
 ```{r}
 schools <- data.frame(
-  school = c("Princeton", "Rutgers"),
-  students = c(5590, 36000)
+    school = c("Princeton", "Rutgers"),
+    students = c(5590, 36000)
 )
 schools
 ```
@@ -1219,7 +1230,13 @@ A file's *path* is its full address — the folders you pass through, joined by 
 :::
 
 ::: {.fragment}
-(Windows spells it `C:\Users\you\...` but in R, always write `/`; it works on every system)
+(Windows writes it `C:\Users\you\...` but in R, always write `/` -- it works on every system)
+:::
+
+<br>
+
+::: {.fragment}
+Mac Users: right-/double-click + Option (⌥) + "Copy '...' as Pathname"
 :::
 
 ## Growing up is hard
@@ -1238,15 +1255,17 @@ If you have everything in `~/Downloads`....
 
 
 
-## Where is R standing? The working directory
+## Where is R working? The working directory
 
 <hr><br>
 
-R always works *from* one folder in that tree — its working directory:
+R always works from one folder — its working directory:
 
 ```{r}
 getwd()
 ```
+
+<br>
 
 ::: {.fragment}
 A *relative* path gives directions from there. No absolute file path required.
@@ -1261,7 +1280,7 @@ county <- read.csv("data/county_population.csv")
 <br>
 
 ::: {.fragment}
-Can't find your file? Ask what R can actually see from where it stands:
+Can't find your file? Ask what R can actually see in the current (working) directory:
 
 ```{r}
 #| eval: false
@@ -1275,8 +1294,14 @@ list.files("data")
 <hr><br>
 
 ::: {.fragment}
+`setwd()` exists, but hard-coded paths break on other computers (or yours when you move stuff around).
+:::
+
+<br>
+
+::: {.fragment}
 ::: {.blocktext}
-`setwd()` exists — but hard-coded paths break on every other computer. Always assume you're in the project root and make all paths relative.
+Always assume you're in the project root and make all paths relative.
 :::
 :::
 
@@ -1284,8 +1309,7 @@ list.files("data")
 
 ::: {.fragment}
 * If you have a bunch of scripts, but them in `scripts/`
-* Then paths to data will be `../data/county_population.csv`
-* Need a file's full path? *Drag the file* from Finder / File Explorer into the console and the path types itself.
+* Then paths to data will be `../data/county_population.csv` relative to that folder (but why won't we need this?)
 :::
 
 ## Our data: county populations
@@ -1345,8 +1369,8 @@ Tell `read.csv()` what the column really is:
 ```{r}
 #| eval: false
 county <- read.csv(
-  "county_population.csv",
-  colClasses = c(fips = "character")
+    "county_population.csv",
+    colClasses = c(fips = "character")
 )
 str(county)
 ```
@@ -1355,8 +1379,8 @@ str(county)
 ```{r}
 #| echo: false
 county <- read.csv(
-  "../files/county_population.csv",
-  colClasses = c(fips = "character")
+    "../files/county_population.csv",
+    colClasses = c(fips = "character")
 )
 str(county)
 ```
@@ -1372,10 +1396,10 @@ This distinction is often important if you are joining data, if '0xx' is differe
 
 <hr><br>
 
-Surveys love codes like `-9` or `-999` for "no answer"
+Surveys love codes like `-9` or `-999` for "no answer."
 
 ```{r}
-ages <- c(34, -9, 27)
+ages <- c(34, -999, 27)
 mean(ages)
 ```
 
@@ -1409,7 +1433,7 @@ survey <- read.csv("survey.csv", na.strings = c("-9", "-999"))
 <br>
 
 ::: {.fragment}
-Every one of these is a question about *your file*. You can use `readLines(path, n = a_small_number)` to inspect the file.
+Every one of these is a question about *your file*. You can always use `readLines(path, n = a_small_number)` to inspect the file.
 :::
 
 ## First look at new data: `summary()`
@@ -1436,7 +1460,7 @@ Every column at once: quartiles for numbers, profiles for text. Both `str()` and
 | `.csv` | `read.csv()` / `write.csv()` | opens anywhere; loses types (ask fips!) |
 | `.rds` | `readRDS()` / `saveRDS()` | one R object, restored *exactly*; R-only |
 | `.rda` | `load()` / `save()` | many objects at once; R-only |
-| `.dta`, `.xlsx` | `haven`, `readxl` packages | Stata and Excel files |
+| `.dta`, `.xlsx` | `haven`, `readxl` packages | Stata and Excel files 😩|
 :::
 
 <br>
@@ -1475,7 +1499,7 @@ write.csv(county, "county_population.csv", row.names = FALSE)
 ::: {.fragment}
 ```{r}
 #| eval: false
-saveRDS(county, "county_population.rds")   ## holds one object (compressed)
+saveRDS(county, "county_population.rds") ## holds one object (compressed)
 county <- readRDS("county_population.rds")
 ```
 :::
@@ -1485,8 +1509,8 @@ county <- readRDS("county_population.rds")
 ::: {.fragment}
 ```{r}
 #| eval: false
-save(county, ..., file = "stuff.rda")   ## holds one object (compressed)
-load('stuff.rda') 
+save(county, ..., file = "stuff.rda") ## holds one object (compressed)
+load("stuff.rda")
 ```
 :::
 
@@ -1520,7 +1544,7 @@ Functions compose, evaluated inside-out:
 ```{r}
 round(mean(county$pop))
 
-## alternatively, mean(county$pop) |> round() ... 
+## alternatively, mean(county$pop) |> round() ...
 ```
 :::
 
@@ -1634,9 +1658,9 @@ Build your own with a named vector:
 
 ```{r}
 c(
-  n = length(county$pop),
-  mean = mean(county$pop),
-  sd = sd(county$pop)
+    n = length(county$pop),
+    mean = mean(county$pop),
+    sd = sd(county$pop)
 )
 ```
 :::
