@@ -263,7 +263,7 @@
     "href": "notes/day-1.html#reassignment",
     "title": "R Bootcamp",
     "section": "Reassignment",
-    "text": "Reassignment\n\n\nAn object name holds a value. Assigning again replaces it.\n\nx &lt;- x + 2\nx\n\n\n\n[1] 3\n\n\n\n\nTypes decide what’s allowed:\n\nschool + \"University\"\n\n\n\nError in `school + \"University\"`:\n! non-numeric argument to binary operator\n\n\n\n\nR will not guess what you meant."
+    "text": "Reassignment\n\n\nAn object name holds a value. Assigning again replaces it.\n\nx &lt;- x + 2\nx\n\n\n\n[1] 3\n\n\n\n\nTypes decide what’s allowed:\n\nschool + \"University\"\n\n\n\nError in `school + \"University\"`:\n! non-numeric argument to binary operator\n\n\n\n\n\nR will not guess what you meant."
   },
   {
     "objectID": "notes/day-1.html#casting-convert-types-deliberately",
@@ -291,21 +291,21 @@
     "href": "notes/day-1.html#boolean-operators-and",
     "title": "R Bootcamp",
     "section": "Boolean operators && and ||",
-    "text": "Boolean operators && and ||\n\n\n\nx = T; y = 'hello'\nx | y\n\n\n\nError in `x | y`:\n! operations are possible only for numeric, logical or complex types\n\n\n\n\n\nx || y\n\n\n\n[1] TRUE\n\n\n\n\n\nIf left side is TRUE, right side is skipped. This is useful in if-else statements, other control flows.\nThese are NOT vectorized."
+    "text": "Boolean operators && and ||\n\n\n\nx &lt;- T\ny &lt;- \"hello\"\nx | y\n\n\n\nError in `x | y`:\n! operations are possible only for numeric, logical or complex types\n\n\n\n\n\nx || y\n\n\n\n[1] TRUE\n\n\n\n\n\nIf left side is TRUE, right side is skipped. This is useful in if-else statements, other control flows.\nThese are NOT vectorized."
   },
   {
     "objectID": "notes/day-1.html#missing-values-na",
     "href": "notes/day-1.html#missing-values-na",
     "title": "R Bootcamp",
     "section": "Missing values: NA",
-    "text": "Missing values: NA\n\n\nNA marks a missing value inside your data\n\nsurvey &lt;- c(4, NA, 5)\nis.na(survey)\n\n\n\n[1] FALSE  TRUE FALSE\n\n\n\n\nWhy not just ask survey == NA?\n\nsurvey == NA\n\n\n\n[1] NA NA NA\n\n\n\n\n“Is this value equal to unknown?” — the answer is unknown. Use is.na()."
+    "text": "Missing values: NA\n\n\nNA marks a missing value inside your data\n\nsurvey &lt;- c(4, NA, 5)\nis.na(survey)\n\n\n\n[1] FALSE  TRUE FALSE\n\n\n\n\nWhy not just ask survey == NA?\n\nsurvey == NA\n\n\n\n[1] NA NA NA\n\n\n\n\n\n“Is this value equal to unknown?” — the answer is unknown. Use is.na()."
   },
   {
     "objectID": "notes/day-1.html#even-na-has-a-type",
     "href": "notes/day-1.html#even-na-has-a-type",
     "title": "R Bootcamp",
     "section": "Even NA has a type",
-    "text": "Even NA has a type\n\n\n\nclass(NA)\n\n\n\n[1] \"logical\"\n\n\n\n\nNA takes the type of the vector it sits in:\n\nclass(c(1.5, NA))\nclass(c(\"a\", NA))\n\n\n\n[1] \"numeric\"\n[1] \"character\"\n\n\n\n\nThere’s an NA for every type (NA_real_, NA_character_, …)\n\n\nUsually you don’t need to be explicit."
+    "text": "Even NA has a type\n\n\n\nclass(NA)\n\n\n\n[1] \"logical\"\n\n\n\n\nNA takes the type of the vector it sits in:\n\nclass(c(1.5, NA))\nclass(c(\"a\", NA))\n\n\n\n[1] \"numeric\"\n[1] \"character\"\n\n\n\n\n\nThere’s an NA for every type (NA_real_, NA_character_, …)\n\n\nUsually you don’t need to be explicit."
   },
   {
     "objectID": "notes/day-1.html#na-is-contagious",
@@ -319,14 +319,14 @@
     "href": "notes/day-1.html#nothing-at-all-null",
     "title": "R Bootcamp",
     "section": "Nothing at all: NULL",
-    "text": "Nothing at all: NULL\n\n\nNULL is the absence of an object — not a missing value\n\nis.null(NULL)\n\n\n\n[1] TRUE\n\n\n\nNA is something; NULL is nothing at all:\n\nlength(NA)\nlength(NULL)\n\n\n\n[1] 1\n[1] 0\n\n\n\n\n\nNA holds a place; NULL disappears:\n\nc(1, NA, 2)\nc(1, NULL, 2)\n\n\n\n[1]  1 NA  2\n[1] 1 2"
+    "text": "Nothing at all: NULL\n\n\nNULL is the absence of an object — not a missing value\n\nis.null(NULL)\n\n\n\n[1] TRUE\n\n\n\n\nNA is something; NULL is nothing at all:\n\nlength(NA)\nlength(NULL)\n\n\n\n[1] 1\n[1] 0\n\n\n\n\n\nNA holds a place; NULL disappears:\n\nc(1, NA, 2)\nc(1, NULL, 2)\n\n\n\n[1]  1 NA  2\n[1] 1 2"
   },
   {
     "objectID": "notes/day-1.html#dates-are-a-type-too",
     "href": "notes/day-1.html#dates-are-a-type-too",
     "title": "R Bootcamp",
     "section": "Dates are a type too",
-    "text": "Dates are a type too\n\n\n\nday1 &lt;- as.Date(\"2026-08-29\")\nclass(day1)\n\n## use YYYY-MM-DD where possible \n## but see `format = ` arg of as.Date\n## Documentation: ?as.Date\n\n\n\n[1] \"Date\"\n\n\n\n\nDate math:\n\nday1 + 7 ## also a date!\n\n\n\n[1] \"2026-09-05\"\n\n\n\n\n\nWhile subtracting two dates is something else:\n\nas.Date(\"2026-12-25\") - day1 ## difftime class\n\n\n\nTime difference of 118 days"
+    "text": "Dates are a type too\n\n\n\nday1 &lt;- as.Date(\"2026-08-29\")\nclass(day1)\n\n## use YYYY-MM-DD where possible\n## but see `format = ` arg of as.Date\n## Documentation: ?as.Date\n\n\n\n[1] \"Date\"\n\n\n\n\nDate math:\n\nday1 + 7 ## also a date!\n\n\n\n[1] \"2026-09-05\"\n\n\n\n\n\n\nas.Date(\"2026-12-25\") - day1\n\n\n\nTime difference of 118 days\n\n\n\n\nSubtracting two dates is something else: difftime class"
   },
   {
     "objectID": "notes/day-1.html#there-are-almost-no-scalars-for-data-values",
@@ -347,7 +347,7 @@
     "href": "notes/day-1.html#combining-text-paste",
     "title": "R Bootcamp",
     "section": "Combining text: paste()",
-    "text": "Combining text: paste()\n\n\nThe right way to do school + \"University\":\n\npaste(\"R\", \"Bootcamp\")\npaste0(school, \" University\")\n\n\n\n[1] \"R Bootcamp\"\n[1] \"Princeton University\"\n\n\n\npaste() glues with a space; paste0() glues with nothing\n\n\n\nIt casts numbers to text and vectorizes, all at once:\n\npaste(\"Day\", c(1, 2, 3))\n\n\n\n[1] \"Day 1\" \"Day 2\" \"Day 3\"\n\n\n\n\nAnd collapse glues the results into one single string:\n\npaste(\"Day\", c(1, 2, 3), collapse = \", \")\n\n\n\n[1] \"Day 1, Day 2, Day 3\""
+    "text": "Combining text: paste()\n\n\nThe right way to do school + \"University\":\n\npaste(\"R\", \"Bootcamp\")\npaste0(school, \"University\")\n\n\n\n[1] \"R Bootcamp\"\n[1] \"PrincetonUniversity\"\n\n\n\npaste() glues with a space; paste0() glues with nothing\n\n\n\nIt casts numbers to text and vectorizes, all at once:\n\npaste(\"Day\", c(1, 2, 3))\n\n\n\n[1] \"Day 1\" \"Day 2\" \"Day 3\"\n\n\n\n\nAnd collapse glues the results into one single string:\n\npaste(\"Day\", c(1, 2, 3), collapse = \", \")\n\n\n\n[1] \"Day 1, Day 2, Day 3\""
   },
   {
     "objectID": "notes/day-1.html#math-is-vectorized-too",
@@ -406,11 +406,11 @@
     "text": "Sorting and peeking\n\n\n\nx &lt;- c(15, 5, 20, 10)\nsort(x)\n\n\n\n[1]  5 10 15 20\n\n\n\n\nhead() and tail() peek at the ends. Combine for smallest and biggest:\n\nhead(sort(x), 2)\ntail(sort(x), 2)\n\n\n\n[1]  5 10\n[1] 15 20\n\n\n\n\n\norder() yields the order of a (hypothetical) sort:\n\norder(x)\nx[order(x)]\n\n\n\n[1] 2 4 1 3\n[1]  5 10 15 20"
   },
   {
-    "objectID": "notes/day-1.html#a-matrix-is-a-vector-with-dimensions",
-    "href": "notes/day-1.html#a-matrix-is-a-vector-with-dimensions",
+    "objectID": "notes/day-1.html#a-matrix-is-a-vector-with-more-dimensions",
+    "href": "notes/day-1.html#a-matrix-is-a-vector-with-more-dimensions",
     "title": "R Bootcamp",
-    "section": "A matrix is a vector with dimensions",
-    "text": "A matrix is a vector with dimensions\n\n\n\nm &lt;- matrix(1:8, nrow = 4)\nm\n\n\n\n     [,1] [,2]\n[1,]    1    5\n[2,]    2    6\n[3,]    3    7\n[4,]    4    8\n\n\n\n\n\ndim(m)\n\n\n\n[1] 4 2\n\n\n\n\n\nt() flips rows and columns:\n\nt(m)\n\n\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    2    3    4\n[2,]    5    6    7    8"
+    "section": "A matrix is a vector with more dimensions",
+    "text": "A matrix is a vector with more dimensions\n\n\n\nm &lt;- matrix(1:8, nrow = 4)\nm\n\n\n\n     [,1] [,2]\n[1,]    1    5\n[2,]    2    6\n[3,]    3    7\n[4,]    4    8\n\n\n\n\n\ndim(m)\n\n\n\n[1] 4 2\n\n\n\n\n\nt() flips rows and columns:\n\nt(m)\n\n\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    2    3    4\n[2,]    5    6    7    8"
   },
   {
     "objectID": "notes/day-1.html#filling-by-row-byrow",
@@ -480,14 +480,14 @@
     "href": "notes/day-1.html#a-data-frame-is-a-fancy-list",
     "title": "R Bootcamp",
     "section": "A data frame is a fancy list",
-    "text": "A data frame is a fancy list\n\n\nmtcars is a data frame built into R — let’s borrow it\n\ndf &lt;- mtcars\nclass(df)\n\n\n\n[1] \"data.frame\"\n\n\n\n\nUnder the hood: a list of columns, all the same length\n\nis.list(df)\ndim(df)      # c(nrow(df), ncol(df))\nlength(df)\n\n\n\n[1] TRUE\n[1] 32 11\n[1] 11"
+    "text": "A data frame is a fancy list\n\n\nmtcars is a data frame built into R — let’s borrow it\n\ndf &lt;- mtcars\nclass(df)\n\n\n\n[1] \"data.frame\"\n\n\n\n\nUnder the hood: a list of columns, all the same length\n\nis.list(df)\ndim(df) # c(nrow(df), ncol(df))\nlength(df)\n\n\n\n[1] TRUE\n[1] 32 11\n[1] 11"
   },
   {
     "objectID": "notes/day-1.html#looking-at-a-data-frame",
     "href": "notes/day-1.html#looking-at-a-data-frame",
     "title": "R Bootcamp",
     "section": "Looking at a data frame",
-    "text": "Looking at a data frame\n\n\nTyping df prints all rows. Use head() instead:\n\nhead(df, 3) ## head(df) default is 6 rows\n\n\n\n               mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n\n\n\n\nhead() shows just the first rows (six, unless you say otherwise) — the fastest sanity check there is"
+    "text": "Looking at a data frame\n\n\nTyping df prints all rows. Use head() instead:\n\nhead(df, 3) ## head(df) default is 6 rows\n\n\n\n               mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n\n\n\n\nhead() shows just the first rows (six, unless you say otherwise)"
   },
   {
     "objectID": "notes/day-1.html#the-whole-structure-str",
@@ -500,29 +500,29 @@
     "objectID": "notes/day-1.html#row-and-column-names-in-a-data.frame",
     "href": "notes/day-1.html#row-and-column-names-in-a-data.frame",
     "title": "R Bootcamp",
-    "section": "row and column names in a data.frame",
-    "text": "row and column names in a data.frame\n\n\n\n\nnames(df)\n\n\n\n [1] \"mpg\"  \"cyl\"  \"disp\" \"hp\"   \"drat\" \"wt\"   \"qsec\" \"vs\"   \"am\"   \"gear\"\n[11] \"carb\"\n\n\n\n\n\n\nrownames(df)[1:4]\n\n\n\n[1] \"Mazda RX4\"      \"Mazda RX4 Wag\"  \"Datsun 710\"     \"Hornet 4 Drive\"\n\n\n\n\n\nThe car names aren’t a column. They live in the row names\n\n\nDon’t do this."
+    "section": "Row and column names in a data.frame",
+    "text": "Row and column names in a data.frame\n\n\n\n\nnames(df)\n\n\n\n [1] \"mpg\"  \"cyl\"  \"disp\" \"hp\"   \"drat\" \"wt\"   \"qsec\" \"vs\"   \"am\"   \"gear\"\n[11] \"carb\"\n\n\n\n\n\n\nrownames(df)[1:4]\n\n\n\n[1] \"Mazda RX4\"      \"Mazda RX4 Wag\"  \"Datsun 710\"     \"Hornet 4 Drive\"\n\n\n\n\n\nThe car names aren’t a column. They live in the row names\n\n\nDon’t do this."
   },
   {
-    "objectID": "notes/day-1.html#names-are-yours-to-change",
-    "href": "notes/day-1.html#names-are-yours-to-change",
+    "objectID": "notes/day-1.html#you-can-change-the-column-names",
+    "href": "notes/day-1.html#you-can-change-the-column-names",
     "title": "R Bootcamp",
-    "section": "Names are yours to change",
-    "text": "Names are yours to change\n\n\nAssign into the attribute:\n\ndf2 &lt;- df\n\ncolnames(df2)[1] &lt;- \"miles_per_gallon\"\n\nnames(df2)\n\n\n\n [1] \"miles_per_gallon\" \"cyl\"              \"disp\"            \n [4] \"hp\"               \"drat\"             \"wt\"              \n [7] \"qsec\"             \"vs\"               \"am\"              \n[10] \"gear\"             \"carb\"            \n\n\n\n\nSame trick works for rownames() — these are just character vectors you can overwrite"
+    "section": "You can change the column names",
+    "text": "You can change the column names\n\n\nAssign into the attribute:\n\ndf2 &lt;- df\n\ncolnames(df2)[1] &lt;- \"miles_per_gallon\"\n\nnames(df2)\n\n\n\n [1] \"miles_per_gallon\" \"cyl\"              \"disp\"            \n [4] \"hp\"               \"drat\"             \"wt\"              \n [7] \"qsec\"             \"vs\"               \"am\"              \n[10] \"gear\"             \"carb\"            \n\n\n\n\nSame trick works for rownames() — these are just character vectors you can overwrite"
   },
   {
     "objectID": "notes/day-1.html#grabbing-a-column",
     "href": "notes/day-1.html#grabbing-a-column",
     "title": "R Bootcamp",
     "section": "Grabbing a column: $",
-    "text": "Grabbing a column: $\n\n\n\ndf$cyl\n\n\n\n [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4\n\n\n\n\ntable() counts values — the fastest first look at a column:\n\ntable(df$cyl) # add a useNA = 'ifany' if you suspect NAs!\n\n\n\n\n 4  6  8 \n11  7 14 \n\n\n\n\n\nTwo columns give a cross-tab:\n\ntable(df$cyl, df$gear)\n\n\n\n   \n     3  4  5\n  4  1  8  2\n  6  2  4  1\n  8 12  0  2"
+    "text": "Grabbing a column: $\n\n\n\ndf$cyl\n\n\n\n [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4\n\n\n\n\ntable() counts values, but it’s slow on large or high-cardinality vectors\n\ntable(df$cyl) # add a useNA = 'ifany' if you suspect NAs!\n\n\n\n\n 4  6  8 \n11  7 14 \n\n\n\n\n\nTwo columns give a cross-tab:\n\ntable(df$cyl, df$gear)\n\n\n\n   \n     3  4  5\n  4  1  8  2\n  6  2  4  1\n  8 12  0  2"
   },
   {
     "objectID": "notes/day-1.html#as.matrix-what-do-we-lose",
     "href": "notes/day-1.html#as.matrix-what-do-we-lose",
     "title": "R Bootcamp",
     "section": "as.matrix(): what do we lose?",
-    "text": "as.matrix(): what do we lose?\n\n\n\ncars_matrix &lt;- as.matrix(df)\ncars_matrix[1:3, 1:4]\n\n\n\n               mpg cyl disp  hp\nMazda RX4     21.0   6  160 110\nMazda RX4 Wag 21.0   6  160 110\nDatsun 710    22.8   4  108  93\n\n\n\n\nThe row names survive the trip because matricies allow row (and column) names.\n\nclass(cars_matrix)\n\n\n\n[1] \"matrix\" \"array\" \n\n\n\n\n\nMatricies require type for everything: a single character column would have turned the whole matrix into text"
+    "text": "as.matrix(): what do we lose?\n\n\n\ncars_matrix &lt;- as.matrix(df)\ncars_matrix[1:3, 1:4]\n\n\n\n               mpg cyl disp  hp\nMazda RX4     21.0   6  160 110\nMazda RX4 Wag 21.0   6  160 110\nDatsun 710    22.8   4  108  93\n\n\n\n\nThe row names survive because matricies allow row (and column) names.\n\nclass(cars_matrix)\n\n\n\n[1] \"matrix\" \"array\" \n\n\n\n\n\nMatricies require the same type for all cells: one character column would have case the whole matrix into chars"
   },
   {
     "objectID": "notes/day-1.html#subsetting-rows",
@@ -543,14 +543,14 @@
     "href": "notes/day-1.html#build-one-from-scratch",
     "title": "R Bootcamp",
     "section": "Build one from scratch",
-    "text": "Build one from scratch\n\n\ndata.frame() works like list(): name the columns, give equal-length vectors\n\nschools &lt;- data.frame(\n  school = c(\"Princeton\", \"Rutgers\"),\n  students = c(5590, 36000)\n)\nschools\n\n\n\n     school students\n1 Princeton     5590\n2   Rutgers    36000\n\n\n\n\nAdd rows or columns with rbind() / cbind():\n\nyale &lt;- data.frame(school = \"Yale\", students = 6645)\nrbind(schools, yale)\n\n\n\n     school students\n1 Princeton     5590\n2   Rutgers    36000\n3      Yale     6645"
+    "text": "Build one from scratch\n\n\ndata.frame() works like list(): name the columns, give equal-length vectors\n\nschools &lt;- data.frame(\n    school = c(\"Princeton\", \"Rutgers\"),\n    students = c(5590, 36000)\n)\nschools\n\n\n\n     school students\n1 Princeton     5590\n2   Rutgers    36000\n\n\n\n\nAdd rows or columns with rbind() / cbind():\n\nyale &lt;- data.frame(school = \"Yale\", students = 6645)\nrbind(schools, yale)\n\n\n\n     school students\n1 Princeton     5590\n2   Rutgers    36000\n3      Yale     6645"
   },
   {
     "objectID": "notes/day-1.html#your-computer-is-a-tree-of-folders",
     "href": "notes/day-1.html#your-computer-is-a-tree-of-folders",
     "title": "R Bootcamp",
     "section": "Your computer is a tree of folders",
-    "text": "Your computer is a tree of folders\n\n\nEvery file lives in a folder, and every folder lives inside another — one big tree (folder = “directory”).\n/Users/you/\n├── Desktop/\n├── Downloads/\n└── Documents/\n    └── bootcamp/\n        ├── day-1.R\n        └── data/\n            └── county_population.csv\n\nA file’s path is its full address — the folders you pass through, joined by /:\n/Users/you/Documents/bootcamp/data/county_population.csv\n\n\n(Windows spells it C:\\Users\\you\\... but in R, always write /; it works on every system)"
+    "text": "Your computer is a tree of folders\n\n\nEvery file lives in a folder, and every folder lives inside another — one big tree (folder = “directory”).\n/Users/you/\n├── Desktop/\n├── Downloads/\n└── Documents/\n    └── bootcamp/\n        ├── day-1.R\n        └── data/\n            └── county_population.csv\n\nA file’s path is its full address — the folders you pass through, joined by /:\n/Users/you/Documents/bootcamp/data/county_population.csv\n\n\n(Windows writes it C:\\Users\\you\\... but in R, always write / – it works on every system)\n\n\n\nMac Users: right-/double-click + Option (⌥) + “Copy ‘…’ as Pathname”"
   },
   {
     "objectID": "notes/day-1.html#growing-up-is-hard",
@@ -560,18 +560,18 @@
     "text": "Growing up is hard\n\n\n\n\nIf you have everything in ~/Downloads…."
   },
   {
-    "objectID": "notes/day-1.html#where-is-r-standing-the-working-directory",
-    "href": "notes/day-1.html#where-is-r-standing-the-working-directory",
+    "objectID": "notes/day-1.html#where-is-r-working-the-working-directory",
+    "href": "notes/day-1.html#where-is-r-working-the-working-directory",
     "title": "R Bootcamp",
-    "section": "Where is R standing? The working directory",
-    "text": "Where is R standing? The working directory\n\n\nR always works from one folder in that tree — its working directory:\n\ngetwd()\n\n\n\n[1] \"/Users/ericmm/Documents/GitHub/r-bootcamp/notes\"\n\n\n\nA relative path gives directions from there. No absolute file path required.\ncounty &lt;- read.csv(\"data/county_population.csv\")\n(“go into data/, grab the file” — and .. means “up one folder”)\n\n\n\nCan’t find your file? Ask what R can actually see from where it stands:\n\nlist.files()\nlist.files(\"data\")"
+    "section": "Where is R working? The working directory",
+    "text": "Where is R working? The working directory\n\n\nR always works from one folder — its working directory:\n\ngetwd()\n\n\n\n[1] \"/Users/ericmm/Documents/GitHub/r-bootcamp/notes\"\n\n\n\n\nA relative path gives directions from there. No absolute file path required.\ncounty &lt;- read.csv(\"data/county_population.csv\")\n(“go into data/, grab the file” — and .. means “up one folder”)\n\n\n\nCan’t find your file? Ask what R can actually see in the current (working) directory:\n\nlist.files()\nlist.files(\"data\")"
   },
   {
     "objectID": "notes/day-1.html#making-paths-painless",
     "href": "notes/day-1.html#making-paths-painless",
     "title": "R Bootcamp",
     "section": "Making paths painless",
-    "text": "Making paths painless\n\n\n\n\nsetwd() exists — but hard-coded paths break on every other computer. Always assume you’re in the project root and make all paths relative.\n\n\n\n\n\nIf you have a bunch of scripts, but them in scripts/\nThen paths to data will be ../data/county_population.csv\nNeed a file’s full path? Drag the file from Finder / File Explorer into the console and the path types itself."
+    "text": "Making paths painless\n\n\n\nsetwd() exists, but hard-coded paths break on other computers (or yours when you move stuff around).\n\n\n\n\nAlways assume you’re in the project root and make all paths relative.\n\n\n\n\n\nIf you have a bunch of scripts, but them in scripts/\nThen paths to data will be ../data/county_population.csv relative to that folder (but why won’t we need this?)"
   },
   {
     "objectID": "notes/day-1.html#our-data-county-populations",
@@ -592,21 +592,21 @@
     "href": "notes/day-1.html#reading-it-in-with-arguments",
     "title": "R Bootcamp",
     "section": "Reading it in, with arguments",
-    "text": "Reading it in, with arguments\n\n\nTell read.csv() what the column really is:\n\ncounty &lt;- read.csv(\n  \"county_population.csv\",\n  colClasses = c(fips = \"character\")\n)\nstr(county)\n\n\n\n\n\n\n\n'data.frame':   3143 obs. of  4 variables:\n $ fips    : chr  \"01001\" \"01003\" ...\n $ region  : chr  \"South\" \"South\" ...\n $ division: chr  \"East South Central\" \"East South Central\" ...\n $ pop     : int  58805 231767 25223 22293 59134 ...\n\n\n\n\n\nThis distinction is often important if you are joining data, if ‘0xx’ is different from ‘xx’ etc."
+    "text": "Reading it in, with arguments\n\n\nTell read.csv() what the column really is:\n\ncounty &lt;- read.csv(\n    \"county_population.csv\",\n    colClasses = c(fips = \"character\")\n)\nstr(county)\n\n\n\n\n\n\n\n'data.frame':   3143 obs. of  4 variables:\n $ fips    : chr  \"01001\" \"01003\" ...\n $ region  : chr  \"South\" \"South\" ...\n $ division: chr  \"East South Central\" \"East South Central\" ...\n $ pop     : int  58805 231767 25223 22293 59134 ...\n\n\n\n\n\nThis distinction is often important if you are joining data, if ‘0xx’ is different from ‘xx’ etc."
   },
   {
     "objectID": "notes/day-1.html#watch-for-coded-missingness",
     "href": "notes/day-1.html#watch-for-coded-missingness",
     "title": "R Bootcamp",
     "section": "Watch for coded missingness",
-    "text": "Watch for coded missingness\n\n\nSurveys love codes like -9 or -999 for “no answer”\n\nages &lt;- c(34, -9, 27)\nmean(ages)\n\n\n\n[1] 17.33333\n\n\n\nNA is always better. (Why?)\n\n\n\nna.strings translates the codes to NA when reading:\n\nsurvey &lt;- read.csv(\"survey.csv\", na.strings = c(\"-9\", \"-999\"))"
+    "text": "Watch for coded missingness\n\n\nSurveys love codes like -9 or -999 for “no answer.”\n\nages &lt;- c(34, -999, 27)\nmean(ages)\n\n\n\n[1] -312.6667\n\n\n\nNA is always better. (Why?)\n\n\n\nna.strings translates the codes to NA when reading:\n\nsurvey &lt;- read.csv(\"survey.csv\", na.strings = c(\"-9\", \"-999\"))"
   },
   {
     "objectID": "notes/day-1.html#other-read.csv-arguments-to-know",
     "href": "notes/day-1.html#other-read.csv-arguments-to-know",
     "title": "R Bootcamp",
     "section": "Other read.csv() arguments to know",
-    "text": "Other read.csv() arguments to know\n\n\n\n\n\nArgument\nWhen you need it\n\n\n\n\nheader = FALSE\nthe file has no column-name row\n\n\nskip = 3\njunk lines (titles, notes) sit above the data\n\n\nnrows = 100\npeek at the first chunk of a huge file\n\n\nfill = TRUE\nragged files — some rows end early\n\n\nna.strings\nwhich codes mean “missing”\n\n\n\n\n\nEvery one of these is a question about your file. You can use readLines(path, n = a_small_number) to inspect the file."
+    "text": "Other read.csv() arguments to know\n\n\n\n\n\nArgument\nWhen you need it\n\n\n\n\nheader = FALSE\nthe file has no column-name row\n\n\nskip = 3\njunk lines (titles, notes) sit above the data\n\n\nnrows = 100\npeek at the first chunk of a huge file\n\n\nfill = TRUE\nragged files — some rows end early\n\n\nna.strings\nwhich codes mean “missing”\n\n\n\n\n\nEvery one of these is a question about your file. You can always use readLines(path, n = a_small_number) to inspect the file."
   },
   {
     "objectID": "notes/day-1.html#first-look-at-new-data-summary",
@@ -620,21 +620,21 @@
     "href": "notes/day-1.html#beyond-csv",
     "title": "R Bootcamp",
     "section": "Beyond csv",
-    "text": "Beyond csv\n\n\n\n\n\n\n\n\n\n\n\nFormat\nFunctions\nTrade-off\n\n\n\n\n.csv\nread.csv() / write.csv()\nopens anywhere; loses types (ask fips!)\n\n\n.rds\nreadRDS() / saveRDS()\none R object, restored exactly; R-only\n\n\n.rda\nload() / save()\nmany objects at once; R-only\n\n\n.dta, .xlsx\nhaven, readxl packages\nStata and Excel files\n\n\n\n\n\n\nCareful with .rda: load() will overwrite existing objects if they have the same name.\n\n\n\nRule of thumb: share .csv with humans, save .rds and .rda for yourself (and collaborators).\n\n\n\nSometimes."
+    "text": "Beyond csv\n\n\n\n\n\n\n\n\n\n\n\nFormat\nFunctions\nTrade-off\n\n\n\n\n.csv\nread.csv() / write.csv()\nopens anywhere; loses types (ask fips!)\n\n\n.rds\nreadRDS() / saveRDS()\none R object, restored exactly; R-only\n\n\n.rda\nload() / save()\nmany objects at once; R-only\n\n\n.dta, .xlsx\nhaven, readxl packages\nStata and Excel files 😩\n\n\n\n\n\n\nCareful with .rda: load() will overwrite existing objects if they have the same name.\n\n\n\nRule of thumb: share .csv with humans, save .rds and .rda for yourself (and collaborators).\n\n\n\nSometimes."
   },
   {
     "objectID": "notes/day-1.html#writing-files",
     "href": "notes/day-1.html#writing-files",
     "title": "R Bootcamp",
     "section": "Writing files",
-    "text": "Writing files\n\n\n\nwrite.csv(county, \"county_population.csv\", row.names = FALSE)\n\n\n\n\n\nrow.names = FALSE or you’ll get a useless, unnamed column\n\n\n\n\nsaveRDS(county, \"county_population.rds\")   ## holds one object (compressed)\ncounty &lt;- readRDS(\"county_population.rds\")\n\n\n\n\n\n\n\n\nsave(county, ..., file = \"stuff.rda\")   ## holds one object (compressed)\nload('stuff.rda') \n\n\n\n\n\n\n\nReasons to prefer one or the other?"
+    "text": "Writing files\n\n\n\nwrite.csv(county, \"county_population.csv\", row.names = FALSE)\n\n\n\n\n\nrow.names = FALSE or you’ll get a useless, unnamed column\n\n\n\n\nsaveRDS(county, \"county_population.rds\") ## holds one object (compressed)\ncounty &lt;- readRDS(\"county_population.rds\")\n\n\n\n\n\n\n\n\nsave(county, ..., file = \"stuff.rda\") ## holds one object (compressed)\nload(\"stuff.rda\")\n\n\n\n\n\n\n\nReasons to prefer one or the other?"
   },
   {
     "objectID": "notes/day-1.html#summarizing-a-column",
     "href": "notes/day-1.html#summarizing-a-column",
     "title": "R Bootcamp",
     "section": "Summarizing a column",
-    "text": "Summarizing a column\n\n\n\nmean(county$pop)\n\n\n\n[1] 105456.3\n\n\n\n\nmedian(county$pop)\n\n\n\n[1] 25698\n\n\n\n\n\nFunctions compose, evaluated inside-out:\n\nround(mean(county$pop))\n\n## alternatively, mean(county$pop) |&gt; round() ... \n\n\n\n[1] 105456\n\n\n\n\n\nAnd a second argument picks the digits:\n\nround(3.14159, 2) ## see also: ceiling, floor, trunc\n\n\n\n[1] 3.14"
+    "text": "Summarizing a column\n\n\n\nmean(county$pop)\n\n\n\n[1] 105456.3\n\n\n\n\nmedian(county$pop)\n\n\n\n[1] 25698\n\n\n\n\n\nFunctions compose, evaluated inside-out:\n\nround(mean(county$pop))\n\n## alternatively, mean(county$pop) |&gt; round() ...\n\n\n\n[1] 105456\n\n\n\n\n\nAnd a second argument picks the digits:\n\nround(3.14159, 2) ## see also: ceiling, floor, trunc\n\n\n\n[1] 3.14"
   },
   {
     "objectID": "notes/day-1.html#making-new-columns",
@@ -669,7 +669,7 @@
     "href": "notes/day-1.html#summary-and-beyond",
     "title": "R Bootcamp",
     "section": "summary() and beyond",
-    "text": "summary() and beyond\n\n\n\nsummary(county$pop)\n\n\n\n    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. \n      64    10832    25698   105456    67946 10014009 \n\n\n\n\nBuild your own with a named vector:\n\nc(\n  n = length(county$pop),\n  mean = mean(county$pop),\n  sd = sd(county$pop)\n)\n\n\n\n       n     mean       sd \n  3143.0 105456.3 335760.4 \n\n\n\n\nThis gets repetitive if we write the same code for each column – or for a bunch of different data frames…"
+    "text": "summary() and beyond\n\n\n\nsummary(county$pop)\n\n\n\n    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. \n      64    10832    25698   105456    67946 10014009 \n\n\n\n\nBuild your own with a named vector:\n\nc(\n    n = length(county$pop),\n    mean = mean(county$pop),\n    sd = sd(county$pop)\n)\n\n\n\n       n     mean       sd \n  3143.0 105456.3 335760.4 \n\n\n\n\nThis gets repetitive if we write the same code for each column – or for a bunch of different data frames…"
   },
   {
     "objectID": "notes/day-1.html#monday",
@@ -697,7 +697,7 @@
     "href": "notes/day-3-viz.html#our-data-again",
     "title": "R Bootcamp",
     "section": "Our data, again",
-    "text": "Our data, again\n\n\nThe county data from yesterday — income and rent, plus population and region:\n\ncounties &lt;- left_join(\n  read_csv(\"data/county_data.csv\"),\n  read_csv(\"data/county_population.csv\"),\n  join_by(GEOID == fips)\n  )"
+    "text": "Our data, again\n\n\nThe county data from yesterday — income and rent, plus population and region:\n\ncounties &lt;- left_join(\n    read_csv(\"data/county_data.csv\"),\n    read_csv(\"data/county_population.csv\"),\n    join_by(GEOID == fips)\n)"
   },
   {
     "objectID": "notes/day-3-viz.html#our-data-again-1",
@@ -718,7 +718,7 @@
     "href": "notes/day-3-viz.html#a-bunch-of-hidden-defaults-we-can-fill-ourselves",
     "title": "R Bootcamp",
     "section": "A bunch of hidden defaults we can fill ourselves",
-    "text": "A bunch of hidden defaults we can fill ourselves\n\n\n\nplot(\n  counties$income / 1000, counties$rent,\n  main = \"Rent vs. income\",\n  xlab = \"Median household income (in thousands USD)\",\n  ylab = \"Median gross rent\",\n  pch = 19, cex = 0.5, col = \"steelblue\"\n  )"
+    "text": "A bunch of hidden defaults we can fill ourselves\n\n\n\nplot(\n    counties$income / 1000, counties$rent,\n    main = \"Rent vs. income\",\n    xlab = \"Median household income (in thousands USD)\",\n    ylab = \"Median gross rent\",\n    pch = 19, cex = 0.5, col = \"steelblue\"\n)"
   },
   {
     "objectID": "notes/day-3-viz.html#useful-plot-arguments",
@@ -732,126 +732,126 @@
     "href": "notes/day-3-viz.html#from-canvas-to-objects",
     "title": "R Bootcamp",
     "section": "From canvas to objects",
-    "text": "From canvas to objects\n\n\nBase R: call functions, ink appears on a device. The plot is a side effect.\n\nggplot2: builds an object that describes a plot with layers. Gets drawn when you print it.\n\n\n\nThat means you can assign, modify, combine, save, etc. without printing anything.\n\np &lt;- ggplot(...)   # nothing drawn yet\np                  # drawn now\n\n\n\n\n\n\n\nggplot2 is part of the tidyverse you met yesterday:\n\nlibrary(tidyverse)"
+    "text": "From canvas to objects\n\n\nBase R: call functions, ink appears on a device. The plot is a side effect.\n\nggplot2: builds an object that describes a plot with layers. Gets drawn when you print it.\n\n\n\nThat means you can assign, modify, combine, save, etc. without printing anything.\n\np &lt;- ggplot(...) # nothing drawn yet\np # drawn now\n\n\n\n\n\n\n\nggplot2 is part of the tidyverse you met yesterday:\n\nlibrary(tidyverse)"
   },
   {
     "objectID": "notes/day-3-viz.html#the-gist-data-w-mapping-geom",
     "href": "notes/day-3-viz.html#the-gist-data-w-mapping-geom",
     "title": "R Bootcamp",
     "section": "The gist: (data w/ mapping) + geom + …",
-    "text": "The gist: (data w/ mapping) + geom + …\n\n\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n(Yuck.)"
+    "text": "The gist: (data w/ mapping) + geom + …\n\n\n\nggplot(counties, aes(x = income, y = rent)) +\n    geom_point()\n\n\n\n\n\n\n\n\n\n\n\n(Yuck.)"
   },
   {
     "objectID": "notes/day-3-viz.html#aesthetics",
     "href": "notes/day-3-viz.html#aesthetics",
     "title": "R Bootcamp",
     "section": "Aesthetics",
-    "text": "Aesthetics\n\n\nMap a third column to color. It’s a variable, so it goes in aes() (constants go in geom_*)\n\nggplot(counties, aes(x = income, y = rent, color = region)) +\n  geom_point(size = 0.7)\n\n\n\n\n\n\n\n\n\n\n\nCompare: in base R, you subset the data, chose the colors, and drew the legend."
+    "text": "Aesthetics\n\n\nMap a third column to color. It’s a variable, so it goes in aes() (constants go in geom_*)\n\nggplot(counties, aes(x = income, y = rent, color = region)) +\n    geom_point(size = 0.7)\n\n\n\n\n\n\n\n\n\n\n\nCompare: in base R, you subset the data, chose the colors, and drew the legend."
   },
   {
     "objectID": "notes/day-3-viz.html#classic-mistake",
     "href": "notes/day-3-viz.html#classic-mistake",
     "title": "R Bootcamp",
     "section": "Classic mistake",
-    "text": "Classic mistake\n\n\n\nggplot(counties, aes(x = income, y = rent, color = \"steelblue\")) +\n  geom_point(size = 0.7)\n\n\n\n\n\n\n\n\n\n\n\nInside aes(), \"steelblue\" isn’t a color. It gets vectorized as data."
+    "text": "Classic mistake\n\n\n\nggplot(counties, aes(x = income, y = rent, color = \"steelblue\")) +\n    geom_point(size = 0.7)\n\n\n\n\n\n\n\n\n\n\n\nInside aes(), \"steelblue\" isn’t a color. It gets vectorized as data."
   },
   {
     "objectID": "notes/day-3-viz.html#same-mapping-different-geom",
     "href": "notes/day-3-viz.html#same-mapping-different-geom",
     "title": "R Bootcamp",
     "section": "Same mapping, different geom",
-    "text": "Same mapping, different geom\n\n\nDistributions by group:\n\nggplot(counties, aes(x = region, y = income)) +\n  geom_boxplot()"
+    "text": "Same mapping, different geom\n\n\nDistributions by group:\n\nggplot(counties, aes(x = region, y = income)) +\n    geom_boxplot()"
   },
   {
     "objectID": "notes/day-3-viz.html#composition-stacked-bars",
     "href": "notes/day-3-viz.html#composition-stacked-bars",
     "title": "R Bootcamp",
     "section": "Composition: stacked bars",
-    "text": "Composition: stacked bars\n\n\nSplit each region’s counties into high- and low-population halves:\n\ncounties = counties |&gt;\n  mutate(pop_level = if_else(\n      pop &gt;= median(counties$pop, na.rm = T),\n      'high pop', 'low_pop'\n  ))\n\ncounties |&gt;\n  filter(!is.na(pop_level)) |&gt;\n  ## piping in this data; now different operator!\n  ggplot(aes(x = region, fill = pop_level)) +\n  geom_bar()"
+    "text": "Composition: stacked bars\n\n\nSplit each region’s counties into high- and low-population halves:\n\ncounties &lt;- counties |&gt;\n    mutate(pop_level = if_else(\n        pop &gt;= median(counties$pop, na.rm = T),\n        \"high pop\", \"low_pop\"\n    ))\n\ncounties |&gt;\n    filter(!is.na(pop_level)) |&gt;\n    ## piping in this data; now different operator!\n    ggplot(aes(x = region, fill = pop_level)) +\n    geom_bar()"
   },
   {
     "objectID": "notes/day-3-viz.html#counts-vs.-shares-position",
     "href": "notes/day-3-viz.html#counts-vs.-shares-position",
     "title": "R Bootcamp",
     "section": "Counts vs. shares: position",
-    "text": "Counts vs. shares: position\n\n\nposition = \"fill\" rescales every bar to 1\n\ncounties |&gt;\n  filter(!is.na(pop_level)) |&gt;\n  ggplot(aes(x = region, fill = pop_level)) +\n  geom_bar(position = \"fill\")"
+    "text": "Counts vs. shares: position\n\n\nposition = \"fill\" rescales every bar to 1\n\ncounties |&gt;\n    filter(!is.na(pop_level)) |&gt;\n    ggplot(aes(x = region, fill = pop_level)) +\n    geom_bar(position = \"fill\")"
   },
   {
     "objectID": "notes/day-3-viz.html#side-by-side-position-dodge",
     "href": "notes/day-3-viz.html#side-by-side-position-dodge",
     "title": "R Bootcamp",
     "section": "Side by side: position = \"dodge\"",
-    "text": "Side by side: position = \"dodge\"\n\n\n\ncounties |&gt;\n  filter(!is.na(pop_level)) |&gt;\n  ggplot(aes(x = region, fill = pop_level)) +\n  geom_bar(position = \"dodge\")\n\n\n\n\n\n\n\n\n\n\n\nThree versions of the same bars — stacked, filled, dodged. Which question does each answer best?"
+    "text": "Side by side: position = \"dodge\"\n\n\n\ncounties |&gt;\n    filter(!is.na(pop_level)) |&gt;\n    ggplot(aes(x = region, fill = pop_level)) +\n    geom_bar(position = \"dodge\")\n\n\n\n\n\n\n\n\n\n\n\nThree versions of the same bars — stacked, filled, dodged. Which question does each answer best?"
   },
   {
     "objectID": "notes/day-3-viz.html#line-graphs",
     "href": "notes/day-3-viz.html#line-graphs",
     "title": "R Bootcamp",
     "section": "Line graphs",
-    "text": "Line graphs\n\n\nggplot2 ships with practice data: economics is monthly US macro data:\n\nggplot(economics, aes(x = date, y = unemploy)) +\n  geom_line()"
+    "text": "Line graphs\n\n\nggplot2 ships with practice data: economics is monthly US macro data:\n\nggplot(economics, aes(x = date, y = unemploy)) +\n    geom_line()"
   },
   {
     "objectID": "notes/day-3-viz.html#common-mistake",
     "href": "notes/day-3-viz.html#common-mistake",
     "title": "R Bootcamp",
     "section": "Common mistake",
-    "text": "Common mistake\n\n\n\n\nhead(economics_long, 3)\n\n\n\n# A tibble: 3 × 4\n  date       variable value  value01\n  &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 1967-07-01 pce       507. 0       \n2 1967-08-01 pce       510. 0.000265\n3 1967-09-01 pce       516. 0.000762\n\n\n\n\n\nggplot(economics_long, aes(x = date, y = value01)) +\n  geom_line()"
+    "text": "Common mistake\n\n\n\n\nhead(economics_long, 3)\n\n\n\n# A tibble: 3 × 4\n  date       variable value  value01\n  &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 1967-07-01 pce       507. 0       \n2 1967-08-01 pce       510. 0.000265\n3 1967-09-01 pce       516. 0.000762\n\n\n\n\n\nggplot(economics_long, aes(x = date, y = value01)) +\n    geom_line()"
   },
   {
     "objectID": "notes/day-3-viz.html#tell-ggplot-what-belongs-together",
     "href": "notes/day-3-viz.html#tell-ggplot-what-belongs-together",
     "title": "R Bootcamp",
     "section": "Tell ggplot what belongs together",
-    "text": "Tell ggplot what belongs together\n\n\nMap the series id to color (or group) and each variable gets its own line:\n\nggplot(economics_long, aes(x = date, y = value01, color = variable)) +\n  geom_line()"
+    "text": "Tell ggplot what belongs together\n\n\nMap the series id to color (or group) and each variable gets its own line:\n\nggplot(economics_long, aes(x = date, y = value01, color = variable)) +\n    geom_line()"
   },
   {
     "objectID": "notes/day-3-viz.html#reference-lines-are-geoms-too",
     "href": "notes/day-3-viz.html#reference-lines-are-geoms-too",
     "title": "R Bootcamp",
     "section": "Reference lines are geoms too",
-    "text": "Reference lines are geoms too\n\n\n\ngeom_hline(), geom_vline(), and geom_abline() are just more layers:\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point(size = 0.5, color = \"gray\") +\n  geom_hline(\n    yintercept = median(counties$rent, na.rm = T),\n    color = \"steelblue\", linewidth = 1\n    )"
+    "text": "Reference lines are geoms too\n\n\n\ngeom_hline(), geom_vline(), and geom_abline() are just more layers:\n\nggplot(counties, aes(x = income, y = rent)) +\n    geom_point(size = 0.5, color = \"gray\") +\n    geom_hline(\n        yintercept = median(counties$rent, na.rm = T),\n        color = \"steelblue\", linewidth = 1\n    )"
   },
   {
     "objectID": "notes/day-3-viz.html#facets",
     "href": "notes/day-3-viz.html#facets",
     "title": "R Bootcamp",
     "section": "Facets",
-    "text": "Facets\n\n\nOne line splits the plot by a categorical column:\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point(size = 0.4) +\n  facet_wrap(~ region) ## more than one: ~ region + ..."
+    "text": "Facets\n\n\nOne line splits the plot by a categorical column:\n\nggplot(counties, aes(x = income, y = rent)) +\n    geom_point(size = 0.4) +\n    facet_wrap(~region) ## more than one: ~ region + ..."
   },
   {
     "objectID": "notes/day-3-viz.html#facets-in-two-directions",
     "href": "notes/day-3-viz.html#facets-in-two-directions",
     "title": "R Bootcamp",
     "section": "Facets in two directions",
-    "text": "Facets in two directions\n\n\nfacet_grid(rows ~ cols):\n\ncounties |&gt;\n  filter(!is.na(pop_level)) |&gt;\n  ggplot(aes(x = income, y = rent)) +\n  geom_point(size = 0.4) +\n  facet_grid(pop_level ~ region)"
+    "text": "Facets in two directions\n\n\nfacet_grid(rows ~ cols):\n\ncounties |&gt;\n    filter(!is.na(pop_level)) |&gt;\n    ggplot(aes(x = income, y = rent)) +\n    geom_point(size = 0.4) +\n    facet_grid(pop_level ~ region)"
   },
   {
     "objectID": "notes/day-3-viz.html#labels-with-labs",
     "href": "notes/day-3-viz.html#labels-with-labs",
     "title": "R Bootcamp",
     "section": "Labels with labs()",
-    "text": "Labels with labs()\n\n\n\nggplot(counties, aes(x = income, y = rent, color = region)) +\n  geom_point(size = 0.7) +\n  labs(\n    title = \"Rent rises with income\",\n    subtitle = \"US counties, 2023 five-year ACS\",\n    x = \"Median household income ($)\",\n    y = \"Median gross rent ($)\",\n    color = \"Region\"\n  )"
+    "text": "Labels with labs()\n\n\n\nggplot(counties, aes(x = income, y = rent, color = region)) +\n    geom_point(size = 0.7) +\n    labs(\n        title = \"Rent rises with income\",\n        subtitle = \"US counties, 2023 five-year ACS\",\n        x = \"Median household income ($)\",\n        y = \"Median gross rent ($)\",\n        color = \"Region\"\n    )"
   },
   {
     "objectID": "notes/day-3-viz.html#scales-how-mappings-become-positions-and-colors",
     "href": "notes/day-3-viz.html#scales-how-mappings-become-positions-and-colors",
     "title": "R Bootcamp",
     "section": "Scales: how mappings become positions and colors",
-    "text": "Scales: how mappings become positions and colors\n\n\nEvery aesthetic has a scale named scale_&lt;aesthetic&gt;_&lt;flavor&gt;() with its own arguments:\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point(size = 0.5) +\n  scale_x_continuous(name = \"Median household income\",\n                     breaks = c(50000, 100000, 150000),\n                     labels = c(\"$50k\", \"$100k\", \"$150k\"),\n                     limits = c(0, 200000))"
+    "text": "Scales: how mappings become positions and colors\n\n\nEvery aesthetic has a scale named scale_&lt;aesthetic&gt;_&lt;flavor&gt;() with its own arguments:\n\nggplot(counties, aes(x = income, y = rent)) +\n    geom_point(size = 0.5) +\n    scale_x_continuous(\n        name = \"Median household income\",\n        breaks = c(50000, 100000, 150000),\n        labels = c(\"$50k\", \"$100k\", \"$150k\"),\n        limits = c(0, 200000)\n    )"
   },
   {
     "objectID": "notes/day-3-viz.html#zooming-vs.-dropping",
     "href": "notes/day-3-viz.html#zooming-vs.-dropping",
     "title": "R Bootcamp",
     "section": "Zooming vs. dropping",
-    "text": "Zooming vs. dropping\n\n\nxlim()/ylim()/lims() throw away data outside the limits:\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point(size = 0.5) +\n  lims(x = c(0, 100000))\n\n\n\nWarning: Removed 158 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+    "text": "Zooming vs. dropping\n\n\nxlim()/ylim()/lims() throw away data outside the limits:\n\nggplot(counties, aes(x = income, y = rent)) +\n    geom_point(size = 0.5) +\n    lims(x = c(0, 100000))\n\n\n\nWarning: Removed 158 rows containing missing values or values outside the scale range\n(`geom_point()`)."
   },
   {
     "objectID": "notes/day-3-viz.html#zooming-vs.-dropping-1",
     "href": "notes/day-3-viz.html#zooming-vs.-dropping-1",
     "title": "R Bootcamp",
     "section": "Zooming vs. dropping",
-    "text": "Zooming vs. dropping\n\n\ncoord_cartesian() zooms without dropping:\n\nggplot(counties, aes(x = income, y = rent)) +\n  geom_point(size = 0.5) +\n  coord_cartesian(xlim = c(0, 100000))\n\n\n\n\n\n\n\n\n\n\n\n\nLooks the same here, but anything computed from the data (boxplot stats, smoothers, densities) changes when points are dropped."
+    "text": "Zooming vs. dropping\n\n\ncoord_cartesian() zooms without dropping:\n\nggplot(counties, aes(x = income, y = rent)) +\n    geom_point(size = 0.5) +\n    coord_cartesian(xlim = c(0, 100000))\n\n\n\n\n\n\n\n\n\n\n\n\nLooks the same here, but anything computed from the data (boxplot stats, smoothers, densities) changes when points are dropped."
   },
   {
     "objectID": "notes/day-3-viz.html#other-geom_-functions",
@@ -865,7 +865,7 @@
     "href": "notes/day-3-viz.html#setup-for-next-bit",
     "title": "R Bootcamp",
     "section": "Setup for next bit",
-    "text": "Setup for next bit\n\n\n\np = ggplot(counties, aes(x = income, y = rent, color = region)) +\n  geom_point(size = 0.6) +\n  labs(\n    x = \"Median household income ($)\",\n    y = \"Median gross rent ($ logged)\",\n    color = NULL\n  ) +\n  scale_x_log10()\n\np"
+    "text": "Setup for next bit\n\n\n\np &lt;- ggplot(counties, aes(x = income, y = rent, color = region)) +\n    geom_point(size = 0.6) +\n    labs(\n        x = \"Median household income ($)\",\n        y = \"Median gross rent ($ logged)\",\n        color = NULL\n    ) +\n    scale_x_log10()\n\np"
   },
   {
     "objectID": "notes/day-3-viz.html#themes",
@@ -886,7 +886,7 @@
     "href": "notes/day-3-viz.html#or-size-each-piece-separately",
     "title": "R Bootcamp",
     "section": "Or size each piece separately",
-    "text": "Or size each piece separately\n\ntheme() targets one element at a time. Elements take an element_*():\n\np + theme_minimal(base_size = 15) +\n  theme(\n    axis.title.x = element_text(size = 20, face = \"bold\"),\n    axis.text    = element_text(size = 10),\n    legend.text  = element_text(size = 12, family = \"Palatino\")\n  )"
+    "text": "Or size each piece separately\n\ntheme() targets one element at a time. Elements take an element_*():\n\np + theme_minimal(base_size = 15) +\n    theme(\n        axis.title.x = element_text(size = 20, face = \"bold\"),\n        axis.text    = element_text(size = 10),\n        legend.text  = element_text(size = 12, family = \"Palatino\")\n    )"
   },
   {
     "objectID": "notes/day-3-viz.html#the-element_-family",
@@ -907,21 +907,21 @@
     "href": "notes/day-3-viz.html#or-make-your-own",
     "title": "R Bootcamp",
     "section": "Or make your own",
-    "text": "Or make your own\n\n\n\npal = c(\"Midwest\" = \"#E87722\", \"Northeast\" = \"steelblue\",\n        \"South\" = \"firebrick\", \"West\" = \"#83876F\")\n\np + theme_minimal(base_size = 15) + scale_color_manual(values = pal)"
+    "text": "Or make your own\n\n\n\npal &lt;- c(\n    \"Midwest\" = \"#E87722\", \"Northeast\" = \"steelblue\",\n    \"South\" = \"firebrick\", \"West\" = \"#83876F\"\n)\n\np + theme_minimal(base_size = 15) + scale_color_manual(values = pal)"
   },
   {
     "objectID": "notes/day-3-viz.html#composing-figures-patchwork",
     "href": "notes/day-3-viz.html#composing-figures-patchwork",
     "title": "R Bootcamp",
     "section": "Composing figures: patchwork",
-    "text": "Composing figures: patchwork\n\n\nA package can define +, |, and / on ggplot objects:\n\nlibrary(patchwork)\n\np = p + theme_minimal(base_size = 15)\n\nbox = ggplot(counties, aes(x = region, y = income)) +\n  geom_boxplot() +\n  theme_minimal(base_size = 15)\n\np + box"
+    "text": "Composing figures: patchwork\n\n\nA package can define +, |, and / on ggplot objects:\n\nlibrary(patchwork)\n\np &lt;- p + theme_minimal(base_size = 15)\n\nbox &lt;- ggplot(counties, aes(x = region, y = income)) +\n    geom_boxplot() +\n    theme_minimal(base_size = 15)\n\np + box"
   },
   {
     "objectID": "notes/day-3-viz.html#patchwork-layouts",
     "href": "notes/day-3-viz.html#patchwork-layouts",
     "title": "R Bootcamp",
     "section": "patchwork layouts",
-    "text": "patchwork layouts\n\n\n| puts plots beside each other; / stacks them:\n\nhist_inc &lt;- ggplot(counties, aes(x = income)) +\n  theme_minimal(base_size = 15) +\n  geom_histogram(bins = 40)\n\n(p | box) / hist_inc\n\n\n\n\n\n\n\n\n\n\n\nWhat’s wrong here?"
+    "text": "patchwork layouts\n\n\n| puts plots beside each other; / stacks them:\n\nhist_inc &lt;- ggplot(counties, aes(x = income)) +\n    theme_minimal(base_size = 15) +\n    geom_histogram(bins = 40)\n\n(p | box) / hist_inc\n\n\n\n\n\n\n\n\n\n\n\nWhat’s wrong here?"
   },
   {
     "objectID": "notes/day-3-viz.html#figures-are-programmatic-outputs",
@@ -956,35 +956,35 @@
     "href": "notes/day-3-viz.html#maps-the-ggplot-way",
     "title": "R Bootcamp",
     "section": "Maps, the ggplot way",
-    "text": "Maps, the ggplot way\n\n\nFirst attach our county numbers to the shapes:\n\nshapes_data &lt;- shapes |&gt;\n  left_join(\n    counties |&gt; select(GEOID, income, rent),\n    join_by(GEOID)\n  )\n\nhead(shapes_data, 3)\n\n\n\nSimple feature collection with 3 features and 5 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 80165.29 ymin: 60653.63 xmax: 1717985 ymax: 527895.3\nProjected CRS: USA_Contiguous_Albers_Equal_Area_Conic\n  GEOID    state          county income rent                       geometry\n1 18087  Indiana LaGrange County  83741  816 MULTIPOLYGON (((851901.1 52...\n2 20107   Kansas     Linn County  59200  682 MULTIPOLYGON (((80824.31 10...\n3 24029 Maryland     Kent County  74402 1144 MULTIPOLYGON (((1689187 389..."
+    "text": "Maps, the ggplot way\n\n\nFirst attach our county numbers to the shapes:\n\nshapes_data &lt;- shapes |&gt;\n    left_join(\n        counties |&gt; select(GEOID, income, rent),\n        join_by(GEOID)\n    )\n\nhead(shapes_data, 3)\n\n\n\nSimple feature collection with 3 features and 5 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 80165.29 ymin: 60653.63 xmax: 1717985 ymax: 527895.3\nProjected CRS: USA_Contiguous_Albers_Equal_Area_Conic\n  GEOID    state          county income rent                       geometry\n1 18087  Indiana LaGrange County  83741  816 MULTIPOLYGON (((851901.1 52...\n2 20107   Kansas     Linn County  59200  682 MULTIPOLYGON (((80824.31 10...\n3 24029 Maryland     Kent County  74402 1144 MULTIPOLYGON (((1689187 389..."
   },
   {
     "objectID": "notes/day-3-viz.html#maps-the-ggplot-way-1",
     "href": "notes/day-3-viz.html#maps-the-ggplot-way-1",
     "title": "R Bootcamp",
     "section": "Maps, the ggplot way",
-    "text": "Maps, the ggplot way\n\n\nThis could not be easier:\n\nshapes_data |&gt;\n  ggplot() + geom_sf()"
+    "text": "Maps, the ggplot way\n\n\nThis could not be easier:\n\nshapes_data |&gt;\n    ggplot() +\n    geom_sf()"
   },
   {
     "objectID": "notes/day-3-viz.html#maps-the-ggplot-way-2",
     "href": "notes/day-3-viz.html#maps-the-ggplot-way-2",
     "title": "R Bootcamp",
     "section": "Maps, the ggplot way",
-    "text": "Maps, the ggplot way\n\n\ngeom_sf() is a geom like any other — aesthetics, scales, and themes all apply:\n\nggplot(shapes_data) +\n  geom_sf(aes(fill = income), linewidth = 0.05) +\n  scale_fill_viridis_c(\n    name = \"Median income\",\n    breaks = c(50000, 100000, 150000),\n    labels = c(\"$50k\", \"$100k\", \"$150k\")\n    ) +\n  theme_void(base_size = 15)"
+    "text": "Maps, the ggplot way\n\n\ngeom_sf() is a geom like any other — aesthetics, scales, and themes all apply:\n\nggplot(shapes_data) +\n    geom_sf(aes(fill = income), linewidth = 0.05) +\n    scale_fill_viridis_c(\n        name = \"Median income\",\n        breaks = c(50000, 100000, 150000),\n        labels = c(\"$50k\", \"$100k\", \"$150k\")\n    ) +\n    theme_void(base_size = 15)"
   },
   {
     "objectID": "notes/day-3-viz.html#pivoting-for-facet_",
     "href": "notes/day-3-viz.html#pivoting-for-facet_",
     "title": "R Bootcamp",
     "section": "Pivoting for facet_*()",
-    "text": "Pivoting for facet_*()\n\n\nTo facet by variable, the variables must live in one column — tidyr’s pivot_longer() stacks them:\n\nlong &lt;- shapes_data |&gt; pivot_longer(c(income, rent))\n\nlong |&gt; select(county, name, value) |&gt; head(4)\n\n\n\nSimple feature collection with 4 features and 3 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 80165.29 ymin: 60653.63 xmax: 893059.9 ymax: 527895.3\nProjected CRS: USA_Contiguous_Albers_Equal_Area_Conic\n# A tibble: 4 × 4\n  county          name   value                                        geometry\n  &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt;                              &lt;MULTIPOLYGON [m]&gt;\n1 LaGrange County income 83741 (((851901.1 523582.1, 855179.6 497385.5, 89305…\n2 LaGrange County rent     816 (((851901.1 523582.1, 855179.6 497385.5, 89305…\n3 Linn County     income 59200 (((80824.31 100142.8, 80165.29 60653.63, 12048…\n4 Linn County     rent     682 (((80824.31 100142.8, 80165.29 60653.63, 12048…"
+    "text": "Pivoting for facet_*()\n\n\nTo facet by variable, the variables must live in one column — tidyr’s pivot_longer() stacks them:\n\nlong &lt;- shapes_data |&gt; pivot_longer(c(income, rent))\n\nlong |&gt;\n    select(county, name, value) |&gt;\n    head(4)\n\n\n\nSimple feature collection with 4 features and 3 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 80165.29 ymin: 60653.63 xmax: 893059.9 ymax: 527895.3\nProjected CRS: USA_Contiguous_Albers_Equal_Area_Conic\n# A tibble: 4 × 4\n  county          name   value                                        geometry\n  &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt;                              &lt;MULTIPOLYGON [m]&gt;\n1 LaGrange County income 83741 (((851901.1 523582.1, 855179.6 497385.5, 89305…\n2 LaGrange County rent     816 (((851901.1 523582.1, 855179.6 497385.5, 89305…\n3 Linn County     income 59200 (((80824.31 100142.8, 80165.29 60653.63, 12048…\n4 Linn County     rent     682 (((80824.31 100142.8, 80165.29 60653.63, 12048…"
   },
   {
     "objectID": "notes/day-3-viz.html#multiple-maps",
     "href": "notes/day-3-viz.html#multiple-maps",
     "title": "R Bootcamp",
     "section": "Multiple maps",
-    "text": "Multiple maps\n\n\nIncome dollars dwarf rent dollars, so give each variable its own percentiles, then facet:\n\nlong &lt;- long |&gt; group_by(name) |&gt; mutate(percentile = percent_rank(value))\n\nggplot(long) +\n  geom_sf(aes(fill = percentile), linewidth = 0.02) +\n  scale_fill_viridis_c() +\n  facet_wrap(~ name) +\n  theme_void(base_size = 15)"
+    "text": "Multiple maps\n\n\nIncome dollars dwarf rent dollars, so give each variable its own percentiles, then facet:\n\nlong &lt;- long |&gt;\n    group_by(name) |&gt;\n    mutate(percentile = percent_rank(value))\n\nggplot(long) +\n    geom_sf(aes(fill = percentile), linewidth = 0.02) +\n    scale_fill_viridis_c() +\n    facet_wrap(~name) +\n    theme_void(base_size = 15)"
   },
   {
     "objectID": "notes/day-3-viz.html#for-spatial-data-resolution-matters",
@@ -1075,21 +1075,21 @@
     "href": "notes/day-3-viz.html#always-label-your-layers",
     "title": "R Bootcamp",
     "section": "Always label your layers",
-    "text": "Always label your layers\n\n\nThe same trick compares distributions — start with the Northeast:\n\nplot(density(counties$income[counties$region == \"Northeast\"], na.rm = TRUE),\n     col = \"steelblue\", lwd = 2, main = \"Income by region\")"
+    "text": "Always label your layers\n\n\nThe same trick compares distributions — start with the Northeast:\n\nplot(density(counties$income[counties$region == \"Northeast\"], na.rm = TRUE),\n    col = \"steelblue\", lwd = 2, main = \"Income by region\"\n)"
   },
   {
     "objectID": "notes/day-3-viz.html#always-label-your-layers-1",
     "href": "notes/day-3-viz.html#always-label-your-layers-1",
     "title": "R Bootcamp",
     "section": "Always label your layers",
-    "text": "Always label your layers\n\n\nlines() overlays the South:\n\nlines(density(counties$income[counties$region == \"South\"], na.rm = TRUE),\n      col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\n\n\nWe had to know ahead of time to set ylim. Otherwise we’d have to start over. A pain that ggplot2 will solve."
+    "text": "Always label your layers\n\n\nlines() overlays the South:\n\nlines(density(counties$income[counties$region == \"South\"], na.rm = TRUE),\n    col = \"firebrick\", lwd = 2\n)\n\n\n\n\n\n\n\n\n\n\n\nWe had to know ahead of time to set ylim. Otherwise we’d have to start over. A pain that ggplot2 will solve."
   },
   {
     "objectID": "notes/day-3-viz.html#always-label-your-layers-2",
     "href": "notes/day-3-viz.html#always-label-your-layers-2",
     "title": "R Bootcamp",
     "section": "Always label your layers",
-    "text": "Always label your layers\n\n\nlegend() for a legend:\n\nlegend(\"topright\", legend = c(\"Northeast\", \"South\"),\n       col = c(\"steelblue\", \"firebrick\"), lwd = 2)"
+    "text": "Always label your layers\n\n\nlegend() for a legend:\n\nlegend(\"topright\",\n    legend = c(\"Northeast\", \"South\"),\n    col = c(\"steelblue\", \"firebrick\"), lwd = 2\n)"
   },
   {
     "objectID": "notes/day-3-viz.html#many-plots-at-once-par",
@@ -1124,6 +1124,6 @@
     "href": "notes/day-3-viz.html#counties-to-states",
     "title": "R Bootcamp",
     "section": "Counties to states",
-    "text": "Counties to states\n\n\n\n\nshapes |&gt;\n  group_by(state) |&gt;\n  summarise(geometry = st_union(geometry)) |&gt;\n  plot(main = NULL)"
+    "text": "Counties to states\n\n\n\n\nshapes |&gt;\n    group_by(state) |&gt;\n    summarise(geometry = st_union(geometry)) |&gt;\n    plot(main = NULL)"
   }
 ]

@@ -1294,10 +1294,10 @@ background-position: center;
 <p>The county data from yesterday — income and rent, plus population and region:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>counties <span class="ot">&lt;-</span> <span class="fu">left_join</span>(</span>
-<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="st">&quot;data/county_data.csv&quot;</span>),</span>
-<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="st">&quot;data/county_population.csv&quot;</span>),</span>
-<span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_by</span>(GEOID <span class="sc">==</span> fips)</span>
-<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_csv</span>(<span class="st">&quot;data/county_data.csv&quot;</span>),</span>
+<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_csv</span>(<span class="st">&quot;data/county_population.csv&quot;</span>),</span>
+<span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">join_by</span>(GEOID <span class="sc">==</span> fips)</span>
+<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 
@@ -1350,12 +1350,12 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><br></p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>  counties<span class="sc">$</span>income <span class="sc">/</span> <span class="dv">1000</span>, counties<span class="sc">$</span>rent,</span>
-<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Rent vs. income&quot;</span>,</span>
-<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Median household income (in thousands USD)&quot;</span>,</span>
-<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Median gross rent&quot;</span>,</span>
-<span id="cb5-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span></span>
-<span id="cb5-7"><a aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>    counties<span class="sc">$</span>income <span class="sc">/</span> <span class="dv">1000</span>, counties<span class="sc">$</span>rent,</span>
+<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Rent vs. income&quot;</span>,</span>
+<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Median household income (in thousands USD)&quot;</span>,</span>
+<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Median gross rent&quot;</span>,</span>
+<span id="cb5-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span></span>
+<span id="cb5-7"><a aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1442,8 +1442,8 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <div class="fragment">
 <p>That means you can assign, modify, combine, save, etc. <em>without printing anything</em>.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(...)   <span class="co"># nothing drawn yet</span></span>
-<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>p                  <span class="co"># drawn now</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(...) <span class="co"># nothing drawn yet</span></span>
+<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>p <span class="co"># drawn now</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 
@@ -1466,7 +1466,7 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><br></p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent)) <span class="sc">+</span></span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1488,7 +1488,7 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p>Map a third column to color. It’s a variable, so it goes in <code>aes()</code> (constants go in <code>geom_*</code>)</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1509,7 +1509,7 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><br></p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1531,7 +1531,7 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p>Distributions by group:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> income)) <span class="sc">+</span></span>
-<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1549,17 +1549,17 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><br></p>
 <p>Split each region’s counties into high- and low-population halves:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a>counties <span class="ot">=</span> counties <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pop_level =</span> <span class="fu">if_else</span>(</span>
-<span id="cb12-3"><a aria-hidden="true" tabindex="-1"></a>      pop <span class="sc">&gt;=</span> <span class="fu">median</span>(counties<span class="sc">$</span>pop, <span class="at">na.rm =</span> T),</span>
-<span id="cb12-4"><a aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39;high pop&#39;</span>, <span class="st">&#39;low_pop&#39;</span></span>
-<span id="cb12-5"><a aria-hidden="true" tabindex="-1"></a>  ))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a>counties <span class="ot">&lt;-</span> counties <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pop_level =</span> <span class="fu">if_else</span>(</span>
+<span id="cb12-3"><a aria-hidden="true" tabindex="-1"></a>        pop <span class="sc">&gt;=</span> <span class="fu">median</span>(counties<span class="sc">$</span>pop, <span class="at">na.rm =</span> T),</span>
+<span id="cb12-4"><a aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;high pop&quot;</span>, <span class="st">&quot;low_pop&quot;</span></span>
+<span id="cb12-5"><a aria-hidden="true" tabindex="-1"></a>    ))</span>
 <span id="cb12-6"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-7"><a aria-hidden="true" tabindex="-1"></a>counties <span class="sc">|&gt;</span></span>
-<span id="cb12-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_level)) <span class="sc">|&gt;</span></span>
-<span id="cb12-9"><a aria-hidden="true" tabindex="-1"></a>  <span class="do">## piping in this data; now different operator!</span></span>
-<span id="cb12-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">fill =</span> pop_level)) <span class="sc">+</span></span>
-<span id="cb12-11"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-8"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_level)) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a aria-hidden="true" tabindex="-1"></a>    <span class="do">## piping in this data; now different operator!</span></span>
+<span id="cb12-10"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">fill =</span> pop_level)) <span class="sc">+</span></span>
+<span id="cb12-11"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1578,9 +1578,9 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><code>position = &quot;fill&quot;</code> rescales every bar to 1</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>counties <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_level)) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">fill =</span> pop_level)) <span class="sc">+</span></span>
-<span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_level)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">fill =</span> pop_level)) <span class="sc">+</span></span>
+<span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1598,9 +1598,9 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><br></p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>counties <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_level)) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">fill =</span> pop_level)) <span class="sc">+</span></span>
-<span id="cb14-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_level)) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">fill =</span> pop_level)) <span class="sc">+</span></span>
+<span id="cb14-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1622,7 +1622,7 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><code>ggplot2</code> ships with practice data: <code>economics</code> is monthly US macro data:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy)) <span class="sc">+</span></span>
-<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1656,7 +1656,7 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <div class="fragment">
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics_long, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value01)) <span class="sc">+</span></span>
-<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1676,7 +1676,7 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p>Map the series id to <code>color</code> (or <code>group</code>) and each variable gets its own line:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics_long, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value01, <span class="at">color =</span> variable)) <span class="sc">+</span></span>
-<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1696,10 +1696,10 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><code>geom_hline()</code>, <code>geom_vline()</code>, and <code>geom_abline()</code> are just more layers:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent)) <span class="sc">+</span></span>
-<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;gray&quot;</span>) <span class="sc">+</span></span>
-<span id="cb20-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
-<span id="cb20-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span> <span class="fu">median</span>(counties<span class="sc">$</span>rent, <span class="at">na.rm =</span> T),</span>
-<span id="cb20-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;gray&quot;</span>) <span class="sc">+</span></span>
+<span id="cb20-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(</span>
+<span id="cb20-4"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">yintercept =</span> <span class="fu">median</span>(counties<span class="sc">$</span>rent, <span class="at">na.rm =</span> T),</span>
+<span id="cb20-5"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span></span>
 <span id="cb20-6"><a aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
@@ -1720,8 +1720,8 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p>One line splits the plot by a categorical column:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent)) <span class="sc">+</span></span>
-<span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> region) <span class="do">## more than one: ~ region + ... </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>region) <span class="do">## more than one: ~ region + ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1740,10 +1740,10 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><code>facet_grid(rows ~ cols)</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>counties <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_level)) <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent)) <span class="sc">+</span></span>
-<span id="cb22-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb22-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(pop_level <span class="sc">~</span> region)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_level)) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent)) <span class="sc">+</span></span>
+<span id="cb22-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(pop_level <span class="sc">~</span> region)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1761,14 +1761,14 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><br></p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb23-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb23-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Rent rises with income&quot;</span>,</span>
-<span id="cb23-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;US counties, 2023 five-year ACS&quot;</span>,</span>
-<span id="cb23-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Median household income ($)&quot;</span>,</span>
-<span id="cb23-7"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Median gross rent ($)&quot;</span>,</span>
-<span id="cb23-8"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Region&quot;</span></span>
-<span id="cb23-9"><a aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb23-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb23-4"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">&quot;Rent rises with income&quot;</span>,</span>
+<span id="cb23-5"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">&quot;US counties, 2023 five-year ACS&quot;</span>,</span>
+<span id="cb23-6"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">&quot;Median household income ($)&quot;</span>,</span>
+<span id="cb23-7"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">&quot;Median gross rent ($)&quot;</span>,</span>
+<span id="cb23-8"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">&quot;Region&quot;</span></span>
+<span id="cb23-9"><a aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1787,11 +1787,13 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p>Every aesthetic has a scale named <code>scale_&lt;aesthetic&gt;_&lt;flavor&gt;()</code> with its own arguments:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent)) <span class="sc">+</span></span>
-<span id="cb24-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb24-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Median household income&quot;</span>,</span>
-<span id="cb24-4"><a aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">50000</span>, <span class="dv">100000</span>, <span class="dv">150000</span>),</span>
-<span id="cb24-5"><a aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;$50k&quot;</span>, <span class="st">&quot;$100k&quot;</span>, <span class="st">&quot;$150k&quot;</span>),</span>
-<span id="cb24-6"><a aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">200000</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb24-4"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">&quot;Median household income&quot;</span>,</span>
+<span id="cb24-5"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">50000</span>, <span class="dv">100000</span>, <span class="dv">150000</span>),</span>
+<span id="cb24-6"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;$50k&quot;</span>, <span class="st">&quot;$100k&quot;</span>, <span class="st">&quot;$150k&quot;</span>),</span>
+<span id="cb24-7"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">200000</span>)</span>
+<span id="cb24-8"><a aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1810,8 +1812,8 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><code>xlim()</code>/<code>ylim()</code>/<code>lims()</code> <strong>throw away data</strong> outside the limits:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent)) <span class="sc">+</span></span>
-<span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb25-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100000</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb25-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">lims</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100000</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output cell-output-stderr">
@@ -1834,8 +1836,8 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><code>coord_cartesian()</code> <strong>zooms</strong> without dropping:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent)) <span class="sc">+</span></span>
-<span id="cb27-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb27-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100000</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb27-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100000</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -1874,14 +1876,14 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <hr>
 <p><br></p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb28-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb28-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb28-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Median household income ($)&quot;</span>,</span>
-<span id="cb28-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Median gross rent ($ logged)&quot;</span>,</span>
-<span id="cb28-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="cn">NULL</span></span>
-<span id="cb28-7"><a aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb28-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> rent, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb28-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb28-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb28-4"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">&quot;Median household income ($)&quot;</span>,</span>
+<span id="cb28-5"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">&quot;Median gross rent ($ logged)&quot;</span>,</span>
+<span id="cb28-6"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="cn">NULL</span></span>
+<span id="cb28-7"><a aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb28-8"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_log10</span>()</span>
 <span id="cb28-9"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-10"><a aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -1944,11 +1946,11 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><code>theme()</code> targets one element at a time. Elements take an <code>element_*()</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb31-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb31-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text    =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
-<span id="cb31-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">family =</span> <span class="st">&quot;Palatino&quot;</span>)</span>
-<span id="cb31-6"><a aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb31-3"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb31-4"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text    =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb31-5"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">family =</span> <span class="st">&quot;Palatino&quot;</span>)</span>
+<span id="cb31-6"><a aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -2014,10 +2016,12 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <hr>
 <p><br></p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-hidden="true" tabindex="-1"></a>pal <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Midwest&quot;</span> <span class="ot">=</span> <span class="st">&quot;#E87722&quot;</span>, <span class="st">&quot;Northeast&quot;</span> <span class="ot">=</span> <span class="st">&quot;steelblue&quot;</span>,</span>
-<span id="cb34-2"><a aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;South&quot;</span> <span class="ot">=</span> <span class="st">&quot;firebrick&quot;</span>, <span class="st">&quot;West&quot;</span> <span class="ot">=</span> <span class="st">&quot;#83876F&quot;</span>)</span>
-<span id="cb34-3"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>) <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> pal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb34-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Midwest&quot;</span> <span class="ot">=</span> <span class="st">&quot;#E87722&quot;</span>, <span class="st">&quot;Northeast&quot;</span> <span class="ot">=</span> <span class="st">&quot;steelblue&quot;</span>,</span>
+<span id="cb34-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;South&quot;</span> <span class="ot">=</span> <span class="st">&quot;firebrick&quot;</span>, <span class="st">&quot;West&quot;</span> <span class="ot">=</span> <span class="st">&quot;#83876F&quot;</span></span>
+<span id="cb34-4"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-5"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>) <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> pal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -2037,11 +2041,11 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
 <span id="cb35-2"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> p <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span>
+<span id="cb35-3"><a aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span>
 <span id="cb35-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a aria-hidden="true" tabindex="-1"></a>box <span class="ot">=</span> <span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> income)) <span class="sc">+</span></span>
-<span id="cb35-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb35-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span>
+<span id="cb35-5"><a aria-hidden="true" tabindex="-1"></a>box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> income)) <span class="sc">+</span></span>
+<span id="cb35-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb35-7"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span>
 <span id="cb35-8"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-9"><a aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> box</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -2062,8 +2066,8 @@ $ pop        &lt;dbl&gt; 58805, 231767, 25223, 22293, 59134, 10357, 19051, 11644
 <p><code>|</code> puts plots beside each other; <code>/</code> stacks them:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-hidden="true" tabindex="-1"></a>hist_inc <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(counties, <span class="fu">aes</span>(<span class="at">x =</span> income)) <span class="sc">+</span></span>
-<span id="cb36-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb36-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>)</span>
+<span id="cb36-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb36-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>)</span>
 <span id="cb36-4"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-5"><a aria-hidden="true" tabindex="-1"></a>(p <span class="sc">|</span> box) <span class="sc">/</span> hist_inc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -2212,10 +2216,10 @@ Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 <p>First attach our county numbers to the shapes:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a aria-hidden="true" tabindex="-1"></a>shapes_data <span class="ot">&lt;-</span> shapes <span class="sc">|&gt;</span></span>
-<span id="cb41-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb41-3"><a aria-hidden="true" tabindex="-1"></a>    counties <span class="sc">|&gt;</span> <span class="fu">select</span>(GEOID, income, rent),</span>
-<span id="cb41-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">join_by</span>(GEOID)</span>
-<span id="cb41-5"><a aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(</span>
+<span id="cb41-3"><a aria-hidden="true" tabindex="-1"></a>        counties <span class="sc">|&gt;</span> <span class="fu">select</span>(GEOID, income, rent),</span>
+<span id="cb41-4"><a aria-hidden="true" tabindex="-1"></a>        <span class="fu">join_by</span>(GEOID)</span>
+<span id="cb41-5"><a aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb41-6"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(shapes_data, <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -2240,7 +2244,8 @@ Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 <p>This could not be easier:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a aria-hidden="true" tabindex="-1"></a>shapes_data <span class="sc">|&gt;</span></span>
-<span id="cb43-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb43-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb43-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -2259,13 +2264,13 @@ Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 <p><code>geom_sf()</code> is a geom like any other — aesthetics, scales, and themes all apply:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(shapes_data) <span class="sc">+</span></span>
-<span id="cb44-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> income), <span class="at">linewidth =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb44-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(</span>
-<span id="cb44-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Median income&quot;</span>,</span>
-<span id="cb44-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">50000</span>, <span class="dv">100000</span>, <span class="dv">150000</span>),</span>
-<span id="cb44-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;$50k&quot;</span>, <span class="st">&quot;$100k&quot;</span>, <span class="st">&quot;$150k&quot;</span>)</span>
+<span id="cb44-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> income), <span class="at">linewidth =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb44-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb44-4"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">&quot;Median income&quot;</span>,</span>
+<span id="cb44-5"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">50000</span>, <span class="dv">100000</span>, <span class="dv">150000</span>),</span>
+<span id="cb44-6"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;$50k&quot;</span>, <span class="st">&quot;$100k&quot;</span>, <span class="st">&quot;$150k&quot;</span>)</span>
 <span id="cb44-7"><a aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb44-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb44-8"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -2285,7 +2290,9 @@ Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a aria-hidden="true" tabindex="-1"></a>long <span class="ot">&lt;-</span> shapes_data <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(income, rent))</span>
 <span id="cb45-2"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a aria-hidden="true" tabindex="-1"></a>long <span class="sc">|&gt;</span> <span class="fu">select</span>(county, name, value) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb45-3"><a aria-hidden="true" tabindex="-1"></a>long <span class="sc">|&gt;</span></span>
+<span id="cb45-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(county, name, value) <span class="sc">|&gt;</span></span>
+<span id="cb45-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
@@ -2310,13 +2317,15 @@ Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 <p><br></p>
 <p>Income dollars dwarf rent dollars, so give each variable its own percentiles, then facet:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a aria-hidden="true" tabindex="-1"></a>long <span class="ot">&lt;-</span> long <span class="sc">|&gt;</span> <span class="fu">group_by</span>(name) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">percentile =</span> <span class="fu">percent_rank</span>(value))</span>
-<span id="cb47-2"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(long) <span class="sc">+</span></span>
-<span id="cb47-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> percentile), <span class="at">linewidth =</span> <span class="fl">0.02</span>) <span class="sc">+</span></span>
-<span id="cb47-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
-<span id="cb47-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> name) <span class="sc">+</span></span>
-<span id="cb47-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a aria-hidden="true" tabindex="-1"></a>long <span class="ot">&lt;-</span> long <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">percentile =</span> <span class="fu">percent_rank</span>(value))</span>
+<span id="cb47-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(long) <span class="sc">+</span></span>
+<span id="cb47-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> percentile), <span class="at">linewidth =</span> <span class="fl">0.02</span>) <span class="sc">+</span></span>
+<span id="cb47-7"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb47-8"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>name) <span class="sc">+</span></span>
+<span id="cb47-9"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -2577,7 +2586,8 @@ Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 <p>The same trick compares distributions — start with the Northeast:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(counties<span class="sc">$</span>income[counties<span class="sc">$</span>region <span class="sc">==</span> <span class="st">&quot;Northeast&quot;</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb60-2"><a aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">&quot;Income by region&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb60-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">&quot;Income by region&quot;</span></span>
+<span id="cb60-3"><a aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -2596,7 +2606,8 @@ Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 <p><code>lines()</code> overlays the South:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(counties<span class="sc">$</span>income[counties<span class="sc">$</span>region <span class="sc">==</span> <span class="st">&quot;South&quot;</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb61-2"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb61-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span></span>
+<span id="cb61-3"><a aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -2617,8 +2628,10 @@ Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 <p><br></p>
 <p><code>legend()</code> for a legend:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Northeast&quot;</span>, <span class="st">&quot;South&quot;</span>),</span>
-<span id="cb62-2"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;firebrick&quot;</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,</span>
+<span id="cb62-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Northeast&quot;</span>, <span class="st">&quot;South&quot;</span>),</span>
+<span id="cb62-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;firebrick&quot;</span>), <span class="at">lwd =</span> <span class="dv">2</span></span>
+<span id="cb62-4"><a aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -2719,9 +2732,9 @@ Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 <div class="fragment">
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a aria-hidden="true" tabindex="-1"></a>shapes <span class="sc">|&gt;</span></span>
-<span id="cb67-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span></span>
-<span id="cb67-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">geometry =</span> <span class="fu">st_union</span>(geometry)) <span class="sc">|&gt;</span></span>
-<span id="cb67-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">main =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb67-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span></span>
+<span id="cb67-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">geometry =</span> <span class="fu">st_union</span>(geometry)) <span class="sc">|&gt;</span></span>
+<span id="cb67-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(<span class="at">main =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment" data-layout-align="center">
 <div class="cell-output-display">
@@ -3878,9 +3891,9 @@ window.QuartoSupport = function () {
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1400,
+        width: 1600,
 
-        height: 700,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
