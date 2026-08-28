@@ -65,7 +65,7 @@ options(scipen = 999, width = 78, str = strOptions(vec.len = 2))
 ### 1) Types, vectors, and objects
 
 ::: {.fragment fragment-index="1"}
-* Everything is a type
+* (Mostly) every object has a type
     - But we can get [extremely pedantic](https://adv-r.hadley.nz/base-types.html)
 * Vectors, matrices, lists, and more
 * Subsetting syntax; common functions
