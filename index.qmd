@@ -39,6 +39,11 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 - Setup, ergonomics, and packages
 - Types, vectorization, and basic ops
 - Reading, writing, and summarizing data
+
+::: {style="margin-top: 2em;"}
+:::
+
+[[Slides here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-1.html)]{style="color: red; background-color: yellow;"}
 :::
 
 ::: day-card
