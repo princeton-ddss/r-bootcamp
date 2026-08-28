@@ -235,7 +235,7 @@
     "href": "notes/day-1.html#this-session",
     "title": "R Bootcamp",
     "section": "This session",
-    "text": "This session\n\n\n1) Types, vectors, and objects\n\n\nEverything is a type\n\nBut we can get extremely pedantic\n\nVectors, matrices, lists, and more\nSubsetting syntax; common functions\n\n\n\n2) Data frames, reading data, and R as a calculator\n\n\nData frames: what and how\nGetting data in and out of R\nSummary statistics and some real data"
+    "text": "This session\n\n\n1) Types, vectors, and objects\n\n\n(Mostly) every object has a type\n\nBut we can get extremely pedantic\n\nVectors, matrices, lists, and more\nSubsetting syntax; common functions\n\n\n\n2) Data frames, reading data, and R as a calculator\n\n\nData frames: what and how\nGetting data in and out of R\nSummary statistics and some real data"
   },
   {
     "objectID": "notes/day-1.html#some-sources",
