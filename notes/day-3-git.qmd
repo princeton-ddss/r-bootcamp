@@ -1737,7 +1737,7 @@ To update the site later: edit, commit, push, then run
 
 <hr><br>
 
-See [here]().
+See [here](https://princeton-ddss.github.io/r-bootcamp/files/website-r-group.pdf).
 
 ## Things that exist, that we skipped
 
