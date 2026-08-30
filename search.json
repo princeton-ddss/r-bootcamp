@@ -186,7 +186,7 @@
     "href": "notes/day-3-git.html#check-that-it-all-works",
     "title": "R Bootcamp",
     "section": "Check that it all works",
-    "text": "Check that it all works\n\n\nusethis::git_sitrep()\n\n── Git global (user) ─────────────────────\n• Name: 'Jane Doe'\n• Email: 'jdoe@gmail.com'\n• Default initial branch name: 'main'\n── GitHub user ───────────────────────────\n• Default GitHub host: 'https://github.com'\n• Personal access token for 'https://github.com': '&lt;discovered&gt;'\n• GitHub user: 'janedoe'\n• Token scopes: 'gist, repo, user, workflow'"
+    "text": "Check that it all works\n\n\nusethis::git_sitrep()\n\n\n── Git global (user) ─────────────────────\n• Name: 'Jane Doe'\n• Email: 'jdoe@gmail.com'\n• Default initial branch name: 'main'\n── GitHub user ───────────────────────────\n• Default GitHub host: 'https://github.com'\n• Personal access token for 'https://github.com': '&lt;discovered&gt;'\n• GitHub user: 'janedoe'\n• Token scopes: 'gist, repo, user, workflow'"
   },
   {
     "objectID": "notes/day-3-git.html#vocabulary-all-at-once",
