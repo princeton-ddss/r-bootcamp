@@ -1,0 +1,1787 @@
+---
+format:
+  revealjs:
+    theme: default
+    slide-number: c
+    highlight-style: github
+    code-copy: true
+    embed-resources: true
+    code-line-numbers: false
+    css: ddss.css
+    height: 900
+    width: 1600
+    output-location: fragment
+---
+
+```{=html}
+<style>
+  .reveal .backgrounds > .slide-background:first-child {
+    background-image: url('figs/title-bg.svg');
+    background-size: cover;
+    background-position: center;
+  }
+</style>
+
+<br>
+<br>
+<br>
+<h1>R Bootcamp: Day 3 PM</h1>
+<br>
+<h2>Version control with git and GitHub</h2>
+<hr><br>
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
+  <div>
+    <p style="font-size: 1.3em; font-weight: 600; margin: 0 0 0.2em 0;">Eric Manning</p>
+    <p style="font-size: 1.0em; margin: 0;">September 1, 2026</p>
+  </div>
+  <img src="figs/ddss-logo.png" style="width: 400px">
+</div>
+<br><br>
+```
+
+<center>[princeton-ddss.github.io/r-bootcamp](https://princeton-ddss.github.io/r-bootcamp)</center>
+
+## This session
+
+<hr><br>
+
+### 1) Why version control
+
+::: {.fragment fragment-index="1"}
+* Will become obvious
+:::
+
+### 2) Setup, once
+
+::: {.fragment fragment-index="2"}
+* git, a GitHub account, and IDE integration
+:::
+
+### 3) The main operations
+
+::: {.fragment fragment-index="3"}
+* Commit, diff, push — and what *not* to commit
+* Comments and commit messages
+:::
+
+### 4) Website
+
+::: {.fragment fragment-index="4"}
+* Publishing a Quarto site with GitHub Pages
+:::
+
+## Some sources
+
+<hr><br>
+
+* Bryan, [*Happy Git and GitHub for the useR*](https://happygitwithr.com/)
+* Software Carpentry, [*Version Control with Git*](https://swcarpentry.github.io/git-novice/)
+* Harvard IQSS, [*Math Prefresher*, Ch. 15: Command-line, git](https://iqss.github.io/prefresher/19_command-line_git.html)
+* Quarto, [Publishing to GitHub Pages](https://quarto.org/docs/publishing/github-pages.html)
+
+## Your version control system
+
+<hr><br>
+
+::: {.fragment}
+```
+paper.docx
+paper_v2.docx
+paper_v2_advisor_comments.docx
+```
+:::
+
+::: {.fragment}
+Or a file or folder on Dropbox or Google Drive.
+:::
+
+<br>
+
+::: {.fragment}
+* Doesn't work for code
+* Doesn't track line changes
+* Doesn't really work for collaboration or experimentation
+:::
+
+## Three questions
+
+<hr><br>
+
+::: {.fragment}
+**What** changed?
+:::
+
+::: {.fragment}
+**Who** changed it?
+:::
+
+::: {.fragment}
+**Why** did they change it?
+:::
+
+## "Committing" changes with Git(Hub)
+
+<hr><br>
+
+Every time you *commit*, git records:
+
+::: {.fragment}
+* the exact state of every file in the project
+* a message from you saying why you made this change
+* who you are, and when
+* a unique id, like `a1b2c3d`
+:::
+
+<br>
+
+::: {.fragment}
+You can return to any commit as needed or compare any two commits.
+:::
+
+## But I already have Dropbox
+
+<hr><br>
+
+::: {.small}
+|                        | Dropbox / OneDrive / Drive     | git + GitHub                    |
+|:-----------------------|:-------------------------------|:--------------------------------|
+| Tracks                 | a file                         | a change across files           |
+| Versions are           | automatic, timed, unnamed      | deliberate, named, explained    |
+| History kept           | ~30 days, per file             | forever, whole project          |
+| Both of you edit       | "conflicted copy (Eric's Mac)" | a merge you can resolve line-by-line |
+| Try something risky    | copy the whole folder          | a branch                        |
+| Share it publicly      | a link     | a repo, fork, or website       |
+| Big binary data        | good at this                   | bad at this                     |
+| Restricted data        | Princeton-managed, has a DUA   | your problem           |
+:::
+
+## You will use both
+
+<hr><br>
+
+::: {.fragment}
+::: {.blocktext}
+Code and text -> git. Medium-to-large data -> somewhere else. Fetch as needed.
+:::
+:::
+
+## Why GitHub?
+
+<hr><br>
+
+::: {.fragment}
+* **A backup not on your laptop.**
+:::
+
+::: {.fragment}
+* **A distribution channel.** 
+:::
+
+::: {.fragment}
+* **Collaboration.** Changes with authorship,
+  history, and review.
+:::
+
+::: {.fragment}
+* **A free website.** We'll build one.
+:::
+
+::: {.fragment}
+* **A public record of what you can do.** People do look.
+:::
+
+## Patience
+
+<hr><br>
+
+::: {.fragment}
+* Relatively steep learning curve
+:::
+
+::: {.fragment}
+* The vocabulary is bad.
+:::
+
+::: {.fragment}
+* Some people will refuse to use it. Oh well.
+:::
+
+# Setup, once
+
+## Do you have git?
+
+<hr><br>
+
+In a terminal — RStudio's **Terminal** tab (next to Console), or Positron's
+**Terminal** panel:
+
+```bash
+git --version
+```
+
+::: {.fragment}
+```
+git version 2.55.0
+```
+:::
+
+<br>
+
+::: {.fragment}
+If not:
+
+* **macOS** — `xcode-select --install`, or install from [git-scm.com](https://git-scm.com/downloads)
+* **Windows** — [Git for Windows](https://gitforwindows.org/); take the defaults
+* **Linux** — `sudo apt install git` or your distribution's equivalent
+:::
+
+## Setup for git (with an email you'll use for GitHub)
+
+<hr><br>
+
+Git stamps every commit with a name and an email. Set them once, globally:
+
+```bash
+git config --global user.name "Jane Doe"
+git config --global user.email "jdoe@gmail.com"
+```
+
+<br>
+
+::: {.fragment}
+Or, without leaving R:
+
+```r
+usethis::use_git_config(
+  user.name  = "Jane Doe",
+  user.email = "jdoe@gmail.com"
+)
+```
+:::
+
+<br>
+
+::: {.fragment}
+Now check what you set:
+
+```bash
+git config --global --list
+```
+:::
+
+## Register a GitHub account
+
+<hr><br>
+
+[github.com/join](https://github.com/join) — but think for ten seconds about
+the username first.
+
+<br>
+
+::: {.fragment}
+*Happy Git*'s advice:
+
+* Pick something you would put on a CV. This is semi-permanent and public.
+* Shorter is better. All lowercase.
+* Some connection to your actual name.
+* Reuse it on other platforms if you can.
+:::
+
+<br>
+
+::: {.fragment}
+**Email.** Add your Princeton address as a second, verified email so GitHub links your university identity.\
+Vice versa is also okay.
+:::
+
+<br>
+
+::: {.fragment}
+**Two-factor authentication is required.** Set it up now. Use your phone. Use a biometric passkey (your face) if you can.
+:::
+
+## Make a token
+
+<hr><br>
+
+```r
+usethis::create_github_token()
+```
+
+<br>
+
+::: {.fragment}
+This opens GitHub's token page with the form already filled in:
+
+* **Scopes** already checked: `repo`, `user`, `workflow`
+* **Note** — name it after the machine: `positron-laptop-2026`
+* **Expiration** — It *will* expire.
+:::
+
+<br>
+
+::: {.fragment}
+Copy it. This is the only time you will see it, but you can always make a new one.
+:::
+
+
+## Store it
+
+<hr><br>
+
+Back in R:
+
+```r
+gitcreds::gitcreds_set()
+```
+
+::: {.fragment}
+```
+? Enter password or token: ghp_A1b2C3d4E5f6G7h8I9j0K1l2M3n4O5p6Q7r8
+-> Adding new credentials...
+-> Removing credentials from cache...
+-> Done.
+```
+:::
+
+<br>
+
+::: {.fragment}
+This saves the token to your operating system's credential store.
+:::
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+Treat the token exactly like a password. Never write it or commit it.
+:::
+:::
+
+## Check that it all works
+
+<hr><br>
+
+```r
+usethis::git_sitrep()
+```
+
+::: {.fragment}
+```
+── Git global (user) ─────────────────────
+• Name: 'Jane Doe'
+• Email: 'jdoe@gmail.com'
+• Default initial branch name: 'main'
+── GitHub user ───────────────────────────
+• Default GitHub host: 'https://github.com'
+• Personal access token for 'https://github.com': '<discovered>'
+• GitHub user: 'janedoe'
+• Token scopes: 'gist, repo, user, workflow'
+```
+:::
+
+# The main operations
+
+## Vocabulary, all at once
+
+<hr><br>
+
+::: {.small}
+| Term | What it means |
+|:--------------|:----------------------------------------------------|
+| **repository** | a folder git is tracking (a "repo"). The history lives in `.git/` |
+| **commit** | a saved snapshot, with a message (also verb) |
+| **stage** | choose which changes go into the next commit |
+| **diff** | a line-by-line difference between two versions |
+| **remote** | a copy of the repo somewhere else, usually GitHub |
+| **origin** | the default name for *your* remote |
+| **clone** | download a repo, with all of its history |
+| **push / pull** | send commits to the remote / get commits from it |
+| **branch** | a named line of development. The default one is `main` (or `master`) |
+:::
+
+<br>
+
+The names are bad.
+
+## The three places
+
+<hr><br>
+
+```{=html}
+<div style="display: flex; align-items: stretch; justify-content: center; gap: 0.4rem; margin-top: 2.2rem;">
+  <div style="flex: 0 0 330px; display: flex; flex-direction: column;">
+    <div style="border: 3px solid #64001D; border-radius: 12px; padding: 1.3rem 1.2rem; flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+      <div style="font-weight: 700; color: #64001D; font-size: 1.25em; white-space: nowrap;">Working directory</div>
+      <div style="margin-top: 0.6rem; font-size: 0.92em; line-height: 1.45;">the files on disk,<br>as you&rsquo;re editing them</div>
+    </div>
+  </div>
+  <div style="flex: 0 0 190px; text-align: center; color: #2800DE; align-self: center; margin-bottom: 2.2rem;">
+    <div style="font-size: 3em; line-height: 1;">&rarr;</div>
+    <code style="font-size: 0.85em; white-space: nowrap;">git add</code>
+  </div>
+  <div style="flex: 0 0 330px; display: flex; flex-direction: column;">
+    <div style="border: 3px solid #003664; border-radius: 12px; padding: 1.3rem 1.2rem; flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+      <div style="font-weight: 700; color: #003664; font-size: 1.25em; white-space: nowrap;">Staging area</div>
+      <div style="margin-top: 0.6rem; font-size: 0.92em; line-height: 1.45;">what you&rsquo;ve <em>chosen</em><br>to put in the next commit</div>
+    </div>
+  </div>
+  <div style="flex: 0 0 190px; text-align: center; color: #2800DE; align-self: center; margin-bottom: 2.2rem;">
+    <div style="font-size: 3em; line-height: 1;">&rarr;</div>
+    <code style="font-size: 0.85em; white-space: nowrap;">git commit</code>
+  </div>
+  <div style="flex: 0 0 330px; display: flex; flex-direction: column;">
+    <div style="border: 3px solid #006447; border-radius: 12px; padding: 1.3rem 1.2rem; flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+      <div style="font-weight: 700; color: #006447; font-size: 1.25em; white-space: nowrap;">Repository</div>
+      <div style="margin-top: 0.6rem; font-size: 0.92em; line-height: 1.45;">permanent history,<br>stored in <code>.git/</code></div>
+    </div>
+  </div>
+</div>
+```
+
+## Why is there a staging area?
+
+<hr><br>
+
+A commit should be **one idea** instead of "everything I happened to
+have saved."
+
+<br>
+
+::: {.fragment}
+Staging lets you make two commits instead of one commit called `stuff`:
+:::
+
+::: {.fragment}
+```
+a1b2c3 Handle counties missing from the ACS extract
+z0y9x8 Fix typo in README
+```
+:::
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+Future you or somebody else will read this. Be brief, but clear.
+:::
+:::
+
+## Two ways to start a repo
+
+<hr><br>
+
+::: {.fragment}
+**GitHub first** — make the repo on github.com, then clone it locally.
+
+Better. The remote is wired up correctly when you start.
+:::
+
+<br>
+
+::: {.fragment}
+**Local first** — you already have a folder of work. Put it under git,
+then create the GitHub repo and connect them.
+
+Slides for this at the end of the section.
+:::
+
+## Step 1) Make the repo on GitHub
+
+<hr><br>
+
+**github.com → the `+` menu → New repository**
+
+::: {.fragment}
+* **Name** — lowercase, hyphens, no spaces: `first-repo`
+* **Public or private** — public is fine for today
+* **Add a README** — *check this*. An empty repo is more annoying to clone
+* **Add .gitignore** — choose the **R** template. More on this later
+* **License** — skip for now
+:::
+
+<br>
+
+::: {.fragment}
+Then **Create repository**.
+:::
+
+## Step 2) Clone it -- RStudio
+
+<hr><br>
+
+1. On GitHub, click the green **Code** button, copy the **HTTPS** URL
+2. **File → New Project → Version Control → Git**
+3. Paste the URL into *Repository URL*
+4. Pick a parent folder — somewhere sensible, not `~/Downloads`
+5. **Create Project**
+
+<br>
+
+::: {.fragment}
+RStudio clones the repo, makes an `.Rproj` file, and opens the project.
+The **Git** pane appears in the top-right.
+:::
+
+## Clone it — Positron
+
+<hr><br>
+
+1. Copy the same **HTTPS** URL from GitHub
+2. Command Palette — `Cmd/Ctrl + Shift + P` — and type **Git: Clone**
+   (or use **Clone Repository** on the Welcome page)
+3. Paste the URL
+4. Choose a parent folder
+5. **Open** when it offers
+
+<br>
+
+::: {.fragment}
+Positron clones the repo and opens the folder as your workspace. No
+`.Rproj` file is created, and none is needed.
+:::
+
+## Clone it — terminal
+
+<hr><br>
+
+Both IDEs are running this for you:
+
+```bash
+git clone https://github.com/janedoe/first-repo.git
+cd first-repo
+```
+
+## Make something worth committing
+
+<hr><br>
+
+New R script, `analysis.R`:
+
+```r
+# analysis.R ---------------------------------------------------
+# First look at county income.
+
+county <- read.csv("data/county_data.csv")
+
+summary(county$income)
+```
+
+<br>
+
+::: {.fragment}
+Save it. **Saving is not committing.** Git has no idea you did anything yet.
+:::
+
+## `git status`
+
+<hr><br>
+
+```bash
+git status
+```
+
+<br>
+
+::: {.fragment}
+```
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	analysis.R
+
+nothing added to commit but untracked files present
+```
+:::
+
+## Stage and commit — three ways
+
+<hr><br>
+
+::: {.small}
+**RStudio** — Git pane → tick the **Staged** box next to `analysis.R` →
+**Commit** → type a message → **Commit**
+
+**Positron** — Source Control → hover `analysis.R` → **+** (Stage Changes)
+→ type a message in the box → **✓ Commit**
+
+**Terminal**
+
+```bash
+git add analysis.R
+git commit -m "Add first look at county income"
+```
+:::
+
+<br>
+
+::: {.fragment}
+```
+[main 9f8e7d6] Add first look at county income
+ 1 file changed, 6 insertions(+)
+ create mode 100644 analysis.R
+```
+:::
+
+## Staging everything at once
+
+<hr><br>
+
+```bash
+git add .      # stages everything here and below: new files, edits, deletions
+```
+
+<br>
+
+::: {.small}
+::: {.fragment}
+| Command | Stages |
+|:--------------|:-----------------------------------------------|
+| `git add .` | everything at or below where you're standing |
+| `git add -A` | everything in the whole repo, wherever you are |
+| `git add -u` | only files git already tracks — no new ones |
+:::
+:::
+
+<br>
+
+::: {.fragment}
+**RStudio** — tick the box in the Git pane's header row.
+
+**Positron** — the **+** on the *Changes* heading, not on a file.
+:::
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+`git add .` is only as safe as your `.gitignore`. It also coalesces all changes.
+:::
+:::
+
+## Now change something
+
+<hr><br>
+
+Edit `analysis.R` — replace the `summary()` line:
+
+```r
+# analysis.R ---------------------------------------------------
+# First look at county income.
+
+county <- read.csv("data/county_data.csv")
+
+mean(county$income, na.rm = TRUE)
+```
+
+<br>
+
+::: {.fragment}
+Save. Then look at the Git pane / Source Control — the file is now
+**Modified** rather than untracked.
+:::
+
+## The diff — this is the whole point
+
+<hr><br>
+
+::: {.fragment}
+* **RStudio** — Git pane → **Diff**
+* **Positron** — click the file in Source Control; it opens side-by-side
+* **Terminal** — `git diff`
+:::
+
+<br>
+
+::: {.fragment}
+```diff
+@@ -3,4 +3,4 @@
+ county <- read.csv("data/county_data.csv")
+
+-summary(county$income)
++mean(county$income, na.rm = TRUE)
+```
+:::
+
+## Commit the change
+
+<hr><br>
+
+```bash
+git add .
+git commit -m "Use mean rather than summary for county income"
+```
+
+<br>
+
+::: {.fragment}
+```
+[main a1b2c3d] Use mean rather than summary for county income
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+:::
+
+<br>
+
+::: {.fragment}
+`git add .` is safe here — you just looked at the diff, and it's one file.
+:::
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+**THE LOOP:** Edit → look at the diff → commit.
+:::
+:::
+
+## Optional: View the history
+
+<hr><br>
+
+```bash
+git log --oneline
+```
+
+<br>
+
+::: {.fragment}
+```
+a1b2c3d Use mean rather than summary for county income
+9f8e7d6 Add first look at county income
+0011223 Initial commit
+```
+:::
+
+<br>
+
+::: {.fragment}
+* **RStudio** — Git pane → the clock icon (**History**)
+* **Positron** — Source Control → the **Graph** / commit history view
+* **GitHub** — the "*N* commits" link at the top of the file list
+:::
+
+## Send it to GitHub
+
+<hr><br>
+
+::: {.small}
+**RStudio** — the green **↑ Push** arrow in the Git pane
+
+**Positron** — **Sync Changes** in Source Control, or the ↻ in the status bar
+
+**Terminal**
+
+```bash
+git push
+```
+:::
+
+<br>
+
+::: {.fragment}
+```
+Enumerating objects: 8, done.
+To https://github.com/janedoe/first-repo.git
+   0011223..a1b2c3d  main -> main
+```
+:::
+
+<br>
+
+::: {.fragment}
+Go look at your repo URL.
+:::
+
+## Remember:
+
+<hr><br>
+
+```bash
+git pull                    # bring in new stuff
+# ... do work ...
+git add analysis.R          # choose what belongs together
+git commit -m "Why"         # explain it
+git push                    # share it
+```
+
+## When should I commit?
+
+<hr><br>
+
+::: {.fragment}
+* When you finish a thought
+* When something starts working
+* **Before** you try something that might not work
+* Before you stop for the day
+:::
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+Commit often. Write short, but clear commit messages.\ 
+(Looking at you, Claude.)
+:::
+:::
+
+## Undoing things
+
+<hr><br>
+
+::: {.small}
+| I want to... | Do this |
+|:-------------------------------------|:------------------------------------|
+| Throw away uncommitted edits to a file | `git restore analysis.R` |
+| Unstage something I staged | `git restore --staged analysis.R` |
+| Fix the message on my last commit | `git commit --amend` |
+| Undo a commit I already pushed | `git revert a1b2c3d` — makes a *new* commit that reverses it |
+| See an old version of a file | `git log -p analysis.R` |
+:::
+
+<br>
+
+If it's **really** broken, move your new edits, delete the folder, clone it again, and put your new files back.
+
+## The second way: Local first, for a project you already have
+
+<hr><br>
+
+You have a folder of work and want it on GitHub. From inside that folder:
+
+```r
+usethis::use_git()
+```
+
+::: {.fragment}
+Initialises the repo, offers to commit everything currently there, and
+restarts the session so the IDE notices.
+:::
+
+<br>
+
+::: {.fragment}
+```r
+usethis::use_github()
+```
+
+Creates the matching repo on GitHub, wires it up as `origin`, and pushes.
+:::
+
+## Local first, by hand (without `usethis::`)
+
+<hr><br>
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+<br>
+
+::: {.fragment}
+Then make an **empty** repo on GitHub — no README, no `.gitignore` — and:
+
+```bash
+git remote add origin https://github.com/janedoe/existing-project.git
+git push -u origin main
+```
+:::
+
+# Comment your code properly.
+
+# You think you'll remember.
+
+# You won't remember.
+
+## Judge these comments
+
+<hr><br>
+
+```r
+# add one to i
+i <- i + 1
+```
+
+<br>
+
+::: {.fragment}
+```r
+# subset the data
+county <- county[county$year != 2020, ]
+```
+:::
+
+<br>
+
+::: {.fragment}
+```r
+# 2020 census enumeration was disrupted by COVID; county-level
+# counts aren't comparable to adjacent years. Sensitivity check
+# with 2020 included is in appendix.R.
+county <- county[county$year != 2020, ]
+```
+:::
+
+## Header comments
+
+<hr><br>
+
+```r
+# analysis.R ---------------------------------------------------
+# Difference in means: household income by census region.
+#
+# Inputs:  data/county_data.csv   (see data/README.md for source)
+# Outputs: figures/income_by_region.png
+```
+
+<br>
+
+::: {.fragment}
+You won't remember the inputs and outputs.
+:::
+
+## Section comments
+
+<hr><br>
+
+```r
+# Setup --------------------------------------------------------
+library(dplyr)
+
+# Load data ----------------------------------------------------
+county <- read.csv("data/county_data.csv")
+
+# Clean --------------------------------------------------------
+county <- county |> filter(...) |> mutate(...) |> ...
+
+# Model --------------------------------------------------------
+first_model <- lm(y_var ~ x_var, data = county, ...)
+
+# Figures ------------------------------------------------------
+ggplot(...)
+
+```
+
+<br>
+
+::: {.fragment}
+**RStudio:** Cmd + Shift + R
+:::
+
+## Delete commented-out code
+
+<hr><br>
+
+```r
+# old version, keeping just in case
+# model <- lm(income ~ region, data = county)
+# model <- lm(income ~ region + year, data = county)
+model <- lm(income ~ region + year + factor(state), data = county)
+```
+
+<br>
+
+::: {.fragment}
+Delete it. Git remembers.
+:::
+
+## Writing code that produces readable diffs
+
+<hr><br>
+
+```r
+county <- county |> filter(year != 2020) |> mutate(income_k = income / 1000) |> group_by(region) |> summarise(m = mean(income_k, na.rm = TRUE))
+```
+
+::: {.fragment}
+Change one thing here and the diff says *this line changed.* Useless.
+:::
+
+<br>
+
+::: {.fragment}
+```r
+county_summary <- county |>
+    filter(year != 2020) |>
+    mutate(income_k = income / 1000) |>
+    group_by(region) |>
+    summarise(m = mean(income_k, na.rm = TRUE))
+```
+:::
+
+<br>
+
+::: {.fragment}
+Now the diff points at the step/line(s) you changed.
+:::
+
+# What not to commit...
+
+# Git is for code, not (most) data.
+
+# And Git never forgets.
+
+## Git never forgets
+<hr><br>
+
+::: {.fragment}
+::: {.blocktext}
+Deleting a file in a later commit does not remove it. 
+:::
+:::
+
+<br>
+
+::: {.fragment}
+GitHub:
+
+* warns you above **50 MB** per file
+* **hard-rejects** anything over **100 MB**
+* asks that repositories stay under about **1 GB**
+:::
+
+<br>
+
+::: {.fragment}
+A 40 MB CSV, committed ten times as you clean it, is 400 MB
+of history.
+:::
+
+## `.gitignore`
+
+<hr><br>
+
+```
+# R
+.Rhistory
+.RData
+.Renviron
+.Rproj.user/
+
+# Data — too big and/or restricted; see data/README.md
+data/*.csv
+!data/README.md
+
+# Quarto build output
+/.quarto/
+/_site/
+*_files/
+
+# OS junk
+.DS_Store
+```
+
+## You already have one
+
+<hr><br>
+
+When you ticked the **R** template while creating the repo, GitHub gave
+you the first block: `.Rhistory`, `.RData`, `.Renviron`, `.Rproj.user/`.
+
+<br>
+
+::: {.fragment}
+```r
+usethis::use_git_ignore("data/*.csv")
+```
+:::
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+Set up `.gitignore` *before* the first commit.
+:::
+:::
+
+## Secrets
+
+<hr><br>
+
+API keys, tokens, passwords, database credentials. Never in a script.
+
+<br>
+
+::: {.fragment}
+```r
+usethis::edit_r_environ()
+```
+
+opens `~/.Renviron`. Put the key there:
+
+```
+CENSUS_API_KEY=a1b2c3d4e5f6
+```
+:::
+
+<br>
+
+::: {.fragment}
+Restart R, then in your script:
+
+```r
+key <- Sys.getenv("CENSUS_API_KEY")
+```
+:::
+
+<br>
+
+::: {.fragment}
+`.Renviron` is already in the R `.gitignore` template.
+:::
+
+## If you commit a secret
+
+<hr><br>
+
+::: {.blocktext}
+Bots scan public GitHub for
+credentials within seconds of a push.
+:::
+
+<br>
+
+::: {.fragment}
+In order:
+
+1. **Revoke it and reissue a new key immediately.**
+2. *Then* worry about the repository.
+:::
+
+## Getting a file out of history
+
+<hr><br>
+
+First, the thing that does **not** work:
+
+```bash
+git rm --cached data/secret.csv
+git commit -m "Remove secret"
+```
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+Git records the deletion, but does not forget the file in previous commits.
+:::
+:::
+
+## Actually removing it from history
+
+<hr><br>
+
+You have to **rewrite every commit** that ever touched the file.
+
+```bash
+pip install git-filter-repo      # or: brew install git-filter-repo
+```
+
+<br>
+
+::: {.fragment}
+```bash
+git-filter-repo --sensitive-data-removal \
+  --invert-paths --path data/secret.csv
+```
+:::
+
+<br>
+
+::: {.fragment}
+To scrub a *string* rather than a whole file, 
+put the string in a file and use `--replace-text ../passwords.txt` instead.
+:::
+
+## Then force-push
+
+<hr><br>
+
+`filter-repo` deliberately **deletes your `origin` remote** when it
+finishes, so you can't push the rewrite by accident.
+
+```bash
+git remote add origin https://github.com/janedoe/first-repo.git
+git push --force --mirror origin
+```
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+Every commit hash after the removed file has changed. Collaborators must delete their copy and clone fresh.
+:::
+:::
+
+## If you commit something enormous
+
+<hr><br>
+
+Early in a project, just start fresh:
+
+::: {.fragment}
+1. Copy your files out of the folder
+2. Delete the repo on GitHub, make a new one
+3. Clone it, add a proper `.gitignore` **first**
+4. Copy your files back and commit
+:::
+
+<br>
+
+::: {.fragment}
+Rewriting history with `git-filter-repo` works too.
+:::
+
+# Branches and conflicts 🙀
+
+## A branch
+
+<hr><br>
+
+A branch is a **label pointing at a commit**.
+
+```{=html}
+<div style="position: relative; width: 1060px; height: 300px; margin: 1.5rem auto 0 auto;">
+
+<svg viewBox="0 0 1060 300" style="width: 100%; height: 100%; display: block;">
+  <line x1="90"  y1="215" x2="660" y2="215" stroke="#64001D" stroke-width="5"/>
+  <line x1="450" y1="215" x2="620" y2="105" stroke="#006447" stroke-width="5"/>
+  <line x1="620" y1="105" x2="800" y2="105" stroke="#006447" stroke-width="5"/>
+
+  <circle cx="90"  cy="215" r="16" fill="#64001D"/>
+  <circle cx="270" cy="215" r="16" fill="#64001D"/>
+  <circle cx="450" cy="215" r="16" fill="#64001D"/>
+  <circle cx="660" cy="215" r="16" fill="#64001D"/>
+  <circle cx="620" cy="105" r="16" fill="#006447"/>
+  <circle cx="800" cy="105" r="16" fill="#006447"/>
+</svg>
+
+<div style="position: absolute; left: 660px; top: 262px; transform: translateX(-50%); background: #64001D; color: #fff; padding: 0.2em 1.1em; border-radius: 6px; font-size: 1.05em; font-weight: 600; white-space: nowrap;">main</div>
+
+<div style="position: absolute; left: 862px; top: 105px; transform: translateY(-50%); background: #006447; color: #fff; padding: 0.2em 1.1em; border-radius: 6px; font-size: 1.05em; font-weight: 600; white-space: nowrap;">try-state-fe</div>
+
+<div style="position: absolute; left: 270px; top: 148px; transform: translateX(-50%); color: #555; font-size: 0.95em; font-style: italic;">shared history</div>
+
+</div>
+```
+
+## Why?
+
+<hr><br>
+
+Once `main` is stable and large:
+
+::: {.fragment}
+* Experiment without breaking a working version
+* Keep `main` in a state you'd be willing to show someone else
+* Work (collaboratively?) on two things at once without entangling
+:::
+
+## Make one
+
+<hr><br>
+
+```bash
+git switch -c try-state-fe
+```
+
+<br>
+
+::: {.small}
+* **RStudio** — Git pane → the branch dropdown → **New Branch**
+* **Positron** — click the branch name in the status bar → **Create new branch**
+:::
+
+<br>
+
+::: {.fragment}
+New commits land in `try-state-fe`, not `main`.
+:::
+
+<br>
+
+::: {.fragment}
+We used to use `checkout` for this (and other things).
+:::
+
+
+## Moving between branches
+
+<hr><br>
+
+
+::: {.blocktext}
+Commit before you switch.
+:::
+
+<br>
+
+::: {.fragment}
+```bash
+git switch main
+```
+:::
+
+<br>
+
+::: {.fragment}
+**The files on disk change.** Your `analysis.R` reverts to whatever `main` says it is.
+:::
+
+## Merging
+
+<hr><br>
+
+You're happy with the branch. Bring it into `main`:
+
+```bash
+git switch main
+git merge try-state-fe
+```
+
+<br>
+
+::: {.fragment}
+```
+Updating a1b2c3d..d4e5f6a
+Fast-forward
+ analysis.R | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+```
+:::
+
+<br>
+
+::: {.fragment}
+Now you can delete the branch: `git branch -d try-state-fe`
+:::
+
+## Conflicts
+
+<hr><br>
+
+When  **the same lines changed in two places**. Git will not guess.
+
+<br>
+
+::: {.fragment}
+Commit both. Then, from `main`:
+
+```bash
+git merge try-state-fe
+```
+<br>
+
+```
+Auto-merging analysis.R
+CONFLICT (content): Merge conflict in analysis.R
+Automatic merge failed; fix conflicts and then commit the result.
+```
+:::
+
+<br>
+
+::: {.fragment}
+And inside `analysis.R`:
+
+```r
+<<<<<<< HEAD
+mean(county$income, na.rm = TRUE)
+=======
+median(county$income, na.rm = TRUE)
+>>>>>>> try-state-fe
+```
+:::
+
+## Fix it
+
+<hr><br>
+
+Both IDEs highlight this block and offer buttons: **Accept Current**,
+**Accept Incoming**, **Accept Both**, **Compare**.
+
+<br>
+
+::: {.fragment}
+Edit the file so it says what you actually want. Then **delete all three
+marker lines**.
+:::
+
+<br>
+
+::: {.fragment}
+Then stage and commit as normal:
+
+```bash
+git add analysis.R
+git commit -m "Merge try-state-fe; use median income"
+```
+:::
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+Resolving a conflict: edit, delete
+markers, save, commit.
+:::
+:::
+
+## Your first conflict
+
+<hr><br>
+
+```
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/...'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository
+hint: pushing to the same ref.
+```
+
+<br>
+
+::: {.fragment}
+Fix it with:
+
+```bash
+git pull
+# resolve anything that conflicts, exactly as we just did
+git push
+```
+:::
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+Start every work session with `git pull`.
+:::
+:::
+
+# Other people's repositories
+
+## Clone versus fork
+
+<hr><br>
+
+::: {.fragment}
+**Clone** — Your copy to read, run, and edit **locally**. You cannot push it back without write access.
+:::
+
+<br>
+
+::: {.fragment}
+**Fork** — A copy **in your GitHub account**. You can push to it freely (and easily offer changes to original authors).
+:::
+
+<br>
+
+::: {.fragment}
+```r
+usethis::create_from_github("someuser/replication-2024")
+```
+:::
+
+<br>
+
+::: {.fragment}
+If you can't push to that repo, this will:
+
+* fork it
+* clone **your fork** locally
+* set `origin` to your fork and `upstream` to the original
+* open the project
+:::
+
+## By hand
+
+<hr><br>
+
+1. **Fork** button, top right of their repo
+2. Clone *your* fork's URL, exactly as in the last section
+3. Point `upstream` at the original:
+
+```bash
+git remote add upstream https://github.com/someuser/replication-2024.git
+git remote -v
+```
+
+::: {.fragment}
+```
+origin    https://github.com/janedoe/replication-2024.git (fetch)
+origin    https://github.com/janedoe/replication-2024.git (push)
+upstream  https://github.com/someuser/replication-2024.git (fetch)
+upstream  https://github.com/someuser/replication-2024.git (push)
+```
+:::
+
+## Getting updates
+
+<hr><br>
+
+Your fork does not update itself.
+
+::: {.fragment}
+```bash
+git fetch upstream
+git merge upstream/main
+```
+:::
+
+## Contributing with pull requests
+
+<hr><br>
+
+1. Commit to your fork and push
+2. GitHub offers **Compare & pull request**
+3. Write what you changed and why
+4. The maintainer reads the diff and decides
+
+<br>
+
+::: {.fragment}
+**Method packages.** Found a bug in someone's estimator? Fork, fix, open a PR. GitHub will credit your contributions.
+:::
+
+## Licenses
+
+<hr><br>
+
+No license means **all rights reserved**. Nobody can use your code.
+
+<br>
+
+::: {.fragment}
+* **MIT** — permissive, common default for research code
+* **GPL** — copyleft: anyone may reuse it, but their work must also be GPL
+* **CC0** — effectively public domain
+:::
+
+<br>
+
+::: {.fragment}
+```r
+usethis::use_mit_license()
+```
+
+Or tick the box when you create the repo.
+:::
+
+# Publishing a website
+
+# (Seriously!) 
+
+## GitHub Pages
+
+<hr><br>
+
+Free static hosting attached to any GitHub repository.
+
+<br>
+
+::: {.fragment}
+`<username>.github.io/<repo>`
+:::
+
+<br>
+
+::: {.fragment}
+**Static** means HTML, CSS, and JavaScript. You render locally and publish the *result*.
+:::
+
+<br>
+
+::: {.fragment}
+Which is exactly what Quarto already does.
+:::
+
+## Two URLs
+
+<hr><br>
+
+::: {.fragment}
+**Project site** — any repo:
+
+`janedoe.github.io/first-repo`
+:::
+
+<br>
+
+::: {.fragment}
+**User site** — a repo *named* `janedoe.github.io` gets the bare address:
+
+`janedoe.github.io`
+:::
+
+<br>
+
+::: {.fragment}
+::: {.blocktext}
+The second one is your academic website.
+:::
+:::
+
+## Add a site to the repo
+
+<hr><br>
+
+```bash
+quarto create project website mysite
+```
+
+<br>
+
+::: {.fragment}
+```
+index.qmd
+about.qmd
+_quarto.yml
+
+```
+:::
+
+<br>
+
+::: {.fragment}
+```yaml
+project:
+  type: website
+
+website:
+  title: "Jane Doe"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: Research
+```
+:::
+
+## First, ignore the build output
+
+<hr><br>
+
+Before publishing anything, add to `.gitignore`:
+
+```
+/.quarto/
+/_site/
+```
+
+## Publish
+
+<hr><br>
+
+```bash
+quarto publish gh-pages
+```
+
+::: {.fragment}
+
+* renders the site
+* creates a `gh-pages` branch, locally and on GitHub
+* copies the rendered output onto it
+* pushes
+* opens your live site in a browser
+:::
+
+## What just happened to your repo
+
+<hr><br>
+
+You now have two branches doing two different jobs:
+
+::: {.small}
+| Branch | Holds | You touch it |
+|:-----------|:-------------------------------------|:--------------|
+| `main` | your source: `.qmd`, `.R`, `_quarto.yml` | constantly |
+| `gh-pages` | rendered HTML, managed by Quarto | never |
+:::
+
+<br>
+
+::: {.fragment}
+To update the site later: edit, commit, push, then run
+`quarto publish gh-pages` again.
+:::
+
+## Notes
+
+<hr><br>
+
+::: {.fragment}
+* For a **user site** (`janedoe.github.io`), after the first publish go to
+  **Settings → Pages** and\
+  set the source branch to `gh-pages`.
+:::
+
+::: {.fragment}
+* Pages on a **private** repo needs GitHub Pro — free for you through
+  GitHub Education.
+:::
+
+::: {.fragment}
+* Run from your project folder, not while sitting on the `gh-pages`
+  branch.
+:::
+
+## Alternatives / custom domains
+
+<hr><br>
+
+See [here]().
+
+## Things that exist, that we skipped
+
+<hr><br>
+
+So you know the words when you meet them:
+
+::: {.small}
+`git stash` · `git rebase` · tags and releases · submodules ·
+GitHub Issues · Projects and boards ·
+Actions and CI · Codespaces · `renv` for package versions ·
+pre-commit hooks · signed commits
+:::
+
+<br>
+
+::: {.fragment}
+Learn each of these the first time you actually need them.
+:::
+
+## Git is not intuitive
+
+<hr><br>
+
+::: {.fragment}
+::: {.blocktext}
+Nobody knows all of git. Look it up or ask Claude/Codex to help you.
+:::
+:::
+
+## The cheatsheet
+
+<hr><br>
+
+::: {.small}
+| What | Terminal | RStudio | Positron |
+|:---------------|:----------------------|:--------------------|:---------------------|
+| See what changed | `git status` | Git pane | Source Control (`Ctrl/Cmd+Shift+G`) |
+| See the diff | `git diff` | **Diff** button | click the file |
+| Stage a file | `git add <file>` | tick **Staged** | **+** on the file |
+| Stage everything | `git add .` | header checkbox | **+** on *Changes* |
+| Commit | `git commit -m "..."` | **Commit** | message box, then **✓** |
+| Send | `git push` | **↑ Push** | **Sync Changes** |
+| Get | `git pull` | **↓ Pull** | **Sync Changes** |
+| History | `git log --oneline` | **History** (clock) | **Graph** |
+| New branch | `git switch -c name` | branch dropdown | branch in status bar |
+| Switch branch | `git switch name` | branch dropdown | branch in status bar |
+| Undo a file | `git restore <file>` | **Revert** | discard changes (↩) |
+:::

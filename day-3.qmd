@@ -50,8 +50,13 @@ This session will be held in JRR 399.
 [References]{.refs-label}
 
 - [Happy Git and GitHub for the useR, Ch. 1: Why Git? Why GitHub?](https://happygitwithr.com/big-picture)
+- [Happy Git and GitHub for the useR, Ch. 7: Introduce yourself to Git](https://happygitwithr.com/hello-git)
 - [Happy Git and GitHub for the useR, Ch. 9: Personal access token for HTTPS](https://happygitwithr.com/https-pat)
+- [Happy Git and GitHub for the useR, Ch. 15: New project, GitHub first](https://happygitwithr.com/new-github-first)
+- [Happy Git and GitHub for the useR, Ch. 31: Fork and clone](https://happygitwithr.com/fork-and-clone)
+- [Software Carpentry: Version Control with Git](https://swcarpentry.github.io/git-novice/)
 - [Prefresher, Ch. 15: Command-line, git](https://iqss.github.io/prefresher/19_command-line_git.html)
+- [Quarto: Publishing to GitHub Pages](https://quarto.org/docs/publishing/github-pages.html)
 :::
 
 ## Distributions and random draws {#stats}

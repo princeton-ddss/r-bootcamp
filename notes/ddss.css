@@ -106,3 +106,12 @@ table.sig-layout > tbody > tr > td {
 #title-slide .author,
 #title-slide .date     { font-size: 0.75em; }
 
+
+/* ── Hands-on checkpoint callout (day-3-git): "everyone stop and do this" ── */
+.checkpoint {
+  background-color: #FFF6B4;
+  border-left: 3px solid #64001D;
+  padding: 0.75rem 1.25rem;
+  margin: 0.5rem 4rem;
+  font-size: 120%;
+}
