@@ -84,151 +84,529 @@
     "text": "Thinking like a social scientist\nThis is a county-level (aggregate) relationship. Gelman et al.’s Red State, Blue State shows that aggregate and individual-level correlations can vary in direction. We should not conclude from this plot that “less wealthy voters swung right and wealthier voters swung left.” To examine this relationship properly, we need individual-level data: surveys with income and vote choice (ANES, CES, exit polls).\n\nElection data: MIT Election Data and Science Lab, “County Presidential Election Returns 2000–2024”, doi:10.7910/DVN/VOQCHQ (CC0)."
   },
   {
-    "objectID": "day-3.html",
-    "href": "day-3.html",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "",
-    "text": "This session will be held in JRR 399.\n(Approximate) Schedule:"
-  },
-  {
-    "objectID": "day-3.html#base-plots",
-    "href": "day-3.html#base-plots",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "Base R plots",
-    "text": "Base R plots\n\nReferences\n\nPrefresher, Ch. 10: Visualization"
-  },
-  {
-    "objectID": "day-3.html#ggplot2",
-    "href": "day-3.html#ggplot2",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "ggplot2",
-    "text": "ggplot2\n\nTidyverse plotting\nSmall exercise\n\n\nReferences\n\nr4ds, Ch. 1: Data visualization\nr4ds, Ch. 9: Layers"
-  },
-  {
-    "objectID": "day-3.html#version-control",
-    "href": "day-3.html#version-control",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "Version control",
-    "text": "Version control\n\ngit and GitHub\n\n\nReferences\n\nHappy Git and GitHub for the useR, Ch. 1: Why Git? Why GitHub?\nHappy Git and GitHub for the useR, Ch. 9: Personal access token for HTTPS\nPrefresher, Ch. 15: Command-line, git"
-  },
-  {
-    "objectID": "day-3.html#stats",
-    "href": "day-3.html#stats",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "Distributions and random draws",
-    "text": "Distributions and random draws\n\nsample() and set.seed()\nDrawing from distributions: rnorm(), runif(), rbinom()\nThe r, p, d, and q family: pnorm(), dnorm(), qnorm()\n\n\nReferences\n\nPrefresher, Ch. 12.2–12.5: sample(), random draws, r/p/d, and set.seed()\nR manual: Distributions in the stats package"
-  },
-  {
-    "objectID": "day-3.html#simulation",
-    "href": "day-3.html#simulation",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "Big exercise: simulation",
-    "text": "Big exercise: simulation\nNow that you have seen R, how are you going to use it? Build a version-controlled Quarto project that carries a basic analysis through to plots — a difference-in-means analysis drawn from a published paper.\n\nReferences\n\nPrefresher, Ch. 12: Simulation\nPrefresher, Ch. 11: A worked project, start to finish"
-  },
-  {
-    "objectID": "day-1.html",
-    "href": "day-1.html",
-    "title": "Day 1: Getting started with R",
-    "section": "",
-    "text": "Slides here."
-  },
-  {
-    "objectID": "day-1.html#setup",
-    "href": "day-1.html#setup",
-    "title": "Day 1: Getting started with R",
-    "section": "Setup and ergonomics",
-    "text": "Setup and ergonomics\n\nScripts and what the buttons do\nRunning code and using the console\nThe environment, and why not to save it\n\n\nReferences\n\nPrefresher, Ch. 7: Orientation and reading in data\nr4ds, Ch. 6: Workflow — scripts and projects"
-  },
-  {
-    "objectID": "day-1.html#packages",
-    "href": "day-1.html#packages",
-    "title": "Day 1: Getting started with R",
-    "section": "Packages, libraries, and variables",
-    "text": "Packages, libraries, and variables\n\nInstalling packages versus loading libraries\nAssigning and inspecting variables\n\n\nReferences\n\nr4ds, Ch. 2: Workflow — basics"
-  },
-  {
-    "objectID": "day-1.html#types",
-    "href": "day-1.html#types",
-    "title": "Day 1: Getting started with R",
-    "section": "Types, vectors, and objects",
-    "text": "Types, vectors, and objects\n\nTypes and vectors (there are no scalars)\nCharacters and strings\n\n\nReferences\n\nPrefresher, Ch. 8: Manipulating vectors and matrices\nr4ds, Ch. 27: A field guide to base R"
-  },
-  {
-    "objectID": "day-1.html#data-frames",
-    "href": "day-1.html#data-frames",
-    "title": "Day 1: Getting started with R",
-    "section": "Data frames and reading data",
-    "text": "Data frames and reading data\n\nBasic data frames\nReading and saving data: csv, .rda, .rds\nWorking directories and paths\nR as a calculator: mean(), median(), summary(), and custom summaries\n\n\nReferences\n\nr4ds, Ch. 7: Data import\nPrefresher, Ch. 7.5: Reading in and inspecting data"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Incoming social science PhD students are encouraged to attend all or part of Data-Driven Social Science’s R Bootcamp, a two-and-a-half day introductory crash course in R. No grades are assigned, participation is voluntary, and partial attendance is welcome.\nWe will cover R basics, data wrangling, visualization, and simulation. Along the way, we will also introduce students to version control (Git) and typesetting tools (Quarto). Hands-on exercises and assistance will be provided throughout.\nBeyond the technical material, this is also a chance to meet your fellow first-year students from other social science departments.\nOur bootcamp is based, in part, on Harvard Government’s Math Prefresher."
-  },
-  {
-    "objectID": "data.html",
-    "href": "data.html",
-    "title": "Data",
-    "section": "",
-    "text": "County data: ACS 2019–2023 five-year estimates for renter-household income and median gross rent, with margins of error.\nCounty boundaries: simplified county geometries with Alaska and Hawaii adjusted for mapping.\nCounty population: 2020 decennial Census total population with Census region and division."
-  },
-  {
-    "objectID": "data.html#county-level-data",
-    "href": "data.html#county-level-data",
-    "title": "Data",
-    "section": "",
-    "text": "County data: ACS 2019–2023 five-year estimates for renter-household income and median gross rent, with margins of error.\nCounty boundaries: simplified county geometries with Alaska and Hawaii adjusted for mapping.\nCounty population: 2020 decennial Census total population with Census region and division."
-  },
-  {
-    "objectID": "day-2.html",
-    "href": "day-2.html",
-    "title": "Day 2: Programming, typesetting, and tidyverse",
-    "section": "",
-    "text": "This session will be held in JRR 399.\n(Approximate) Schedule:"
-  },
-  {
-    "objectID": "day-2.html#functions",
-    "href": "day-2.html#functions",
-    "title": "Day 2: Programming, typesetting, and tidyverse",
-    "section": "Functions",
-    "text": "Functions\n\nWriting and calling functions\nArguments, defaults, and return values\n\n\nReferences\n\nr4ds, Ch. 25: Functions\nPrefresher, Ch. 9: Objects, functions, loops"
-  },
-  {
-    "objectID": "day-2.html#iteration",
-    "href": "day-2.html#iteration",
-    "title": "Day 2: Programming, typesetting, and tidyverse",
-    "section": "Loops, iteration, and lapply()",
-    "text": "Loops, iteration, and lapply()\n\nfor and while loops\nlapply() and friends\nGuided exercise\n\n\nReferences\n\nPrefresher, Ch. 9.3: Loops\nr4ds, Ch. 26: Iteration"
-  },
-  {
-    "objectID": "day-2.html#quarto",
-    "href": "day-2.html#quarto",
-    "title": "Day 2: Programming, typesetting, and tidyverse",
-    "section": "Quarto and typesetting",
-    "text": "Quarto and typesetting\n\nMaking work replicable and research-ready\nMigrating the morning exercise into Quarto\nHow R Markdown fits in\n\n\nReferences\n\nr4ds, Ch. 28: Quarto\nPrefresher, Ch. 13: LaTeX and markdown"
-  },
-  {
-    "objectID": "day-2.html#tidyverse",
-    "href": "day-2.html#tidyverse",
-    "title": "Day 2: Programming, typesetting, and tidyverse",
-    "section": "Tidyverse",
-    "text": "Tidyverse\n\ntibble\ndplyr, from mutate() through merges\npurrr\nGesturing at stringr, lubridate, and tidyr\n\n\nReferences\n\nr4ds, Ch. 3: Data transformation\nr4ds, Ch. 19: Joins"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
+    "objectID": "notes/day-3-git.html#this-session",
+    "href": "notes/day-3-git.html#this-session",
     "title": "R Bootcamp",
-    "section": "",
-    "text": "Data-Driven Social Science · Two and a half days · August 28 – September 1, 2026"
+    "section": "This session",
+    "text": "This session\n\n\n1) Why version control\n\n\nWill become obvious\n\n\n2) Setup, once\n\n\ngit, a GitHub account, and IDE integration\n\n\n3) The main operations\n\n\nCommit, diff, push — and what not to commit\nComments and commit messages\n\n\n4) Website\n\n\nPublishing a Quarto site with GitHub Pages"
   },
   {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
+    "objectID": "notes/day-3-git.html#some-sources",
+    "href": "notes/day-3-git.html#some-sources",
     "title": "R Bootcamp",
-    "section": "Schedule",
-    "text": "Schedule\n\n\nFriday, August 28, 2p–5:30p, JRR A17\n\nDay 1 · Getting started with R\n\nSetup, ergonomics, and packages\nTypes, vectorization, and basic ops\nReading, writing, and summarizing data\n\n\n\n\nSlides here.\n\n\n\nMonday, August 31, 9a–5p, JRR 399\n\nDay 2 · Programming, typesetting, and tidyverse\n\nFunctions, loops, and lapply()\nQuarto and typesetting for professional outputs\nTidyverse for better data work, excl. plotting\n\n\n\n\nTuesday, September 1, 9a–5p, JRR 399\n\nDay 3 · Visualization, version control, and simulation\n\nBase R plots (briefly) and ggplot2\nVersion control offline and online\nStatistics with R\nBig exercise: simulations\n\n\n\n\n\nDays 2 and 3: an hour for lunch, plus short breaks morning and afternoon"
+    "section": "Some sources",
+    "text": "Some sources\n\n\n\nBryan, Happy Git and GitHub for the useR\nSoftware Carpentry, Version Control with Git\nHarvard IQSS, Math Prefresher, Ch. 15: Command-line, git\nQuarto, Publishing to GitHub Pages"
+  },
+  {
+    "objectID": "notes/day-3-git.html#your-version-control-system",
+    "href": "notes/day-3-git.html#your-version-control-system",
+    "title": "R Bootcamp",
+    "section": "Your version control system",
+    "text": "Your version control system\n\n\n\npaper.docx\npaper_v2.docx\npaper_v2_advisor_comments.docx\n\n\nOr a file or folder on Dropbox or Google Drive.\n\n\n\n\nDoesn’t work for code\nDoesn’t track line changes\nDoesn’t really work for collaboration or experimentation"
+  },
+  {
+    "objectID": "notes/day-3-git.html#three-questions",
+    "href": "notes/day-3-git.html#three-questions",
+    "title": "R Bootcamp",
+    "section": "Three questions",
+    "text": "Three questions\n\n\n\nWhat changed?\n\n\nWho changed it?\n\n\nWhy did they change it?"
+  },
+  {
+    "objectID": "notes/day-3-git.html#committing-changes-with-github",
+    "href": "notes/day-3-git.html#committing-changes-with-github",
+    "title": "R Bootcamp",
+    "section": "“Committing” changes with Git(Hub)",
+    "text": "“Committing” changes with Git(Hub)\n\n\nEvery time you commit, git records:\n\n\nthe exact state of every file in the project\na message from you saying why you made this change\nwho you are, and when\na unique id, like a1b2c3d\n\n\n\n\nYou can return to any commit as needed or compare any two commits."
+  },
+  {
+    "objectID": "notes/day-3-git.html#but-i-already-have-dropbox",
+    "href": "notes/day-3-git.html#but-i-already-have-dropbox",
+    "title": "R Bootcamp",
+    "section": "But I already have Dropbox",
+    "text": "But I already have Dropbox\n\n\n\n\n\n\n\n\n\n\n\n\nDropbox / OneDrive / Drive\ngit + GitHub\n\n\n\n\nTracks\na file\na change across files\n\n\nVersions are\nautomatic, timed, unnamed\ndeliberate, named, explained\n\n\nHistory kept\n~30 days, per file\nforever, whole project\n\n\nBoth of you edit\n“conflicted copy (Eric’s Mac)”\na merge you can resolve line-by-line\n\n\nTry something risky\ncopy the whole folder\na branch\n\n\nShare it publicly\na link\na repo, fork, or website\n\n\nBig binary data\ngood at this\nbad at this\n\n\nRestricted data\nPrinceton-managed, has a DUA\nyour problem"
+  },
+  {
+    "objectID": "notes/day-3-git.html#you-will-use-both",
+    "href": "notes/day-3-git.html#you-will-use-both",
+    "title": "R Bootcamp",
+    "section": "You will use both",
+    "text": "You will use both\n\n\n\n\nCode and text -&gt; git. Medium-to-large data -&gt; somewhere else. Fetch as needed."
+  },
+  {
+    "objectID": "notes/day-3-git.html#why-github",
+    "href": "notes/day-3-git.html#why-github",
+    "title": "R Bootcamp",
+    "section": "Why GitHub?",
+    "text": "Why GitHub?\n\n\n\n\nA backup not on your laptop.\n\n\n\n\nA distribution channel.\n\n\n\n\nCollaboration. Changes with authorship, history, and review.\n\n\n\n\nA free website. We’ll build one.\n\n\n\n\nA public record of what you can do. People do look."
+  },
+  {
+    "objectID": "notes/day-3-git.html#patience",
+    "href": "notes/day-3-git.html#patience",
+    "title": "R Bootcamp",
+    "section": "Patience",
+    "text": "Patience\n\n\n\n\nRelatively steep learning curve\n\n\n\n\nThe vocabulary is bad.\n\n\n\n\nSome people will refuse to use it. Oh well."
+  },
+  {
+    "objectID": "notes/day-3-git.html#do-you-have-git",
+    "href": "notes/day-3-git.html#do-you-have-git",
+    "title": "R Bootcamp",
+    "section": "Do you have git?",
+    "text": "Do you have git?\n\n\nIn a terminal — RStudio’s Terminal tab (next to Console), or Positron’s Terminal panel:\ngit --version\n\ngit version 2.55.0\n\n\n\nIf not:\n\nmacOS — xcode-select --install, or install from git-scm.com\nWindows — Git for Windows; take the defaults\nLinux — sudo apt install git or your distribution’s equivalent"
+  },
+  {
+    "objectID": "notes/day-3-git.html#setup-for-git-with-an-email-youll-use-for-github",
+    "href": "notes/day-3-git.html#setup-for-git-with-an-email-youll-use-for-github",
+    "title": "R Bootcamp",
+    "section": "Setup for git (with an email you’ll use for GitHub)",
+    "text": "Setup for git (with an email you’ll use for GitHub)\n\n\nGit stamps every commit with a name and an email. Set them once, globally:\ngit config --global user.name \"Jane Doe\"\ngit config --global user.email \"jdoe@gmail.com\"\n\n\nOr, without leaving R:\nusethis::use_git_config(\n  user.name  = \"Jane Doe\",\n  user.email = \"jdoe@gmail.com\"\n)\n\n\n\nNow check what you set:\ngit config --global --list"
+  },
+  {
+    "objectID": "notes/day-3-git.html#register-a-github-account",
+    "href": "notes/day-3-git.html#register-a-github-account",
+    "title": "R Bootcamp",
+    "section": "Register a GitHub account",
+    "text": "Register a GitHub account\n\n\ngithub.com/join — but think for ten seconds about the username first.\n\n\nHappy Git’s advice:\n\nPick something you would put on a CV. This is semi-permanent and public.\nShorter is better. All lowercase.\nSome connection to your actual name.\nReuse it on other platforms if you can.\n\n\n\n\nEmail. Add your Princeton address as a second, verified email so GitHub links your university identity.\nVice versa is also okay.\n\n\n\nTwo-factor authentication is required. Set it up now. Use your phone. Use a biometric passkey (your face) if you can."
+  },
+  {
+    "objectID": "notes/day-3-git.html#make-a-token",
+    "href": "notes/day-3-git.html#make-a-token",
+    "title": "R Bootcamp",
+    "section": "Make a token",
+    "text": "Make a token\n\n\nusethis::create_github_token()\n\n\nThis opens GitHub’s token page with the form already filled in:\n\nScopes already checked: repo, user, workflow\nNote — name it after the machine: positron-laptop-2026\nExpiration — It will expire.\n\n\n\n\nCopy it. This is the only time you will see it, but you can always make a new one."
+  },
+  {
+    "objectID": "notes/day-3-git.html#store-it",
+    "href": "notes/day-3-git.html#store-it",
+    "title": "R Bootcamp",
+    "section": "Store it",
+    "text": "Store it\n\n\nBack in R:\ngitcreds::gitcreds_set()\n\n? Enter password or token: ghp_A1b2C3d4E5f6G7h8I9j0K1l2M3n4O5p6Q7r8\n-&gt; Adding new credentials...\n-&gt; Removing credentials from cache...\n-&gt; Done.\n\n\n\nThis saves the token to your operating system’s credential store.\n\n\n\n\nTreat the token exactly like a password. Never write it or commit it."
+  },
+  {
+    "objectID": "notes/day-3-git.html#check-that-it-all-works",
+    "href": "notes/day-3-git.html#check-that-it-all-works",
+    "title": "R Bootcamp",
+    "section": "Check that it all works",
+    "text": "Check that it all works\n\n\nusethis::git_sitrep()\n\n── Git global (user) ─────────────────────\n• Name: 'Jane Doe'\n• Email: 'jdoe@gmail.com'\n• Default initial branch name: 'main'\n── GitHub user ───────────────────────────\n• Default GitHub host: 'https://github.com'\n• Personal access token for 'https://github.com': '&lt;discovered&gt;'\n• GitHub user: 'janedoe'\n• Token scopes: 'gist, repo, user, workflow'"
+  },
+  {
+    "objectID": "notes/day-3-git.html#vocabulary-all-at-once",
+    "href": "notes/day-3-git.html#vocabulary-all-at-once",
+    "title": "R Bootcamp",
+    "section": "Vocabulary, all at once",
+    "text": "Vocabulary, all at once\n\n\n\n\n\n\n\n\n\n\nTerm\nWhat it means\n\n\n\n\nrepository\na folder git is tracking (a “repo”). The history lives in .git/\n\n\ncommit\na saved snapshot, with a message (also verb)\n\n\nstage\nchoose which changes go into the next commit\n\n\ndiff\na line-by-line difference between two versions\n\n\nremote\na copy of the repo somewhere else, usually GitHub\n\n\norigin\nthe default name for your remote\n\n\nclone\ndownload a repo, with all of its history\n\n\npush / pull\nsend commits to the remote / get commits from it\n\n\nbranch\na named line of development. The default one is main (or master)\n\n\n\n\n\nThe names are bad."
+  },
+  {
+    "objectID": "notes/day-3-git.html#the-three-places",
+    "href": "notes/day-3-git.html#the-three-places",
+    "title": "R Bootcamp",
+    "section": "The three places",
+    "text": "The three places\n\n\n\n  \n    \n      Working directory\n      the files on disk,as you’re editing them\n    \n  \n  \n    →\n    git add\n  \n  \n    \n      Staging area\n      what you’ve chosento put in the next commit\n    \n  \n  \n    →\n    git commit\n  \n  \n    \n      Repository\n      permanent history,stored in .git/"
+  },
+  {
+    "objectID": "notes/day-3-git.html#why-is-there-a-staging-area",
+    "href": "notes/day-3-git.html#why-is-there-a-staging-area",
+    "title": "R Bootcamp",
+    "section": "Why is there a staging area?",
+    "text": "Why is there a staging area?\n\n\nA commit should be one idea instead of “everything I happened to have saved.”\n\n\nStaging lets you make two commits instead of one commit called stuff:\n\n\na1b2c3 Handle counties missing from the ACS extract\nz0y9x8 Fix typo in README\n\n\n\n\nFuture you or somebody else will read this. Be brief, but clear."
+  },
+  {
+    "objectID": "notes/day-3-git.html#two-ways-to-start-a-repo",
+    "href": "notes/day-3-git.html#two-ways-to-start-a-repo",
+    "title": "R Bootcamp",
+    "section": "Two ways to start a repo",
+    "text": "Two ways to start a repo\n\n\n\nGitHub first — make the repo on github.com, then clone it locally.\nBetter. The remote is wired up correctly when you start.\n\n\n\nLocal first — you already have a folder of work. Put it under git, then create the GitHub repo and connect them.\nSlides for this at the end of the section."
+  },
+  {
+    "objectID": "notes/day-3-git.html#step-1-make-the-repo-on-github",
+    "href": "notes/day-3-git.html#step-1-make-the-repo-on-github",
+    "title": "R Bootcamp",
+    "section": "Step 1) Make the repo on GitHub",
+    "text": "Step 1) Make the repo on GitHub\n\n\ngithub.com → the + menu → New repository\n\n\nName — lowercase, hyphens, no spaces: first-repo\nPublic or private — public is fine for today\nAdd a README — check this. An empty repo is more annoying to clone\nAdd .gitignore — choose the R template. More on this later\nLicense — skip for now\n\n\n\n\nThen Create repository."
+  },
+  {
+    "objectID": "notes/day-3-git.html#step-2-clone-it-rstudio",
+    "href": "notes/day-3-git.html#step-2-clone-it-rstudio",
+    "title": "R Bootcamp",
+    "section": "Step 2) Clone it – RStudio",
+    "text": "Step 2) Clone it – RStudio\n\n\n\nOn GitHub, click the green Code button, copy the HTTPS URL\nFile → New Project → Version Control → Git\nPaste the URL into Repository URL\nPick a parent folder — somewhere sensible, not ~/Downloads\nCreate Project\n\n\n\nRStudio clones the repo, makes an .Rproj file, and opens the project. The Git pane appears in the top-right."
+  },
+  {
+    "objectID": "notes/day-3-git.html#clone-it-positron",
+    "href": "notes/day-3-git.html#clone-it-positron",
+    "title": "R Bootcamp",
+    "section": "Clone it — Positron",
+    "text": "Clone it — Positron\n\n\n\nCopy the same HTTPS URL from GitHub\nCommand Palette — Cmd/Ctrl + Shift + P — and type Git: Clone (or use Clone Repository on the Welcome page)\nPaste the URL\nChoose a parent folder\nOpen when it offers\n\n\n\nPositron clones the repo and opens the folder as your workspace. No .Rproj file is created, and none is needed."
+  },
+  {
+    "objectID": "notes/day-3-git.html#clone-it-terminal",
+    "href": "notes/day-3-git.html#clone-it-terminal",
+    "title": "R Bootcamp",
+    "section": "Clone it — terminal",
+    "text": "Clone it — terminal\n\n\nBoth IDEs are running this for you:\ngit clone https://github.com/janedoe/first-repo.git\ncd first-repo"
+  },
+  {
+    "objectID": "notes/day-3-git.html#make-something-worth-committing",
+    "href": "notes/day-3-git.html#make-something-worth-committing",
+    "title": "R Bootcamp",
+    "section": "Make something worth committing",
+    "text": "Make something worth committing\n\n\nNew R script, analysis.R:\n# analysis.R ---------------------------------------------------\n# First look at county income.\n\ncounty &lt;- read.csv(\"data/county_data.csv\")\n\nsummary(county$income)\n\n\nSave it. Saving is not committing. Git has no idea you did anything yet."
+  },
+  {
+    "objectID": "notes/day-3-git.html#git-status",
+    "href": "notes/day-3-git.html#git-status",
+    "title": "R Bootcamp",
+    "section": "git status",
+    "text": "git status\n\n\ngit status\n\n\nOn branch main\nYour branch is up to date with 'origin/main'.\n\nUntracked files:\n  (use \"git add &lt;file&gt;...\" to include in what will be committed)\n    analysis.R\n\nnothing added to commit but untracked files present"
+  },
+  {
+    "objectID": "notes/day-3-git.html#stage-and-commit-three-ways",
+    "href": "notes/day-3-git.html#stage-and-commit-three-ways",
+    "title": "R Bootcamp",
+    "section": "Stage and commit — three ways",
+    "text": "Stage and commit — three ways\n\n\n\nRStudio — Git pane → tick the Staged box next to analysis.R → Commit → type a message → Commit\nPositron — Source Control → hover analysis.R → + (Stage Changes) → type a message in the box → ✓ Commit\nTerminal\ngit add analysis.R\ngit commit -m \"Add first look at county income\"\n\n\n\n[main 9f8e7d6] Add first look at county income\n 1 file changed, 6 insertions(+)\n create mode 100644 analysis.R"
+  },
+  {
+    "objectID": "notes/day-3-git.html#staging-everything-at-once",
+    "href": "notes/day-3-git.html#staging-everything-at-once",
+    "title": "R Bootcamp",
+    "section": "Staging everything at once",
+    "text": "Staging everything at once\n\n\ngit add .      # stages everything here and below: new files, edits, deletions\n\n\n\n\n\n\nCommand\nStages\n\n\n\n\ngit add .\neverything at or below where you’re standing\n\n\ngit add -A\neverything in the whole repo, wherever you are\n\n\ngit add -u\nonly files git already tracks — no new ones\n\n\n\n\n\n\n\nRStudio — tick the box in the Git pane’s header row.\nPositron — the + on the Changes heading, not on a file.\n\n\n\n\ngit add . is only as safe as your .gitignore. It also coalesces all changes."
+  },
+  {
+    "objectID": "notes/day-3-git.html#now-change-something",
+    "href": "notes/day-3-git.html#now-change-something",
+    "title": "R Bootcamp",
+    "section": "Now change something",
+    "text": "Now change something\n\n\nEdit analysis.R — replace the summary() line:\n# analysis.R ---------------------------------------------------\n# First look at county income.\n\ncounty &lt;- read.csv(\"data/county_data.csv\")\n\nmean(county$income, na.rm = TRUE)\n\n\nSave. Then look at the Git pane / Source Control — the file is now Modified rather than untracked."
+  },
+  {
+    "objectID": "notes/day-3-git.html#the-diff-this-is-the-whole-point",
+    "href": "notes/day-3-git.html#the-diff-this-is-the-whole-point",
+    "title": "R Bootcamp",
+    "section": "The diff — this is the whole point",
+    "text": "The diff — this is the whole point\n\n\n\n\nRStudio — Git pane → Diff\nPositron — click the file in Source Control; it opens side-by-side\nTerminal — git diff\n\n\n\n\n@@ -3,4 +3,4 @@\n county &lt;- read.csv(\"data/county_data.csv\")\n\n-summary(county$income)\n+mean(county$income, na.rm = TRUE)"
+  },
+  {
+    "objectID": "notes/day-3-git.html#commit-the-change",
+    "href": "notes/day-3-git.html#commit-the-change",
+    "title": "R Bootcamp",
+    "section": "Commit the change",
+    "text": "Commit the change\n\n\ngit add .\ngit commit -m \"Use mean rather than summary for county income\"\n\n\n[main a1b2c3d] Use mean rather than summary for county income\n 1 file changed, 1 insertion(+), 1 deletion(-)\n\n\n\ngit add . is safe here — you just looked at the diff, and it’s one file.\n\n\n\n\nTHE LOOP: Edit → look at the diff → commit."
+  },
+  {
+    "objectID": "notes/day-3-git.html#optional-view-the-history",
+    "href": "notes/day-3-git.html#optional-view-the-history",
+    "title": "R Bootcamp",
+    "section": "Optional: View the history",
+    "text": "Optional: View the history\n\n\ngit log --oneline\n\n\na1b2c3d Use mean rather than summary for county income\n9f8e7d6 Add first look at county income\n0011223 Initial commit\n\n\n\n\nRStudio — Git pane → the clock icon (History)\nPositron — Source Control → the Graph / commit history view\nGitHub — the “N commits” link at the top of the file list"
+  },
+  {
+    "objectID": "notes/day-3-git.html#send-it-to-github",
+    "href": "notes/day-3-git.html#send-it-to-github",
+    "title": "R Bootcamp",
+    "section": "Send it to GitHub",
+    "text": "Send it to GitHub\n\n\n\nRStudio — the green ↑ Push arrow in the Git pane\nPositron — Sync Changes in Source Control, or the ↻ in the status bar\nTerminal\ngit push\n\n\n\nEnumerating objects: 8, done.\nTo https://github.com/janedoe/first-repo.git\n   0011223..a1b2c3d  main -&gt; main\n\n\n\nGo look at your repo URL."
+  },
+  {
+    "objectID": "notes/day-3-git.html#remember",
+    "href": "notes/day-3-git.html#remember",
+    "title": "R Bootcamp",
+    "section": "Remember:",
+    "text": "Remember:\n\n\ngit pull                    # bring in new stuff\n# ... do work ...\ngit add analysis.R          # choose what belongs together\ngit commit -m \"Why\"         # explain it\ngit push                    # share it"
+  },
+  {
+    "objectID": "notes/day-3-git.html#when-should-i-commit",
+    "href": "notes/day-3-git.html#when-should-i-commit",
+    "title": "R Bootcamp",
+    "section": "When should I commit?",
+    "text": "When should I commit?\n\n\n\n\nWhen you finish a thought\nWhen something starts working\nBefore you try something that might not work\nBefore you stop for the day\n\n\n\n\n\nCommit often. Write short, but clear commit messages.  (Looking at you, Claude.)"
+  },
+  {
+    "objectID": "notes/day-3-git.html#undoing-things",
+    "href": "notes/day-3-git.html#undoing-things",
+    "title": "R Bootcamp",
+    "section": "Undoing things",
+    "text": "Undoing things\n\n\n\n\n\n\n\n\n\n\nI want to…\nDo this\n\n\n\n\nThrow away uncommitted edits to a file\ngit restore analysis.R\n\n\nUnstage something I staged\ngit restore --staged analysis.R\n\n\nFix the message on my last commit\ngit commit --amend\n\n\nUndo a commit I already pushed\ngit revert a1b2c3d — makes a new commit that reverses it\n\n\nSee an old version of a file\ngit log -p analysis.R\n\n\n\n\n\nIf it’s really broken, move your new edits, delete the folder, clone it again, and put your new files back."
+  },
+  {
+    "objectID": "notes/day-3-git.html#the-second-way-local-first-for-a-project-you-already-have",
+    "href": "notes/day-3-git.html#the-second-way-local-first-for-a-project-you-already-have",
+    "title": "R Bootcamp",
+    "section": "The second way: Local first, for a project you already have",
+    "text": "The second way: Local first, for a project you already have\n\n\nYou have a folder of work and want it on GitHub. From inside that folder:\nusethis::use_git()\n\nInitialises the repo, offers to commit everything currently there, and restarts the session so the IDE notices.\n\n\n\nusethis::use_github()\nCreates the matching repo on GitHub, wires it up as origin, and pushes."
+  },
+  {
+    "objectID": "notes/day-3-git.html#local-first-by-hand-without-usethis",
+    "href": "notes/day-3-git.html#local-first-by-hand-without-usethis",
+    "title": "R Bootcamp",
+    "section": "Local first, by hand (without usethis::)",
+    "text": "Local first, by hand (without usethis::)\n\n\ngit init\ngit add .\ngit commit -m \"Initial commit\"\n\n\nThen make an empty repo on GitHub — no README, no .gitignore — and:\ngit remote add origin https://github.com/janedoe/existing-project.git\ngit push -u origin main"
+  },
+  {
+    "objectID": "notes/day-3-git.html#judge-these-comments",
+    "href": "notes/day-3-git.html#judge-these-comments",
+    "title": "R Bootcamp",
+    "section": "Judge these comments",
+    "text": "Judge these comments\n\n\n# add one to i\ni &lt;- i + 1\n\n\n# subset the data\ncounty &lt;- county[county$year != 2020, ]\n\n\n\n# 2020 census enumeration was disrupted by COVID; county-level\n# counts aren't comparable to adjacent years. Sensitivity check\n# with 2020 included is in appendix.R.\ncounty &lt;- county[county$year != 2020, ]"
+  },
+  {
+    "objectID": "notes/day-3-git.html#header-comments",
+    "href": "notes/day-3-git.html#header-comments",
+    "title": "R Bootcamp",
+    "section": "Header comments",
+    "text": "Header comments\n\n\n# analysis.R ---------------------------------------------------\n# Difference in means: household income by census region.\n#\n# Inputs:  data/county_data.csv   (see data/README.md for source)\n# Outputs: figures/income_by_region.png\n\n\nYou won’t remember the inputs and outputs."
+  },
+  {
+    "objectID": "notes/day-3-git.html#section-comments",
+    "href": "notes/day-3-git.html#section-comments",
+    "title": "R Bootcamp",
+    "section": "Section comments",
+    "text": "Section comments\n\n\n# Setup --------------------------------------------------------\nlibrary(dplyr)\n\n# Load data ----------------------------------------------------\ncounty &lt;- read.csv(\"data/county_data.csv\")\n\n# Clean --------------------------------------------------------\ncounty &lt;- county |&gt; filter(...) |&gt; mutate(...) |&gt; ...\n\n# Model --------------------------------------------------------\nfirst_model &lt;- lm(y_var ~ x_var, data = county, ...)\n\n# Figures ------------------------------------------------------\nggplot(...)\n\n\nRStudio: Cmd + Shift + R"
+  },
+  {
+    "objectID": "notes/day-3-git.html#delete-commented-out-code",
+    "href": "notes/day-3-git.html#delete-commented-out-code",
+    "title": "R Bootcamp",
+    "section": "Delete commented-out code",
+    "text": "Delete commented-out code\n\n\n# old version, keeping just in case\n# model &lt;- lm(income ~ region, data = county)\n# model &lt;- lm(income ~ region + year, data = county)\nmodel &lt;- lm(income ~ region + year + factor(state), data = county)\n\n\nDelete it. Git remembers."
+  },
+  {
+    "objectID": "notes/day-3-git.html#writing-code-that-produces-readable-diffs",
+    "href": "notes/day-3-git.html#writing-code-that-produces-readable-diffs",
+    "title": "R Bootcamp",
+    "section": "Writing code that produces readable diffs",
+    "text": "Writing code that produces readable diffs\n\n\ncounty &lt;- county |&gt; filter(year != 2020) |&gt; mutate(income_k = income / 1000) |&gt; group_by(region) |&gt; summarise(m = mean(income_k, na.rm = TRUE))\n\nChange one thing here and the diff says this line changed. Useless.\n\n\n\ncounty_summary &lt;- county |&gt;\n    filter(year != 2020) |&gt;\n    mutate(income_k = income / 1000) |&gt;\n    group_by(region) |&gt;\n    summarise(m = mean(income_k, na.rm = TRUE))\n\n\n\nNow the diff points at the step/line(s) you changed."
+  },
+  {
+    "objectID": "notes/day-3-git.html#git-never-forgets",
+    "href": "notes/day-3-git.html#git-never-forgets",
+    "title": "R Bootcamp",
+    "section": "Git never forgets",
+    "text": "Git never forgets\n\n\n\n\nDeleting a file in a later commit does not remove it.\n\n\n\n\nGitHub:\n\nwarns you above 50 MB per file\nhard-rejects anything over 100 MB\nasks that repositories stay under about 1 GB\n\n\n\n\nA 40 MB CSV, committed ten times as you clean it, is 400 MB of history."
+  },
+  {
+    "objectID": "notes/day-3-git.html#gitignore",
+    "href": "notes/day-3-git.html#gitignore",
+    "title": "R Bootcamp",
+    "section": ".gitignore",
+    "text": ".gitignore\n\n\n# R\n.Rhistory\n.RData\n.Renviron\n.Rproj.user/\n\n# Data — too big and/or restricted; see data/README.md\ndata/*.csv\n!data/README.md\n\n# Quarto build output\n/.quarto/\n/_site/\n*_files/\n\n# OS junk\n.DS_Store"
+  },
+  {
+    "objectID": "notes/day-3-git.html#you-already-have-one",
+    "href": "notes/day-3-git.html#you-already-have-one",
+    "title": "R Bootcamp",
+    "section": "You already have one",
+    "text": "You already have one\n\n\nWhen you ticked the R template while creating the repo, GitHub gave you the first block: .Rhistory, .RData, .Renviron, .Rproj.user/.\n\n\nusethis::use_git_ignore(\"data/*.csv\")\n\n\n\n\nSet up .gitignore before the first commit."
+  },
+  {
+    "objectID": "notes/day-3-git.html#secrets",
+    "href": "notes/day-3-git.html#secrets",
+    "title": "R Bootcamp",
+    "section": "Secrets",
+    "text": "Secrets\n\n\nAPI keys, tokens, passwords, database credentials. Never in a script.\n\n\nusethis::edit_r_environ()\nopens ~/.Renviron. Put the key there:\nCENSUS_API_KEY=a1b2c3d4e5f6\n\n\n\nRestart R, then in your script:\nkey &lt;- Sys.getenv(\"CENSUS_API_KEY\")\n\n\n\n.Renviron is already in the R .gitignore template."
+  },
+  {
+    "objectID": "notes/day-3-git.html#if-you-commit-a-secret",
+    "href": "notes/day-3-git.html#if-you-commit-a-secret",
+    "title": "R Bootcamp",
+    "section": "If you commit a secret",
+    "text": "If you commit a secret\n\n\n\nBots scan public GitHub for credentials within seconds of a push.\n\n\n\nIn order:\n\nRevoke it and reissue a new key immediately.\nThen worry about the repository."
+  },
+  {
+    "objectID": "notes/day-3-git.html#getting-a-file-out-of-history",
+    "href": "notes/day-3-git.html#getting-a-file-out-of-history",
+    "title": "R Bootcamp",
+    "section": "Getting a file out of history",
+    "text": "Getting a file out of history\n\n\nFirst, the thing that does not work:\ngit rm --cached data/secret.csv\ngit commit -m \"Remove secret\"\n\n\n\nGit records the deletion, but does not forget the file in previous commits."
+  },
+  {
+    "objectID": "notes/day-3-git.html#actually-removing-it-from-history",
+    "href": "notes/day-3-git.html#actually-removing-it-from-history",
+    "title": "R Bootcamp",
+    "section": "Actually removing it from history",
+    "text": "Actually removing it from history\n\n\nYou have to rewrite every commit that ever touched the file.\npip install git-filter-repo      # or: brew install git-filter-repo\n\n\ngit-filter-repo --sensitive-data-removal \\\n  --invert-paths --path data/secret.csv\n\n\n\nTo scrub a string rather than a whole file, put the string in a file and use --replace-text ../passwords.txt instead."
+  },
+  {
+    "objectID": "notes/day-3-git.html#then-force-push",
+    "href": "notes/day-3-git.html#then-force-push",
+    "title": "R Bootcamp",
+    "section": "Then force-push",
+    "text": "Then force-push\n\n\nfilter-repo deliberately deletes your origin remote when it finishes, so you can’t push the rewrite by accident.\ngit remote add origin https://github.com/janedoe/first-repo.git\ngit push --force --mirror origin\n\n\n\nEvery commit hash after the removed file has changed. Collaborators must delete their copy and clone fresh."
+  },
+  {
+    "objectID": "notes/day-3-git.html#if-you-commit-something-enormous",
+    "href": "notes/day-3-git.html#if-you-commit-something-enormous",
+    "title": "R Bootcamp",
+    "section": "If you commit something enormous",
+    "text": "If you commit something enormous\n\n\nEarly in a project, just start fresh:\n\n\nCopy your files out of the folder\nDelete the repo on GitHub, make a new one\nClone it, add a proper .gitignore first\nCopy your files back and commit\n\n\n\n\nRewriting history with git-filter-repo works too."
+  },
+  {
+    "objectID": "notes/day-3-git.html#a-branch",
+    "href": "notes/day-3-git.html#a-branch",
+    "title": "R Bootcamp",
+    "section": "A branch",
+    "text": "A branch\n\n\nA branch is a label pointing at a commit.\n\n\n\n  \n  \n  \n\n  \n  \n  \n  \n  \n  \n\n\nmain\n\ntry-state-fe\n\nshared history"
+  },
+  {
+    "objectID": "notes/day-3-git.html#why",
+    "href": "notes/day-3-git.html#why",
+    "title": "R Bootcamp",
+    "section": "Why?",
+    "text": "Why?\n\n\nOnce main is stable and large:\n\n\nExperiment without breaking a working version\nKeep main in a state you’d be willing to show someone else\nWork (collaboratively?) on two things at once without entangling"
+  },
+  {
+    "objectID": "notes/day-3-git.html#make-one",
+    "href": "notes/day-3-git.html#make-one",
+    "title": "R Bootcamp",
+    "section": "Make one",
+    "text": "Make one\n\n\ngit switch -c try-state-fe\n\n\n\nRStudio — Git pane → the branch dropdown → New Branch\nPositron — click the branch name in the status bar → Create new branch\n\n\n\n\nNew commits land in try-state-fe, not main.\n\n\n\nWe used to use checkout for this (and other things)."
+  },
+  {
+    "objectID": "notes/day-3-git.html#moving-between-branches",
+    "href": "notes/day-3-git.html#moving-between-branches",
+    "title": "R Bootcamp",
+    "section": "Moving between branches",
+    "text": "Moving between branches\n\n\n\nCommit before you switch.\n\n\n\ngit switch main\n\n\n\nThe files on disk change. Your analysis.R reverts to whatever main says it is."
+  },
+  {
+    "objectID": "notes/day-3-git.html#merging",
+    "href": "notes/day-3-git.html#merging",
+    "title": "R Bootcamp",
+    "section": "Merging",
+    "text": "Merging\n\n\nYou’re happy with the branch. Bring it into main:\ngit switch main\ngit merge try-state-fe\n\n\nUpdating a1b2c3d..d4e5f6a\nFast-forward\n analysis.R | 3 ++-\n 1 file changed, 2 insertions(+), 1 deletion(-)\n\n\n\nNow you can delete the branch: git branch -d try-state-fe"
+  },
+  {
+    "objectID": "notes/day-3-git.html#conflicts",
+    "href": "notes/day-3-git.html#conflicts",
+    "title": "R Bootcamp",
+    "section": "Conflicts",
+    "text": "Conflicts\n\n\nWhen the same lines changed in two places. Git will not guess.\n\n\nCommit both. Then, from main:\ngit merge try-state-fe\n\nAuto-merging analysis.R\nCONFLICT (content): Merge conflict in analysis.R\nAutomatic merge failed; fix conflicts and then commit the result.\n\n\n\nAnd inside analysis.R:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nmean(county$income, na.rm = TRUE)\n=======\nmedian(county$income, na.rm = TRUE)\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; try-state-fe"
+  },
+  {
+    "objectID": "notes/day-3-git.html#fix-it",
+    "href": "notes/day-3-git.html#fix-it",
+    "title": "R Bootcamp",
+    "section": "Fix it",
+    "text": "Fix it\n\n\nBoth IDEs highlight this block and offer buttons: Accept Current, Accept Incoming, Accept Both, Compare.\n\n\nEdit the file so it says what you actually want. Then delete all three marker lines.\n\n\n\nThen stage and commit as normal:\ngit add analysis.R\ngit commit -m \"Merge try-state-fe; use median income\"\n\n\n\n\nResolving a conflict: edit, delete markers, save, commit."
+  },
+  {
+    "objectID": "notes/day-3-git.html#your-first-conflict",
+    "href": "notes/day-3-git.html#your-first-conflict",
+    "title": "R Bootcamp",
+    "section": "Your first conflict",
+    "text": "Your first conflict\n\n\n ! [rejected]        main -&gt; main (fetch first)\nerror: failed to push some refs to 'https://github.com/...'\nhint: Updates were rejected because the remote contains work that you do\nhint: not have locally. This is usually caused by another repository\nhint: pushing to the same ref.\n\n\nFix it with:\ngit pull\n# resolve anything that conflicts, exactly as we just did\ngit push\n\n\n\n\nStart every work session with git pull."
+  },
+  {
+    "objectID": "notes/day-3-git.html#clone-versus-fork",
+    "href": "notes/day-3-git.html#clone-versus-fork",
+    "title": "R Bootcamp",
+    "section": "Clone versus fork",
+    "text": "Clone versus fork\n\n\n\nClone — Your copy to read, run, and edit locally. You cannot push it back without write access.\n\n\n\nFork — A copy in your GitHub account. You can push to it freely (and easily offer changes to original authors).\n\n\n\nusethis::create_from_github(\"someuser/replication-2024\")\n\n\n\nIf you can’t push to that repo, this will:\n\nfork it\nclone your fork locally\nset origin to your fork and upstream to the original\nopen the project"
+  },
+  {
+    "objectID": "notes/day-3-git.html#by-hand",
+    "href": "notes/day-3-git.html#by-hand",
+    "title": "R Bootcamp",
+    "section": "By hand",
+    "text": "By hand\n\n\n\nFork button, top right of their repo\nClone your fork’s URL, exactly as in the last section\nPoint upstream at the original:\n\ngit remote add upstream https://github.com/someuser/replication-2024.git\ngit remote -v\n\norigin    https://github.com/janedoe/replication-2024.git (fetch)\norigin    https://github.com/janedoe/replication-2024.git (push)\nupstream  https://github.com/someuser/replication-2024.git (fetch)\nupstream  https://github.com/someuser/replication-2024.git (push)"
+  },
+  {
+    "objectID": "notes/day-3-git.html#getting-updates",
+    "href": "notes/day-3-git.html#getting-updates",
+    "title": "R Bootcamp",
+    "section": "Getting updates",
+    "text": "Getting updates\n\n\nYour fork does not update itself.\n\ngit fetch upstream\ngit merge upstream/main"
+  },
+  {
+    "objectID": "notes/day-3-git.html#contributing-with-pull-requests",
+    "href": "notes/day-3-git.html#contributing-with-pull-requests",
+    "title": "R Bootcamp",
+    "section": "Contributing with pull requests",
+    "text": "Contributing with pull requests\n\n\n\nCommit to your fork and push\nGitHub offers Compare & pull request\nWrite what you changed and why\nThe maintainer reads the diff and decides\n\n\n\nMethod packages. Found a bug in someone’s estimator? Fork, fix, open a PR. GitHub will credit your contributions."
+  },
+  {
+    "objectID": "notes/day-3-git.html#licenses",
+    "href": "notes/day-3-git.html#licenses",
+    "title": "R Bootcamp",
+    "section": "Licenses",
+    "text": "Licenses\n\n\nNo license means all rights reserved. Nobody can use your code.\n\n\n\nMIT — permissive, common default for research code\nGPL — copyleft: anyone may reuse it, but their work must also be GPL\nCC0 — effectively public domain\n\n\n\n\nusethis::use_mit_license()\nOr tick the box when you create the repo."
+  },
+  {
+    "objectID": "notes/day-3-git.html#github-pages",
+    "href": "notes/day-3-git.html#github-pages",
+    "title": "R Bootcamp",
+    "section": "GitHub Pages",
+    "text": "GitHub Pages\n\n\nFree static hosting attached to any GitHub repository.\n\n\n&lt;username&gt;.github.io/&lt;repo&gt;\n\n\n\nStatic means HTML, CSS, and JavaScript. You render locally and publish the result.\n\n\n\nWhich is exactly what Quarto already does."
+  },
+  {
+    "objectID": "notes/day-3-git.html#two-urls",
+    "href": "notes/day-3-git.html#two-urls",
+    "title": "R Bootcamp",
+    "section": "Two URLs",
+    "text": "Two URLs\n\n\n\nProject site — any repo:\njanedoe.github.io/first-repo\n\n\n\nUser site — a repo named janedoe.github.io gets the bare address:\njanedoe.github.io\n\n\n\n\nThe second one is your academic website."
+  },
+  {
+    "objectID": "notes/day-3-git.html#add-a-site-to-the-repo",
+    "href": "notes/day-3-git.html#add-a-site-to-the-repo",
+    "title": "R Bootcamp",
+    "section": "Add a site to the repo",
+    "text": "Add a site to the repo\n\n\nquarto create project website mysite\n\n\nindex.qmd\nabout.qmd\n_quarto.yml\n\n\n\n\nproject:\n  type: website\n\nwebsite:\n  title: \"Jane Doe\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - href: about.qmd\n        text: Research"
+  },
+  {
+    "objectID": "notes/day-3-git.html#first-ignore-the-build-output",
+    "href": "notes/day-3-git.html#first-ignore-the-build-output",
+    "title": "R Bootcamp",
+    "section": "First, ignore the build output",
+    "text": "First, ignore the build output\n\n\nBefore publishing anything, add to .gitignore:\n/.quarto/\n/_site/"
+  },
+  {
+    "objectID": "notes/day-3-git.html#publish",
+    "href": "notes/day-3-git.html#publish",
+    "title": "R Bootcamp",
+    "section": "Publish",
+    "text": "Publish\n\n\nquarto publish gh-pages\n\n\nrenders the site\ncreates a gh-pages branch, locally and on GitHub\ncopies the rendered output onto it\npushes\nopens your live site in a browser"
+  },
+  {
+    "objectID": "notes/day-3-git.html#what-just-happened-to-your-repo",
+    "href": "notes/day-3-git.html#what-just-happened-to-your-repo",
+    "title": "R Bootcamp",
+    "section": "What just happened to your repo",
+    "text": "What just happened to your repo\n\n\nYou now have two branches doing two different jobs:\n\n\n\n\nBranch\nHolds\nYou touch it\n\n\n\n\nmain\nyour source: .qmd, .R, _quarto.yml\nconstantly\n\n\ngh-pages\nrendered HTML, managed by Quarto\nnever\n\n\n\n\n\n\nTo update the site later: edit, commit, push, then run quarto publish gh-pages again."
+  },
+  {
+    "objectID": "notes/day-3-git.html#notes",
+    "href": "notes/day-3-git.html#notes",
+    "title": "R Bootcamp",
+    "section": "Notes",
+    "text": "Notes\n\n\n\n\nFor a user site (janedoe.github.io), after the first publish go to Settings → Pages and\nset the source branch to gh-pages.\n\n\n\n\nPages on a private repo needs GitHub Pro — free for you through GitHub Education.\n\n\n\n\nRun from your project folder, not while sitting on the gh-pages branch."
+  },
+  {
+    "objectID": "notes/day-3-git.html#alternatives-custom-domains",
+    "href": "notes/day-3-git.html#alternatives-custom-domains",
+    "title": "R Bootcamp",
+    "section": "Alternatives / custom domains",
+    "text": "Alternatives / custom domains\n\n\nSee here."
+  },
+  {
+    "objectID": "notes/day-3-git.html#things-that-exist-that-we-skipped",
+    "href": "notes/day-3-git.html#things-that-exist-that-we-skipped",
+    "title": "R Bootcamp",
+    "section": "Things that exist, that we skipped",
+    "text": "Things that exist, that we skipped\n\n\nSo you know the words when you meet them:\n\ngit stash · git rebase · tags and releases · submodules · GitHub Issues · Projects and boards · Actions and CI · Codespaces · renv for package versions · pre-commit hooks · signed commits\n\n\n\nLearn each of these the first time you actually need them."
+  },
+  {
+    "objectID": "notes/day-3-git.html#git-is-not-intuitive",
+    "href": "notes/day-3-git.html#git-is-not-intuitive",
+    "title": "R Bootcamp",
+    "section": "Git is not intuitive",
+    "text": "Git is not intuitive\n\n\n\n\nNobody knows all of git. Look it up or ask Claude/Codex to help you."
+  },
+  {
+    "objectID": "notes/day-3-git.html#the-cheatsheet",
+    "href": "notes/day-3-git.html#the-cheatsheet",
+    "title": "R Bootcamp",
+    "section": "The cheatsheet",
+    "text": "The cheatsheet\n\n\n\n\n\n\n\n\n\n\n\n\nWhat\nTerminal\nRStudio\nPositron\n\n\n\n\nSee what changed\ngit status\nGit pane\nSource Control (Ctrl/Cmd+Shift+G)\n\n\nSee the diff\ngit diff\nDiff button\nclick the file\n\n\nStage a file\ngit add &lt;file&gt;\ntick Staged\n+ on the file\n\n\nStage everything\ngit add .\nheader checkbox\n+ on Changes\n\n\nCommit\ngit commit -m \"...\"\nCommit\nmessage box, then ✓\n\n\nSend\ngit push\n↑ Push\nSync Changes\n\n\nGet\ngit pull\n↓ Pull\nSync Changes\n\n\nHistory\ngit log --oneline\nHistory (clock)\nGraph\n\n\nNew branch\ngit switch -c name\nbranch dropdown\nbranch in status bar\n\n\nSwitch branch\ngit switch name\nbranch dropdown\nbranch in status bar\n\n\nUndo a file\ngit restore &lt;file&gt;\nRevert\ndiscard changes (↩︎)"
   },
   {
     "objectID": "notes/day-1.html#this-session",
@@ -677,6 +1055,153 @@
     "title": "R Bootcamp",
     "section": "Monday",
     "text": "Monday\n\n\nMorning:\n\nwriting your own functions\nloops\nlapply() and friends\nExercise: putting it all together in base R\n\n\n\nAfternoon:\n\nWriting professional documents (typesetting with Quarto)\ntidyverse for working more effectively with data\nExercise: applications of tidyverse\n\n\n\n\nprinceton-ddss.github.io/r-bootcamp"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R Bootcamp",
+    "section": "",
+    "text": "Data-Driven Social Science · Two and a half days · August 28 – September 1, 2026"
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "R Bootcamp",
+    "section": "Schedule",
+    "text": "Schedule\n\n\nFriday, August 28, 2p–5:30p, JRR A17\n\nDay 1 · Getting started with R\n\nSetup, ergonomics, and packages\nTypes, vectorization, and basic ops\nReading, writing, and summarizing data\n\n\n\n\nSlides here.\n\n\n\nMonday, August 31, 9a–5p, JRR 399\n\nDay 2 · Programming, typesetting, and tidyverse\n\nFunctions, loops, and lapply()\nQuarto and typesetting for professional outputs\nTidyverse for better data work, excl. plotting\n\n\n\n\nTuesday, September 1, 9a–5p, JRR 399\n\nDay 3 · Visualization, version control, and simulation\n\nBase R plots (briefly) and ggplot2\nVersion control offline and online\nStatistics with R\nBig exercise: simulations\n\n\n\n\n\nDays 2 and 3: an hour for lunch, plus short breaks morning and afternoon"
+  },
+  {
+    "objectID": "day-2.html",
+    "href": "day-2.html",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
+    "section": "",
+    "text": "This session will be held in JRR 399.\n(Approximate) Schedule:"
+  },
+  {
+    "objectID": "day-2.html#functions",
+    "href": "day-2.html#functions",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
+    "section": "Functions",
+    "text": "Functions\n\nWriting and calling functions\nArguments, defaults, and return values\n\n\nReferences\n\nr4ds, Ch. 25: Functions\nPrefresher, Ch. 9: Objects, functions, loops"
+  },
+  {
+    "objectID": "day-2.html#iteration",
+    "href": "day-2.html#iteration",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
+    "section": "Loops, iteration, and lapply()",
+    "text": "Loops, iteration, and lapply()\n\nfor and while loops\nlapply() and friends\nGuided exercise\n\n\nReferences\n\nPrefresher, Ch. 9.3: Loops\nr4ds, Ch. 26: Iteration"
+  },
+  {
+    "objectID": "day-2.html#quarto",
+    "href": "day-2.html#quarto",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
+    "section": "Quarto and typesetting",
+    "text": "Quarto and typesetting\n\nMaking work replicable and research-ready\nMigrating the morning exercise into Quarto\nHow R Markdown fits in\n\n\nReferences\n\nr4ds, Ch. 28: Quarto\nPrefresher, Ch. 13: LaTeX and markdown"
+  },
+  {
+    "objectID": "day-2.html#tidyverse",
+    "href": "day-2.html#tidyverse",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\ntibble\ndplyr, from mutate() through merges\npurrr\nGesturing at stringr, lubridate, and tidyr\n\n\nReferences\n\nr4ds, Ch. 3: Data transformation\nr4ds, Ch. 19: Joins"
+  },
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data",
+    "section": "",
+    "text": "County data: ACS 2019–2023 five-year estimates for renter-household income and median gross rent, with margins of error.\nCounty boundaries: simplified county geometries with Alaska and Hawaii adjusted for mapping.\nCounty population: 2020 decennial Census total population with Census region and division."
+  },
+  {
+    "objectID": "data.html#county-level-data",
+    "href": "data.html#county-level-data",
+    "title": "Data",
+    "section": "",
+    "text": "County data: ACS 2019–2023 five-year estimates for renter-household income and median gross rent, with margins of error.\nCounty boundaries: simplified county geometries with Alaska and Hawaii adjusted for mapping.\nCounty population: 2020 decennial Census total population with Census region and division."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Incoming social science PhD students are encouraged to attend all or part of Data-Driven Social Science’s R Bootcamp, a two-and-a-half day introductory crash course in R. No grades are assigned, participation is voluntary, and partial attendance is welcome.\nWe will cover R basics, data wrangling, visualization, and simulation. Along the way, we will also introduce students to version control (Git) and typesetting tools (Quarto). Hands-on exercises and assistance will be provided throughout.\nBeyond the technical material, this is also a chance to meet your fellow first-year students from other social science departments.\nOur bootcamp is based, in part, on Harvard Government’s Math Prefresher."
+  },
+  {
+    "objectID": "day-1.html",
+    "href": "day-1.html",
+    "title": "Day 1: Getting started with R",
+    "section": "",
+    "text": "Slides here."
+  },
+  {
+    "objectID": "day-1.html#setup",
+    "href": "day-1.html#setup",
+    "title": "Day 1: Getting started with R",
+    "section": "Setup and ergonomics",
+    "text": "Setup and ergonomics\n\nScripts and what the buttons do\nRunning code and using the console\nThe environment, and why not to save it\n\n\nReferences\n\nPrefresher, Ch. 7: Orientation and reading in data\nr4ds, Ch. 6: Workflow — scripts and projects"
+  },
+  {
+    "objectID": "day-1.html#packages",
+    "href": "day-1.html#packages",
+    "title": "Day 1: Getting started with R",
+    "section": "Packages, libraries, and variables",
+    "text": "Packages, libraries, and variables\n\nInstalling packages versus loading libraries\nAssigning and inspecting variables\n\n\nReferences\n\nr4ds, Ch. 2: Workflow — basics"
+  },
+  {
+    "objectID": "day-1.html#types",
+    "href": "day-1.html#types",
+    "title": "Day 1: Getting started with R",
+    "section": "Types, vectors, and objects",
+    "text": "Types, vectors, and objects\n\nTypes and vectors (there are no scalars)\nCharacters and strings\n\n\nReferences\n\nPrefresher, Ch. 8: Manipulating vectors and matrices\nr4ds, Ch. 27: A field guide to base R"
+  },
+  {
+    "objectID": "day-1.html#data-frames",
+    "href": "day-1.html#data-frames",
+    "title": "Day 1: Getting started with R",
+    "section": "Data frames and reading data",
+    "text": "Data frames and reading data\n\nBasic data frames\nReading and saving data: csv, .rda, .rds\nWorking directories and paths\nR as a calculator: mean(), median(), summary(), and custom summaries\n\n\nReferences\n\nr4ds, Ch. 7: Data import\nPrefresher, Ch. 7.5: Reading in and inspecting data"
+  },
+  {
+    "objectID": "day-3.html",
+    "href": "day-3.html",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "",
+    "text": "This session will be held in JRR 399.\n(Approximate) Schedule:"
+  },
+  {
+    "objectID": "day-3.html#base-plots",
+    "href": "day-3.html#base-plots",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "Base R plots",
+    "text": "Base R plots\n\nReferences\n\nPrefresher, Ch. 10: Visualization"
+  },
+  {
+    "objectID": "day-3.html#ggplot2",
+    "href": "day-3.html#ggplot2",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nTidyverse plotting\nSmall exercise\n\n\nReferences\n\nr4ds, Ch. 1: Data visualization\nr4ds, Ch. 9: Layers"
+  },
+  {
+    "objectID": "day-3.html#version-control",
+    "href": "day-3.html#version-control",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "Version control",
+    "text": "Version control\n\ngit and GitHub\n\n\nReferences\n\nHappy Git and GitHub for the useR, Ch. 1: Why Git? Why GitHub?\nHappy Git and GitHub for the useR, Ch. 7: Introduce yourself to Git\nHappy Git and GitHub for the useR, Ch. 9: Personal access token for HTTPS\nHappy Git and GitHub for the useR, Ch. 15: New project, GitHub first\nHappy Git and GitHub for the useR, Ch. 31: Fork and clone\nSoftware Carpentry: Version Control with Git\nPrefresher, Ch. 15: Command-line, git\nQuarto: Publishing to GitHub Pages"
+  },
+  {
+    "objectID": "day-3.html#stats",
+    "href": "day-3.html#stats",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "Distributions and random draws",
+    "text": "Distributions and random draws\n\nsample() and set.seed()\nDrawing from distributions: rnorm(), runif(), rbinom()\nThe r, p, d, and q family: pnorm(), dnorm(), qnorm()\n\n\nReferences\n\nPrefresher, Ch. 12.2–12.5: sample(), random draws, r/p/d, and set.seed()\nR manual: Distributions in the stats package"
+  },
+  {
+    "objectID": "day-3.html#simulation",
+    "href": "day-3.html#simulation",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "Big exercise: simulation",
+    "text": "Big exercise: simulation\nNow that you have seen R, how are you going to use it? Build a version-controlled Quarto project that carries a basic analysis through to plots — a difference-in-means analysis drawn from a published paper.\n\nReferences\n\nPrefresher, Ch. 12: Simulation\nPrefresher, Ch. 11: A worked project, start to finish"
   },
   {
     "objectID": "notes/day-3-viz.html#this-session",
