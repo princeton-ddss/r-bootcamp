@@ -14,4 +14,3 @@ contributes:
       backend: polylux
       date-format: long
       syntax-highlighting: idiomatic
-      mainfont: Recursive

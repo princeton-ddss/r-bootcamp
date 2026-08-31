@@ -4,10 +4,12 @@
 
 local backends = {
   polylux = {
+    pause = "#show: later",
   },
   touying = {
     theme_key = "touying-theme",
     default_theme = "simple",
+    pause = "#pause",
   },
 }
 
@@ -18,6 +20,7 @@ local buffered_blocks = {}
 local global_incremental = false
 local in_incremental_div = false
 local in_nonincremental_div = false
+local column_incremental_position = nil
 local in_slide = false
 -- Toggle this manually if you want `.notes` blocks exported as pdfpc notes.
 local include_pdfpc_notes = false
@@ -29,6 +32,12 @@ local function typst_string(value)
   value = value:gsub("\r\n", "\\n")
   value = value:gsub("\n", "\\n")
   return '"' .. value .. '"'
+end
+
+local function is_pause_para(el)
+  if el.t ~= "Para" or not in_slide then return false end
+  local text = pandoc.utils.stringify(el)
+  return text:match("^%. ?%. ?%.$") or text == "…"
 end
 
 local function append_all(target, source)
@@ -112,6 +121,7 @@ function Meta(meta)
   buffered_blocks = {}
   in_incremental_div = false
   in_nonincremental_div = false
+  column_incremental_position = nil
   in_slide = false
   return meta
 end
@@ -196,14 +206,15 @@ function HorizontalRule()
 end
 
 function Para(el)
+  if is_pause_para(el) then
+    local blocks = flush_callout()
+    table.insert(blocks, pandoc.RawBlock("typst", backend_spec.pause))
+    return blocks
+  end
+
   if pending_callout then
     table.insert(buffered_blocks, el)
     return {}
-  end
-
-  local text = pandoc.utils.stringify(el)
-  if in_slide and (text:match("^%. ?%. ?%.$") or text == "…") then
-    return pandoc.RawBlock("typst", "#projector-pause")
   end
   return el
 end
@@ -211,8 +222,13 @@ end
 local function incremental_list(el)
   local rendered = pandoc.write(pandoc.Pandoc({ el }), "markdown")
   rendered = rendered:gsub("%s+$", "")
+  local opening = "#item-by-item["
+  if column_incremental_position ~= nil then
+    opening = "#item-by-item(start: " .. tostring(column_incremental_position) .. ")["
+    column_incremental_position = column_incremental_position + #el.content
+  end
   return {
-    pandoc.RawBlock("typst", "#item-by-item["),
+    pandoc.RawBlock("typst", opening),
     pandoc.RawBlock("typst", rendered),
     pandoc.RawBlock("typst", "]"),
   }
@@ -241,6 +257,11 @@ local function transform_div(el)
     local aligns = {}
     local outer_align = el.attributes["align"]
     local total_width = el.attributes["totalwidth"]
+    local owns_incremental_sequence = column_incremental_position == nil
+    local pending_column_pauses = 0
+    if owns_incremental_sequence then
+      column_incremental_position = 1
+    end
 
     for _, block in ipairs(el.content) do
       if block.t == "Div" and block.classes:includes("column") then
@@ -251,12 +272,48 @@ local function transform_div(el)
           fraction = percentage and (tostring(percentage) .. "fr") or width
         end
 
-        local content = pandoc.write(pandoc.Pandoc(block.content), "typst")
+        local previous_incremental = in_incremental_div
+        local previous_nonincremental = in_nonincremental_div
+        if block.classes:includes("incremental") then
+          in_incremental_div = true
+        end
+        if block.classes:includes("nonincremental") then
+          in_nonincremental_div = true
+        end
+
+        local walked = block:walk({
+          traverse = "topdown",
+          Div = function(nested)
+            if nested.classes:includes("columns")
+                or nested.classes:includes("incremental")
+                or nested.classes:includes("nonincremental")
+                or nested.classes:includes("notes") then
+              return transform_div(nested), false
+            end
+            return nested
+          end,
+          BulletList = BulletList,
+          OrderedList = OrderedList,
+          Para = Para,
+        })
+        in_incremental_div = previous_incremental
+        in_nonincremental_div = previous_nonincremental
+        local content = pandoc.write(pandoc.Pandoc(walked.content), "typst")
         content = content:gsub("%s+$", "")
+        if pending_column_pauses > 0 then
+          content = string.rep(backend_spec.pause .. "\n", pending_column_pauses) .. content
+          pending_column_pauses = 0
+        end
         table.insert(columns, "[" .. content .. "]")
         table.insert(fractions, fraction)
         table.insert(aligns, block.attributes["align"] or "left")
+      elseif is_pause_para(block) then
+        pending_column_pauses = pending_column_pauses + 1
       end
+    end
+
+    if owns_incremental_sequence then
+      column_incremental_position = nil
     end
 
     local result = {
@@ -275,24 +332,33 @@ local function transform_div(el)
     if outer_align then
       wrapped = "#align(" .. outer_align .. ")[\n" .. wrapped .. "\n]"
     end
-    return { pandoc.RawBlock("typst", wrapped) }
+    local result_blocks = { pandoc.RawBlock("typst", wrapped) }
+    if pending_column_pauses > 0 then
+      table.insert(
+        result_blocks,
+        pandoc.RawBlock("typst", string.rep(backend_spec.pause .. "\n", pending_column_pauses))
+      )
+    end
+    return result_blocks
   end
 
   if el.classes:includes("incremental") then
+    local previous_incremental = in_incremental_div
     in_incremental_div = true
     local walked = pandoc.walk_block(el, {
       BulletList = BulletList,
       OrderedList = OrderedList,
     })
-    in_incremental_div = false
+    in_incremental_div = previous_incremental
     return walked.content
   elseif el.classes:includes("nonincremental") then
+    local previous_nonincremental = in_nonincremental_div
     in_nonincremental_div = true
     local walked = pandoc.walk_block(el, {
       BulletList = BulletList,
       OrderedList = OrderedList,
     })
-    in_nonincremental_div = false
+    in_nonincremental_div = previous_nonincremental
     return walked.content
   elseif el.classes:includes("notes") then
     if not include_pdfpc_notes then return {} end

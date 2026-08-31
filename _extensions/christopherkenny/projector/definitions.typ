@@ -167,7 +167,7 @@
 }
 
 // 2023-10-09: #fa-icon("fa-info") is not working, so we'll eval "#fa-info()" instead
-#let callout(body: [], title: "Callout", background_color: rgb("#dddddd"), icon: none, icon_color: black) = {
+#let callout(body: [], title: "Callout", background_color: rgb("#dddddd"), icon: none, icon_color: black, body_background_color: white) = {
   block(
     breakable: false,
     fill: background_color,
@@ -186,7 +186,7 @@
         block(
           inset: 1pt,
           width: 100%,
-          block(fill: white, width: 100%, inset: 8pt, body))
+          block(fill: body_background_color, width: 100%, inset: 8pt, body))
       }
     )
 }
@@ -287,6 +287,10 @@
 
 $if(theme)$
 #import "$theme$" as projector-theme-module
+$else$
+#let projector-theme-module = (:)
+$endif$
+
 #let projector-theme = if "projector-theme" in projector-theme-module {
   (api, body) => projector-theme-module.projector-theme(api, body)
 } else {
@@ -307,12 +311,11 @@ $if(theme)$
 } else {
   projector-default-section-slide
 }
-$else$
-#let projector-theme = (api, body) => body
-#let title-slide = projector-default-title-slide
-#let toc-slide = projector-default-toc-slide
-#let section-slide = projector-default-section-slide
-$endif$
+#let projector-backend = if "projector-backend" in projector-theme-module {
+  projector-theme-module.projector-backend
+} else {
+  none
+}
 
 #let backend-setup = backend.setup
 #let backend-apply = backend.apply
