@@ -170,6 +170,7 @@
         numbering: none,
         header: page-config.at("header", default: none),
         footer: page-config.at("footer", default: none),
+        fill: white,
       )
       if "fill" in page-config {
         page.insert("fill", page-config.fill)
