@@ -184,16 +184,14 @@ class(counties['income'])
 
 ## `dplyr` verbs
 
-- Rows
-  - `filter()`/`slice()`: subset to specific rows
-  - `arrange()`: reorder by a variable
-- Columns
-  - `select()`: subset to specific columns
-  - `mutate()`: create or update columns
-  - `rename()`: rename specific columns
-- Groups
-  - `group_by()`: identify groupings in data
-  - `summarize()`: reduce groups to summaries
+- Rows - `filter()`: subset by logical conditions
+- Rows - `slice()`: subset by row positions
+- Rows - `arrange()`: reorder by a variable
+- Columns - `select()`: keep, drop, or reorder columns
+- Columns - `mutate()`: create or update columns
+- Columns - `rename()`: rename specific columns
+- Groups - `group_by()`: identify groupings in data
+- Groups - `summarize()`: reduce groups to summaries
 
 ## `filter()`
 
@@ -261,6 +259,21 @@ counties |>
   arrange(desc(income))
 ```
 
+## `slice_*()` functions
+
+- `slice()` selects integer row positions
+- `slice_head()` and `slice_tail()` keep the first or last rows
+- `slice_min()` and `slice_max()` select rows by an ordering variable
+- `slice_sample()` takes a random sample of rows
+
+. . .
+
+```{r}
+counties |>
+  slice_max(income, n = 3L, with_ties = FALSE) |>
+  select(state, county, income)
+```
+
 ## `distinct()`
 
 `distinct()` keeps unique values
@@ -277,6 +290,36 @@ Use multiple columns for unique combinations
 
 ```{r}
 counties |> distinct(state, county) |> nrow()
+```
+
+## Stack rows: `bind_rows()`
+
+`bind_rows()` stacks tibbles, matching columns by name
+
+. . .
+
+`.id` adds a source column
+
+. . .
+
+```{r}
+respondents <- bind_rows(
+  list(
+    before = tibble(id = c(101L, 102L), score = c(3L, 5L)),
+    after = tibble(id = c(101L, 102L), score = c(4L, 5L))
+  ),
+  .id = 'wave'
+)
+```
+
+## Stack rows: bind_rows()
+
+`bind_rows()` stacks tibbles, matching columns by name
+
+`.id` adds a source column
+
+```{r}
+respondents
 ```
 
 ## `select()`
@@ -430,6 +473,46 @@ counties |>
   mutate(income_thousands = income / 1000) |>
   select(state, county, income, income_thousands) |>
   arrange(desc(income))
+```
+
+# Strings with `stringr`
+
+## Find text with `stringr`
+
+- `stringr::str_detect()` returns `TRUE`/`FALSE` for each string
+- `stringr::str_subset()` returns only the matching strings
+- `stringr::str_count()` counts matches in each string
+
+. . .
+
+```{r}
+states <- c('New York', 'Texas', 'West Virginia', 'New Jersey')
+
+stringr::str_detect(states, '^New ')
+stringr::str_subset(states, 'New')
+```
+
+## Transform text with `stringr`
+
+- `stringr::str_to_lower()` and `str_to_upper()` standardize case
+- `stringr::str_replace()` and `str_replace_all()` edit matches
+- `stringr::str_c()` combines strings
+
+## Transform text with `stringr`
+
+```{r}
+places <- c('New York', 'West Virginia')
+
+tibble(
+  original = places,
+  lower = stringr::str_to_lower(places),
+  slug = stringr::str_replace_all(
+    stringr::str_to_lower(places),
+    ' ',
+    '-'
+  ),
+  label = stringr::str_c('State: ', places)
+)
 ```
 
 # Pivots in tidyr
@@ -954,6 +1037,61 @@ length(summaries)
 
 ```{r}
 list_rbind(summaries)
+```
+
+## `walk()` for side effects
+
+`walk()` is like `map()`, but it is for actions rather than returned results
+
+- `walk(x, f)`: one input
+- `walk2(x, y, f)`: two equal-length inputs
+- `iwalk(x, f)`: also passes the index or name
+- `pwalk(list(...), f)`: many inputs
+
+. . .
+
+```{r}
+counties_by_region |>
+  walk(\(data) print(unique(data$region)))
+```
+
+## Progress bars in `purrr`
+
+- Map functions accept `.progress`
+- Use `TRUE` for a basic bar or a short name for a labeled bar
+- Progress bars are most useful for long-running maps
+
+. . .
+
+```r
+map_dbl(
+  counties_by_region,
+  \(data) mean(data$income, na.rm = TRUE),
+  .progress = 'mean by region'
+)
+```
+
+## Parallel maps with `in_parallel()`
+
+- `in_parallel()` is an experimental `purrr` adverb
+- `mirai::daemons(n)` starts parallel workers
+- Without daemons, the map falls back to sequential processing
+- Keep the function self-contained; namespace package calls with `::`
+
+. . .
+
+```r
+mirai::daemons(2L)
+
+map_dbl(
+  counties_by_region,
+  purrr::in_parallel(
+    \(data) mean(data$income, na.rm = TRUE)
+  ),
+  .progress = 'mean by region'
+)
+
+mirai::daemons(0)
 ```
 
 
