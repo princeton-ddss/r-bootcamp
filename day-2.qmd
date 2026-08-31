@@ -4,6 +4,14 @@ title: "Day 2: Programming, typesetting, and tidyverse"
 
 This session will be held in JRR 399.
 
+::: {style="margin-top: 2em;"}
+:::
+
+[[Base R (AM) slides here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-2-base-r.pdf)]{style="color: red; background-color: yellow;"}
+
+::: {style="margin-top: 2em;"}
+:::
+
 **(Approximate) Schedule:**
 
 ::: schedule-table

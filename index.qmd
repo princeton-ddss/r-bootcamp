@@ -54,6 +54,15 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 - Functions, loops, and `lapply()`
 - Quarto and typesetting for professional outputs
 - Tidyverse for better data work, excl. plotting
+
+::: {style="margin-top: 2em;"}
+:::
+
+[[Base R (AM) slides here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-2-base-r.pdf)]{style="color: red; background-color: yellow;"}
+
+::: {style="margin-top: 2em;"}
+:::
+
 :::
 
 ::: day-card
