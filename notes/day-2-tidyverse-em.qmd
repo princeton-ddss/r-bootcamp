@@ -1,0 +1,1358 @@
+---
+format:
+  revealjs:
+    theme: default
+    slide-number: c
+    highlight-style: github
+    code-copy: true
+    embed-resources: true
+    code-line-numbers: false
+    css: ddss.css
+    height: 900
+    width: 1600
+    output-location: fragment
+
+execute:
+  echo: true
+  message: false
+  warning: false
+
+knitr:
+  opts_chunk:
+    results: hold
+---
+
+```{=html}
+<style>
+  .reveal .backgrounds > .slide-background:first-child {
+    background-image: url('figs/title-bg.svg');
+    background-size: cover;
+    background-position: center;
+  }
+</style>
+
+<br>
+<br>
+<br>
+<h1>R Bootcamp: Day 2</h1>
+<br>
+<h2>The tidyverse</h2>
+<hr><br>
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
+  <div>
+    <p style="font-size: 1.3em; font-weight: 600; margin: 0 0 0.2em 0;">Christopher T. Kenny</p>
+    <p style="font-size: 1.0em; margin: 0;">August 31, 2026</p>
+  </div>
+  <img src="figs/ddss-logo.png" style="width: 400px">
+</div>
+<br><br>
+```
+
+<center>[princeton-ddss.github.io/r-bootcamp](https://princeton-ddss.github.io/r-bootcamp)</center>
+
+```{r}
+#| label: setup
+#| include: false
+
+options(
+    scipen = 999, width = 78,
+    pillar.print_min = 3L, pillar.print_max = 3L
+)
+
+library(tidyverse)
+
+counties <- read_csv("../files/county_data.csv")
+
+county_pop <- read_csv("../files/county_population.csv")
+```
+
+# Today
+
+## Goals
+
+<hr> <br>
+
+- Familiarity with the core of the tidyverse for data manipulation
+- Ability to use `tibble`, `dplyr`, and `purrr` over base R equivalents
+- Practice with actual datasets in R
+- Tomorrow: `ggplot2`
+
+## Sources
+
+<hr> <br>
+
+- Wickham, Çetinkaya-Rundel, and Grolemund, *R for Data Science*, 2e
+  - [Ch. 3: Data transformation](https://r4ds.hadley.nz/data-transform.html) (especially §§3.1-3.5)
+  - [Ch. 19: Joins](https://r4ds.hadley.nz/joins.html) (especially §§19.2-19.3)
+  - [Ch. 26: Iteration](https://r4ds.hadley.nz/iteration.html) (especially §§26.2-26.3)
+- Harvard IQSS, *Math Prefresher for Political Scientists*
+  - [Ch. 9: Objects, Functions, Loops](https://iqss.github.io/prefresher/13_functions_obj_loops.html)
+  - [Ch. 11: Joins and Merges](https://iqss.github.io/prefresher/15_project-dempeace.html)
+
+# The tidyverse
+
+## The tidyverse
+
+<hr> <br>
+
+- A collection of R packages for data science
+- Packages designed around tidy data
+  - each observation is a row and each column is a variable
+- Core packages today: `tibble`, `dplyr`, `tidyr`, and `purrr`
+
+<br>
+
+```{r}
+#| eval: false
+library(tidyverse)
+```
+
+::: fragment
+```r
+── Attaching core tidyverse packages ────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.3     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.2
+── Conflicts ──────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package to force all conflicts to become errors
+```
+:::
+
+## Tibble
+
+<hr> <br>
+
+- A tibble is a data frame with more predictable behavior
+- Printing shows the first rows and the columns that fit
+- Column types appear below the column names
+
+```{r}
+counties
+```
+
+## Tibble
+
+<hr> <br>
+
+![](figs/tibble.jpg){fig-align="center" height="560"}
+
+## Printing a tibble
+
+<hr> <br>
+
+```{r}
+counties
+```
+
+## Tibble printing
+
+<hr> <br>
+
+![](figs/tibble_printing.jpeg){fig-align="center" height="560"}
+
+## Creating a tibble
+
+<hr> <br>
+
+- `tibble()` builds a data frame from named columns
+- Columns have equal length or length one
+
+```{r}
+sample_respondents <- tibble(
+    id = c(101L, 102L, 103L),
+    party = c("Democrat", "Independent", "Republican"),
+    trust_government = c(3L, 5L, 2L)
+)
+```
+
+<br>
+
+::: {.fragment}
+```{r}
+tibble(id = seq_len(3L), enrolled = TRUE)
+```
+:::
+
+
+## Inspecting a tibble
+
+<hr> <br>
+
+Inspect before transforming data
+
+- `glimpse()` displays each column and its type
+- `names()` returns column names
+- `dim()` returns rows and columns
+
+```{r}
+counties |>
+    select(state, county, income, rent) |>
+    glimpse()
+```
+
+## Extracting a column
+
+<hr> <br>
+
+`$` and `[[` return a column as a vector
+
+```{r}
+class(counties$income)
+class(counties[["income"]])
+```
+
+::: fragment
+Both approaches return a vector
+:::
+
+::: fragment
+`[` instead returns a one-column tibble
+:::
+
+```{r}
+class(counties["income"])
+```
+
+# Data transformation
+
+## `dplyr` verbs
+
+<hr> <br>
+
+::: incremental
+- Rows
+  - `filter()` / `slice()`: subset to specific rows
+  - `arrange()`: reorder by a variable
+- Columns
+  - `select()`: subset to specific columns
+  - `mutate()`: create or update columns
+  - `rename()`: rename specific columns
+- Groups
+  - `group_by()`: identify groupings in data
+  - `summarize()`: reduce groups to summaries
+:::
+
+## `filter()`
+
+<hr> <br>
+
+`filter()` keeps rows that satisfy a logical condition
+
+```{r}
+counties |>
+    filter(income >= 75000)
+```
+
+## Multiple conditions: equivalent to AND
+
+<hr> <br>
+
+Commas require every condition to be `TRUE`
+
+```{r}
+counties |>
+    filter(state == "New York", income >= 75000)
+```
+
+::: fragment
+which is the same as:
+
+```r
+counties |>
+    filter(state == "New York") |>
+    filter(income >= 75000)
+```
+:::
+
+::: fragment
+which is the same as
+
+```r
+counties |>
+    filter(state == "New York" & income >= 75000)
+```
+:::
+
+## Missing values
+
+<hr> <br>
+
+```{r}
+scores <- tibble(id = 1:4, score = c(88L, NA, 91L, 76L))
+```
+
+::: fragment
+What happens with NAs?
+
+```r
+scores |> filter(score > 90)
+```
+
+```{r}
+#| echo: false
+scores |> filter(score > 90)
+```
+:::
+## `arrange()`
+
+<hr> <br>
+
+- `arrange()` orders rows by one or more columns
+- Use `desc()` for descending order
+
+```{r}
+counties |>
+    arrange(desc(income))
+```
+
+## `slice_*()`: rows by position or rank
+
+<hr> <br>
+
+- `slice_head()` / `slice_tail()`: the first or last rows
+- `slice_min()` / `slice_max()`: the smallest or largest by a column
+- `slice_sample()`: a random draw of rows
+
+```{r}
+counties |>
+    slice_max(income, n = 3) |>
+    select(state, county, income)
+```
+
+::: fragment
+Each takes `n =` for a count of rows or `prop =` for a share of them
+:::
+
+## `slice_*()` respects groups
+
+<hr> <br>
+
+`by =` groups for this one call -- here, the richest county in each state:
+
+```{r}
+counties |>
+    slice_max(income, n = 1, by = state) |>
+    select(state, county, income)
+```
+
+::: fragment
+The same as `group_by(state) |> slice_max(income, n = 1) |> ungroup()`
+:::
+
+## `distinct()`
+
+<hr> <br>
+
+`distinct()` keeps unique values
+
+```{r}
+counties |> distinct(state)
+```
+
+::: fragment
+Use multiple columns for unique combinations
+
+
+```{r}
+counties |>
+    distinct(state, county) |>
+    nrow()
+```
+:::
+
+## `select()`
+
+<hr> <br>
+
+`select()` keeps, drops, or reorders columns:
+
+```{r}
+counties |>
+    select(state, county, income, rent)
+```
+
+## `select()`: ranges and exclusions
+
+<hr> <br>
+
+We can also select with ranges ...
+
+```{r}
+counties |>
+    select(state:income) |>
+    names()
+```
+
+::: fragment
+... and with exclusions:
+
+
+```{r}
+counties |>
+    select(-c(income_moe, rent_moe)) |>
+    names()
+```
+:::
+
+## Selection helpers
+
+<hr> <br>
+
+We can select based on names using `starts_with()`, `ends_with()`, and `contains()`
+
+```{r}
+counties |>
+    select(starts_with("rent")) |>
+    names()
+```
+
+::: fragment
+Or with a helper function inside `where()`:
+
+```{r}
+counties |>
+    select(where(is.numeric)) |>
+    names()
+```
+:::
+
+## `rename()`
+
+<hr> <br>
+
+```{r}
+counties |>
+    rename(
+        median_renter_income = income,
+        median_gross_rent = rent
+    )
+```
+
+## `relocate()`
+
+<hr> <br>
+
+Move columns to the front:
+
+```{r}
+counties |>
+    relocate(income, rent) |>
+    names()
+```
+
+::: fragment
+Or to a specific location:
+
+```{r}
+counties |>
+    relocate(county, .after = state) |>
+    names()
+```
+:::
+
+## `mutate()`
+
+<hr> <br>
+
+`mutate()` creates new columns or replaces old ones
+
+```{r}
+counties |>
+    mutate(
+        income_thousands = income / 1000,
+        rent_hundreds = rent / 100
+    ) |>
+    select(state, county, income_thousands, rent_hundreds)
+```
+
+## Keeping only specific columns
+
+<hr> <br>
+
+`.keep = "none"` keeps only the updated columns
+
+```{r}
+counties |>
+    mutate(
+        income_thousands = income / 1000,
+        rent_hundreds = rent / 100,
+        .keep = "none"
+    )
+```
+
+::: fragment
+Before 2025, this was `transmute()`
+:::
+
+## Conditional variables: `if_else()`
+
+<hr> <br>
+
+```{r}
+counties |>
+    mutate(
+        rent_level = if_else(
+            rent >= median(rent, na.rm = TRUE),
+            "at or above median",
+            "below median"
+        )
+    ) |>
+    select(state, county, rent, rent_level)
+```
+
+## Complex conditional variables: `case_when()`
+
+<hr> <br>
+
+```{r}
+counties |>
+    mutate(
+        income_group = case_when(
+            is.na(income) ~ "missing",
+            income >= 100000 ~ "high",
+            income >= 75000 ~ "middle",
+            .default = "low"
+        )
+    ) |>
+    select(state, county, income, income_group)
+```
+
+## Exercise
+
+<hr> <br>
+
+- Keep counties in New York or Texas
+- Create `income_thousands` from `income`
+- Keep `state`, `county`, `income`, and `income_thousands`
+- Order from highest to lowest income
+
+<br>
+
+Write this as one pipeline
+
+## A solution
+
+<hr> <br>
+
+```{r}
+counties |>
+    filter(state %in% c("New York", "Texas")) |>
+    mutate(income_thousands = income / 1000) |>
+    select(state, county, income, income_thousands) |>
+    arrange(desc(income))
+```
+
+# Strings with `stringr`
+
+## Common `stringr` functions
+
+<hr> <br>
+
+Every function starts with `str_` and takes the string as its first argument
+
+- `str_length()`: how many characters
+- `str_to_lower()`, `str_to_upper()`, `str_to_title()`: change case
+- `str_c()`: glue strings together
+- `str_sub()`: pull out characters by position
+- `str_trim()`, `str_squish()`: drop stray whitespace
+
+```{r}
+counties |>
+    mutate(label = str_to_lower(str_c(county, ", ", state))) |>
+    select(label)
+```
+
+## Detecting and replacing patterns
+
+<hr> <br>
+
+- `str_detect()`: does the string contain the pattern? Returns `TRUE`/`FALSE`
+- `str_starts()`, `str_ends()`: match at one end only
+- `str_remove()`, `str_replace()`: change the first match
+- `str_remove_all()`, `str_replace_all()`: change every match
+
+```{r}
+counties |>
+    filter(str_detect(county, "Parish")) |>
+    mutate(parish = str_remove(county, " Parish$")) |>
+    select(state, parish)
+```
+
+::: fragment
+Patterns are *regular expressions*: `^` anchors to the start and `$` to the end. Wrap a pattern in `fixed()` to match it literally.
+:::
+
+# Pivots in tidyr
+
+## Long and wide data
+
+<hr> <br>
+
+:::: columns
+::: {.column width="50%"}
+**Wide data**
+
+Each observation is a row
+
+```{r}
+wide <- tribble(
+    ~id, ~v1, ~v2, ~v3,
+    "A", 100L, 120L, 105L,
+    "B", 80L, 90L, 90L
+)
+```
+:::
+
+::: {.column width="50%"}
+**Long data**
+
+Observations are split across rows
+
+```{r}
+long <- tribble(
+    ~id, ~statistic, ~value,
+    "A", "v1", 100L,
+    "A", "v2", 120L,
+    "A", "v3", 105L,
+    "B", "v1", 80L,
+    "B", "v2", 90L,
+    "B", "v3", 90L,
+)
+```
+:::
+::::
+
+## `pivot_wider()`
+
+<hr> <br>
+
+`pivot_wider()` shortens the data by adding columns
+
+```{r}
+long |>
+    pivot_wider(
+        names_from = statistic,
+        values_from = value
+    )
+```
+
+## `pivot_longer()`
+
+<hr> <br>
+
+`pivot_longer()` lengthens the data by turning columns into rows
+
+```{r}
+wide |>
+    pivot_longer(
+        cols = v1:v3,
+        names_to = "statistic",
+        values_to = "value"
+    )
+```
+
+## Other weird data shapes
+
+<hr> <br>
+
+- Most can be *tidied* with `tidyr`
+- Nested data? Some variables are lists
+  - `unnest()`, `unnest_wider()`, `unnest_longer()`
+- Data should be nested?
+  - Are you sure?
+    - `nest()`
+- Handle `NA` values
+  - `drop_na()` or `replace_na()`
+  - Missing within groups: `fill()`
+- Missing combinations (e.g., all weeks should have 7 days)
+  - `expand()` for new data or `complete()` to supplement
+
+# Groups and summaries
+
+## `summarize()`
+
+<hr> <br>
+
+`summarize()` reduces rows to summary values
+
+```{r}
+counties |>
+    summarize(
+        n = n(),
+        mean_income = mean(income, na.rm = TRUE),
+        median_rent = median(rent, na.rm = TRUE),
+        .groups = "drop"
+    )
+```
+
+::: fragment
+`n()` counts the rows in the current group. It takes no arguments, and only works inside `dplyr` verbs, where "the current group" has a meaning.
+:::
+
+::: fragment
+If there are no groups, `summarize()` treats all rows as one group
+:::
+
+## `group_by()`
+
+<hr> <br>
+
+`group_by()` marks a `tibble` as having groups
+
+```{r}
+counties |>
+    group_by(state) |>
+    summarize(
+        n = n(),
+        mean_income = mean(income, na.rm = TRUE),
+        median_rent = median(rent, na.rm = TRUE)
+    )
+```
+
+## Grouped mutation
+
+<hr> <br>
+
+`mutate()` will respect groups for vectorized operations
+
+```{r}
+counties |>
+    group_by(state) |>
+    mutate(
+        income_difference = income - mean(income, na.rm = TRUE)
+    ) |>
+    select(state, county, income, income_difference) |>
+    ungroup()
+```
+
+## `count()`
+
+<hr> <br>
+
+```{r}
+counties |> count(state)
+```
+
+::: fragment
+`count(state)` groups by `state` and counts rows
+
+Equivalent to:
+
+```r
+counties |> group_by(state) |> summarize(n = n())
+```
+:::
+
+## Multiple summaries: `across()`
+
+<hr> <br>
+
+```{r}
+counties |>
+    summarize(
+        across(
+            c(income, rent),
+            list(
+                mean = \(x) mean(x, na.rm = TRUE),
+                sd = \(x) sd(x, na.rm = TRUE)
+            )
+        )
+    )
+```
+
+::: fragment
+`across()` applies the same functions to several columns
+:::
+
+## Multiple summaries: `across()`
+
+<hr> <br>
+
+`across()` simplifies making summaries:
+
+```{r}
+counties |>
+    summarize(across(where(is.numeric), \(x) mean(x, na.rm = TRUE)))
+```
+
+## Exercise
+
+<hr> <br>
+
+Compare counties above and below the median income.
+
+- Exclude counties with missing `income`
+- Label counties as `at or above median` or `below median`
+- For each group, report `n` and the mean `income` and `rent` using `across()`
+
+<br>
+
+Write this as one pipeline
+
+## A solution
+
+<hr> <br>
+
+```{r}
+sol <- counties |>
+    filter(!is.na(income)) |>
+    mutate(
+        income_level = if_else(
+            income >= median(income),
+            "at or above median",
+            "below median"
+        )
+    ) |>
+    group_by(income_level) |>
+    summarize(
+        n = n(),
+        across(c(income, rent), \(x) mean(x, na.rm = TRUE)),
+        .groups = "drop"
+    ) |>
+    arrange(desc(income))
+```
+
+## A solution
+
+<hr> <br>
+
+```{r}
+sol
+```
+
+# Joins
+
+## Join tables by a fixed key
+
+<hr> <br>
+
+- A join combines columns from related tables
+- A key identifies which rows should match
+
+```{r}
+party <- tibble(
+    id = c(101L, 102L, 103L),
+    party = c("Democrat", "Independent", "Republican")
+)
+
+attitudes <- tibble(
+    id = c(101L, 102L, 104L),
+    trust_government = c(3L, 5L, 2L)
+)
+```
+
+::: fragment
+A key is (often) just a numeric ID
+:::
+
+## Check the key
+
+<hr> <br>
+
+A key should identify the intended unit of observation
+
+```{r}
+attitudes |>
+    count(id) |>
+    filter(n > 1L)
+```
+
+::: fragment
+An empty result means no duplicate keys were found
+:::
+
+## Left and right tables
+
+<hr> <br>
+
+```{=html}
+<style>
+  .join-demo { display: flex; gap: 6rem; justify-content: center; font-size: 1.1em; }
+  .join-demo p { text-align: center; font-weight: 700; margin: 0 0 0.4em 0; }
+  .join-demo table { border-collapse: collapse; margin: 0 auto; }
+  .reveal .join-demo th, .reveal .join-demo td {
+    border: 1px solid #666; padding: 0.35em 1.4em;
+    text-align: center; height: 1.9em;
+  }
+  /* reveal's theme drops the last row's bottom border; put it back */
+  .reveal .join-demo tbody tr:last-child th,
+  .reveal .join-demo tbody tr:last-child td { border-bottom: 1px solid #666; }
+  .join-demo th { background-color: #d9e2f3; }
+  .join-demo td.gap {
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 5px, #999 5px, #999 6px),
+      repeating-linear-gradient(-45deg, transparent, transparent 5px, #999 5px, #999 6px);
+  }
+</style>
+
+<div class="join-demo">
+  <div>
+    <p>left</p>
+    <table>
+      <tr><th>id</th><th>party</th></tr>
+      <tr><td>101</td><td>Democrat</td></tr>
+      <tr><td>102</td><td>Independent</td></tr>
+      <tr><td>103</td><td>Republican</td></tr>
+      <tr><td>104</td><td>Democrat</td></tr>
+      <tr><td class="gap"></td><td class="gap"></td></tr>
+      <tr><td>106</td><td>Republican</td></tr>
+    </table>
+  </div>
+  <div>
+    <p>right</p>
+    <table>
+      <tr><th>id</th><th>trust</th></tr>
+      <tr><td class="gap"></td><td class="gap"></td></tr>
+      <tr><td>102</td><td>5</td></tr>
+      <tr><td>103</td><td>3</td></tr>
+      <tr><td>104</td><td>2</td></tr>
+      <tr><td>105</td><td>4</td></tr>
+      <tr><td>106</td><td>7</td></tr>
+    </table>
+  </div>
+</div>
+```
+
+## Types of joins
+
+<hr> <br>
+
+::: incremental
+- `left_join()`: keep all rows in left and add columns from right
+- `right_join()`: keep all rows in right and add columns from left
+- `inner_join()` keeps rows matched in both tables
+- `full_join()` keeps rows from either table
+- `semi_join()` keeps left rows with a match
+- `anti_join()` keeps left rows without a match
+:::
+
+::: fragment
+Which rows are saved for each join?
+
+```r
+left |>
+    *_join(by = "id")
+```
+:::
+
+## Joining real data
+
+<hr> <br>
+
+`counties` and `county_pop` use different names for the same key
+
+```{r}
+counties_joined <- counties |>
+    left_join(county_pop, join_by(GEOID == fips))
+
+counties_joined |>
+    select(GEOID, state, county, pop, region, division)
+```
+
+## Joining real data: multiple syntaxes
+
+<hr> <br>
+
+Current, recommended syntax:
+
+```r
+counties_joined <- counties |>
+    left_join(county_pop, join_by(GEOID == fips))
+```
+
+::: fragment
+Older, but also valid syntax:
+
+```r
+counties_joined <- counties |>
+    left_join(county_pop, by = c("GEOID" = "fips"))
+```
+:::
+
+::: fragment
+Most replication data (and many of your colleagues) will use the older syntax!
+:::
+
+::: fragment
+New syntax allows for *fancier* joins, like `join_by(x > x)`...
+:::
+
+## Find unmatched keys
+
+<hr> <br>
+
+Check the rows that do not match:
+
+```{r}
+counties |>
+    select(GEOID, state, county) |>
+    anti_join(county_pop, join_by(GEOID == fips)) |>
+    select(GEOID, state, county)
+```
+
+::: fragment
+What's wrong with Connecticut?
+:::
+
+## Duplicate keys change row counts
+
+<hr> <br>
+
+A join can duplicate left rows when the right key is not unique
+
+```{r}
+attitudes_duplicate <- tibble(
+    id = c(101L, 101L, 102L),
+    trust_government = c(3L, 4L, 5L)
+)
+
+party |>
+    left_join(attitudes_duplicate, join_by(id))
+```
+
+# `purrr`
+
+## `map()`
+
+<hr> <br>
+
+`map(x, f)` is a new way to do yesterday's `lapply(x, f)`
+
+::: fragment
+Why `map()` then? Large family of *type-stable* `map_*()` functions!
+:::
+
+::: fragment
+And bits of friendlier syntax:
+
+```r
+lapply(x, `[[`, "a")
+map(x, "a")
+```
+:::
+
+## Typed maps
+
+<hr> <br>
+
+Typed maps return a vector of a *known* type:
+
+- `map_dbl()`: double vector
+- `map_int()`: integer vector
+- `map_chr()`: character vector
+- `map_lgl()`: logical vector
+
+```{r}
+counties |>
+    select(income, rent) |>
+    map_dbl(
+        \(x) mean(x, na.rm = TRUE)
+    )
+```
+
+## Mapping over data frames
+
+<hr> <br>
+
+Create a list of `tibble`s with `group_split()`:
+
+```{r}
+counties_by_region <- counties_joined |>
+    filter(!is.na(region)) |>
+    group_by(region) |>
+    group_split()
+```
+
+::: fragment
+`map_dbl()` then returns one value per `tibble`:
+:::
+
+```{r}
+map_dbl(
+    counties_by_region,
+    \(x) mean(x$income, na.rm = TRUE)
+)
+```
+
+## Combining results
+
+<hr> <br>
+
+First return one tibble for each region
+
+```{r}
+summaries <- map(
+    counties_by_region,
+    function(data) {
+        summarize(
+            data,
+            n = n(),
+            mean_income = mean(income, na.rm = TRUE)
+        )
+    }
+)
+```
+
+```{r}
+all(map_lgl(summaries, is_tibble))
+length(summaries)
+```
+
+## Stack compatible results
+
+<hr> <br>
+
+`list_rbind()` combines the tibbles by row
+
+```{r}
+list_rbind(summaries)
+```
+
+## Stacking with `bind_rows()`
+
+<hr> <br>
+
+`bind_rows()` stacks data frames too, and `.id =` records where each row came from
+
+```{r}
+names(summaries) <- map_chr(counties_by_region, \(x) x$region[[1]])
+
+bind_rows(summaries, .id = "region")
+```
+
+::: fragment
+`.id` takes its values from the *names* of the list. An unnamed list gets `"1"`, `"2"`, ... instead -- so name the list first if you want the column to mean anything.
+:::
+
+## Several inputs
+
+<hr> <br>
+
+`map2()` iterates over two (equal length) inputs in parallel
+
+```{r}
+district_turnout <- list(c(0.62, 0.58, 0.64), c(0.71, 0.69, 0.74))
+benchmarks <- c(0.60, 0.70)
+
+map2_lgl(
+    district_turnout,
+    benchmarks,
+    \(turnout, benchmark) mean(turnout) > benchmark
+)
+```
+
+## `walk()`: mapping for the side effect
+
+<hr> <br>
+
+`walk()` calls a function for what it *does* -- write a file, print, save a plot -- and hands back its input invisibly
+
+```{r}
+walk(c("Northeast", "South"), \(region) cat("Region:", region, "\n"))
+```
+
+::: fragment
+Reach for it when the return value is not the point:
+
+```r
+iwalk(summaries, \(data, name) write_csv(data, str_c(name, ".csv")))
+```
+
+`walk2()` pairs two lists, and `iwalk()` pairs a list with its names
+:::
+
+## Progress bars
+
+<hr> <br>
+
+Every `map()` and `walk()` takes a `.progress` argument
+
+```r
+counties_by_region |>
+    map(slow_summary, .progress = TRUE)
+```
+
+::: fragment
+Pass a string instead of `TRUE` to label the bar:
+
+```r
+counties_by_region |>
+    map(slow_summary, .progress = "summarizing regions")
+```
+:::
+
+::: fragment
+Worth it when a map runs long enough that you want to know it is still going
+:::
+
+## Running in parallel
+
+<hr> <br>
+
+Wrap the function in `in_parallel()` to spread a map across worker processes:
+
+```r
+library(mirai)
+daemons(4) # start four workers
+
+counties_by_region |>
+    map(in_parallel(\(data) mean(data$income, na.rm = TRUE)))
+
+daemons(0) # shut them down
+```
+
+::: fragment
+Without `daemons()`, it quietly falls back to running sequentially
+:::
+
+## Parallel functions must be self-contained
+
+<hr> <br>
+
+The function gets shipped to another process, so it cannot see your workspace
+
+- Call package functions with `::`, as in `dplyr::summarize()`
+- Pass any data it needs as named arguments to `in_parallel()`
+
+```r
+counties_by_region |>
+    map(in_parallel(
+        \(data) dplyr::filter(data, income > cutoff),
+        cutoff = 75000
+    ))
+```
+
+::: fragment
+Still experimental, and only pays off when each call is genuinely slow -- shipping data between processes is not free
+:::
+
+# Applied exercise
+
+## Exercise
+
+<hr> <br>
+
+Using `counties_joined`, compare income by region and population level
+
+- Label counties as above or below the median population
+- Compute the number of counties and mean income by `region` and population level
+- Order the summary from highest to lowest mean income
+
+::: fragment
+<br> Write one pipeline
+:::
+
+## Step 1: label population
+
+<hr> <br>
+
+```r
+counties_labeled <- counties_joined |>
+    mutate(
+        pop_level = # ...
+    )
+```
+
+::: fragment
+Use `if_else()` or `case_when()`
+:::
+
+## Step 2: summarize groups
+
+<hr> <br>
+
+```r
+result <- counties_labeled |>
+    # group by region and population level
+    # summarize n and mean_income
+    # arrange by descending mean_income
+```
+
+::: fragment
+How many rows should the result contain?
+:::
+
+## One possible solution
+
+<hr> <br>
+
+```{r}
+result <- counties_joined |>
+    filter(!is.na(pop), !is.na(region)) |>
+    mutate(
+        pop_level = if_else(
+            pop >= median(pop),
+            "at or above median",
+            "below median"
+        )
+    ) |>
+    group_by(region, pop_level) |>
+    summarize(
+        n = n(),
+        mean_income = mean(income, na.rm = TRUE),
+        .groups = "drop"
+    ) |>
+    arrange(desc(mean_income))
+```
+
+## Apply a function to each group
+
+<hr> <br>
+
+```{r}
+region_summary <- function(data) {
+    data |>
+        summarize(
+            n = n(),
+            mean_income = mean(income, na.rm = TRUE),
+            median_rent = median(rent, na.rm = TRUE)
+        )
+}
+```
+
+::: fragment
+Apply `region_summary()` to each region with `map()`
+:::
+
+## One possible solution
+
+<hr> <br>
+
+```{r}
+by_region <- counties_joined |>
+    filter(!is.na(region)) |>
+    group_by(region) |>
+    group_split()
+
+by_region |>
+    map(region_summary) |>
+    list_rbind()
+```
+
+## Other tidyverse packages
+
+<hr> <br>
+
+- `stringr` works with character strings
+- `lubridate` parses and transforms dates and times
+- `forcats` works with categorical variables ("factors")
+- `readr` imports rectangular data files
+
+## Summary
+
+<hr> <br>
+
+- Start with a tibble and inspect its rows, columns, and types
+- Use one `dplyr` verb for each transformation
+- Use pipes to connect transformations
+- Group before computing group-level summaries
+- Check keys before and after joins
+- Use `map()` to apply a function to every list element
+
+<br>
+
+<center>[princeton-ddss.github.io/r-bootcamp](https://princeton-ddss.github.io/r-bootcamp)</center>

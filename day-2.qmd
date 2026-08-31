@@ -9,6 +9,8 @@ This session will be held in JRR 399.
 
 [[Base R (AM) slides here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-2-base-r.pdf)]{style="color: red; background-color: yellow;"}
 
+[[Quarto (PM) slides here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-2-quarto.pdf)]{style="color: red; background-color: yellow;"}
+
 ::: {style="margin-top: 2em;"}
 :::
 
