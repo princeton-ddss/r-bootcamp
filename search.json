@@ -609,6 +609,657 @@
     "text": "The cheatsheet\n\n\n\n\n\n\n\n\n\n\n\n\nWhat\nTerminal\nRStudio\nPositron\n\n\n\n\nSee what changed\ngit status\nGit pane\nSource Control (Ctrl/Cmd+Shift+G)\n\n\nSee the diff\ngit diff\nDiff button\nclick the file\n\n\nStage a file\ngit add &lt;file&gt;\ntick Staged\n+ on the file\n\n\nStage everything\ngit add .\nheader checkbox\n+ on Changes\n\n\nCommit\ngit commit -m \"...\"\nCommit\nmessage box, then ✓\n\n\nSend\ngit push\n↑ Push\nSync Changes\n\n\nGet\ngit pull\n↓ Pull\nSync Changes\n\n\nHistory\ngit log --oneline\nHistory (clock)\nGraph\n\n\nNew branch\ngit switch -c name\nbranch dropdown\nbranch in status bar\n\n\nSwitch branch\ngit switch name\nbranch dropdown\nbranch in status bar\n\n\nUndo a file\ngit restore &lt;file&gt;\nRevert\ndiscard changes (↩︎)"
   },
   {
+    "objectID": "notes/day-2-tidyverse-em.html#goals",
+    "href": "notes/day-2-tidyverse-em.html#goals",
+    "title": "R Bootcamp",
+    "section": "Goals",
+    "text": "Goals\n\n\n\nFamiliarity with the core of the tidyverse for data manipulation\nAbility to use tibble, dplyr, and purrr over base R equivalents\nPractice with actual datasets in R\nTomorrow: ggplot2"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#sources",
+    "href": "notes/day-2-tidyverse-em.html#sources",
+    "title": "R Bootcamp",
+    "section": "Sources",
+    "text": "Sources\n\n\n\nWickham, Çetinkaya-Rundel, and Grolemund, R for Data Science, 2e\n\nCh. 3: Data transformation (especially §§3.1-3.5)\nCh. 19: Joins (especially §§19.2-19.3)\nCh. 26: Iteration (especially §§26.2-26.3)\n\nHarvard IQSS, Math Prefresher for Political Scientists\n\nCh. 9: Objects, Functions, Loops\nCh. 11: Joins and Merges"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#the-tidyverse-1",
+    "href": "notes/day-2-tidyverse-em.html#the-tidyverse-1",
+    "title": "R Bootcamp",
+    "section": "The tidyverse",
+    "text": "The tidyverse\n\n\n\nA collection of R packages for data science\nPackages designed around tidy data\n\neach observation is a row and each column is a variable\n\nCore packages today: tibble, dplyr, tidyr, and purrr\n\n\n\nlibrary(tidyverse)\n\n\n\n\n\n── Attaching core tidyverse packages ────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.2.1     ✔ readr     2.2.0\n✔ forcats   1.0.1     ✔ stringr   1.6.0\n✔ ggplot2   4.0.3     ✔ tibble    3.3.1\n✔ lubridate 1.9.5     ✔ tidyr     1.3.2\n✔ purrr     1.2.2\n── Conflicts ──────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package to force all conflicts to become errors"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#tibble",
+    "href": "notes/day-2-tidyverse-em.html#tibble",
+    "title": "R Bootcamp",
+    "section": "Tibble",
+    "text": "Tibble\n\n\n\nA tibble is a data frame with more predictable behavior\nPrinting shows the first rows and the columns that fit\nColumn types appear below the column names\n\n\ncounties\n\n\n\n# A tibble: 3,144 × 7\n  GEOID state   county         income income_moe  rent rent_moe\n  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n1 01001 Alabama Autauga County  69841       5512  1200       75\n2 01003 Alabama Baldwin County  75019       2751  1211       42\n3 01005 Alabama Barbour County  44290       2762   644       41\n# ℹ 3,141 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#tibble-1",
+    "href": "notes/day-2-tidyverse-em.html#tibble-1",
+    "title": "R Bootcamp",
+    "section": "Tibble",
+    "text": "Tibble"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#printing-a-tibble",
+    "href": "notes/day-2-tidyverse-em.html#printing-a-tibble",
+    "title": "R Bootcamp",
+    "section": "Printing a tibble",
+    "text": "Printing a tibble\n\n\n\ncounties\n\n\n\n# A tibble: 3,144 × 7\n  GEOID state   county         income income_moe  rent rent_moe\n  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n1 01001 Alabama Autauga County  69841       5512  1200       75\n2 01003 Alabama Baldwin County  75019       2751  1211       42\n3 01005 Alabama Barbour County  44290       2762   644       41\n# ℹ 3,141 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#tibble-printing",
+    "href": "notes/day-2-tidyverse-em.html#tibble-printing",
+    "title": "R Bootcamp",
+    "section": "Tibble printing",
+    "text": "Tibble printing"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#creating-a-tibble",
+    "href": "notes/day-2-tidyverse-em.html#creating-a-tibble",
+    "title": "R Bootcamp",
+    "section": "Creating a tibble",
+    "text": "Creating a tibble\n\n\n\ntibble() builds a data frame from named columns\nColumns have equal length or length one\n\n\nsample_respondents &lt;- tibble(\n    id = c(101L, 102L, 103L),\n    party = c(\"Democrat\", \"Independent\", \"Republican\"),\n    trust_government = c(3L, 5L, 2L)\n)\n\n\n\n\n\n\n\ntibble(id = seq_len(3L), enrolled = TRUE)\n\n\n\n# A tibble: 3 × 2\n     id enrolled\n  &lt;int&gt; &lt;lgl&gt;   \n1     1 TRUE    \n2     2 TRUE    \n3     3 TRUE"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#inspecting-a-tibble",
+    "href": "notes/day-2-tidyverse-em.html#inspecting-a-tibble",
+    "title": "R Bootcamp",
+    "section": "Inspecting a tibble",
+    "text": "Inspecting a tibble\n\n\nInspect before transforming data\n\nglimpse() displays each column and its type\nnames() returns column names\ndim() returns rows and columns\n\n\ncounties |&gt;\n    select(state, county, income, rent) |&gt;\n    glimpse()\n\n\n\nRows: 3,144\nColumns: 4\n$ state  &lt;chr&gt; \"Alabama\", \"Alabama\", \"Alabama\", \"Alabama\", \"Alabama\", \"Alaba…\n$ county &lt;chr&gt; \"Autauga County\", \"Baldwin County\", \"Barbour County\", \"Bibb C…\n$ income &lt;dbl&gt; 69841, 75019, 44290, 51215, 61096, 36723, 44881, 55826, 49295…\n$ rent   &lt;dbl&gt; 1200, 1211, 644, 802, 743, 635, 722, 804, 850, 750, 855, 653,…"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#extracting-a-column",
+    "href": "notes/day-2-tidyverse-em.html#extracting-a-column",
+    "title": "R Bootcamp",
+    "section": "Extracting a column",
+    "text": "Extracting a column\n\n\n$ and [[ return a column as a vector\n\nclass(counties$income)\nclass(counties[[\"income\"]])\n\n\n\n[1] \"numeric\"\n[1] \"numeric\"\n\n\n\nBoth approaches return a vector\n\n\n[ instead returns a one-column tibble\n\n\nclass(counties[\"income\"])\n\n\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\""
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#dplyr-verbs",
+    "href": "notes/day-2-tidyverse-em.html#dplyr-verbs",
+    "title": "R Bootcamp",
+    "section": "dplyr verbs",
+    "text": "dplyr verbs\n\n\n\nRows\n\nfilter() / slice(): subset to specific rows\narrange(): reorder by a variable\n\nColumns\n\nselect(): subset to specific columns\nmutate(): create or update columns\nrename(): rename specific columns\n\nGroups\n\ngroup_by(): identify groupings in data\nsummarize(): reduce groups to summaries"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#filter",
+    "href": "notes/day-2-tidyverse-em.html#filter",
+    "title": "R Bootcamp",
+    "section": "filter()",
+    "text": "filter()\n\n\nfilter() keeps rows that satisfy a logical condition\n\ncounties |&gt;\n    filter(income &gt;= 75000)\n\n\n\n# A tibble: 716 × 7\n  GEOID state   county           income income_moe  rent rent_moe\n  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;             &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n1 01003 Alabama Baldwin County    75019       2751  1211       42\n2 01051 Alabama Elmore County     75553       3115  1014       48\n3 01083 Alabama Limestone County  83534       2861   908       49\n# ℹ 713 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#multiple-conditions-equivalent-to-and",
+    "href": "notes/day-2-tidyverse-em.html#multiple-conditions-equivalent-to-and",
+    "title": "R Bootcamp",
+    "section": "Multiple conditions: equivalent to AND",
+    "text": "Multiple conditions: equivalent to AND\n\n\nCommas require every condition to be TRUE\n\ncounties |&gt;\n    filter(state == \"New York\", income &gt;= 75000)\n\n\n\n# A tibble: 19 × 7\n  GEOID state    county          income income_moe  rent rent_moe\n  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n1 36001 New York Albany County    83149       1788  1252       22\n2 36021 New York Columbia County  83619       3965  1199       45\n3 36027 New York Dutchess County  97273       2529  1522       45\n# ℹ 16 more rows\n\n\n\nwhich is the same as:\ncounties |&gt;\n    filter(state == \"New York\") |&gt;\n    filter(income &gt;= 75000)\n\n\nwhich is the same as\ncounties |&gt;\n    filter(state == \"New York\" & income &gt;= 75000)"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#missing-values",
+    "href": "notes/day-2-tidyverse-em.html#missing-values",
+    "title": "R Bootcamp",
+    "section": "Missing values",
+    "text": "Missing values\n\n\n\nscores &lt;- tibble(id = 1:4, score = c(88L, NA, 91L, 76L))\n\n\n\n\n\nWhat happens with NAs?\nscores |&gt; filter(score &gt; 90)\n\n\n# A tibble: 1 × 2\n     id score\n  &lt;int&gt; &lt;int&gt;\n1     3    91"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#arrange",
+    "href": "notes/day-2-tidyverse-em.html#arrange",
+    "title": "R Bootcamp",
+    "section": "arrange()",
+    "text": "arrange()\n\n\n\narrange() orders rows by one or more columns\nUse desc() for descending order\n\n\ncounties |&gt;\n    arrange(desc(income))\n\n\n\n# A tibble: 3,144 × 7\n  GEOID state      county             income income_moe  rent rent_moe\n  &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n1 51107 Virginia   Loudoun County     178707       3411  2317       39\n2 06085 California Santa Clara County 159674       1962  2814       16\n3 06081 California San Mateo County   156000       3019  2893       36\n# ℹ 3,141 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#slice_-rows-by-position-or-rank",
+    "href": "notes/day-2-tidyverse-em.html#slice_-rows-by-position-or-rank",
+    "title": "R Bootcamp",
+    "section": "slice_*(): rows by position or rank",
+    "text": "slice_*(): rows by position or rank\n\n\n\nslice_head() / slice_tail(): the first or last rows\nslice_min() / slice_max(): the smallest or largest by a column\nslice_sample(): a random draw of rows\n\n\ncounties |&gt;\n    slice_max(income, n = 3) |&gt;\n    select(state, county, income)\n\n\n\n# A tibble: 3 × 3\n  state      county             income\n  &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;\n1 Virginia   Loudoun County     178707\n2 California Santa Clara County 159674\n3 California San Mateo County   156000\n\n\n\nEach takes n = for a count of rows or prop = for a share of them"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#slice_-respects-groups",
+    "href": "notes/day-2-tidyverse-em.html#slice_-respects-groups",
+    "title": "R Bootcamp",
+    "section": "slice_*() respects groups",
+    "text": "slice_*() respects groups\n\n\nby = groups for this one call – here, the richest county in each state:\n\ncounties |&gt;\n    slice_max(income, n = 1, by = state) |&gt;\n    select(state, county, income)\n\n\n\n# A tibble: 51 × 3\n  state   county                     income\n  &lt;chr&gt;   &lt;chr&gt;                       &lt;dbl&gt;\n1 Alabama Shelby County               93543\n2 Alaska  Aleutians West Census Area 107344\n3 Arizona Maricopa County             85518\n# ℹ 48 more rows\n\n\n\nThe same as group_by(state) |&gt; slice_max(income, n = 1) |&gt; ungroup()"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#distinct",
+    "href": "notes/day-2-tidyverse-em.html#distinct",
+    "title": "R Bootcamp",
+    "section": "distinct()",
+    "text": "distinct()\n\n\ndistinct() keeps unique values\n\ncounties |&gt; distinct(state)\n\n\n\n# A tibble: 51 × 1\n  state  \n  &lt;chr&gt;  \n1 Alabama\n2 Alaska \n3 Arizona\n# ℹ 48 more rows\n\n\n\nUse multiple columns for unique combinations\n\ncounties |&gt;\n    distinct(state, county) |&gt;\n    nrow()\n\n\n\n[1] 3144"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#select",
+    "href": "notes/day-2-tidyverse-em.html#select",
+    "title": "R Bootcamp",
+    "section": "select()",
+    "text": "select()\n\n\nselect() keeps, drops, or reorders columns:\n\ncounties |&gt;\n    select(state, county, income, rent)\n\n\n\n# A tibble: 3,144 × 4\n  state   county         income  rent\n  &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;\n1 Alabama Autauga County  69841  1200\n2 Alabama Baldwin County  75019  1211\n3 Alabama Barbour County  44290   644\n# ℹ 3,141 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#select-ranges-and-exclusions",
+    "href": "notes/day-2-tidyverse-em.html#select-ranges-and-exclusions",
+    "title": "R Bootcamp",
+    "section": "select(): ranges and exclusions",
+    "text": "select(): ranges and exclusions\n\n\nWe can also select with ranges …\n\ncounties |&gt;\n    select(state:income) |&gt;\n    names()\n\n\n\n[1] \"state\"  \"county\" \"income\"\n\n\n\n… and with exclusions:\n\ncounties |&gt;\n    select(-c(income_moe, rent_moe)) |&gt;\n    names()\n\n\n\n[1] \"GEOID\"  \"state\"  \"county\" \"income\" \"rent\""
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#selection-helpers",
+    "href": "notes/day-2-tidyverse-em.html#selection-helpers",
+    "title": "R Bootcamp",
+    "section": "Selection helpers",
+    "text": "Selection helpers\n\n\nWe can select based on names using starts_with(), ends_with(), and contains()\n\ncounties |&gt;\n    select(starts_with(\"rent\")) |&gt;\n    names()\n\n\n\n[1] \"rent\"     \"rent_moe\"\n\n\n\nOr with a helper function inside where():\n\ncounties |&gt;\n    select(where(is.numeric)) |&gt;\n    names()\n\n\n\n[1] \"income\"     \"income_moe\" \"rent\"       \"rent_moe\""
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#rename",
+    "href": "notes/day-2-tidyverse-em.html#rename",
+    "title": "R Bootcamp",
+    "section": "rename()",
+    "text": "rename()\n\n\n\ncounties |&gt;\n    rename(\n        median_renter_income = income,\n        median_gross_rent = rent\n    )\n\n\n\n# A tibble: 3,144 × 7\n  GEOID state   county       median_renter_income income_moe median_gross_rent\n  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;                       &lt;dbl&gt;      &lt;dbl&gt;             &lt;dbl&gt;\n1 01001 Alabama Autauga Cou…                69841       5512              1200\n2 01003 Alabama Baldwin Cou…                75019       2751              1211\n3 01005 Alabama Barbour Cou…                44290       2762               644\n# ℹ 3,141 more rows\n# ℹ 1 more variable: rent_moe &lt;dbl&gt;"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#relocate",
+    "href": "notes/day-2-tidyverse-em.html#relocate",
+    "title": "R Bootcamp",
+    "section": "relocate()",
+    "text": "relocate()\n\n\nMove columns to the front:\n\ncounties |&gt;\n    relocate(income, rent) |&gt;\n    names()\n\n\n\n[1] \"income\"     \"rent\"       \"GEOID\"      \"state\"      \"county\"    \n[6] \"income_moe\" \"rent_moe\"  \n\n\n\nOr to a specific location:\n\ncounties |&gt;\n    relocate(county, .after = state) |&gt;\n    names()\n\n\n\n[1] \"GEOID\"      \"state\"      \"county\"     \"income\"     \"income_moe\"\n[6] \"rent\"       \"rent_moe\""
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#mutate",
+    "href": "notes/day-2-tidyverse-em.html#mutate",
+    "title": "R Bootcamp",
+    "section": "mutate()",
+    "text": "mutate()\n\n\nmutate() creates new columns or replaces old ones\n\ncounties |&gt;\n    mutate(\n        income_thousands = income / 1000,\n        rent_hundreds = rent / 100\n    ) |&gt;\n    select(state, county, income_thousands, rent_hundreds)\n\n\n\n# A tibble: 3,144 × 4\n  state   county         income_thousands rent_hundreds\n  &lt;chr&gt;   &lt;chr&gt;                     &lt;dbl&gt;         &lt;dbl&gt;\n1 Alabama Autauga County             69.8         12   \n2 Alabama Baldwin County             75.0         12.1 \n3 Alabama Barbour County             44.3          6.44\n# ℹ 3,141 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#keeping-only-specific-columns",
+    "href": "notes/day-2-tidyverse-em.html#keeping-only-specific-columns",
+    "title": "R Bootcamp",
+    "section": "Keeping only specific columns",
+    "text": "Keeping only specific columns\n\n\n.keep = \"none\" keeps only the updated columns\n\ncounties |&gt;\n    mutate(\n        income_thousands = income / 1000,\n        rent_hundreds = rent / 100,\n        .keep = \"none\"\n    )\n\n\n\n# A tibble: 3,144 × 2\n  income_thousands rent_hundreds\n             &lt;dbl&gt;         &lt;dbl&gt;\n1             69.8         12   \n2             75.0         12.1 \n3             44.3          6.44\n# ℹ 3,141 more rows\n\n\n\nBefore 2025, this was transmute()"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#conditional-variables-if_else",
+    "href": "notes/day-2-tidyverse-em.html#conditional-variables-if_else",
+    "title": "R Bootcamp",
+    "section": "Conditional variables: if_else()",
+    "text": "Conditional variables: if_else()\n\n\n\ncounties |&gt;\n    mutate(\n        rent_level = if_else(\n            rent &gt;= median(rent, na.rm = TRUE),\n            \"at or above median\",\n            \"below median\"\n        )\n    ) |&gt;\n    select(state, county, rent, rent_level)\n\n\n\n# A tibble: 3,144 × 4\n  state   county          rent rent_level        \n  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;             \n1 Alabama Autauga County  1200 at or above median\n2 Alabama Baldwin County  1211 at or above median\n3 Alabama Barbour County   644 below median      \n# ℹ 3,141 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#complex-conditional-variables-case_when",
+    "href": "notes/day-2-tidyverse-em.html#complex-conditional-variables-case_when",
+    "title": "R Bootcamp",
+    "section": "Complex conditional variables: case_when()",
+    "text": "Complex conditional variables: case_when()\n\n\n\ncounties |&gt;\n    mutate(\n        income_group = case_when(\n            is.na(income) ~ \"missing\",\n            income &gt;= 100000 ~ \"high\",\n            income &gt;= 75000 ~ \"middle\",\n            .default = \"low\"\n        )\n    ) |&gt;\n    select(state, county, income, income_group)\n\n\n\n# A tibble: 3,144 × 4\n  state   county         income income_group\n  &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;       \n1 Alabama Autauga County  69841 low         \n2 Alabama Baldwin County  75019 middle      \n3 Alabama Barbour County  44290 low         \n# ℹ 3,141 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#exercise",
+    "href": "notes/day-2-tidyverse-em.html#exercise",
+    "title": "R Bootcamp",
+    "section": "Exercise",
+    "text": "Exercise\n\n\n\nKeep counties in New York or Texas\nCreate income_thousands from income\nKeep state, county, income, and income_thousands\nOrder from highest to lowest income\n\n\nWrite this as one pipeline"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#a-solution",
+    "href": "notes/day-2-tidyverse-em.html#a-solution",
+    "title": "R Bootcamp",
+    "section": "A solution",
+    "text": "A solution\n\n\n\ncounties |&gt;\n    filter(state %in% c(\"New York\", \"Texas\")) |&gt;\n    mutate(income_thousands = income / 1000) |&gt;\n    select(state, county, income, income_thousands) |&gt;\n    arrange(desc(income))\n\n\n\n# A tibble: 316 × 4\n  state    county         income income_thousands\n  &lt;chr&gt;    &lt;chr&gt;           &lt;dbl&gt;            &lt;dbl&gt;\n1 New York Nassau County  143408             143.\n2 New York Suffolk County 128329             128.\n3 New York Putnam County  127405             127.\n# ℹ 313 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#common-stringr-functions",
+    "href": "notes/day-2-tidyverse-em.html#common-stringr-functions",
+    "title": "R Bootcamp",
+    "section": "Common stringr functions",
+    "text": "Common stringr functions\n\n\nEvery function starts with str_ and takes the string as its first argument\n\nstr_length(): how many characters\nstr_to_lower(), str_to_upper(), str_to_title(): change case\nstr_c(): glue strings together\nstr_sub(): pull out characters by position\nstr_trim(), str_squish(): drop stray whitespace\n\n\ncounties |&gt;\n    mutate(label = str_to_lower(str_c(county, \", \", state))) |&gt;\n    select(label)\n\n\n\n# A tibble: 3,144 × 1\n  label                  \n  &lt;chr&gt;                  \n1 autauga county, alabama\n2 baldwin county, alabama\n3 barbour county, alabama\n# ℹ 3,141 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#detecting-and-replacing-patterns",
+    "href": "notes/day-2-tidyverse-em.html#detecting-and-replacing-patterns",
+    "title": "R Bootcamp",
+    "section": "Detecting and replacing patterns",
+    "text": "Detecting and replacing patterns\n\n\n\nstr_detect(): does the string contain the pattern? Returns TRUE/FALSE\nstr_starts(), str_ends(): match at one end only\nstr_remove(), str_replace(): change the first match\nstr_remove_all(), str_replace_all(): change every match\n\n\ncounties |&gt;\n    filter(str_detect(county, \"Parish\")) |&gt;\n    mutate(parish = str_remove(county, \" Parish$\")) |&gt;\n    select(state, parish)\n\n\n\n# A tibble: 64 × 2\n  state     parish   \n  &lt;chr&gt;     &lt;chr&gt;    \n1 Louisiana Acadia   \n2 Louisiana Allen    \n3 Louisiana Ascension\n# ℹ 61 more rows\n\n\n\nPatterns are regular expressions: ^ anchors to the start and $ to the end. Wrap a pattern in fixed() to match it literally."
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#long-and-wide-data",
+    "href": "notes/day-2-tidyverse-em.html#long-and-wide-data",
+    "title": "R Bootcamp",
+    "section": "Long and wide data",
+    "text": "Long and wide data\n\n\n\n\nWide data\nEach observation is a row\n\nwide &lt;- tribble(\n    ~id, ~v1, ~v2, ~v3,\n    \"A\", 100L, 120L, 105L,\n    \"B\", 80L, 90L, 90L\n)\n\n\n\n\n\nLong data\nObservations are split across rows\n\nlong &lt;- tribble(\n    ~id, ~statistic, ~value,\n    \"A\", \"v1\", 100L,\n    \"A\", \"v2\", 120L,\n    \"A\", \"v3\", 105L,\n    \"B\", \"v1\", 80L,\n    \"B\", \"v2\", 90L,\n    \"B\", \"v3\", 90L,\n)"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#pivot_wider",
+    "href": "notes/day-2-tidyverse-em.html#pivot_wider",
+    "title": "R Bootcamp",
+    "section": "pivot_wider()",
+    "text": "pivot_wider()\n\n\npivot_wider() shortens the data by adding columns\n\nlong |&gt;\n    pivot_wider(\n        names_from = statistic,\n        values_from = value\n    )\n\n\n\n# A tibble: 2 × 4\n  id       v1    v2    v3\n  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;\n1 A       100   120   105\n2 B        80    90    90"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#pivot_longer",
+    "href": "notes/day-2-tidyverse-em.html#pivot_longer",
+    "title": "R Bootcamp",
+    "section": "pivot_longer()",
+    "text": "pivot_longer()\n\n\npivot_longer() lengthens the data by turning columns into rows\n\nwide |&gt;\n    pivot_longer(\n        cols = v1:v3,\n        names_to = \"statistic\",\n        values_to = \"value\"\n    )\n\n\n\n# A tibble: 6 × 3\n  id    statistic value\n  &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;\n1 A     v1          100\n2 A     v2          120\n3 A     v3          105\n# ℹ 3 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#other-weird-data-shapes",
+    "href": "notes/day-2-tidyverse-em.html#other-weird-data-shapes",
+    "title": "R Bootcamp",
+    "section": "Other weird data shapes",
+    "text": "Other weird data shapes\n\n\n\nMost can be tidied with tidyr\nNested data? Some variables are lists\n\nunnest(), unnest_wider(), unnest_longer()\n\nData should be nested?\n\nAre you sure?\n\nnest()\n\n\nHandle NA values\n\ndrop_na() or replace_na()\nMissing within groups: fill()\n\nMissing combinations (e.g., all weeks should have 7 days)\n\nexpand() for new data or complete() to supplement"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#summarize",
+    "href": "notes/day-2-tidyverse-em.html#summarize",
+    "title": "R Bootcamp",
+    "section": "summarize()",
+    "text": "summarize()\n\n\nsummarize() reduces rows to summary values\n\ncounties |&gt;\n    summarize(\n        n = n(),\n        mean_income = mean(income, na.rm = TRUE),\n        median_rent = median(rent, na.rm = TRUE),\n        .groups = \"drop\"\n    )\n\n\n\n# A tibble: 1 × 3\n      n mean_income median_rent\n  &lt;int&gt;       &lt;dbl&gt;       &lt;dbl&gt;\n1  3144      66073.         854\n\n\n\nn() counts the rows in the current group. It takes no arguments, and only works inside dplyr verbs, where “the current group” has a meaning.\n\n\nIf there are no groups, summarize() treats all rows as one group"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#group_by",
+    "href": "notes/day-2-tidyverse-em.html#group_by",
+    "title": "R Bootcamp",
+    "section": "group_by()",
+    "text": "group_by()\n\n\ngroup_by() marks a tibble as having groups\n\ncounties |&gt;\n    group_by(state) |&gt;\n    summarize(\n        n = n(),\n        mean_income = mean(income, na.rm = TRUE),\n        median_rent = median(rent, na.rm = TRUE)\n    )\n\n\n\n# A tibble: 51 × 4\n  state       n mean_income median_rent\n  &lt;chr&gt;   &lt;int&gt;       &lt;dbl&gt;       &lt;dbl&gt;\n1 Alabama    67      54196.         762\n2 Alaska     30      79407.        1243\n3 Arizona    15      62663.         983\n# ℹ 48 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#grouped-mutation",
+    "href": "notes/day-2-tidyverse-em.html#grouped-mutation",
+    "title": "R Bootcamp",
+    "section": "Grouped mutation",
+    "text": "Grouped mutation\n\n\nmutate() will respect groups for vectorized operations\n\ncounties |&gt;\n    group_by(state) |&gt;\n    mutate(\n        income_difference = income - mean(income, na.rm = TRUE)\n    ) |&gt;\n    select(state, county, income, income_difference) |&gt;\n    ungroup()\n\n\n\n# A tibble: 3,144 × 4\n  state   county         income income_difference\n  &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;             &lt;dbl&gt;\n1 Alabama Autauga County  69841            15645.\n2 Alabama Baldwin County  75019            20823.\n3 Alabama Barbour County  44290            -9906.\n# ℹ 3,141 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#count",
+    "href": "notes/day-2-tidyverse-em.html#count",
+    "title": "R Bootcamp",
+    "section": "count()",
+    "text": "count()\n\n\n\ncounties |&gt; count(state)\n\n\n\n# A tibble: 51 × 2\n  state       n\n  &lt;chr&gt;   &lt;int&gt;\n1 Alabama    67\n2 Alaska     30\n3 Arizona    15\n# ℹ 48 more rows\n\n\n\ncount(state) groups by state and counts rows\nEquivalent to:\ncounties |&gt; group_by(state) |&gt; summarize(n = n())"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#multiple-summaries-across",
+    "href": "notes/day-2-tidyverse-em.html#multiple-summaries-across",
+    "title": "R Bootcamp",
+    "section": "Multiple summaries: across()",
+    "text": "Multiple summaries: across()\n\n\n\ncounties |&gt;\n    summarize(\n        across(\n            c(income, rent),\n            list(\n                mean = \\(x) mean(x, na.rm = TRUE),\n                sd = \\(x) sd(x, na.rm = TRUE)\n            )\n        )\n    )\n\n\n\n# A tibble: 1 × 4\n  income_mean income_sd rent_mean rent_sd\n        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1      66073.    17387.      938.    302.\n\n\n\nacross() applies the same functions to several columns"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#multiple-summaries-across-1",
+    "href": "notes/day-2-tidyverse-em.html#multiple-summaries-across-1",
+    "title": "R Bootcamp",
+    "section": "Multiple summaries: across()",
+    "text": "Multiple summaries: across()\n\n\nacross() simplifies making summaries:\n\ncounties |&gt;\n    summarize(across(where(is.numeric), \\(x) mean(x, na.rm = TRUE)))\n\n\n\n# A tibble: 1 × 4\n  income income_moe  rent rent_moe\n   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;\n1 66073.      5068.  938.     73.6"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#exercise-1",
+    "href": "notes/day-2-tidyverse-em.html#exercise-1",
+    "title": "R Bootcamp",
+    "section": "Exercise",
+    "text": "Exercise\n\n\nCompare counties above and below the median income.\n\nExclude counties with missing income\nLabel counties as at or above median or below median\nFor each group, report n and the mean income and rent using across()\n\n\nWrite this as one pipeline"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#a-solution-1",
+    "href": "notes/day-2-tidyverse-em.html#a-solution-1",
+    "title": "R Bootcamp",
+    "section": "A solution",
+    "text": "A solution\n\n\n\nsol &lt;- counties |&gt;\n    filter(!is.na(income)) |&gt;\n    mutate(\n        income_level = if_else(\n            income &gt;= median(income),\n            \"at or above median\",\n            \"below median\"\n        )\n    ) |&gt;\n    group_by(income_level) |&gt;\n    summarize(\n        n = n(),\n        across(c(income, rent), \\(x) mean(x, na.rm = TRUE)),\n        .groups = \"drop\"\n    ) |&gt;\n    arrange(desc(income))"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#a-solution-2",
+    "href": "notes/day-2-tidyverse-em.html#a-solution-2",
+    "title": "R Bootcamp",
+    "section": "A solution",
+    "text": "A solution\n\n\n\nsol\n\n\n\n# A tibble: 2 × 4\n  income_level           n income  rent\n  &lt;chr&gt;              &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 at or above median  1571 78668. 1090.\n2 below median        1571 53479.  787."
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#join-tables-by-a-fixed-key",
+    "href": "notes/day-2-tidyverse-em.html#join-tables-by-a-fixed-key",
+    "title": "R Bootcamp",
+    "section": "Join tables by a fixed key",
+    "text": "Join tables by a fixed key\n\n\n\nA join combines columns from related tables\nA key identifies which rows should match\n\n\nparty &lt;- tibble(\n    id = c(101L, 102L, 103L),\n    party = c(\"Democrat\", \"Independent\", \"Republican\")\n)\n\nattitudes &lt;- tibble(\n    id = c(101L, 102L, 104L),\n    trust_government = c(3L, 5L, 2L)\n)\n\n\n\n\n\nA key is (often) just a numeric ID"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#check-the-key",
+    "href": "notes/day-2-tidyverse-em.html#check-the-key",
+    "title": "R Bootcamp",
+    "section": "Check the key",
+    "text": "Check the key\n\n\nA key should identify the intended unit of observation\n\nattitudes |&gt;\n    count(id) |&gt;\n    filter(n &gt; 1L)\n\n\n\n# A tibble: 0 × 2\n# ℹ 2 variables: id &lt;int&gt;, n &lt;int&gt;\n\n\n\nAn empty result means no duplicate keys were found"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#left-and-right-tables",
+    "href": "notes/day-2-tidyverse-em.html#left-and-right-tables",
+    "title": "R Bootcamp",
+    "section": "Left and right tables",
+    "text": "Left and right tables\n\n\n\n\n\n  \n    left\n    \n\n\n\nid\nparty\n\n\n101\nDemocrat\n\n\n102\nIndependent\n\n\n103\nRepublican\n\n\n104\nDemocrat\n\n\n\n\n\n\n106\nRepublican\n\n\n\n\n  \n  \n    right\n    \n\n\n\nid\ntrust\n\n\n\n\n\n\n102\n5\n\n\n103\n3\n\n\n104\n2\n\n\n105\n4\n\n\n106\n7"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#types-of-joins",
+    "href": "notes/day-2-tidyverse-em.html#types-of-joins",
+    "title": "R Bootcamp",
+    "section": "Types of joins",
+    "text": "Types of joins\n\n\n\nleft_join(): keep all rows in left and add columns from right\nright_join(): keep all rows in right and add columns from left\ninner_join() keeps rows matched in both tables\nfull_join() keeps rows from either table\nsemi_join() keeps left rows with a match\nanti_join() keeps left rows without a match\n\n\nWhich rows are saved for each join?\nleft |&gt;\n    *_join(by = \"id\")"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#joining-real-data",
+    "href": "notes/day-2-tidyverse-em.html#joining-real-data",
+    "title": "R Bootcamp",
+    "section": "Joining real data",
+    "text": "Joining real data\n\n\ncounties and county_pop use different names for the same key\n\ncounties_joined &lt;- counties |&gt;\n    left_join(county_pop, join_by(GEOID == fips))\n\ncounties_joined |&gt;\n    select(GEOID, state, county, pop, region, division)\n\n\n\n# A tibble: 3,144 × 6\n  GEOID state   county            pop region division          \n  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;             \n1 01001 Alabama Autauga County  58805 South  East South Central\n2 01003 Alabama Baldwin County 231767 South  East South Central\n3 01005 Alabama Barbour County  25223 South  East South Central\n# ℹ 3,141 more rows"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#joining-real-data-multiple-syntaxes",
+    "href": "notes/day-2-tidyverse-em.html#joining-real-data-multiple-syntaxes",
+    "title": "R Bootcamp",
+    "section": "Joining real data: multiple syntaxes",
+    "text": "Joining real data: multiple syntaxes\n\n\nCurrent, recommended syntax:\ncounties_joined &lt;- counties |&gt;\n    left_join(county_pop, join_by(GEOID == fips))\n\nOlder, but also valid syntax:\ncounties_joined &lt;- counties |&gt;\n    left_join(county_pop, by = c(\"GEOID\" = \"fips\"))\n\n\nMost replication data (and many of your colleagues) will use the older syntax!\n\n\nNew syntax allows for fancier joins, like join_by(x &gt; x)…"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#find-unmatched-keys",
+    "href": "notes/day-2-tidyverse-em.html#find-unmatched-keys",
+    "title": "R Bootcamp",
+    "section": "Find unmatched keys",
+    "text": "Find unmatched keys\n\n\nCheck the rows that do not match:\n\ncounties |&gt;\n    select(GEOID, state, county) |&gt;\n    anti_join(county_pop, join_by(GEOID == fips)) |&gt;\n    select(GEOID, state, county)\n\n\n\n# A tibble: 9 × 3\n  GEOID state       county                                        \n  &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;                                         \n1 09110 Connecticut Capitol Planning Region                       \n2 09120 Connecticut Greater Bridgeport Planning Region            \n3 09130 Connecticut Lower Connecticut River Valley Planning Region\n# ℹ 6 more rows\n\n\n\nWhat’s wrong with Connecticut?"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#duplicate-keys-change-row-counts",
+    "href": "notes/day-2-tidyverse-em.html#duplicate-keys-change-row-counts",
+    "title": "R Bootcamp",
+    "section": "Duplicate keys change row counts",
+    "text": "Duplicate keys change row counts\n\n\nA join can duplicate left rows when the right key is not unique\n\nattitudes_duplicate &lt;- tibble(\n    id = c(101L, 101L, 102L),\n    trust_government = c(3L, 4L, 5L)\n)\n\nparty |&gt;\n    left_join(attitudes_duplicate, join_by(id))\n\n\n\n# A tibble: 4 × 3\n     id party       trust_government\n  &lt;int&gt; &lt;chr&gt;                  &lt;int&gt;\n1   101 Democrat                   3\n2   101 Democrat                   4\n3   102 Independent                5\n# ℹ 1 more row"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#map",
+    "href": "notes/day-2-tidyverse-em.html#map",
+    "title": "R Bootcamp",
+    "section": "map()",
+    "text": "map()\n\n\nmap(x, f) is a new way to do yesterday’s lapply(x, f)\n\nWhy map() then? Large family of type-stable map_*() functions!\n\n\nAnd bits of friendlier syntax:\nlapply(x, `[[`, \"a\")\nmap(x, \"a\")"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#typed-maps",
+    "href": "notes/day-2-tidyverse-em.html#typed-maps",
+    "title": "R Bootcamp",
+    "section": "Typed maps",
+    "text": "Typed maps\n\n\nTyped maps return a vector of a known type:\n\nmap_dbl(): double vector\nmap_int(): integer vector\nmap_chr(): character vector\nmap_lgl(): logical vector\n\n\ncounties |&gt;\n    select(income, rent) |&gt;\n    map_dbl(\n        \\(x) mean(x, na.rm = TRUE)\n    )\n\n\n\n    income       rent \n66073.0945   938.1388"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#mapping-over-data-frames",
+    "href": "notes/day-2-tidyverse-em.html#mapping-over-data-frames",
+    "title": "R Bootcamp",
+    "section": "Mapping over data frames",
+    "text": "Mapping over data frames\n\n\nCreate a list of tibbles with group_split():\n\ncounties_by_region &lt;- counties_joined |&gt;\n    filter(!is.na(region)) |&gt;\n    group_by(region) |&gt;\n    group_split()\n\n\n\n\n\nmap_dbl() then returns one value per tibble:\n\n\nmap_dbl(\n    counties_by_region,\n    \\(x) mean(x$income, na.rm = TRUE)\n)\n\n\n\n[1] 67678.39 78195.17 60859.68 72626.80"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#combining-results",
+    "href": "notes/day-2-tidyverse-em.html#combining-results",
+    "title": "R Bootcamp",
+    "section": "Combining results",
+    "text": "Combining results\n\n\nFirst return one tibble for each region\n\nsummaries &lt;- map(\n    counties_by_region,\n    function(data) {\n        summarize(\n            data,\n            n = n(),\n            mean_income = mean(income, na.rm = TRUE)\n        )\n    }\n)\n\n\n\n\n\nall(map_lgl(summaries, is_tibble))\nlength(summaries)\n\n\n\n[1] TRUE\n[1] 4"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#stack-compatible-results",
+    "href": "notes/day-2-tidyverse-em.html#stack-compatible-results",
+    "title": "R Bootcamp",
+    "section": "Stack compatible results",
+    "text": "Stack compatible results\n\n\nlist_rbind() combines the tibbles by row\n\nlist_rbind(summaries)\n\n\n\n# A tibble: 4 × 2\n      n mean_income\n  &lt;int&gt;       &lt;dbl&gt;\n1  1055      67678.\n2   209      78195.\n3  1422      60860.\n# ℹ 1 more row"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#stacking-with-bind_rows",
+    "href": "notes/day-2-tidyverse-em.html#stacking-with-bind_rows",
+    "title": "R Bootcamp",
+    "section": "Stacking with bind_rows()",
+    "text": "Stacking with bind_rows()\n\n\nbind_rows() stacks data frames too, and .id = records where each row came from\n\nnames(summaries) &lt;- map_chr(counties_by_region, \\(x) x$region[[1]])\n\nbind_rows(summaries, .id = \"region\")\n\n\n\n# A tibble: 4 × 3\n  region        n mean_income\n  &lt;chr&gt;     &lt;int&gt;       &lt;dbl&gt;\n1 Midwest    1055      67678.\n2 Northeast   209      78195.\n3 South      1422      60860.\n# ℹ 1 more row\n\n\n\n.id takes its values from the names of the list. An unnamed list gets \"1\", \"2\", … instead – so name the list first if you want the column to mean anything."
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#several-inputs",
+    "href": "notes/day-2-tidyverse-em.html#several-inputs",
+    "title": "R Bootcamp",
+    "section": "Several inputs",
+    "text": "Several inputs\n\n\nmap2() iterates over two (equal length) inputs in parallel\n\ndistrict_turnout &lt;- list(c(0.62, 0.58, 0.64), c(0.71, 0.69, 0.74))\nbenchmarks &lt;- c(0.60, 0.70)\n\nmap2_lgl(\n    district_turnout,\n    benchmarks,\n    \\(turnout, benchmark) mean(turnout) &gt; benchmark\n)\n\n\n\n[1] TRUE TRUE"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#walk-mapping-for-the-side-effect",
+    "href": "notes/day-2-tidyverse-em.html#walk-mapping-for-the-side-effect",
+    "title": "R Bootcamp",
+    "section": "walk(): mapping for the side effect",
+    "text": "walk(): mapping for the side effect\n\n\nwalk() calls a function for what it does – write a file, print, save a plot – and hands back its input invisibly\n\nwalk(c(\"Northeast\", \"South\"), \\(region) cat(\"Region:\", region, \"\\n\"))\n\n\n\nRegion: Northeast \nRegion: South \n\n\n\nReach for it when the return value is not the point:\niwalk(summaries, \\(data, name) write_csv(data, str_c(name, \".csv\")))\nwalk2() pairs two lists, and iwalk() pairs a list with its names"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#progress-bars",
+    "href": "notes/day-2-tidyverse-em.html#progress-bars",
+    "title": "R Bootcamp",
+    "section": "Progress bars",
+    "text": "Progress bars\n\n\nEvery map() and walk() takes a .progress argument\ncounties_by_region |&gt;\n    map(slow_summary, .progress = TRUE)\n\nPass a string instead of TRUE to label the bar:\ncounties_by_region |&gt;\n    map(slow_summary, .progress = \"summarizing regions\")\n\n\nWorth it when a map runs long enough that you want to know it is still going"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#running-in-parallel",
+    "href": "notes/day-2-tidyverse-em.html#running-in-parallel",
+    "title": "R Bootcamp",
+    "section": "Running in parallel",
+    "text": "Running in parallel\n\n\nWrap the function in in_parallel() to spread a map across worker processes:\nlibrary(mirai)\ndaemons(4) # start four workers\n\ncounties_by_region |&gt;\n    map(in_parallel(\\(data) mean(data$income, na.rm = TRUE)))\n\ndaemons(0) # shut them down\n\nWithout daemons(), it quietly falls back to running sequentially"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#parallel-functions-must-be-self-contained",
+    "href": "notes/day-2-tidyverse-em.html#parallel-functions-must-be-self-contained",
+    "title": "R Bootcamp",
+    "section": "Parallel functions must be self-contained",
+    "text": "Parallel functions must be self-contained\n\n\nThe function gets shipped to another process, so it cannot see your workspace\n\nCall package functions with ::, as in dplyr::summarize()\nPass any data it needs as named arguments to in_parallel()\n\ncounties_by_region |&gt;\n    map(in_parallel(\n        \\(data) dplyr::filter(data, income &gt; cutoff),\n        cutoff = 75000\n    ))\n\nStill experimental, and only pays off when each call is genuinely slow – shipping data between processes is not free"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#exercise-2",
+    "href": "notes/day-2-tidyverse-em.html#exercise-2",
+    "title": "R Bootcamp",
+    "section": "Exercise",
+    "text": "Exercise\n\n\nUsing counties_joined, compare income by region and population level\n\nLabel counties as above or below the median population\nCompute the number of counties and mean income by region and population level\nOrder the summary from highest to lowest mean income\n\n\n Write one pipeline"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#step-1-label-population",
+    "href": "notes/day-2-tidyverse-em.html#step-1-label-population",
+    "title": "R Bootcamp",
+    "section": "Step 1: label population",
+    "text": "Step 1: label population\n\n\ncounties_labeled &lt;- counties_joined |&gt;\n    mutate(\n        pop_level = # ...\n    )\n\nUse if_else() or case_when()"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#step-2-summarize-groups",
+    "href": "notes/day-2-tidyverse-em.html#step-2-summarize-groups",
+    "title": "R Bootcamp",
+    "section": "Step 2: summarize groups",
+    "text": "Step 2: summarize groups\n\n\nresult &lt;- counties_labeled |&gt;\n    # group by region and population level\n    # summarize n and mean_income\n    # arrange by descending mean_income\n\nHow many rows should the result contain?"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#one-possible-solution",
+    "href": "notes/day-2-tidyverse-em.html#one-possible-solution",
+    "title": "R Bootcamp",
+    "section": "One possible solution",
+    "text": "One possible solution\n\n\n\nresult &lt;- counties_joined |&gt;\n    filter(!is.na(pop), !is.na(region)) |&gt;\n    mutate(\n        pop_level = if_else(\n            pop &gt;= median(pop),\n            \"at or above median\",\n            \"below median\"\n        )\n    ) |&gt;\n    group_by(region, pop_level) |&gt;\n    summarize(\n        n = n(),\n        mean_income = mean(income, na.rm = TRUE),\n        .groups = \"drop\"\n    ) |&gt;\n    arrange(desc(mean_income))"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#apply-a-function-to-each-group",
+    "href": "notes/day-2-tidyverse-em.html#apply-a-function-to-each-group",
+    "title": "R Bootcamp",
+    "section": "Apply a function to each group",
+    "text": "Apply a function to each group\n\n\n\nregion_summary &lt;- function(data) {\n    data |&gt;\n        summarize(\n            n = n(),\n            mean_income = mean(income, na.rm = TRUE),\n            median_rent = median(rent, na.rm = TRUE)\n        )\n}\n\n\n\n\n\nApply region_summary() to each region with map()"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#one-possible-solution-1",
+    "href": "notes/day-2-tidyverse-em.html#one-possible-solution-1",
+    "title": "R Bootcamp",
+    "section": "One possible solution",
+    "text": "One possible solution\n\n\n\nby_region &lt;- counties_joined |&gt;\n    filter(!is.na(region)) |&gt;\n    group_by(region) |&gt;\n    group_split()\n\nby_region |&gt;\n    map(region_summary) |&gt;\n    list_rbind()\n\n\n\n# A tibble: 4 × 3\n      n mean_income median_rent\n  &lt;int&gt;       &lt;dbl&gt;       &lt;dbl&gt;\n1  1055      67678.         804\n2   209      78195.        1056\n3  1422      60860.         845\n# ℹ 1 more row"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#other-tidyverse-packages",
+    "href": "notes/day-2-tidyverse-em.html#other-tidyverse-packages",
+    "title": "R Bootcamp",
+    "section": "Other tidyverse packages",
+    "text": "Other tidyverse packages\n\n\n\nstringr works with character strings\nlubridate parses and transforms dates and times\nforcats works with categorical variables (“factors”)\nreadr imports rectangular data files"
+  },
+  {
+    "objectID": "notes/day-2-tidyverse-em.html#summary",
+    "href": "notes/day-2-tidyverse-em.html#summary",
+    "title": "R Bootcamp",
+    "section": "Summary",
+    "text": "Summary\n\n\n\nStart with a tibble and inspect its rows, columns, and types\nUse one dplyr verb for each transformation\nUse pipes to connect transformations\nGroup before computing group-level summaries\nCheck keys before and after joins\nUse map() to apply a function to every list element\n\n\n\nprinceton-ddss.github.io/r-bootcamp"
+  },
+  {
+    "objectID": "day-3.html",
+    "href": "day-3.html",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "",
+    "text": "This session will be held in JRR 399.\n(Approximate) Schedule:"
+  },
+  {
+    "objectID": "day-3.html#base-plots",
+    "href": "day-3.html#base-plots",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "Base R plots",
+    "text": "Base R plots\n\nReferences\n\nPrefresher, Ch. 10: Visualization"
+  },
+  {
+    "objectID": "day-3.html#ggplot2",
+    "href": "day-3.html#ggplot2",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "ggplot2",
+    "text": "ggplot2\n\nTidyverse plotting\nSmall exercise\n\n\nReferences\n\nr4ds, Ch. 1: Data visualization\nr4ds, Ch. 9: Layers"
+  },
+  {
+    "objectID": "day-3.html#version-control",
+    "href": "day-3.html#version-control",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "Version control",
+    "text": "Version control\n\ngit and GitHub\n\n\nReferences\n\nHappy Git and GitHub for the useR, Ch. 1: Why Git? Why GitHub?\nHappy Git and GitHub for the useR, Ch. 7: Introduce yourself to Git\nHappy Git and GitHub for the useR, Ch. 9: Personal access token for HTTPS\nHappy Git and GitHub for the useR, Ch. 15: New project, GitHub first\nHappy Git and GitHub for the useR, Ch. 31: Fork and clone\nSoftware Carpentry: Version Control with Git\nPrefresher, Ch. 15: Command-line, git\nQuarto: Publishing to GitHub Pages"
+  },
+  {
+    "objectID": "day-3.html#stats",
+    "href": "day-3.html#stats",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "Distributions and random draws",
+    "text": "Distributions and random draws\n\nsample() and set.seed()\nDrawing from distributions: rnorm(), runif(), rbinom()\nThe r, p, d, and q family: pnorm(), dnorm(), qnorm()\n\n\nReferences\n\nPrefresher, Ch. 12.2–12.5: sample(), random draws, r/p/d, and set.seed()\nR manual: Distributions in the stats package"
+  },
+  {
+    "objectID": "day-3.html#simulation",
+    "href": "day-3.html#simulation",
+    "title": "Day 3: Visualization, version control, and simulation",
+    "section": "Big exercise: simulation",
+    "text": "Big exercise: simulation\nNow that you have seen R, how are you going to use it? Build a version-controlled Quarto project that carries a basic analysis through to plots — a difference-in-means analysis drawn from a published paper.\n\nReferences\n\nPrefresher, Ch. 12: Simulation\nPrefresher, Ch. 11: A worked project, start to finish"
+  },
+  {
+    "objectID": "day-1.html",
+    "href": "day-1.html",
+    "title": "Day 1: Getting started with R",
+    "section": "",
+    "text": "Slides here."
+  },
+  {
+    "objectID": "day-1.html#setup",
+    "href": "day-1.html#setup",
+    "title": "Day 1: Getting started with R",
+    "section": "Setup and ergonomics",
+    "text": "Setup and ergonomics\n\nScripts and what the buttons do\nRunning code and using the console\nThe environment, and why not to save it\n\n\nReferences\n\nPrefresher, Ch. 7: Orientation and reading in data\nr4ds, Ch. 6: Workflow — scripts and projects"
+  },
+  {
+    "objectID": "day-1.html#packages",
+    "href": "day-1.html#packages",
+    "title": "Day 1: Getting started with R",
+    "section": "Packages, libraries, and variables",
+    "text": "Packages, libraries, and variables\n\nInstalling packages versus loading libraries\nAssigning and inspecting variables\n\n\nReferences\n\nr4ds, Ch. 2: Workflow — basics"
+  },
+  {
+    "objectID": "day-1.html#types",
+    "href": "day-1.html#types",
+    "title": "Day 1: Getting started with R",
+    "section": "Types, vectors, and objects",
+    "text": "Types, vectors, and objects\n\nTypes and vectors (there are no scalars)\nCharacters and strings\n\n\nReferences\n\nPrefresher, Ch. 8: Manipulating vectors and matrices\nr4ds, Ch. 27: A field guide to base R"
+  },
+  {
+    "objectID": "day-1.html#data-frames",
+    "href": "day-1.html#data-frames",
+    "title": "Day 1: Getting started with R",
+    "section": "Data frames and reading data",
+    "text": "Data frames and reading data\n\nBasic data frames\nReading and saving data: csv, .rda, .rds\nWorking directories and paths\nR as a calculator: mean(), median(), summary(), and custom summaries\n\n\nReferences\n\nr4ds, Ch. 7: Data import\nPrefresher, Ch. 7.5: Reading in and inspecting data"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Incoming social science PhD students are encouraged to attend all or part of Data-Driven Social Science’s R Bootcamp, a two-and-a-half day introductory crash course in R. No grades are assigned, participation is voluntary, and partial attendance is welcome.\nWe will cover R basics, data wrangling, visualization, and simulation. Along the way, we will also introduce students to version control (Git) and typesetting tools (Quarto). Hands-on exercises and assistance will be provided throughout.\nBeyond the technical material, this is also a chance to meet your fellow first-year students from other social science departments.\nOur bootcamp is based, in part, on Harvard Government’s Math Prefresher."
+  },
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data",
+    "section": "",
+    "text": "County data: ACS 2019–2023 five-year estimates for renter-household income and median gross rent, with margins of error.\nCounty boundaries: simplified county geometries with Alaska and Hawaii adjusted for mapping.\nCounty population: 2020 decennial Census total population with Census region and division."
+  },
+  {
+    "objectID": "data.html#county-level-data",
+    "href": "data.html#county-level-data",
+    "title": "Data",
+    "section": "",
+    "text": "County data: ACS 2019–2023 five-year estimates for renter-household income and median gross rent, with margins of error.\nCounty boundaries: simplified county geometries with Alaska and Hawaii adjusted for mapping.\nCounty population: 2020 decennial Census total population with Census region and division."
+  },
+  {
+    "objectID": "data.html#other-materials",
+    "href": "data.html#other-materials",
+    "title": "Data",
+    "section": "Other materials",
+    "text": "Other materials\n\nAcademic websites in R: alternative methods for publishing websites"
+  },
+  {
+    "objectID": "day-2.html",
+    "href": "day-2.html",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
+    "section": "",
+    "text": "This session will be held in JRR 399.\nBase R (AM) slides here.\nQuarto (PM) slides here.\n(Approximate) Schedule:"
+  },
+  {
+    "objectID": "day-2.html#functions",
+    "href": "day-2.html#functions",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
+    "section": "Functions",
+    "text": "Functions\n\nWriting and calling functions\nArguments, defaults, and return values\n\n\nReferences\n\nr4ds, Ch. 25: Functions\nPrefresher, Ch. 9: Objects, functions, loops"
+  },
+  {
+    "objectID": "day-2.html#iteration",
+    "href": "day-2.html#iteration",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
+    "section": "Loops, iteration, and lapply()",
+    "text": "Loops, iteration, and lapply()\n\nfor and while loops\nlapply() and friends\nGuided exercise\n\n\nReferences\n\nPrefresher, Ch. 9.3: Loops\nr4ds, Ch. 26: Iteration"
+  },
+  {
+    "objectID": "day-2.html#quarto",
+    "href": "day-2.html#quarto",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
+    "section": "Quarto and typesetting",
+    "text": "Quarto and typesetting\n\nMaking work replicable and research-ready\nMigrating the morning exercise into Quarto\nHow R Markdown fits in\n\n\nReferences\n\nr4ds, Ch. 28: Quarto\nPrefresher, Ch. 13: LaTeX and markdown"
+  },
+  {
+    "objectID": "day-2.html#tidyverse",
+    "href": "day-2.html#tidyverse",
+    "title": "Day 2: Programming, typesetting, and tidyverse",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\ntibble\ndplyr, from mutate() through merges\npurrr\nGesturing at stringr, lubridate, and tidyr\n\n\nReferences\n\nr4ds, Ch. 3: Data transformation\nr4ds, Ch. 19: Joins"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R Bootcamp",
+    "section": "",
+    "text": "Data-Driven Social Science · Two and a half days · August 28 – September 1, 2026"
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "R Bootcamp",
+    "section": "Schedule",
+    "text": "Schedule\n\n\nFriday, August 28, 2p–5:30p, JRR A17\n\nDay 1 · Getting started with R\n\nSetup, ergonomics, and packages\nTypes, vectorization, and basic ops\nReading, writing, and summarizing data\n\n\n\n\nSlides here.\n\n\n\nMonday, August 31, 9a–5p, JRR 399\n\nDay 2 · Programming, typesetting, and tidyverse\n\nFunctions, loops, and lapply()\nQuarto and typesetting for professional outputs\nTidyverse for better data work, excl. plotting\n\n\n\n\nBase R (AM) slides here.\nQuarto (PM) slides here.\n\n\n\n\n\n\nTuesday, September 1, 9a–5p, JRR 399\n\nDay 3 · Visualization, version control, and simulation\n\nBase R plots (briefly) and ggplot2\nVersion control offline and online\nStatistics with R\nBig exercise: simulations\n\n\n\n\n\nDays 2 and 3: an hour for lunch, plus short breaks morning and afternoon"
+  },
+  {
     "objectID": "notes/day-1.html#this-session",
     "href": "notes/day-1.html#this-session",
     "title": "R Bootcamp",
@@ -1055,160 +1706,6 @@
     "title": "R Bootcamp",
     "section": "Monday",
     "text": "Monday\n\n\nMorning:\n\nwriting your own functions\nloops\nlapply() and friends\nExercise: putting it all together in base R\n\n\n\nAfternoon:\n\nWriting professional documents (typesetting with Quarto)\ntidyverse for working more effectively with data\nExercise: applications of tidyverse\n\n\n\n\nprinceton-ddss.github.io/r-bootcamp"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "R Bootcamp",
-    "section": "",
-    "text": "Data-Driven Social Science · Two and a half days · August 28 – September 1, 2026"
-  },
-  {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "R Bootcamp",
-    "section": "Schedule",
-    "text": "Schedule\n\n\nFriday, August 28, 2p–5:30p, JRR A17\n\nDay 1 · Getting started with R\n\nSetup, ergonomics, and packages\nTypes, vectorization, and basic ops\nReading, writing, and summarizing data\n\n\n\n\nSlides here.\n\n\n\nMonday, August 31, 9a–5p, JRR 399\n\nDay 2 · Programming, typesetting, and tidyverse\n\nFunctions, loops, and lapply()\nQuarto and typesetting for professional outputs\nTidyverse for better data work, excl. plotting\n\n\n\n\nBase R (AM) slides here.\n\n\n\n\n\n\nTuesday, September 1, 9a–5p, JRR 399\n\nDay 3 · Visualization, version control, and simulation\n\nBase R plots (briefly) and ggplot2\nVersion control offline and online\nStatistics with R\nBig exercise: simulations\n\n\n\n\n\nDays 2 and 3: an hour for lunch, plus short breaks morning and afternoon"
-  },
-  {
-    "objectID": "day-2.html",
-    "href": "day-2.html",
-    "title": "Day 2: Programming, typesetting, and tidyverse",
-    "section": "",
-    "text": "This session will be held in JRR 399.\nBase R (AM) slides here.\n(Approximate) Schedule:"
-  },
-  {
-    "objectID": "day-2.html#functions",
-    "href": "day-2.html#functions",
-    "title": "Day 2: Programming, typesetting, and tidyverse",
-    "section": "Functions",
-    "text": "Functions\n\nWriting and calling functions\nArguments, defaults, and return values\n\n\nReferences\n\nr4ds, Ch. 25: Functions\nPrefresher, Ch. 9: Objects, functions, loops"
-  },
-  {
-    "objectID": "day-2.html#iteration",
-    "href": "day-2.html#iteration",
-    "title": "Day 2: Programming, typesetting, and tidyverse",
-    "section": "Loops, iteration, and lapply()",
-    "text": "Loops, iteration, and lapply()\n\nfor and while loops\nlapply() and friends\nGuided exercise\n\n\nReferences\n\nPrefresher, Ch. 9.3: Loops\nr4ds, Ch. 26: Iteration"
-  },
-  {
-    "objectID": "day-2.html#quarto",
-    "href": "day-2.html#quarto",
-    "title": "Day 2: Programming, typesetting, and tidyverse",
-    "section": "Quarto and typesetting",
-    "text": "Quarto and typesetting\n\nMaking work replicable and research-ready\nMigrating the morning exercise into Quarto\nHow R Markdown fits in\n\n\nReferences\n\nr4ds, Ch. 28: Quarto\nPrefresher, Ch. 13: LaTeX and markdown"
-  },
-  {
-    "objectID": "day-2.html#tidyverse",
-    "href": "day-2.html#tidyverse",
-    "title": "Day 2: Programming, typesetting, and tidyverse",
-    "section": "Tidyverse",
-    "text": "Tidyverse\n\ntibble\ndplyr, from mutate() through merges\npurrr\nGesturing at stringr, lubridate, and tidyr\n\n\nReferences\n\nr4ds, Ch. 3: Data transformation\nr4ds, Ch. 19: Joins"
-  },
-  {
-    "objectID": "data.html",
-    "href": "data.html",
-    "title": "Data",
-    "section": "",
-    "text": "County data: ACS 2019–2023 five-year estimates for renter-household income and median gross rent, with margins of error.\nCounty boundaries: simplified county geometries with Alaska and Hawaii adjusted for mapping.\nCounty population: 2020 decennial Census total population with Census region and division."
-  },
-  {
-    "objectID": "data.html#county-level-data",
-    "href": "data.html#county-level-data",
-    "title": "Data",
-    "section": "",
-    "text": "County data: ACS 2019–2023 five-year estimates for renter-household income and median gross rent, with margins of error.\nCounty boundaries: simplified county geometries with Alaska and Hawaii adjusted for mapping.\nCounty population: 2020 decennial Census total population with Census region and division."
-  },
-  {
-    "objectID": "data.html#other-materials",
-    "href": "data.html#other-materials",
-    "title": "Data",
-    "section": "Other materials",
-    "text": "Other materials\n\nAcademic websites in R: alternative methods for publishing websites"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Incoming social science PhD students are encouraged to attend all or part of Data-Driven Social Science’s R Bootcamp, a two-and-a-half day introductory crash course in R. No grades are assigned, participation is voluntary, and partial attendance is welcome.\nWe will cover R basics, data wrangling, visualization, and simulation. Along the way, we will also introduce students to version control (Git) and typesetting tools (Quarto). Hands-on exercises and assistance will be provided throughout.\nBeyond the technical material, this is also a chance to meet your fellow first-year students from other social science departments.\nOur bootcamp is based, in part, on Harvard Government’s Math Prefresher."
-  },
-  {
-    "objectID": "day-1.html",
-    "href": "day-1.html",
-    "title": "Day 1: Getting started with R",
-    "section": "",
-    "text": "Slides here."
-  },
-  {
-    "objectID": "day-1.html#setup",
-    "href": "day-1.html#setup",
-    "title": "Day 1: Getting started with R",
-    "section": "Setup and ergonomics",
-    "text": "Setup and ergonomics\n\nScripts and what the buttons do\nRunning code and using the console\nThe environment, and why not to save it\n\n\nReferences\n\nPrefresher, Ch. 7: Orientation and reading in data\nr4ds, Ch. 6: Workflow — scripts and projects"
-  },
-  {
-    "objectID": "day-1.html#packages",
-    "href": "day-1.html#packages",
-    "title": "Day 1: Getting started with R",
-    "section": "Packages, libraries, and variables",
-    "text": "Packages, libraries, and variables\n\nInstalling packages versus loading libraries\nAssigning and inspecting variables\n\n\nReferences\n\nr4ds, Ch. 2: Workflow — basics"
-  },
-  {
-    "objectID": "day-1.html#types",
-    "href": "day-1.html#types",
-    "title": "Day 1: Getting started with R",
-    "section": "Types, vectors, and objects",
-    "text": "Types, vectors, and objects\n\nTypes and vectors (there are no scalars)\nCharacters and strings\n\n\nReferences\n\nPrefresher, Ch. 8: Manipulating vectors and matrices\nr4ds, Ch. 27: A field guide to base R"
-  },
-  {
-    "objectID": "day-1.html#data-frames",
-    "href": "day-1.html#data-frames",
-    "title": "Day 1: Getting started with R",
-    "section": "Data frames and reading data",
-    "text": "Data frames and reading data\n\nBasic data frames\nReading and saving data: csv, .rda, .rds\nWorking directories and paths\nR as a calculator: mean(), median(), summary(), and custom summaries\n\n\nReferences\n\nr4ds, Ch. 7: Data import\nPrefresher, Ch. 7.5: Reading in and inspecting data"
-  },
-  {
-    "objectID": "day-3.html",
-    "href": "day-3.html",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "",
-    "text": "This session will be held in JRR 399.\n(Approximate) Schedule:"
-  },
-  {
-    "objectID": "day-3.html#base-plots",
-    "href": "day-3.html#base-plots",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "Base R plots",
-    "text": "Base R plots\n\nReferences\n\nPrefresher, Ch. 10: Visualization"
-  },
-  {
-    "objectID": "day-3.html#ggplot2",
-    "href": "day-3.html#ggplot2",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "ggplot2",
-    "text": "ggplot2\n\nTidyverse plotting\nSmall exercise\n\n\nReferences\n\nr4ds, Ch. 1: Data visualization\nr4ds, Ch. 9: Layers"
-  },
-  {
-    "objectID": "day-3.html#version-control",
-    "href": "day-3.html#version-control",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "Version control",
-    "text": "Version control\n\ngit and GitHub\n\n\nReferences\n\nHappy Git and GitHub for the useR, Ch. 1: Why Git? Why GitHub?\nHappy Git and GitHub for the useR, Ch. 7: Introduce yourself to Git\nHappy Git and GitHub for the useR, Ch. 9: Personal access token for HTTPS\nHappy Git and GitHub for the useR, Ch. 15: New project, GitHub first\nHappy Git and GitHub for the useR, Ch. 31: Fork and clone\nSoftware Carpentry: Version Control with Git\nPrefresher, Ch. 15: Command-line, git\nQuarto: Publishing to GitHub Pages"
-  },
-  {
-    "objectID": "day-3.html#stats",
-    "href": "day-3.html#stats",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "Distributions and random draws",
-    "text": "Distributions and random draws\n\nsample() and set.seed()\nDrawing from distributions: rnorm(), runif(), rbinom()\nThe r, p, d, and q family: pnorm(), dnorm(), qnorm()\n\n\nReferences\n\nPrefresher, Ch. 12.2–12.5: sample(), random draws, r/p/d, and set.seed()\nR manual: Distributions in the stats package"
-  },
-  {
-    "objectID": "day-3.html#simulation",
-    "href": "day-3.html#simulation",
-    "title": "Day 3: Visualization, version control, and simulation",
-    "section": "Big exercise: simulation",
-    "text": "Big exercise: simulation\nNow that you have seen R, how are you going to use it? Build a version-controlled Quarto project that carries a basic analysis through to plots — a difference-in-means analysis drawn from a published paper.\n\nReferences\n\nPrefresher, Ch. 12: Simulation\nPrefresher, Ch. 11: A worked project, start to finish"
   },
   {
     "objectID": "notes/day-3-viz.html#this-session",
