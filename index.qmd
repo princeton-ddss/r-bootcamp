@@ -62,6 +62,8 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 
 [[Quarto (PM) slides here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-2-quarto.pdf)]{style="color: red; background-color: yellow;"}
 
+[[Tidyverse (PM) slides here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-2-tidyverse.pdf)]{style="color: red; background-color: yellow;"}
+
 ::: {style="margin-top: 2em;"}
 :::
 

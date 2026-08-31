@@ -11,6 +11,8 @@ This session will be held in JRR 399.
 
 [[Quarto (PM) slides here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-2-quarto.pdf)]{style="color: red; background-color: yellow;"}
 
+[[Tidyverse (PM) slides here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-2-tidyverse.pdf)]{style="color: red; background-color: yellow;"}
+
 ::: {style="margin-top: 2em;"}
 :::
 

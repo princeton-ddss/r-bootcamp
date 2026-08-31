@@ -35,7 +35,7 @@ counties <- left_join(
 
 ## Rent and income distributions by group
 
-Plot the distribution of rent and income by region using `geom_density()` and a `facet_*` function.
+Plot the distribution of rent and *median household income* by region using `geom_density()` and a `facet_*` function.
 
 ```{r}
 #| label: task-1
