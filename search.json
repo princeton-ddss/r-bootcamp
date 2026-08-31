@@ -1215,7 +1215,7 @@
     "href": "day-2.html",
     "title": "Day 2: Programming, typesetting, and tidyverse",
     "section": "",
-    "text": "This session will be held in JRR 399.\nBase R (AM) slides here.\nQuarto (PM) slides here."
+    "text": "This session will be held in JRR 399.\nBase R (AM) slides here.\nQuarto (PM) slides here.\nTidyverse (PM) slides here."
   },
   {
     "objectID": "day-2.html#functions",
@@ -1257,7 +1257,7 @@
     "href": "index.html#schedule",
     "title": "R Bootcamp",
     "section": "Schedule",
-    "text": "Schedule\n\n\nFriday, August 28, 2p–5:30p, JRR A17\n\nDay 1 · Getting started with R\n\nSetup, ergonomics, and packages\nTypes, vectorization, and basic ops\nReading, writing, and summarizing data\n\n\n\n\nSlides here.\n\n\n\nMonday, August 31, 9a–5p, JRR 399\n\nDay 2 · Programming, typesetting, and tidyverse\n\nFunctions, loops, and lapply()\nQuarto and typesetting for professional outputs\nTidyverse for better data work, excl. plotting\n\n\n\n\nBase R (AM) slides here.\nQuarto (PM) slides here.\n\n\n\n\n\n\nTuesday, September 1, 9a–5p, JRR 399\n\nDay 3 · Visualization, version control, and simulation\n\nBase R plots (briefly) and ggplot2\nVersion control offline and online\nStatistics with R\nBig exercise: simulations\n\n\n\n\n\nDays 2 and 3: an hour for lunch, plus short breaks morning and afternoon"
+    "text": "Schedule\n\n\nFriday, August 28, 2p–5:30p, JRR A17\n\nDay 1 · Getting started with R\n\nSetup, ergonomics, and packages\nTypes, vectorization, and basic ops\nReading, writing, and summarizing data\n\n\n\n\nSlides here.\n\n\n\nMonday, August 31, 9a–5p, JRR 399\n\nDay 2 · Programming, typesetting, and tidyverse\n\nFunctions, loops, and lapply()\nQuarto and typesetting for professional outputs\nTidyverse for better data work, excl. plotting\n\n\n\n\nBase R (AM) slides here.\nQuarto (PM) slides here.\nTidyverse (PM) slides here.\n\n\n\n\n\n\nTuesday, September 1, 9a–5p, JRR 399\n\nDay 3 · Visualization, version control, and simulation\n\nBase R plots (briefly) and ggplot2\nVersion control offline and online\nStatistics with R\nBig exercise: simulations\n\n\n\n\n\nDays 2 and 3: an hour for lunch, plus short breaks morning and afternoon"
   },
   {
     "objectID": "notes/day-1.html#this-session",
