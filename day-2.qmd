@@ -69,3 +69,18 @@ This session will be held in JRR 399.
 - [r4ds, Ch. 3: Data transformation](https://r4ds.hadley.nz/data-transform.html)
 - [r4ds, Ch. 19: Joins](https://r4ds.hadley.nz/joins.html)
 :::
+
+Code for exercises:
+
+```r
+
+library(tidyverse)
+
+counties <- read_csv(
+  'https://princeton-ddss.github.io/r-bootcamp/files/county_data.csv'
+)
+
+county_pop <- read_csv(
+  'https://princeton-ddss.github.io/r-bootcamp/files/county_population.csv'
+)
+```
