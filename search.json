@@ -1243,7 +1243,7 @@
     "href": "day-2.html#tidyverse",
     "title": "Day 2: Programming, typesetting, and tidyverse",
     "section": "Tidyverse",
-    "text": "Tidyverse\n\ntibble\ndplyr, from mutate() through merges\npurrr\nGesturing at stringr, lubridate, and tidyr\n\n\nReferences\n\nr4ds, Ch. 3: Data transformation\nr4ds, Ch. 19: Joins"
+    "text": "Tidyverse\n\ntibble\ndplyr, from mutate() through merges\npurrr\nGesturing at stringr, lubridate, and tidyr\n\n\nReferences\n\nr4ds, Ch. 3: Data transformation\nr4ds, Ch. 19: Joins\n\n\nCode for exercises:\n\nlibrary(tidyverse)\n\ncounties &lt;- read_csv(\n  'https://princeton-ddss.github.io/r-bootcamp/files/county_data.csv'\n)\n\ncounty_pop &lt;- read_csv(\n  'https://princeton-ddss.github.io/r-bootcamp/files/county_population.csv'\n)"
   },
   {
     "objectID": "index.html",
