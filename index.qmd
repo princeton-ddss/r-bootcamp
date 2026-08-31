@@ -58,7 +58,7 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 ::: {style="margin-top: 2em;"}
 :::
 
-[[Base R (AM) slides here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-2-base-r.html)]{style="color: red; background-color: yellow;"}
+[[Base R (AM) slides here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-2-base-r.pdf)]{style="color: red; background-color: yellow;"}
 
 ::: {style="margin-top: 2em;"}
 :::
