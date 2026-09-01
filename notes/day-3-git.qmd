@@ -1628,70 +1628,95 @@ The second one is your academic website.
 :::
 :::
 
-## Add a site to the repo
+## The steps
 
 <hr><br>
 
-```bash
-quarto create project website mysite
+Broadly,
+
+::: {.incremental}
+1. Create a new R project > Quarto Website > call the project `<yourusername>.github.io`
+2. Update the .gitignore
+3. Make an initial commit on `main` (or `master`) branch
+4. With `usethis::`, wire to a new GitHub respository
+5. Edit and/or preview content
+6. Publish!
+:::
+
+## 1. Create new R project
+
+<hr><br>
+
+In a fresh RStudio session, **File > New Project > New Directory > Quarto Website**
+
+<br>
+
+<img src="figs/new_project_wizard.png" style="width: 1500px; display: block; margin: 0 auto;">
+
+## 2. Update the .gitignore
+
+<hr><br>
+
+Before publishing anything, add to `.gitignore` if not already there:
+
+```
+.quarto/
+_site/
+```
+
+## 3. Make an initial commit on `main` (or `master`) branch
+
+<hr><br>
+
+Commit everything as an initial commit as we've done previously. This will create a `main` (or `master`) branch.
+
+## 4. With `usethis::`, wire to a new GitHub respository
+
+<hr><br>
+
+```r
+usethis::use_github()
 ```
 
 <br>
 
-::: {.fragment}
-```
-index.qmd
-about.qmd
-_quarto.yml
-
-```
-:::
+It will look something like:
 
 <br>
 
-::: {.fragment}
-```yaml
-project:
-  type: website
+<img src="figs/use_github_output.png" style="width: 2500px; display: block; margin: 0 auto;">
 
-website:
-  title: "Jane Doe"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: about.qmd
-        text: Research
-```
-:::
+<br>
 
-## First, ignore the build output
+It will open the GitHub repo in the browser. If this shows a 404 error, refresh the page.
+
+## 5. Edit and/or preview content
 
 <hr><br>
 
-Before publishing anything, add to `.gitignore`:
+You can call `quarto preview` at any time to render a local version of the website in your browser.
 
-```
-/.quarto/
-/_site/
-```
+<br>
 
-## Publish
+Alternatively, you can pull it up in the RStudio viewer by opening one of the `.qmd` files and clicking "Render" at the top. (In the adjoining gear box, make sure "Preview in Viewer Pane" is selected.)
+
+<br>
+
+Now is a good time to make, save, stage, and commit some edits before first publication, if desired. After making and saving, you can call `quarto preview` or click "Render" again at any time to view your changes.
+
+## 6. Publish!
 
 <hr><br>
 
-```bash
-quarto publish gh-pages
-```
+Once you've pushed any changes, in the terminal type `quarto publish gh-pages`. If prompted, type `yes` when asked if you want to publish using `gh-pages`. The printed output will end with something like the following:
 
-::: {.fragment}
+<br>
 
-* renders the site
-* creates a `gh-pages` branch, locally and on GitHub
-* copies the rendered output onto it
-* pushes
-* opens your live site in a browser
-:::
+<img src="figs/use_github_output.png" style="width: 2500px; display: block; margin: 0 auto;">
+
+<br>
+
+Follow those directions. Click the link or go to "Settings" > "Pages" in the GitHub repo and change the "Branch" dropdown from `None` to `gh-pages`, then click `Save`. Wait a minute and your site will publish. (To view the status of the publication run, you can click on the "Actions" tab of the GitHub repo.)
 
 ## What just happened to your repo
 
@@ -1709,35 +1734,25 @@ You now have two branches doing two different jobs:
 <br>
 
 ::: {.fragment}
-To update the site later: edit, commit, push, then run
+To update the site later: edit, preview (if you want), commit, push, then run
 `quarto publish gh-pages` again.
 :::
 
-## Notes
+## Adding content
 
 <hr><br>
 
-::: {.fragment}
-* For a **user site** (`janedoe.github.io`), after the first publish go to
-  **Settings → Pages** and\
-  set the source branch to `gh-pages`.
-:::
+The Quarto documentation is truly excellent. See [https://quarto.org/docs/websites/](https://quarto.org/docs/websites/) and its subcontent. You can easily swap between website templates, just as you can swap between document templates.
 
-::: {.fragment}
-* Pages on a **private** repo needs GitHub Pro — free for you through
-  GitHub Education.
-:::
+<br>
 
-::: {.fragment}
-* Run from your project folder, not while sitting on the `gh-pages`
-  branch.
-:::
+Claude is also quite good at helping with this.
 
 ## Alternatives / custom domains
 
 <hr><br>
 
-See [here](https://princeton-ddss.github.io/r-bootcamp/files/website-r-group.pdf).
+See [here](https://princeton-ddss.github.io/r-bootcamp/files/website-r-group.pdf) for another way to publish -- and how to wire your website to a custom domain.
 
 ## Things that exist, that we skipped
 
