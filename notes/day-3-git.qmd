@@ -1712,7 +1712,7 @@ Once you've pushed any changes, in the terminal type `quarto publish gh-pages`. 
 
 <br>
 
-<img src="figs/use_github_output.png" style="width: 2500px; display: block; margin: 0 auto;">
+<img src="figs/publish_gh_pages_output.png" style="width: 2500px; display: block; margin: 0 auto;">
 
 <br>
 
