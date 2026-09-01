@@ -9,15 +9,15 @@ This session will be held in JRR 399.
 ::: schedule-table
 | Time        | Session                             |
 |:------------|:------------------------------------|
-| 9:00–10:30  | Base R plots, beginning `ggplot`    |
-| 10:30–10:45 | Break                               |
-| 10:45–11:45 | More `ggplot2`                      |
-| 11:45–12:30 | Exercise: data visualization        |
-| 12:30–1:30  | Lunch                               |
-| 1:30–2:30   | Version control with git and GitHub |
-| 2:30–3:15   | Probability and statistics with R   |
-| 3:15–3:30   | Break                               |
-| 3:30–5:00   | Exercise: simulation                |
+| 9:00–10:15  | Base R plots, beginning `ggplot`    |
+| 10:15–10:30 | Break                               |
+| 10:30–11:00 | More `ggplot2`                      |
+| 11:00–12:00 | Exercise: data visualization        |
+| 12:00–1:00  | Break, then lunch                   |
+| 1:00–3:00   | Version control with git and GitHub |
+| 3:00–3:15   | Break                               |
+| 3:15–3:45   | Probability and statistics with R   |
+| 3:45–5:00   | Exercise: simulation                |
 :::
 
 <br>
@@ -64,21 +64,27 @@ This session will be held in JRR 399.
 - `sample()` and `set.seed()`
 - Drawing from distributions: `rnorm()`, `runif()`, `rbinom()`
 - The `r`, `p`, `d`, and `q` family: `pnorm()`, `dnorm()`, `qnorm()`
+- Simulation as a four-step recipe: `replicate()` and resampling
 
 ::: refs
 [References]{.refs-label}
 
 - [Prefresher, Ch. 12.2–12.5: `sample()`, random draws, `r`/`p`/`d`, and `set.seed()`](https://iqss.github.io/prefresher/16_simulation.html)
+- [R Cookbook, Ch. 8: Probability](https://rc2e.com/probability)
+- [Mercer, A brief visualization of R's distribution functions](https://wetlandscapes.com/blog/a-brief-visualization-of-rs-distribution-functions/)
+- [Plot probability distribution function in R](https://www.geeksforgeeks.org/r-language/plot-probability-distribution-function-in-r/)
 - [R manual: Distributions in the `stats` package](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html)
+- [Geyer, Distributions in R](https://www.stat.umn.edu/geyer/old/5101/rlook.html) — a one-page lookup table for every distribution R ships with
 :::
 
 ## Big exercise: simulation {#simulation}
 
-Now that you have seen R, how are you going to use it? Build a version-controlled Quarto project that carries a basic analysis through to plots — a difference-in-means analysis drawn from a published paper.
+Answer probability questions by writing down the process and letting the computer run it a few thousand times. Start with the birthday problem — simulate it, then plot how the probability of a shared birthday grows with the number of people in the room. Then flip coins and resample counties until a familiar bell shape turns up on its own, bootstrap an estimate from a sample of 50 counties, and close by asking what every uncertainty number you just computed quietly assumed.
 
 ::: refs
 [References]{.refs-label}
 
-- [Prefresher, Ch. 12: Simulation](https://iqss.github.io/prefresher/16_simulation.html)
-- [Prefresher, Ch. 11: A worked project, start to finish](https://iqss.github.io/prefresher/15_project-dempeace.html)
+- [Prefresher, Ch. 12: Simulation](https://iqss.github.io/prefresher/16_simulation.html) — including the birthday problem
+- [R Cookbook, Ch. 8: Probability](https://rc2e.com/probability)
+- [Meng, "Statistical paradises and paradoxes in big data (I)", *Annals of Applied Statistics* 12(2), 2018](https://statistics.fas.harvard.edu/sites/g/files/omnuum10116/files/statistics-2/files/statistical_paradises_and_paradoxes.pdf)
 :::
