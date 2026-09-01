@@ -2244,7 +2244,7 @@
     "href": "notes/day-3-viz.html#setup-for-next-bit",
     "title": "R Bootcamp",
     "section": "Setup for next bit",
-    "text": "Setup for next bit\n\n\n\np &lt;- ggplot(counties, aes(x = income, y = rent, color = region)) +\n    geom_point(size = 0.6) +\n    labs(\n        x = \"Median household income ($)\",\n        y = \"Median gross rent ($ logged)\",\n        color = NULL\n    ) +\n    scale_x_log10()\n\np"
+    "text": "Setup for next bit\n\n\n\np &lt;- ggplot(counties, aes(x = income, y = rent, color = region)) +\n    geom_point(size = 0.6) +\n    labs(\n        x = \"Median household income ($ logged)\",\n        y = \"Median gross rent ($)\",\n        color = NULL\n    ) +\n    scale_x_log10()\n\np"
   },
   {
     "objectID": "notes/day-3-viz.html#themes",
