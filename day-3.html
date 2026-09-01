@@ -181,39 +181,39 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">9:00–10:30</td>
+<td style="text-align: left;">9:00–10:15</td>
 <td style="text-align: left;">Base R plots, beginning <code>ggplot</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">10:30–10:45</td>
+<td style="text-align: left;">10:15–10:30</td>
 <td style="text-align: left;">Break</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">10:45–11:45</td>
+<td style="text-align: left;">10:30–11:00</td>
 <td style="text-align: left;">More <code>ggplot2</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">11:45–12:30</td>
+<td style="text-align: left;">11:00–12:00</td>
 <td style="text-align: left;">Exercise: data visualization</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">12:30–1:30</td>
-<td style="text-align: left;">Lunch</td>
+<td style="text-align: left;">12:00–1:00</td>
+<td style="text-align: left;">Break, then lunch</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1:30–2:30</td>
+<td style="text-align: left;">1:00–3:00</td>
 <td style="text-align: left;">Version control with git and GitHub</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2:30–3:15</td>
-<td style="text-align: left;">Probability and statistics with R</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">3:15–3:30</td>
+<td style="text-align: left;">3:00–3:15</td>
 <td style="text-align: left;">Break</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">3:15–3:45</td>
+<td style="text-align: left;">Probability and statistics with R</td>
+</tr>
 <tr class="odd">
-<td style="text-align: left;">3:30–5:00</td>
+<td style="text-align: left;">3:45–5:00</td>
 <td style="text-align: left;">Exercise: simulation</td>
 </tr>
 </tbody>
@@ -268,23 +268,29 @@ ul.task-list li input[type="checkbox"] {
 <li><code>sample()</code> and <code>set.seed()</code></li>
 <li>Drawing from distributions: <code>rnorm()</code>, <code>runif()</code>, <code>rbinom()</code></li>
 <li>The <code>r</code>, <code>p</code>, <code>d</code>, and <code>q</code> family: <code>pnorm()</code>, <code>dnorm()</code>, <code>qnorm()</code></li>
+<li>Simulation as a four-step recipe: <code>replicate()</code> and resampling</li>
 </ul>
 <div class="refs">
 <p><span class="refs-label">References</span></p>
 <ul>
 <li><a href="https://iqss.github.io/prefresher/16_simulation.html">Prefresher, Ch. 12.2–12.5: <code>sample()</code>, random draws, <code>r</code>/<code>p</code>/<code>d</code>, and <code>set.seed()</code></a></li>
+<li><a href="https://rc2e.com/probability">R Cookbook, Ch. 8: Probability</a></li>
+<li><a href="https://wetlandscapes.com/blog/a-brief-visualization-of-rs-distribution-functions/">Mercer, A brief visualization of R’s distribution functions</a></li>
+<li><a href="https://www.geeksforgeeks.org/r-language/plot-probability-distribution-function-in-r/">Plot probability distribution function in R</a></li>
 <li><a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html">R manual: Distributions in the <code>stats</code> package</a></li>
+<li><a href="https://www.stat.umn.edu/geyer/old/5101/rlook.html">Geyer, Distributions in R</a> — a one-page lookup table for every distribution R ships with</li>
 </ul>
 </div>
 </section>
 <section id="simulation" class="level2">
 <h2 class="anchored" data-anchor-id="simulation">Big exercise: simulation</h2>
-<p>Now that you have seen R, how are you going to use it? Build a version-controlled Quarto project that carries a basic analysis through to plots — a difference-in-means analysis drawn from a published paper.</p>
+<p>Answer probability questions by writing down the process and letting the computer run it a few thousand times. Start with the birthday problem — simulate it, then plot how the probability of a shared birthday grows with the number of people in the room. Then flip coins and resample counties until a familiar bell shape turns up on its own, bootstrap an estimate from a sample of 50 counties, and close by asking what every uncertainty number you just computed quietly assumed.</p>
 <div class="refs">
 <p><span class="refs-label">References</span></p>
 <ul>
-<li><a href="https://iqss.github.io/prefresher/16_simulation.html">Prefresher, Ch. 12: Simulation</a></li>
-<li><a href="https://iqss.github.io/prefresher/15_project-dempeace.html">Prefresher, Ch. 11: A worked project, start to finish</a></li>
+<li><a href="https://iqss.github.io/prefresher/16_simulation.html">Prefresher, Ch. 12: Simulation</a> — including the birthday problem</li>
+<li><a href="https://rc2e.com/probability">R Cookbook, Ch. 8: Probability</a></li>
+<li><a href="https://statistics.fas.harvard.edu/sites/g/files/omnuum10116/files/statistics-2/files/statistical_paradises_and_paradoxes.pdf">Meng, “Statistical paradises and paradoxes in big data (I)”, <em>Annals of Applied Statistics</em> 12(2), 2018</a></li>
 </ul>
 </div>
 
