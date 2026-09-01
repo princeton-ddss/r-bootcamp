@@ -882,7 +882,9 @@ The `tigris` package (USA) has `cb` and `resolution` arguments for this.
 
 <hr> <br>
 
-Open the exercise: [princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf)
+Open the exercise Quarto: [princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.qmd](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.qmd)
+
+Open the exercise PDF instructions (if you want): [princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf)
 
 <br>
 

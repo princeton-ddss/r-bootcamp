@@ -13,7 +13,7 @@ execute:
   warning: false
 ---
 
-Download this file's source ([day-3-viz-ex.qmd](https://raw.githubusercontent.com/princeton-ddss/r-bootcamp/main/notes/day-3-viz-ex.qmd)) and open it in RStudio, Positron, or VS Code. Work through the code and associated questions. **_Render as you go to ward off problems as early as possible._**\
+Download this file's source ([day-3-viz-ex.qmd](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.qmd)) and open it in RStudio, Positron, or VS Code. Work through the code and associated questions. **_Render as you go to ward off problems as early as possible._**\
 
 **_For your own good, avoid AI tools for this task._** Use only `?function_name`, the [ggplot2 reference](https://ggplot2.tidyverse.org/reference/), and any other R documentation.
 
