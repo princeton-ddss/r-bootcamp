@@ -1,0 +1,336 @@
+---
+title: "Simulation exercise: solutions"
+date: 2026-09-01
+format:
+  html:
+    theme: cosmo
+    toc: true
+    embed-resources: true
+execute:
+  message: false
+  warning: false
+---
+
+This document includes only one possible solution. Yours may vary — and because
+these are simulations, your *numbers* will vary a little even if your code is
+identical to mine. That is the point.
+
+## Setup (given) {.unnumbered}
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+
+set.seed(365)
+
+counties <- left_join(
+    read_csv("https://princeton-ddss.github.io/r-bootcamp/files/county_data.csv"),
+    read_csv("https://princeton-ddss.github.io/r-bootcamp/files/county_population.csv"),
+    join_by(GEOID == fips)
+)
+```
+
+# Part 1: the birthday problem
+
+## One room
+
+```{r}
+#| label: task-1
+
+room <- sample(1:365, size = 23, replace = TRUE)
+
+anyDuplicated(room) > 0
+```
+
+`replace = TRUE` is not optional. Without it, no two people *can* share a
+birthday — `sample()` would hand out 23 different days by construction, and the
+answer would always be `FALSE`.
+
+`anyDuplicated()` returns the index of the first duplicate, or `0` if there
+isn't one, so comparing to zero gives a logical. `any(duplicated(room))` works
+just as well.
+
+## Wrap it in a function
+
+```{r}
+#| label: task-2
+
+shared_birthday <- function(k) {
+    birthdays <- sample(1:365, size = k, replace = TRUE)
+    anyDuplicated(birthdays) > 0
+}
+
+replicate(5, shared_birthday(23))
+```
+
+## Many rooms
+
+```{r}
+#| label: task-3
+
+rooms <- replicate(10000, shared_birthday(23))
+
+mean(rooms)
+```
+
+About `r round(mean(rooms) * 100)`% — a coin flip. Most people guess something
+closer to 6%.
+
+## How many replications did you need?
+
+```{r}
+#| label: task-4
+
+reps <- c(10, 100, 1000, 10000, 100000)
+
+tibble(
+    replications = reps,
+    estimate = sapply(reps, function(r) mean(replicate(r, shared_birthday(23))))
+)
+```
+
+Ten replications can't even give you two decimal places — the answer is a
+multiple of 0.1. By 1,000 you have the first decimal reliably; by 10,000 the
+second is roughly stable. Going to 100,000 changes almost nothing, which is
+how you know you have enough.
+
+Note that the *question* never changed: it was 23 people every time. All that
+changed was how hard we looked.
+
+## Sweep across room sizes
+
+```{r}
+#| label: task-5
+
+ks <- 2:60
+
+birthday_curve <- tibble(
+    k = ks,
+    prob = sapply(ks, function(k) mean(replicate(1000, shared_birthday(k))))
+)
+
+head(birthday_curve, 3)
+```
+
+## Plot it
+
+```{r}
+#| label: task-6
+
+ggplot(birthday_curve, aes(x = k, y = prob)) +
+    geom_line(linewidth = 1) +
+    geom_hline(yintercept = 0.5, linetype = "dotted") +
+    geom_vline(xintercept = 23, linetype = "dotted") +
+    labs(
+        x = "People in the room",
+        y = "Pr(at least one shared birthday)",
+        title = "The birthday problem, simulated"
+    ) +
+    theme_minimal(base_size = 15)
+
+min(birthday_curve$k[birthday_curve$prob > 0.5])
+```
+
+Twenty-three. The curve is S-shaped: nearly flat for the first handful of
+people, then it climbs startlingly fast, and by 60 people it is
+indistinguishable from certainty.
+
+## Check against the exact answer
+
+```{r}
+#| label: task-7
+
+exact_prob <- function(k) 1 - prod((365 - 0:(k - 1)) / 365)
+
+birthday_curve <- birthday_curve |>
+    mutate(exact = sapply(k, exact_prob))
+
+exact_prob(23)
+
+birthday_curve |>
+    pivot_longer(c(prob, exact), names_to = "source", values_to = "p") |>
+    mutate(source = if_else(source == "prob", "Simulated", "Exact")) |>
+    ggplot(aes(x = k, y = p, color = source)) +
+    geom_line(linewidth = 1) +
+    labs(
+        x = "People in the room",
+        y = "Pr(at least one shared birthday)",
+        color = NULL
+    ) +
+    theme_minimal(base_size = 15) +
+    theme(legend.position = "bottom")
+```
+
+The two curves are hard to tell apart. The largest gap anywhere on the
+sweep is given by:
+
+`round(max(abs(birthday_curve$prob - birthday_curve$exact)), 3)`
+
+## In writing
+
+The question sounds like "does anyone share *my* birthday?", which for 23
+people is indeed about 6%. But the question asked is whether *any pair* shares
+one, and 23 people make 253 pairs. The number of chances to match grows with
+the square of the room, not with the room. People substitute the easier
+question without noticing they've done it.
+
+# Part 2: sampling and the bootstrap
+
+## The population
+
+```{r}
+#| label: task-8
+
+pop_all <- counties$pop[!is.na(counties$pop)]
+
+length(pop_all)
+
+ggplot(tibble(pop = pop_all), aes(x = pop)) +
+    geom_histogram(bins = 60) +
+    scale_x_continuous(
+        labels = scales::label_number(scale_cut = scales::cut_short_scale())
+    ) +
+    labs(x = "County population", y = "Count") +
+    theme_minimal(base_size = 15)
+
+mean(pop_all)
+sd(pop_all)
+```
+
+Nothing like a bell. Almost every county is jammed against zero, with a long thin
+tail out to Los Angeles County at `r format(max(pop_all), big.mark = ",")`. The
+mean (`r format(round(mean(pop_all)), big.mark = ",")`) is four times the median
+(`r format(round(median(pop_all)), big.mark = ",")`), which is what extreme skew
+does to an average.
+
+## Sampling distributions
+
+```{r}
+#| label: task-9
+
+sizes <- c(2, 5, 30, 100, 1000)
+
+samp <- map_dfr(sizes, function(n) {
+    tibble(
+        n = n,
+        xbar = replicate(10000, mean(sample(pop_all, size = n, replace = TRUE)))
+    )
+})
+
+samp |>
+    mutate(n = factor(n, levels = sizes, labels = paste("n =", sizes))) |>
+    ggplot(aes(x = xbar)) +
+    geom_histogram(bins = 50) +
+    facet_wrap(~n, scales = "free", nrow = 1) +
+    scale_x_continuous(
+        labels = scales::label_number(scale_cut = scales::cut_short_scale())
+    ) +
+    labs(x = "Sample mean of county population", y = "Count") +
+    theme_minimal(base_size = 13) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+The x-axes are **free**, so read the axis labels rather than the apparent widths.
+At `n = 2` the distribution still looks like the population — a spike on the left
+with a tail. By `n = 100` it is nearly symmetric, and at `n = 1000` it is a clean
+bell centred on the population mean.
+
+## The width of those distributions
+
+```{r}
+#| label: task-10
+
+samp |>
+    summarize(sim_sd = sd(xbar), .by = n) |>
+    mutate(
+        theory = sd(pop_all) / sqrt(n),
+        ratio = sim_sd / theory
+    )
+```
+
+Every simulated spread lands within about 5% of $\sigma/\sqrt{n}$, and the agreement
+tightens sharply as `n` grows — by `n = 1000` it is within a fraction of a percent.
+(The scatter at `n = 2` and `n = 5`, in both directions, is not an error in the
+formula. Estimating a standard deviation from a distribution with a tail this heavy
+is itself noisy, and 10,000 replications is not many for that job.)
+
+Doubling your sample size does not halve your uncertainty; it divides it by
+$\sqrt{2} \approx 1.41$. Halving it takes four times the data, and cutting it by a
+factor of 10 takes a hundred times.
+
+## The middle 95%
+
+```{r}
+#| label: task-11
+
+quantile(samp$xbar[samp$n == 100], c(0.025, 0.975))
+```
+
+95% of samples of 100 counties give a mean between those two numbers — so a sample
+landing outside happens one time in twenty by chance alone, with nothing wrong.
+
+The interval is not centred on the population mean
+(`r format(round(mean(pop_all)), big.mark = ",")` sits left of the middle); the
+skew is still faintly visible even after averaging 100 counties.
+
+## The bootstrap
+
+```{r}
+#| label: bootstrap-setup
+
+my_counties <- counties |>
+    filter(!is.na(income)) |>
+    slice_sample(n = 50)
+```
+
+```{r}
+#| label: task-12
+
+mean(my_counties$income)
+
+boot50 <- replicate(
+    10000,
+    mean(sample(my_counties$income, size = 50, replace = TRUE))
+)
+
+ggplot(tibble(m = boot50), aes(x = m)) +
+    geom_histogram(bins = 40) +
+    labs(x = "Bootstrap mean income", y = "Count") +
+    theme_minimal(base_size = 15)
+
+sd(boot50)
+quantile(boot50, c(0.025, 0.975))
+```
+
+That bell again — from 50 numbers, with no assumption about where they came from.
+
+`replace = TRUE` is doing all the work. Without it, drawing 50 from 50 returns the
+same 50 values in a new order, and a permutation has the same mean as the thing it
+permutes:
+
+```{r}
+#| label: task-12b
+
+mean(sample(my_counties$income, size = 50))
+mean(sample(my_counties$income, size = 50))
+```
+
+Replacement is what lets some counties appear twice and others not at all, which is
+what imitates the luck of the draw.
+
+Resampling at size 10 instead would give a spread about $\sqrt{50/10} \approx 2.24$
+times larger. That number is perfectly correct — it just describes a **10-county
+study**, and you ran a 50-county one. Report it and you have overstated your own
+uncertainty by a factor of two, having collected the data to do better.
+
+Earlier in this part we had the population, so `n` was ours to choose and varying it
+was the point. In a bootstrap the population is gone and `n` is a fact about the
+data you have.
+
+For real work, `boot::boot()` and `rsample::bootstraps()` do this plus the bias
+corrections and interval methods you would otherwise have to look up.
+
+------------------------------------------------------------------------
+
+*County data: US Census Bureau, 2023 five-year American Community Survey.*
