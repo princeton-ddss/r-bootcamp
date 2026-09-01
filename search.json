@@ -2384,7 +2384,7 @@
     "href": "notes/day-3-viz.html#now-plotting-exercise",
     "title": "R Bootcamp",
     "section": "Now: plotting exercise",
-    "text": "Now: plotting exercise\n\n\nOpen the exercise: princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf\n\n\nA Quarto report with empty chunks — fill them in and render as you go\nEverything you need is from this morning"
+    "text": "Now: plotting exercise\n\n\nOpen the exercise Quarto: princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.qmd\nOpen the exercise PDF instructions (if you want): princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf\n\n\nA Quarto report with empty chunks — fill them in and render as you go\nEverything you need is from this morning"
   },
   {
     "objectID": "notes/day-3-viz.html#lines-type-l",
