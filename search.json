@@ -1890,46 +1890,74 @@
     "text": "Two URLs\n\n\n\nProject site — any repo:\njanedoe.github.io/first-repo\n\n\n\nUser site — a repo named janedoe.github.io gets the bare address:\njanedoe.github.io\n\n\n\n\nThe second one is your academic website."
   },
   {
-    "objectID": "notes/day-3-git.html#add-a-site-to-the-repo",
-    "href": "notes/day-3-git.html#add-a-site-to-the-repo",
+    "objectID": "notes/day-3-git.html#the-steps",
+    "href": "notes/day-3-git.html#the-steps",
     "title": "R Bootcamp",
-    "section": "Add a site to the repo",
-    "text": "Add a site to the repo\n\n\nquarto create project website mysite\n\n\nindex.qmd\nabout.qmd\n_quarto.yml\n\n\n\n\nproject:\n  type: website\n\nwebsite:\n  title: \"Jane Doe\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - href: about.qmd\n        text: Research"
+    "section": "The steps",
+    "text": "The steps\n\n\nBroadly,\n\nCreate a new R project &gt; Quarto Website &gt; call the project &lt;yourusername&gt;.github.io\nUpdate the .gitignore\nMake an initial commit on main (or master) branch\nWith usethis::, wire to a new GitHub respository\nEdit and/or preview content\nPublish!"
   },
   {
-    "objectID": "notes/day-3-git.html#first-ignore-the-build-output",
-    "href": "notes/day-3-git.html#first-ignore-the-build-output",
+    "objectID": "notes/day-3-git.html#create-new-r-project",
+    "href": "notes/day-3-git.html#create-new-r-project",
     "title": "R Bootcamp",
-    "section": "First, ignore the build output",
-    "text": "First, ignore the build output\n\n\nBefore publishing anything, add to .gitignore:\n/.quarto/\n/_site/"
+    "section": "1. Create new R project",
+    "text": "1. Create new R project\n\n\nIn a fresh RStudio session, File &gt; New Project &gt; New Directory &gt; Quarto Website"
+  },
+  {
+    "objectID": "notes/day-3-git.html#update-the-.gitignore",
+    "href": "notes/day-3-git.html#update-the-.gitignore",
+    "title": "R Bootcamp",
+    "section": "2. Update the .gitignore",
+    "text": "2. Update the .gitignore\n\n\nBefore publishing anything, add to .gitignore if not already there:\n.quarto/\n_site/"
+  },
+  {
+    "objectID": "notes/day-3-git.html#make-an-initial-commit-on-main-or-master-branch",
+    "href": "notes/day-3-git.html#make-an-initial-commit-on-main-or-master-branch",
+    "title": "R Bootcamp",
+    "section": "3. Make an initial commit on main (or master) branch",
+    "text": "3. Make an initial commit on main (or master) branch\n\n\nCommit everything as an initial commit as we’ve done previously. This will create a main (or master) branch."
+  },
+  {
+    "objectID": "notes/day-3-git.html#with-usethis-wire-to-a-new-github-respository",
+    "href": "notes/day-3-git.html#with-usethis-wire-to-a-new-github-respository",
+    "title": "R Bootcamp",
+    "section": "4. With usethis::, wire to a new GitHub respository",
+    "text": "4. With usethis::, wire to a new GitHub respository\n\n\nusethis::use_github()\n\nIt will look something like:\n\n\n\nIt will open the GitHub repo in the browser. If this shows a 404 error, refresh the page."
+  },
+  {
+    "objectID": "notes/day-3-git.html#edit-andor-preview-content",
+    "href": "notes/day-3-git.html#edit-andor-preview-content",
+    "title": "R Bootcamp",
+    "section": "5. Edit and/or preview content",
+    "text": "5. Edit and/or preview content\n\n\nYou can call quarto preview at any time to render a local version of the website in your browser.\n\nAlternatively, you can pull it up in the RStudio viewer by opening one of the .qmd files and clicking “Render” at the top. (In the adjoining gear box, make sure “Preview in Viewer Pane” is selected.)\n\nNow is a good time to make, save, stage, and commit some edits before first publication, if desired. After making and saving, you can call quarto preview or click “Render” again at any time to view your changes."
   },
   {
     "objectID": "notes/day-3-git.html#publish",
     "href": "notes/day-3-git.html#publish",
     "title": "R Bootcamp",
-    "section": "Publish",
-    "text": "Publish\n\n\nquarto publish gh-pages\n\n\nrenders the site\ncreates a gh-pages branch, locally and on GitHub\ncopies the rendered output onto it\npushes\nopens your live site in a browser"
+    "section": "6. Publish!",
+    "text": "6. Publish!\n\n\nOnce you’ve pushed any changes, in the terminal type quarto publish gh-pages. If prompted, type yes when asked if you want to publish using gh-pages. The printed output will end with something like the following:\n\n\n\nFollow those directions. Click the link or go to “Settings” &gt; “Pages” in the GitHub repo and change the “Branch” dropdown from None to gh-pages, then click Save. Wait a minute and your site will publish. (To view the status of the publication run, you can click on the “Actions” tab of the GitHub repo.)"
   },
   {
     "objectID": "notes/day-3-git.html#what-just-happened-to-your-repo",
     "href": "notes/day-3-git.html#what-just-happened-to-your-repo",
     "title": "R Bootcamp",
     "section": "What just happened to your repo",
-    "text": "What just happened to your repo\n\n\nYou now have two branches doing two different jobs:\n\n\n\n\nBranch\nHolds\nYou touch it\n\n\n\n\nmain\nyour source: .qmd, .R, _quarto.yml\nconstantly\n\n\ngh-pages\nrendered HTML, managed by Quarto\nnever\n\n\n\n\n\n\nTo update the site later: edit, commit, push, then run quarto publish gh-pages again."
+    "text": "What just happened to your repo\n\n\nYou now have two branches doing two different jobs:\n\n\n\n\nBranch\nHolds\nYou touch it\n\n\n\n\nmain\nyour source: .qmd, .R, _quarto.yml\nconstantly\n\n\ngh-pages\nrendered HTML, managed by Quarto\nnever\n\n\n\n\n\n\nTo update the site later: edit, preview (if you want), commit, push, then run quarto publish gh-pages again."
   },
   {
-    "objectID": "notes/day-3-git.html#notes",
-    "href": "notes/day-3-git.html#notes",
+    "objectID": "notes/day-3-git.html#adding-content",
+    "href": "notes/day-3-git.html#adding-content",
     "title": "R Bootcamp",
-    "section": "Notes",
-    "text": "Notes\n\n\n\n\nFor a user site (janedoe.github.io), after the first publish go to Settings → Pages and\nset the source branch to gh-pages.\n\n\n\n\nPages on a private repo needs GitHub Pro — free for you through GitHub Education.\n\n\n\n\nRun from your project folder, not while sitting on the gh-pages branch."
+    "section": "Adding content",
+    "text": "Adding content\n\n\nThe Quarto documentation is truly excellent. See https://quarto.org/docs/websites/ and its subcontent. You can easily swap between website templates, just as you can swap between document templates.\n\nClaude is also quite good at helping with this."
   },
   {
     "objectID": "notes/day-3-git.html#alternatives-custom-domains",
     "href": "notes/day-3-git.html#alternatives-custom-domains",
     "title": "R Bootcamp",
     "section": "Alternatives / custom domains",
-    "text": "Alternatives / custom domains\n\n\nSee here."
+    "text": "Alternatives / custom domains\n\n\nSee here for another way to publish – and how to wire your website to a custom domain."
   },
   {
     "objectID": "notes/day-3-git.html#things-that-exist-that-we-skipped",
