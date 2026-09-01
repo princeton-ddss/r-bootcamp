@@ -6,6 +6,8 @@ project:
   resources:
     - "files/"
     - "assets/*.webp"
+    - "notes/day-3-viz-ex.qmd"
+    - "notes/day-3-sim-ex.qmd"
 
 website:
   title: "R Bootcamp"

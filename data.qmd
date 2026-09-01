@@ -10,6 +10,4 @@ title: "Data"
 
 ## Other materials
 
-- [Day 3AM visualization exercise](notes/day-3-viz-ex.qmd)
-
 - [Academic websites in R](files/website-r-group.pdf): alternative methods for publishing websites

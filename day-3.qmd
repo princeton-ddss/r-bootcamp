@@ -8,6 +8,8 @@ This session will be held in JRR 399.
 
 [[Visualization exercise (AM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf)]{style="color: red; background-color: yellow;"}
 
+[[Visualization exercise (AM) Quarto template here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.qmd)]{style="color: red; background-color: yellow;"}
+
 **(Approximate) Schedule:**
 
 ::: schedule-table
