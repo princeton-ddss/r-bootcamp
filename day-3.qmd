@@ -10,21 +10,7 @@ This session will be held in JRR 399.
 
 [[Visualization exercise (AM) Quarto template here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.qmd)]{style="color: red; background-color: yellow;"}
 
-**(Approximate) Schedule:**
-
-::: schedule-table
-| Time        | Session                             |
-|:------------|:------------------------------------|
-| 9:00–10:15  | Base R plots, beginning `ggplot`    |
-| 10:15–10:30 | Break                               |
-| 10:30–11:00 | More `ggplot2`                      |
-| 11:00–12:00 | Exercise: data visualization        |
-| 12:00–1:00  | Break, then lunch                   |
-| 1:00–3:00   | Version control with git and GitHub |
-| 3:00–3:15   | Break                               |
-| 3:15–3:45   | Probability and statistics with R   |
-| 3:45–5:00   | Exercise: simulation                |
-:::
+[[Version control slides (PM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-git.html)]{style="color: red; background-color: yellow;"}
 
 <br>
 

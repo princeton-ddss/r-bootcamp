@@ -88,6 +88,8 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 
 [[Visualization exercise (AM) Quarto template here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.qmd)]{style="color: red; background-color: yellow;"}
 
+[[Version control slides (AM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-git.html)]{style="color: red; background-color: yellow;"}
+
 ::: {style="margin-top: 2em;"}
 :::
 
