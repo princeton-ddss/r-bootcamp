@@ -516,8 +516,8 @@ There is also a `stat_*()` family for layers that include on-the-fly statistical
 p <- ggplot(counties, aes(x = income, y = rent, color = region)) +
     geom_point(size = 0.6) +
     labs(
-        x = "Median household income ($)",
-        y = "Median gross rent ($ logged)",
+        x = "Median household income ($ logged)",
+        y = "Median gross rent ($)",
         color = NULL
     ) +
     scale_x_log10()
