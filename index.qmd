@@ -84,11 +84,21 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 
 [[Visualization slides (AM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz.html)]{style="color: red; background-color: yellow;"}
 
-[[Visualization exercise (AM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf)]{style="color: red; background-color: yellow;"}
+[[Visualization exercise (AM) PDF instructions here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf)]{style="color: red; background-color: yellow;"}
 
 [[Visualization exercise (AM) Quarto template here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.qmd)]{style="color: red; background-color: yellow;"}
 
+[[Visualization exercise (AM) solutions here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-sol.html)]{style="color: red; background-color: yellow;"}
+
 [[Version control slides (PM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-git.html)]{style="color: red; background-color: yellow;"}
+
+[[Probability and simulation slides (PM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-sim.html)]{style="color: red; background-color: yellow;"}
+
+[[Probability and simulation exercise (AM) PDF instructions here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-sim-ex.pdf)]{style="color: red; background-color: yellow;"}
+
+[[Probability and simulation exercise (AM) Quarto template here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-sim-ex.qmd)]{style="color: red; background-color: yellow;"}
+
+[[Probability and simulation exercise (AM) solutions here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-sim-sol.html)]{style="color: red; background-color: yellow;"}
 
 ::: {style="margin-top: 2em;"}
 :::

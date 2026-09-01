@@ -6,11 +6,21 @@ This session will be held in JRR 399.
 
 [[Visualization slides (AM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz.html)]{style="color: red; background-color: yellow;"}
 
-[[Visualization exercise (AM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf)]{style="color: red; background-color: yellow;"}
+[[Visualization exercise (AM) PDF instructions here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf)]{style="color: red; background-color: yellow;"}
 
 [[Visualization exercise (AM) Quarto template here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.qmd)]{style="color: red; background-color: yellow;"}
 
+[[Visualization exercise (AM) solutions here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-sol.html)]{style="color: red; background-color: yellow;"}
+
 [[Version control slides (PM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-git.html)]{style="color: red; background-color: yellow;"}
+
+[[Probability and simulation slides (PM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-sim.html)]{style="color: red; background-color: yellow;"}
+
+[[Probability and simulation exercise (AM) PDF instructions here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-sim-ex.pdf)]{style="color: red; background-color: yellow;"}
+
+[[Probability and simulation exercise (AM) Quarto template here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-sim-ex.qmd)]{style="color: red; background-color: yellow;"}
+
+[[Probability and simulation exercise (AM) solutions here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-sim-sol.html)]{style="color: red; background-color: yellow;"}
 
 <br>
 
@@ -70,8 +80,6 @@ This session will be held in JRR 399.
 :::
 
 ## Big exercise: simulation {#simulation}
-
-Answer probability questions by writing down the process and letting the computer run it a few thousand times. Start with the birthday problem — simulate it, then plot how the probability of a shared birthday grows with the number of people in the room. Then flip coins and resample counties until a familiar bell shape turns up on its own, bootstrap an estimate from a sample of 50 counties, and close by asking what every uncertainty number you just computed quietly assumed.
 
 ::: refs
 [References]{.refs-label}
