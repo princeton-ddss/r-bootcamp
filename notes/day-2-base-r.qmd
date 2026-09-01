@@ -15,7 +15,7 @@ fontsize: "14pt"
 codefont: "Fira Code"
 bullet-incremental: true
 toc: true
-handout: false
+handout: true
 execute:
   warning: false
   message: false

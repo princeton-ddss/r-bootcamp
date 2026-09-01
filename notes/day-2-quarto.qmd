@@ -12,7 +12,7 @@ format:
     touying-theme: simple
 bullet-incremental: true
 toc: true
-handout: false
+handout: true
 fontsize: "14pt"
 theme: ddss.typ
 ---

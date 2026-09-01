@@ -15,7 +15,7 @@ fontsize: "14pt"
 codefont: "Fira Code"
 bullet-incremental: true
 toc: true
-handout: false
+handout: true
 execute:
   warning: false
   message: false
@@ -479,24 +479,24 @@ counties |>
 
 ## Find text with `stringr`
 
-- `stringr::str_detect()` returns `TRUE`/`FALSE` for each string
-- `stringr::str_subset()` returns only the matching strings
-- `stringr::str_count()` counts matches in each string
+- `str_detect()` returns `TRUE`/`FALSE` for each string
+- `str_subset()` returns only the matching strings
+- `str_count()` counts matches in each string
 
 . . .
 
 ```{r}
 states <- c('New York', 'Texas', 'West Virginia', 'New Jersey')
 
-stringr::str_detect(states, '^New ')
-stringr::str_subset(states, 'New')
+str_detect(states, '^New ')
+str_subset(states, 'New')
 ```
 
 ## Transform text with `stringr`
 
-- `stringr::str_to_lower()` and `str_to_upper()` standardize case
-- `stringr::str_replace()` and `str_replace_all()` edit matches
-- `stringr::str_c()` combines strings
+- `str_to_lower()` and `str_to_upper()` standardize case
+- `str_replace()` and `str_replace_all()` edit matches
+- `str_c()` combines strings
 
 ## Transform text with `stringr`
 
@@ -505,13 +505,13 @@ places <- c('New York', 'West Virginia')
 
 tibble(
   original = places,
-  lower = stringr::str_to_lower(places),
-  slug = stringr::str_replace_all(
-    stringr::str_to_lower(places),
+  lower = str_to_lower(places),
+  slug = str_replace_all(
+    str_to_lower(places),
     ' ',
     '-'
   ),
-  label = stringr::str_c('State: ', places)
+  label = str_c('State: ', places)
 )
 ```
 
@@ -874,7 +874,7 @@ Which rows are saved for each join?
 
 ```r
 left |>
-  *_join(by = 'id')
+  *_join(right, by = 'id')
 ```
 
 ## Joining real data
