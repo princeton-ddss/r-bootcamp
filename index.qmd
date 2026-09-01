@@ -79,6 +79,8 @@ Install R and either RStudio or Positron before the bootcamp. Setup help is avai
 - Statistics with R
 - Big exercise: simulations
 
+[[Visualization slides (AM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz.html)]{style="color: red; background-color: yellow;"}
+
 [[Visualization exercise (AM) here.](https://princeton-ddss.github.io/r-bootcamp/notes/day-3-viz-ex.pdf)]{style="color: red; background-color: yellow;"}
 
 :::
