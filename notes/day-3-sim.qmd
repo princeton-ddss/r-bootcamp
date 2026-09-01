@@ -641,7 +641,7 @@ If you don't bootstrap with the same size, you have to apply a correction factor
 
 <hr> <br>
 
-- `boot::boot()` — the classic implementation, several kinds of interval
+- `boot::boot()` — the classic implementation, several kinds of interval; will apply correction factors
 - `rsample::bootstraps()` — tidyverse-flavored
 
 <br>
